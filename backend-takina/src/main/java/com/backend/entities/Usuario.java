@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="usuarios",
-        uniqueConstraints = {
-                @UniqueConstraint(name="usuarios_name_unique",
-                        columnNames = "name")
-        }
+        name="usuarios"
+        // uniqueConstraints = {
+        //         @UniqueConstraint(name="usuarios_name_unique",
+        //                 columnNames = "name")
+        // }
 )
 @Data
 @AllArgsConstructor

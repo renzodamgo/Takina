@@ -1,4 +1,5 @@
 package com.backend.entities;
+
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
@@ -9,11 +10,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="proyectoMusical",
-        uniqueConstraints = {
-                @UniqueConstraint(name="proyectoMusical_name_unique",
-                        columnNames = "name")
-        }
+        name="proyectosMusicales"
+        // uniqueConstraints = {
+        //         @UniqueConstraint(name="proyectoMusical_name_unique",
+        //                 columnNames = "name")
+        // }
 )
 @Data
 @AllArgsConstructor
