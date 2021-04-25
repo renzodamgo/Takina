@@ -104,4 +104,6 @@ public class Usuario {
 
     // ---------------------
 
+    // TODO: falta relacion con artista (muchos a muchos)
+
 }

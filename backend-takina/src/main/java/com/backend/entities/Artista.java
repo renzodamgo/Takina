@@ -72,6 +72,8 @@ public class Artista {
     )
     private Long oyentesMes;
 
+    // --------------------
 
+    // TODO: relacion de muchos a muchos con usuario y con cancion
     
 }
