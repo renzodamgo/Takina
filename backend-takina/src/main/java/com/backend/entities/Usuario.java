@@ -1,6 +1,8 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -12,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(
         name="usuarios"
         // uniqueConstraints = {
-        //         @UniqueConstraint(name="usuarios_name_unique",
+        //         @UniqueConstraint(name="usuario_name_unique",
         //                 columnNames = "name")
         // }
 )
@@ -104,6 +106,11 @@ public class Usuario {
 
     // ---------------------
 
-    // TODO: falta relacion con artista (muchos a muchos)
+    @OneToMany(
+        mappedBy = "usuario",
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+        fetch = FetchType.LAZY
+    )
+    private List<ListaReproduccion> listas = new ArrayList<>();
 
 }

@@ -1,5 +1,8 @@
 package com.backend.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -74,6 +77,22 @@ public class Artista {
 
     // --------------------
 
-    // TODO: relacion de muchos a muchos con usuario y con cancion
+    // Relaciones con las tablas de base de datos 
+
+    @OneToMany(
+        mappedBy = "artista",
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+        fetch = FetchType.LAZY
+    )
+    private List<Mercancia> listas = new ArrayList<>();
+
+    // --------------------
+    
+    @OneToMany(
+        mappedBy = "artista",
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+        fetch = FetchType.LAZY
+    )
+    private List<ProyectoMusical> proyecto = new ArrayList<>();
     
 }

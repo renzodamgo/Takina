@@ -63,8 +63,22 @@ public class ListaReproduccion {
 
     // ---------------------
 
-    // TODO: Falta la relacion con cancion (muchos a muchos) y con usuario (uno (usuario) a muchos (lista))
+    // Relaciones con las tablas de base de datos 
 
+    @ManyToOne
+    @JoinColumn(
+            name = "usuario_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "usuario_listaReproduccion_fk"
+            )
+    )
+    private Usuario usuario;
+
+    // -----------------------
+
+    
 
 
 }

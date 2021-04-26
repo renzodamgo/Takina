@@ -82,6 +82,16 @@ public class Cancion {
 
     // ---------------------
 
-    // TODO: faltan las relaciones correspondientes 
-    
+    // Relaciones con las tablas de base de datos 
+
+    @ManyToOne
+    @JoinColumn(
+            name = "proyectoMusical_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "proyectoMusical_cancion_fk"
+            )
+    )
+    private ProyectoMusical proyecto;
 }

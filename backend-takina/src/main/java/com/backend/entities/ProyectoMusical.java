@@ -1,6 +1,8 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -108,6 +110,26 @@ public class ProyectoMusical {
 
     // ----------------------
 
-    // TODO: relacion un artista muchos proyectos
+    // Relaciones con las tablas de base de datos 
+
+    @ManyToOne
+    @JoinColumn(
+            name = "artista_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "artista_proyectoMusical_fk"
+            )
+    )
+    private Artista artista;
+
+    // ---------------------
+
+    @OneToMany(
+        mappedBy = "proyecto",
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+        fetch = FetchType.LAZY
+    )
+    private List<Cancion> cancion = new ArrayList<>();
     
 }

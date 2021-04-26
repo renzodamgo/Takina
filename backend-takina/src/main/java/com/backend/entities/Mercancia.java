@@ -66,6 +66,17 @@ public class Mercancia {
 
     // ----------------------
 
-    // TODO: relacion con artista de uno (artista) a muchos (mercancia)
+    // Relaciones con las tablas de base de datos 
+
+    @ManyToOne
+    @JoinColumn(
+            name = "artista_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "artista_mercancia_fk"
+            )
+    )
+    private Artista artista;
     
 }
