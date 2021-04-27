@@ -93,12 +93,8 @@ public class Eventos {
     )
     private Integer interesados;
 
-    // ----------------------
+    // Relations many to many
+    @ManyToMany(mappedBy = "listaEventosArtistas")
+    List<Artista> listaArtistasEventos;
 
-    @OneToMany(
-            mappedBy = "eventos",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            fetch = FetchType.LAZY
-    )
-    private List<ListaEventoArtistas> listaEventoArtistas = new ArrayList<>();
 }

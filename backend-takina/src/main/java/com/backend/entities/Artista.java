@@ -95,24 +95,25 @@ public class Artista {
     )
     private List<ProyectoMusical> proyecto = new ArrayList<>();
 
-    @OneToMany(
-            mappedBy = "artista",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            fetch = FetchType.LAZY
-    )
-    private List<ListaAdministradoresArtista> listaAdministradoresArtistas = new ArrayList<>();
+    //Relations many to many
+    @ManyToMany
+    @JoinTable(
+            name = "lista_cancion_artista",
+            joinColumns = @JoinColumn(name = "artista_id"),
+            inverseJoinColumns = @JoinColumn(name = "cancion_id"))
+    List<Cancion> listaCancionArtista;
 
-    @OneToMany(
-            mappedBy = "artista",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            fetch = FetchType.LAZY
-    )
-    private List<ListaCancionArtista> listaCancionArtistas = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "lista_administradores_artista",
+            joinColumns = @JoinColumn(name = "artista_id"),
+            inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+    List<Usuario> listaAdministradoresArtista;
 
-    @OneToMany(
-            mappedBy = "artista",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            fetch = FetchType.LAZY
-    )
-    private List<ListaEventoArtistas> listaEventoArtistas = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "lista_evento_artistas",
+            joinColumns = @JoinColumn(name = "artista_id"),
+            inverseJoinColumns = @JoinColumn(name = "evento_id"))
+    List<Eventos> listaEventosArtistas;
 }

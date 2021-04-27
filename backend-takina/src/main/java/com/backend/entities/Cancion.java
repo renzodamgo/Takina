@@ -97,17 +97,10 @@ public class Cancion {
     )
     private ProyectoMusical proyecto;
 
-    @OneToMany(
-            mappedBy = "cancion",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            fetch = FetchType.LAZY
-    )
-    private List<ListaCancionArtista> listaCancionArtistas = new ArrayList<>();
+    //Relations many to many
+    @ManyToMany(mappedBy = "listaCancionArtista")
+    List<Artista> listaArtistaCanciones;
 
-//    @OneToMany(
-//            mappedBy = "cancion",
-//            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-//            fetch = FetchType.LAZY
-//    )
-//    private List<ListaCancion> listaCanciones = new ArrayList<>();
+    @ManyToMany(mappedBy = "listaCancionReproducciones")
+    List<ListaReproduccion> listaReproduccionCanciones;
 }

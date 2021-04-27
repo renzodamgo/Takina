@@ -78,14 +78,15 @@ public class ListaReproduccion {
     )
     private Usuario usuario;
 
-    // -----------------------
+    // Relations many to many
+    @ManyToMany
+    @JoinTable(
+            name = "lista_cancion",
+            joinColumns = @JoinColumn(name = "lista_reproduccion_id"),
+            inverseJoinColumns = @JoinColumn(name = "cancion_id"))
+    List<Cancion> listaCancionReproducciones;
 
-//    @OneToMany(
-//            mappedBy = "listaReproduccion",
-//            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-//            fetch = FetchType.LAZY
-//    )
-//    private List<ListaReproduccion> listaReproducciones = new ArrayList<>();
+
 
 
 }
