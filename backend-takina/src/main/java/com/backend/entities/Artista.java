@@ -94,5 +94,25 @@ public class Artista {
         fetch = FetchType.LAZY
     )
     private List<ProyectoMusical> proyecto = new ArrayList<>();
-    
+
+    @OneToMany(
+            mappedBy = "artista",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch = FetchType.LAZY
+    )
+    private List<ListaAdministradoresArtista> listaAdministradoresArtistas = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "artista",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch = FetchType.LAZY
+    )
+    private List<ListaCancionArtista> listaCancionArtistas = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "artista",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch = FetchType.LAZY
+    )
+    private List<ListaEventoArtistas> listaEventoArtistas = new ArrayList<>();
 }

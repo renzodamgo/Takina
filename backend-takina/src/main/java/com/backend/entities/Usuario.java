@@ -106,11 +106,16 @@ public class Usuario {
 
     // ---------------------
 
-    @OneToMany(
-        mappedBy = "usuario",
-        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-        fetch = FetchType.LAZY
-    )
-    private List<ListaReproduccion> listas = new ArrayList<>();
+//    @OneToMany(
+//        mappedBy = "usuario",
+//        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+//        fetch = FetchType.LAZY
+//    )
+//    private List<ListaReproduccion> listas = new ArrayList<>();
 
+    @OneToMany(mappedBy = "usuario",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch = FetchType.LAZY
+    )
+    private List<ListaAdministradoresArtista> listaAdministradoresArtistas = new ArrayList<>();
 }

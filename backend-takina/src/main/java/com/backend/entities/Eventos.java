@@ -1,5 +1,7 @@
 package com.backend.entities;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -93,5 +95,10 @@ public class Eventos {
 
     // ----------------------
 
-    // TODO: muchos a muchos con artista
+    @OneToMany(
+            mappedBy = "eventos",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch = FetchType.LAZY
+    )
+    private List<ListaEventoArtistas> listaEventoArtistas = new ArrayList<>();
 }

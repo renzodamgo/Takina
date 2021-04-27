@@ -1,6 +1,8 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -78,7 +80,12 @@ public class ListaReproduccion {
 
     // -----------------------
 
-    
+//    @OneToMany(
+//            mappedBy = "listaReproduccion",
+//            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+//            fetch = FetchType.LAZY
+//    )
+//    private List<ListaReproduccion> listaReproducciones = new ArrayList<>();
 
 
 }
