@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//TODO Que el Artista y el ArtistaDTO Tengan los Mismos nombres de las variables
 public class Artista {
 
     @Id
