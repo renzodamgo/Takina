@@ -9,5 +9,6 @@ public class ArtistaDto {
     private Long id;
     private String foto;
     private String biografia;
+    private String usuario_Id;
 
 }
