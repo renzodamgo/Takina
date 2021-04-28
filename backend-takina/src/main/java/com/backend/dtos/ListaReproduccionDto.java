@@ -7,8 +7,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ListaRerpoduccionDto {
-    private Long id;
+public class ListaReproduccionDto {
     private LocalDateTime creacion;
     private Integer numeroCanciones;
+	private Float duracion; // decimales a hora
 }

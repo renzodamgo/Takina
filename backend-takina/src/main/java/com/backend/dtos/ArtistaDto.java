@@ -6,9 +6,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ArtistaDto {
-    private Long id;
-    private String foto;
+    private String nombre;
+    private String foto_perfil;
+    private String foto_portada;
     private String biografia;
-    private String usuario_Id;
+    private Integer seguidores;
+    private Integer oyentesTotal;
 
+
+    // Cuantos oyentes hay al mes
+    // query -> tabla_cancion_usuario
+    // mes actual -> canciones que pertenezcan al artista -> cantidad unica de usuarios escuchandola
 }

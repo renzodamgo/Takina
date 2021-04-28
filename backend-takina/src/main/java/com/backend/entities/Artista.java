@@ -42,6 +42,15 @@ public class Artista {
     private Long id;
 
     // ---------------------
+	
+	@Column(
+        name = "nombre",
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
+    private String nombre;
+
+    // ---------------------
 
     @Column(
         name = "biografia",
@@ -70,10 +79,10 @@ public class Artista {
     // ---------------------
 
     @Column(
-        name = "oyentesMes",
+        name = "oyentesTotal",
         nullable = false
     )
-    private Long oyentesMes;
+    private Long oyentesTotal;
 
     // --------------------
 

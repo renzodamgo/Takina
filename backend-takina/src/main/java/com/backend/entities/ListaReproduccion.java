@@ -53,6 +53,12 @@ public class ListaReproduccion {
     // ---------------------
 
     // TODOO: FALTA PONER LA DURACION DE LA CANCION
+	@Column(
+            name="duracion",
+            nullable = false,
+            columnDefinition = "FLOAT TO TIME"
+    )
+    private Float duracion;
 
     // ---------------------
 
