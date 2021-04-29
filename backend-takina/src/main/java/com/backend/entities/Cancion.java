@@ -53,6 +53,7 @@ public class Cancion {
     // ----------------------
 
     // TODO: DURACION DE LA CANCION (NOSE COMO PONERLO)
+	// PONERLO COMO FLOAT
 
     // ---------------------
 
@@ -82,6 +83,15 @@ public class Cancion {
     private LocalDateTime lanzamiento;
 
     // ---------------------
+
+	@Column(
+        name = "genero_musical",
+        nullable = false,
+		columnDefinition = "TEXT"
+    )
+    private String genero_musical;
+	
+	// ---------------------
 
     // Relaciones con las tablas de base de datos 
 

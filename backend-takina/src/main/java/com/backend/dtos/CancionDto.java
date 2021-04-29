@@ -14,5 +14,6 @@ public class CancionDto {
     private String audio;
     private String imagen;
     private LocalDateTime lanzamiento;
+	private String genero_musical;
 
 }

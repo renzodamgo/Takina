@@ -80,10 +80,28 @@ public class Artista {
     // ---------------------
 
     @Column(
-        name = "oyentesTotal",
+        name = "oyentes_total",
         nullable = false
     )
-    private Long oyentesTotal;
+    private Long oyentes_total;
+
+    // --------------------
+
+	@Column(
+        name = "departamento_origen",
+        nullable = false,
+		columnDefinition = "TEXT"
+    )
+    private String departamento_origen;
+
+	 // --------------------
+
+	 @Column(
+        name = "genero_musical",
+        nullable = false,
+		columnDefinition = "TEXT"
+    )
+    private String genero_musical;
 
     // --------------------
 
