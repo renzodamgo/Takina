@@ -10,8 +10,8 @@ public class CreateArtistaDto {
     private String foto_perfil;
     private String foto_portada;
     private String biografia;
-    private Integer seguidores;
-    private Integer oyentesTotal;
+    private Long seguidores;
+    private Long oyentesTotal;
 	private String departamento_origen;
 	private String genero_musical;
 }
