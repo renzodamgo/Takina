@@ -8,14 +8,20 @@
     background-color: #2347a9;
 }
 
-.feature{
+#feature{
     background-color: #2347a9;
+}
+
+.mus{
+    background-color: #2347a9;
+    color: white;
 }
 
 .white{
     color: white;
     
 }
+
 
 .title{
     font-family: 'Krona One', sans-serif;
