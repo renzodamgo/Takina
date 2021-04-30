@@ -404,7 +404,7 @@
                             <input type="email" class="form-control" placeholder="direccion de correo" name="email" required="">
                         </div>
                         <div class="col-md-4 col-sm-4">
-                            <input type="submit" class="form-control" name="send message" value="Enviar mensaje">
+                            <input type="submit" class="form-control" onclick="myFunction()" value="Enviar mensaje">
                         </div>
                         <div class="col-md-12 col-sm-12">
                             <textarea class="form-control" rows="8" placeholder="tu mensaje" name="message" required=""></textarea>
@@ -415,6 +415,16 @@
             </div>
         </div>
     </section>
+
+    
+
+    <button onclick="myFunction()">Try it</button>
+
+    <script>
+    function myFunction() {
+      alert("Mensaje enviado!");
+    }
+    </script>
 
 
     <!-- FOOTER -->
