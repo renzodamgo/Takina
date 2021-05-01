@@ -17,5 +17,10 @@ public interface ArtistaRepository extends JpaRepository<Artista,Long> {
     //User Story Buscar Artista por Nombre
     List<Artista> findByNombreContains(String nombre);
 
+    //US 004
+    List<Artista> findByGeneroMusicalContains(String genero_musical);
+    //US 005
+    List<Artista> findByDepartamentoOrigenContains(String departamento_origen);
+
 
 }

@@ -59,8 +59,8 @@ public class ArtistaServiceImpl implements ArtistaService {
 		artista.setBiografia(createArtistaDto.getBiografia());
         artista.setFoto_perfil(createArtistaDto.getFoto_perfil());
 		artista.setFoto_portada(createArtistaDto.getFoto_portada());
-        artista.setDepartamento_origen(createArtistaDto.getDepartamento_origen());
-		artista.setGenero_musical(createArtistaDto.getGenero_musical());
+        artista.setDepartamentoOrigen(createArtistaDto.getDepartamentoOrigen());
+		artista.setGeneroMusical(createArtistaDto.getGeneroMusical());
 
         try {
             artista = artistaRepository.save(artista);
@@ -74,6 +74,18 @@ public class ArtistaServiceImpl implements ArtistaService {
     @Override
     public List<ArtistaDto> getArtistasByName(String nombre) throws TakinaException{
         List<Artista> results = artistaRepository.findByNombreContains(nombre);
+        return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArtistaDto> getArtistasByGeneroMusical(String genero_musical) throws TakinaException{
+        List<Artista> results = artistaRepository.findByGeneroMusicalContains(genero_musical);
+        return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArtistaDto> getArtistasByDepartamento(String departamento_origen) throws TakinaException{
+        List<Artista> results = artistaRepository.findByDepartamentoOrigenContains(departamento_origen);
         return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
     }
 
