@@ -13,5 +13,5 @@ public class CreateCancionDto {
     private String imagen;
     private LocalDateTime lanzamiento;
 	private String genero_musical;
-
+	private Long proyecto_id;
 }
