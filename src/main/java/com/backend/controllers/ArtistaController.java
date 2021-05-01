@@ -33,8 +33,6 @@ public class ArtistaController {
 
     }
 
-
-
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/artistas")
     public TakinaResponse<ArtistaDto> createArtista(@RequestBody CreateArtistaDto createArtistaDto)
