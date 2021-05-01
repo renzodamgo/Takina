@@ -3,4 +3,4 @@ Backend de aplicación web Takina, !el nuevo reproductor musical para la industr
 
 Landing Page: https://frany-oss.github.io/Takina-RESTAPI/
 
-Swagger: https://takina.herokuapp.com/takina/v1
+Swagger: https://takina.herokuapp.com/swagger-ui.html
