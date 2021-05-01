@@ -54,11 +54,11 @@ public class Usuario {
     // ---------------------
 
     @Column(
-        name = "contraseña",
+        name = "password",
         nullable = false,
         columnDefinition = "TEXT"
     )
-    private Long contraseña;
+    private String password;
 
     // ----------------------
 

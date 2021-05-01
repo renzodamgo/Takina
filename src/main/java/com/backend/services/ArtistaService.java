@@ -11,9 +11,9 @@ public interface ArtistaService {
 
     List<ArtistaDto> getArtistas() throws TakinaException;
 
-    // Como usuario Quiero buscar a un artista por su nombre para ver y escuchar su musica y su contenido
+    // US010 - Como usuario Quiero buscar a un artista por su nombre para ver y escuchar su musica y su contenido
     ArtistaDto getArtistaNombre(String nombre) throws TakinaException;
 
-    // Como usuario quiero crearme un "artista" para poder compartir mi musica y mis proyectos con los demas
+    // US013 - Como usuario Quiero registrar un perfil de Músico Para subir contenido musical propio y que esté disponible en la plataforma
     ArtistaDto createArtista(CreateArtistaDto createArtistaDto) throws TakinaException;
 }
