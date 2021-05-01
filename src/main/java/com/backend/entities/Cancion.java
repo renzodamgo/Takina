@@ -54,9 +54,14 @@ public class Cancion {
     private String nombre;
 
     // ----------------------
-
-    // TODO: DURACION DE LA CANCION (NOSE COMO PONERLO)
-	// PONERLO COMO FLOAT
+	
+	@Column(
+        name = "duracion",
+        nullable = false
+    )
+    private float duracion;
+	// EJM: 3.4 => 3 minutos 24 segundos
+	// int(duracion) minutos - int(duracion%1 * 60) segundos
 
     // ---------------------
 
@@ -99,7 +104,6 @@ public class Cancion {
 	// ---------------------
 
     // Relaciones con las tablas de base de datos 
-
     @ManyToOne
     @JoinColumn(
             name = "proyectoMusical_id",
