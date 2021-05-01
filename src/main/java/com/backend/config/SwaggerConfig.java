@@ -16,7 +16,7 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
 
-        // localhost:8083/swagger-ui.html
+        // https://takina.herokuapp.com/swagger-ui.html
         return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("com.backend.controllers")).paths(PathSelectors.any()).build();
     }
     
