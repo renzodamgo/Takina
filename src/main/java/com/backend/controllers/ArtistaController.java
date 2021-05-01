@@ -44,10 +44,26 @@ public class ArtistaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/artistas/buscar/{artistaNombre}")
+    @GetMapping("/artistas/buscar/artista/nombre/{artistaNombre}")
     public  TakinaResponse<List<ArtistaDto>> getArtistasByNombre(@PathVariable String artistaNombre)
         throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 artistaService.getArtistasByName(artistaNombre));
+    }
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/artistas/buscar/artista/genero/{artistaGenero}")
+    public  TakinaResponse<List<ArtistaDto>> getArtistasByGenero_musical(@PathVariable String artistaGenero)
+            throws TakinaException{
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+                artistaService.getArtistasByGeneroMusical(artistaGenero));
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/artistas/buscar/artista/departamento/{artistaDepartamento}")
+    public  TakinaResponse<List<ArtistaDto>> getArtistasByDepartamento(@PathVariable String artistaDepartamento)
+            throws TakinaException{
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+                artistaService.getArtistasByDepartamento(artistaDepartamento));
     }
 }

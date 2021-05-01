@@ -12,8 +12,8 @@ public class ArtistaDto {
     private String biografia;
     private Integer seguidores;
     private Integer oyentes_total;
-	private String departamento_origen;
-	private String genero_musical;
+	private String departamentoOrigen;
+	private String generoMusical;
 
 
     // Cuantos oyentes hay al mes

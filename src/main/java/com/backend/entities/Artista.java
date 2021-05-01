@@ -78,7 +78,7 @@ public class Artista {
         nullable = false,
 		columnDefinition = "TEXT"
     )
-    private String departamento_origen;
+    private String departamentoOrigen;
 
 	 // --------------------
 
@@ -87,7 +87,7 @@ public class Artista {
         nullable = false,
 		columnDefinition = "TEXT"
     )
-    private String genero_musical;
+    private String generoMusical;
 
 	// ---------------------
 
