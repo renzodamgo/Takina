@@ -1,7 +1,6 @@
 package com.backend.controllers;
 
 import com.backend.dtos.CancionDto;
-import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
