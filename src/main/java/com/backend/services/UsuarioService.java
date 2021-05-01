@@ -11,7 +11,7 @@ public interface UsuarioService {
 
     List<UsuarioDto> getUsuarios() throws TakinaException;
 
-	// 
+	// US021 - Como usuario Quiero buscar a otro usuario por su apodo Para ver su perfil y conocer más de el/ella. 
     UsuarioDto getUsuarioNombre(String nombre) throws TakinaException;
 
 	// US001 - Como internauta Quiero registrarme en la aplicación Para usar la Plataforma

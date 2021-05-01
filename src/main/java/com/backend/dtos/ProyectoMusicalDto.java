@@ -9,10 +9,12 @@ import lombok.Setter;
 @Setter
 public class ProyectoMusicalDto {
     private String nombre;
+	private String tipoProyecto;
 	private Float duracion;
 	private String descripcion;
-	private LocalDateTime fecha;
+	private LocalDateTime fechaLanzamiento;
 	private Integer canciones;
 	private String discografica;
 	private Long artista_id;
+	private String rutaImagen;
 }
