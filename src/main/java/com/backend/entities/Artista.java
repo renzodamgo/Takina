@@ -101,7 +101,7 @@ public class Artista {
 	@Column(
 		name = "oyentesTotal"
 	)
-	private Long oyentes_total = 0L;
+	private Long oyentesTotal = 0L;
 
     // --------------------
 
