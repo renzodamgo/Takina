@@ -22,7 +22,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
     @Autowired
-    private UsuarioRepository UsuarioRepository;
+    private UsuarioRepository usuarioRepository;
     private static final ModelMapper modelMapper = new ModelMapper();
 
     // -------------------------------------------------------
@@ -33,15 +33,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     private Usuario getUsuarioEntity(Long UsuarioId) throws TakinaException {
-        return UsuarioRepository.findById(UsuarioId)
+        return usuarioRepository.findById(UsuarioId)
                 .orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
     }
 
     // -------------------------------------------------------
     @Override
     public List<UsuarioDto> getUsuarios() throws TakinaException {
-        List<Usuario> UsuariosEntity = UsuarioRepository.findAll();
-        return UsuariosEntity.stream().map(Usuario -> modelMapper.map(Usuario, UsuarioDto.class)).collect(Collectors.toList());
+        List<Usuario> usuariosEntity = usuarioRepository.findAll();
+        return usuariosEntity.stream().map(Usuario -> modelMapper.map(Usuario, UsuarioDto.class)).collect(Collectors.toList());
     }
 
     // -------------------------------------------------------
@@ -51,7 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     private Usuario getUsuarioEntityNombre(String nombre) throws TakinaException {
-        return UsuarioRepository.findByNombre(nombre)
+        return usuarioRepository.findByNombre(nombre)
                 .orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
     }
 
@@ -67,7 +67,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario.setFotoPerfil(createUsuarioDto.getFotoPerfil());
 
         try {
-            Usuario = UsuarioRepository.save(Usuario);
+            Usuario = usuarioRepository.save(Usuario);
         }catch (Exception ex){
             throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_CREATED");
         }
