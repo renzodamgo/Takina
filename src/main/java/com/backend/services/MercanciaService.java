@@ -12,7 +12,7 @@ public interface MercanciaService {
     List<MercanciaDto> getMercancia() throws TakinaException;
     
     // US015 Como usuario administrador de un perfil de artista Quiero publicar un enlace del catálogo de mis mercancías Para poder obtener remuneración a través de la venta
-    MercanciaDto createMercania(CreateMercanciaDto createMercanciaDto) throws TakinaException;
+    MercanciaDto createMercancia(CreateMercanciaDto createMercanciaDto) throws TakinaException;
 
 
 }

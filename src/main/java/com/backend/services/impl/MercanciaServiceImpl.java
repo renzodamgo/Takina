@@ -18,7 +18,9 @@ import com.backend.services.MercanciaService;
 import org.modelmapper.ModelMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MercanciaServiceImpl implements MercanciaService {
 
     @Autowired
@@ -47,7 +49,7 @@ public class MercanciaServiceImpl implements MercanciaService {
     // ----------------------------------------------------------------
     @Transactional
     @Override
-    public MercanciaDto createMercania(CreateMercanciaDto createMercanciaDto) throws TakinaException {
+    public MercanciaDto createMercancia(CreateMercanciaDto createMercanciaDto) throws TakinaException {
 
         Artista artistaId = artistaRepository.findById(createMercanciaDto.getArtistaId()).orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
 
