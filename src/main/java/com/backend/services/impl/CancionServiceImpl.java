@@ -63,7 +63,7 @@ public class CancionServiceImpl implements CancionService {
     @Transactional
     @Override
     public CancionDto createCancion(CreateCancionDto createCancionDto) throws TakinaException {
-		ProyectoMusical proyectoId = proyectoMusicalRepository.findById(createCancionDto.getProyecto_id())
+		ProyectoMusical proyectoId = proyectoMusicalRepository.findById(createCancionDto.getProyectoId())
 				.orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
 
         Cancion cancion = new Cancion();
@@ -71,7 +71,7 @@ public class CancionServiceImpl implements CancionService {
         cancion.setAudio(createCancionDto.getAudio());
 		cancion.setImagen(createCancionDto.getImagen());
 		cancion.setLanzamiento(createCancionDto.getLanzamiento());
-        cancion.setGenero_musical(createCancionDto.getGenero_musical());
+        cancion.setGenero_musical(createCancionDto.getGeneroMusical());
         cancion.setDuracion(createCancionDto.getDuracion());
         cancion.setProyecto(proyectoId);
         

@@ -7,11 +7,11 @@ import lombok.Setter;
 @Setter
 public class ArtistaDto {
     private String nombre;
-    private String foto_perfil;
-    private String foto_portada;
+    private String fotoPerfil;
+    private String fotoPortada;
     private String biografia;
     private Integer seguidores;
-    private Integer oyentes_total;
+    private Integer oyentesTotal;
 	private String departamentoOrigen;
 	private String generoMusical;
 

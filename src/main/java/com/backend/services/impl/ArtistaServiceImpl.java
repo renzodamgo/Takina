@@ -57,8 +57,8 @@ public class ArtistaServiceImpl implements ArtistaService {
         Artista artista = new Artista();
 		artista.setNombre(createArtistaDto.getNombre());
 		artista.setBiografia(createArtistaDto.getBiografia());
-        artista.setFoto_perfil(createArtistaDto.getFoto_perfil());
-		artista.setFoto_portada(createArtistaDto.getFoto_portada());
+        artista.setFotoPerfil(createArtistaDto.getFotoPerfil());
+		artista.setFotoPortada(createArtistaDto.getFotoPortada());
         artista.setDepartamentoOrigen(createArtistaDto.getDepartamentoOrigen());
 		artista.setGeneroMusical(createArtistaDto.getGeneroMusical());
 

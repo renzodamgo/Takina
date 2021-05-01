@@ -62,7 +62,7 @@ public class ProyectoMusicalServiceImpl implements ProyectoMusicalService {
     @Transactional
     @Override
     public ProyectoMusicalDto createProyectoMusical(CreateProyectoMusicalDto createProyectoMusicalDto) throws TakinaException {
-		Artista artistaId = artistaRepository.findById(createProyectoMusicalDto.getArtista_id())
+		Artista artistaId = artistaRepository.findById(createProyectoMusicalDto.getArtistaId())
 				.orElseThrow(()->new NotFoundException("NOT-401-1","RESTAURANT_NOT_FOUND"));
 
         ProyectoMusical ProyectoMusical = new ProyectoMusical();

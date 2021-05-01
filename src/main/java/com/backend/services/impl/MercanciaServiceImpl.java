@@ -49,7 +49,7 @@ public class MercanciaServiceImpl implements MercanciaService {
     @Override
     public MercanciaDto createMercania(CreateMercanciaDto createMercanciaDto) throws TakinaException {
 
-        Artista artistaId = artistaRepository.findById(createMercanciaDto.getArtista_id()).orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
+        Artista artistaId = artistaRepository.findById(createMercanciaDto.getArtistaId()).orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
 
         Mercancia mercancia = new Mercancia();
         mercancia.setNombre(createMercanciaDto.getNombre());

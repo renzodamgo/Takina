@@ -95,7 +95,7 @@ public class Usuario {
         name = "premium",
         nullable = false
     )
-    private boolean premium;
+    private boolean premium = false;
 
     // ---------------------
 

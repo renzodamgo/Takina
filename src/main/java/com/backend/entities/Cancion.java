@@ -89,7 +89,7 @@ public class Cancion {
     // ---------------------
 
 	@Column(
-        name = "genero_musical",
+        name = "generoMusical",
         nullable = false,
 		columnDefinition = "TEXT"
     )

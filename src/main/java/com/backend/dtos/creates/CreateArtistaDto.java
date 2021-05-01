@@ -8,8 +8,8 @@ import lombok.Setter;
 public class CreateArtistaDto {
     private String nombre;
 	private String biografia;
-    private String foto_perfil;
-    private String foto_portada;
+    private String fotoPerfil;
+    private String fotoPortada;
 	private String departamentoOrigen;
 	private String generoMusical;
 }

@@ -11,7 +11,7 @@ public class EventosDto {
     private String nombre;
     private String lugar;
     private LocalDateTime fecha;
-    private String foto_portada;
+    private String fotoPortada;
 	private Integer interesados;
 	private Float precio;
 
