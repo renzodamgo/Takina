@@ -18,18 +18,18 @@ public class ArtistaController {
     private ArtistaService artistaService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/artistas/{ArtistaId}")
-    public TakinaResponse<ArtistaDto> getArtistaById(@PathVariable Long ArtistaId) throws TakinaException {
+    @GetMapping("/artistas/id/{artistaId}")
+    public TakinaResponse<ArtistaDto> getArtistaById(@PathVariable Long artistaId) throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),
-                "OK",artistaService.getArtista(ArtistaId));
+                "OK",artistaService.getArtista(artistaId));
 
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/artistas/{ArtistaNombre}")
-    public TakinaResponse<ArtistaDto> getArtistaByNombre(@PathVariable String ArtistaNombre) throws TakinaException {
+    @GetMapping("/artistas/nombre/{artistaNombre}")
+    public TakinaResponse<ArtistaDto> getArtistaByNombre(@PathVariable String artistaNombre) throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),
-                "OK",artistaService.getArtistaNombre(ArtistaNombre));
+                "OK",artistaService.getArtistaNombre(artistaNombre));
 
     }
 

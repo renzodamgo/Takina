@@ -112,7 +112,7 @@ public class Artista {
         cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
         fetch = FetchType.LAZY
     )
-    private List<Mercancia> listas = new ArrayList<>();
+    private List<Mercancia> mercancias = new ArrayList<>();
 
     // --------------------
     
@@ -121,7 +121,7 @@ public class Artista {
         cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
         fetch = FetchType.LAZY
     )
-    private List<ProyectoMusical> proyecto = new ArrayList<>();
+    private List<ProyectoMusical> proyectos = new ArrayList<>();
 
     //Relations many to many
     @ManyToMany

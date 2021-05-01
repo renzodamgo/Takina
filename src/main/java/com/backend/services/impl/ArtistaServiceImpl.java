@@ -25,12 +25,12 @@ public class ArtistaServiceImpl implements ArtistaService {
     private static final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public ArtistaDto getArtista(Long Id) throws TakinaException{
-        return modelMapper.map(getArtistaEntity(Id), ArtistaDto.class);
+    public ArtistaDto getArtista(Long artistaId) throws TakinaException{
+        return modelMapper.map(getArtistaEntity(artistaId), ArtistaDto.class);
     }
 
-    private Artista getArtistaEntity(Long ArtistaId) throws TakinaException {
-        return artistaRepository.findById(ArtistaId)
+    private Artista getArtistaEntity(Long artistaId) throws TakinaException {
+        return artistaRepository.findById(artistaId)
                 .orElseThrow(()-> new NotFoundException("NOTFOUND-404","ARTISTA_NOTFOUND-404"));
     }
 
