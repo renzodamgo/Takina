@@ -15,12 +15,12 @@ public interface ArtistaRepository extends JpaRepository<Artista,Long> {
     Optional<Artista> findByNombre(String nombre);
 
     //User Story Buscar Artista por Nombre
-    List<Artista> findByNombreContains(String nombre);
+    List<Artista> findByNombreContainingIgnoreCase(String nombre);
 
     //US 004
-    List<Artista> findByGeneroMusicalContains(String genero_musical);
+    List<Artista> findByGeneroMusicalContainingIgnoreCase(String genero_musical);
     //US 005
-    List<Artista> findByDepartamentoOrigenContains(String departamento_origen);
+    List<Artista> findByDepartamentoOrigenContainingIgnoreCase(String departamento_origen);
 
 
 }
