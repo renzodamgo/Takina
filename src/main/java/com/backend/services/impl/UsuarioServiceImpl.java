@@ -69,7 +69,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         try {
             Usuario = UsuarioRepository.save(Usuario);
         }catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INTERNAL_SERVER_ERROR");
+            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_CREATED");
         }
         return modelMapper.map(getUsuarioEntity(Usuario.getId()),UsuarioDto.class);
     }

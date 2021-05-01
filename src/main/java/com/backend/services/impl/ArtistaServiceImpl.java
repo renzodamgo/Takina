@@ -67,7 +67,7 @@ public class ArtistaServiceImpl implements ArtistaService {
         try {
             artista = artistaRepository.save(artista);
         }catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INTERNAL_SERVER_ERROR");
+            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ARTISTA_NOT_CREATED");
         }
         return modelMapper.map(getArtistaEntity(artista.getId()),ArtistaDto.class);
 

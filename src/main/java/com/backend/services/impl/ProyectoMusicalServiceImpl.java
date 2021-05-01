@@ -79,7 +79,7 @@ public class ProyectoMusicalServiceImpl implements ProyectoMusicalService {
         try {
             ProyectoMusical = proyectoMusicalRepository.save(ProyectoMusical);
         }catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INTERNAL_SERVER_ERROR");
+            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
         }
         return modelMapper.map(getProyectoMusicalEntity(ProyectoMusical.getId()),ProyectoMusicalDto.class);
     }

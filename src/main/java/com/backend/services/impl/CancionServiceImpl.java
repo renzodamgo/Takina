@@ -78,7 +78,7 @@ public class CancionServiceImpl implements CancionService {
         try {
             cancion = cancionRepository.save(cancion);
         }catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INTERNAL_SERVER_ERROR");
+            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
         }
         return modelMapper.map(getCancionEntity(cancion.getId()),CancionDto.class);
     }
