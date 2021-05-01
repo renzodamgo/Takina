@@ -68,11 +68,11 @@ public class CancionServiceImpl implements CancionService {
 
         Cancion cancion = new Cancion();
         cancion.setNombre(createCancionDto.getNombre());
-		cancion.setDuracion(createCancionDto.getDuracion());
         cancion.setAudio(createCancionDto.getAudio());
 		cancion.setImagen(createCancionDto.getImagen());
 		cancion.setLanzamiento(createCancionDto.getLanzamiento());
         cancion.setGenero_musical(createCancionDto.getGenero_musical());
+        cancion.setDuracion(createCancionDto.getDuracion());
         cancion.setProyecto(proyectoId);
         
         try {
