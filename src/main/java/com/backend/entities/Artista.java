@@ -24,14 +24,8 @@ import lombok.NoArgsConstructor;
 public class Artista {
 
     @Id
-    @SequenceGenerator(
-            name="artista_sequence",
-            sequenceName = "artista_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "artista_sequence"
+            strategy = GenerationType.IDENTITY
     )
 
     // ---------------------

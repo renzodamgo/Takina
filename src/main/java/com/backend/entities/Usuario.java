@@ -24,16 +24,9 @@ import lombok.NoArgsConstructor;
 public class Usuario {
     
     @Id
-    @SequenceGenerator(
-            name="usuario_sequence",
-            sequenceName = "usuario_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "usuario_sequence"
+            strategy = GenerationType.IDENTITY
     )
-
     // ---------------------
 
     @Column(

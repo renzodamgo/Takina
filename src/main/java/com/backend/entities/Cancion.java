@@ -26,14 +26,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Cancion {
 
     @Id
-//    @SequenceGenerator(
-//            name="cancion_sequence",
-//            sequenceName = "cancion_sequence",
-//            allocationSize = 1
-//    )
     @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "cancion_sequence"
+            strategy = GenerationType.IDENTITY
     )
 
     // ---------------------

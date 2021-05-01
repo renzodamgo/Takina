@@ -23,14 +23,8 @@ import lombok.NoArgsConstructor;
 public class ListaReproduccion {
     
     @Id
-    @SequenceGenerator(
-            name="listaRepreduccion_sequence",
-            sequenceName = "listaRepreduccion_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "listaRepreduccion_sequence"
+            strategy = GenerationType.IDENTITY
     )
 
     // ---------------------

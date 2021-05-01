@@ -24,14 +24,8 @@ import lombok.NoArgsConstructor;
 public class ProyectoMusical {
 
     @Id
-    @SequenceGenerator(
-            name="proyectoMusical_sequence",
-            sequenceName = "proyectoMusical_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "proyectoMusical_sequence"
+            strategy = GenerationType.IDENTITY
     )
 
     // ---------------------

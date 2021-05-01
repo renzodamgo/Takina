@@ -20,16 +20,9 @@ import lombok.NoArgsConstructor;
 public class Mercancia {
 
     @Id
-    @SequenceGenerator(
-            name="mercancia_sequence",
-            sequenceName = "mercancia_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "mercancia_sequence"
+            strategy = GenerationType.IDENTITY
     )
-
     // ---------------------
 
     @Column(

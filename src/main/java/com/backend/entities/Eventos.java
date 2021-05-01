@@ -22,16 +22,9 @@ import lombok.NoArgsConstructor;
 public class Eventos {
 
     @Id
-    @SequenceGenerator(
-            name="eventos_sequence",
-            sequenceName = "eventos_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "eventos_sequence"
+            strategy = GenerationType.IDENTITY
     )
-
     // ---------------------
 
     @Column(
