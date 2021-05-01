@@ -71,11 +71,11 @@ public class Eventos {
     // ----------------------
 
     @Column(
-        name = "foto_portada",
+        name = "fotoPortada",
         nullable = false,
         columnDefinition = "TEXT"
     )
-    private String foto_portada;
+    private String fotoPortada;
 
     // ----------------------
 

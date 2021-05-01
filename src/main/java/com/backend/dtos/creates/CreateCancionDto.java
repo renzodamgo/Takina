@@ -12,6 +12,6 @@ public class CreateCancionDto {
     private String audio;
     private String imagen;
     private LocalDateTime lanzamiento;
-	private String genero_musical;
-	private Long proyecto_id;
+	private String generoMusical;
+	private Long proyectoId;
 }

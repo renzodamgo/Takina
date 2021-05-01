@@ -56,25 +56,25 @@ public class Artista {
     // ---------------------
 	
     @Column(
-        name = "foto_perfil",
+        name = "fotoPerfil",
         nullable = false,
         columnDefinition = "TEXT"
     )
-    private String foto_perfil;
+    private String fotoPerfil;
 
 	// ---------------------
 
     @Column(
-        name = "foto_portada",
+        name = "fotoPortada",
         nullable = false,
         columnDefinition = "TEXT"
     )
-    private String foto_portada;
+    private String fotoPortada;
 
     // --------------------
 
 	@Column(
-        name = "departamento_origen",
+        name = "departamentoOrigen",
         nullable = false,
 		columnDefinition = "TEXT"
     )
@@ -83,7 +83,7 @@ public class Artista {
 	 // --------------------
 
 	 @Column(
-        name = "genero_musical",
+        name = "generoMusical",
         nullable = false,
 		columnDefinition = "TEXT"
     )
@@ -99,7 +99,7 @@ public class Artista {
 	// ---------------------
 	
 	@Column(
-		name = "oyentes_total"
+		name = "oyentesTotal"
 	)
 	private Long oyentes_total = 0L;
 

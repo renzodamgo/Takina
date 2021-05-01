@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/takina"+"/v1")
 public class ArtistaController {
-
     @Autowired
     private ArtistaService artistaService;
 
@@ -50,6 +49,7 @@ public class ArtistaController {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 artistaService.getArtistasByName(artistaNombre));
     }
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/artistas/buscar/artista/genero/{artistaGenero}")
     public  TakinaResponse<List<ArtistaDto>> getArtistasByGenero_musical(@PathVariable String artistaGenero)
@@ -57,7 +57,6 @@ public class ArtistaController {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 artistaService.getArtistasByGeneroMusical(artistaGenero));
     }
-
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/artistas/buscar/artista/departamento/{artistaDepartamento}")

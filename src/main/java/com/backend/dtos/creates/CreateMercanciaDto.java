@@ -9,5 +9,5 @@ public class CreateMercanciaDto {
     private String nombre;
     private Float precio;
     private String foto;
-	private Long artista_id;
+	private Long artistaId;
 }
