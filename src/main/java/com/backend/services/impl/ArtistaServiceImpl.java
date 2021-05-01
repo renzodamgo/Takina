@@ -55,14 +55,12 @@ public class ArtistaServiceImpl implements ArtistaService {
     @Override
     public ArtistaDto createArtista(CreateArtistaDto createArtistaDto) throws TakinaException {
         Artista artista = new Artista();
-        artista.setBiografia(createArtistaDto.getBiografia());
+		artista.setNombre(createArtistaDto.getNombre());
+		artista.setBiografia(createArtistaDto.getBiografia());
+        artista.setFoto_perfil(createArtistaDto.getFoto_perfil());
+		artista.setFoto_portada(createArtistaDto.getFoto_portada());
         artista.setDepartamento_origen(createArtistaDto.getDepartamento_origen());
-        artista.setFoto(createArtistaDto.getFoto_perfil());
-        artista.setGenero_musical(createArtistaDto.getGenero_musical());
-        artista.setNombre(createArtistaDto.getNombre());
-        artista.setOyentes_total(createArtistaDto.getOyentesTotal());
-        artista.setDepartamento_origen(createArtistaDto.getDepartamento_origen());
-        artista.setSeguidores(createArtistaDto.getSeguidores());
+		artista.setGenero_musical(createArtistaDto.getGenero_musical());
 
         try {
             artista = artistaRepository.save(artista);

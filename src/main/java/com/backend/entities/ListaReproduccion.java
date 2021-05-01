@@ -80,7 +80,7 @@ public class ListaReproduccion {
     // Relations many to many
     @ManyToMany
     @JoinTable(
-            name = "lista_cancion",
+            name = "lista_lista_cancion",
             joinColumns = @JoinColumn(name = "lista_reproduccion_id"),
             inverseJoinColumns = @JoinColumn(name = "cancion_id"))
     List<Cancion> listaCancionReproducciones;

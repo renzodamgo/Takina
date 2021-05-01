@@ -16,5 +16,4 @@ public interface UsuarioService {
 
 	// US001 - Como internauta Quiero registrarme en la aplicación Para usar la Plataforma
     UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws TakinaException;
-
 }

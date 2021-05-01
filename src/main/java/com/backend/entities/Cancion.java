@@ -34,7 +34,6 @@ public class Cancion {
 
     @Column(
             name="id",
-			nullable = false,
             updatable = false
     )
     private Long id;

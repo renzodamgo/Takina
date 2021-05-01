@@ -11,7 +11,7 @@ public class ArtistaDto {
     private String foto_portada;
     private String biografia;
     private Integer seguidores;
-    private Integer oyentesTotal;
+    private Integer oyentes_total;
 	private String departamento_origen;
 	private String genero_musical;
 

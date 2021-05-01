@@ -14,7 +14,7 @@ public interface CancionService {
     // US006 - Como usuario Quiero buscar una canción para encontrar la canción que deseo escuchar en ese instante
     CancionDto getCancionNombre(String nombre) throws TakinaException;
 
-    // US...
+    // US023 - Como usuario administrador de un perfil de artista Quiero subir una cancion Para que se cree un proyecto musical de sencillo automaticamente
     CancionDto createCancion(CreateCancionDto createCancionDto) throws TakinaException;
 
 }

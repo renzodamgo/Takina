@@ -23,13 +23,12 @@ import lombok.NoArgsConstructor;
 //TODO Que el Artista y el ArtistaDTO Tengan los Mismos nombres de las variables
 public class Artista {
 
+    // ---------------------
+
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
-
-    // ---------------------
-
     @Column(
             name="id",
             updatable = false
@@ -55,29 +54,22 @@ public class Artista {
     private String biografia;
 
     // ---------------------
-
+	
     @Column(
-        name = "foto",
+        name = "foto_perfil",
         nullable = false,
         columnDefinition = "TEXT"
     )
-    private String foto;
+    private String foto_perfil;
 
-    // ---------------------
-
-    @Column(
-        name = "seguidores",
-        nullable = false
-    )
-    private Long seguidores;
-
-    // ---------------------
+	// ---------------------
 
     @Column(
-        name = "oyentes_total",
-        nullable = false
+        name = "foto_portada",
+        nullable = false,
+        columnDefinition = "TEXT"
     )
-    private Long oyentes_total;
+    private String foto_portada;
 
     // --------------------
 
@@ -96,6 +88,20 @@ public class Artista {
 		columnDefinition = "TEXT"
     )
     private String genero_musical;
+
+	// ---------------------
+
+	@Column(
+		name = "seguidores"
+	)
+	private Long seguidores = 0L;
+	
+	// ---------------------
+	
+	@Column(
+		name = "oyentes_total"
+	)
+	private Long oyentes_total = 0L;
 
     // --------------------
 
