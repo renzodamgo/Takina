@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/takina"+"/v1")
@@ -41,4 +43,11 @@ public class ArtistaController {
                 artistaService.createArtista(createArtistaDto));
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/artistas/buscar/{artistaNombre}")
+    public  TakinaResponse<List<ArtistaDto>> getArtistasByNombre(@PathVariable String artistaNombre)
+        throws TakinaException{
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+                artistaService.getArtistasByName(artistaNombre));
+    }
 }

@@ -8,8 +8,8 @@ import com.backend.exceptions.TakinaException;
 
 public interface ArtistaService {
     ArtistaDto getArtista(Long Id) throws TakinaException;
-
     List<ArtistaDto> getArtistas() throws TakinaException;
+    List<ArtistaDto> getArtistasByName(String nombre) throws TakinaException;
 
     // US010 - Como usuario Quiero buscar a un artista por su nombre para ver y escuchar su musica y su contenido
     ArtistaDto getArtistaNombre(String nombre) throws TakinaException;

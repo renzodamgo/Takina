@@ -70,5 +70,11 @@ public class ArtistaServiceImpl implements ArtistaService {
         return modelMapper.map(getArtistaEntity(artista.getId()),ArtistaDto.class);
 
     }
+    //Buscar Artidtar por nombre
+    @Override
+    public List<ArtistaDto> getArtistasByName(String nombre) throws TakinaException{
+        List<Artista> results = artistaRepository.findByNombreContains(nombre);
+        return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
+    }
 
 }
