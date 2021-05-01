@@ -15,5 +15,4 @@ public class ProyectoMusicalDto {
 	private Integer canciones;
 	private String discografica;
 	private Long artista_id;
-	
 }
