@@ -22,7 +22,6 @@ public class ArtistaController {
     public TakinaResponse<ArtistaDto> getArtistaById(@PathVariable Long ArtistaId) throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),
                 "OK",artistaService.getArtista(ArtistaId));
-
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -32,8 +31,6 @@ public class ArtistaController {
                 "OK",artistaService.getArtistaNombre(ArtistaNombre));
 
     }
-
-
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/artistas")
