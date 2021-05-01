@@ -74,11 +74,11 @@ public class ProyectoMusical {
     // ---------------------
 
     @Column(
-            name="fechaLanzamiento",
+            name="lanzamiento",
             nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
-    private LocalDateTime fechaLanzamiento;
+    private LocalDateTime lanzamiento;
 
     // ----------------------
     

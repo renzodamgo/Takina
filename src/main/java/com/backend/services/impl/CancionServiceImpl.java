@@ -64,7 +64,8 @@ public class CancionServiceImpl implements CancionService {
         cancion.setAudio(createCancionDto.getAudio());
         cancion.setGenero_musical(createCancionDto.getGenero_musical());
         cancion.setImagen(createCancionDto.getImagen());
-        cancion.setFechaLanzamiento(createCancionDto.getFechaLanzamiento());
+        cancion.setLanzamiento(createCancionDto.getLanzamiento());
+		cancion.setDuracion(createCancionDto.getDuracion());
 
         try {
             cancion = cancionRepository.save(cancion);

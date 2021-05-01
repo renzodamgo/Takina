@@ -11,7 +11,7 @@ public class CreateProyectoMusicalDto {
 	private String tipoProyecto;
 	private Float duracion;
 	private String descripcion;
-	private LocalDateTime fechaLanzamiento;
+	private LocalDateTime lanzamiento;
 	private Integer canciones;
 	private String discografica;
 	private Long artista_id;
