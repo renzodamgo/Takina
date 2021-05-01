@@ -62,16 +62,23 @@ public class ProyectoMusical {
 
     // ----------------------
 
-    // TODO: duracion del proyecto
+	@Column(
+        name = "duracion",
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
+    private float duracion;
+	// EJM: 3.4 => 3 minutos 24 segundos
+	// int(duracion) minutos - int(duracion%1 * 60) segundos
 
     // ---------------------
 
     @Column(
-            name="lanzamiento",
+            name="fechaLanzamiento",
             nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
-    private LocalDateTime lanzamiento;
+    private LocalDateTime fechaLanzamiento;
 
     // ----------------------
     
@@ -80,16 +87,16 @@ public class ProyectoMusical {
         nullable = false,
         columnDefinition = "TEXT"
     )
-    private Float descripcion;
+    private String descripcion;
 
     // ----------------------
 
     @Column(
-        name = "imagen",
+        name = "rutaImagen",
         nullable = false,
         columnDefinition = "TEXT"
     )
-    private String imagen;
+    private String rutaImagen;
 
     // ----------------------
 
