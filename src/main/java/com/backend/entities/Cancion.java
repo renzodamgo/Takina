@@ -1,13 +1,16 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(
@@ -23,14 +26,14 @@ import lombok.NoArgsConstructor;
 public class Cancion {
 
     @Id
-    @SequenceGenerator(
-            name="cancion_sequence",
-            sequenceName = "cancion_sequence",
-            allocationSize = 1
-    )
+//    @SequenceGenerator(
+//            name="cancion_sequence",
+//            sequenceName = "cancion_sequence",
+//            allocationSize = 1
+//    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "cancion_sequence"
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "cancion_sequence"
     )
 
     // ---------------------
@@ -80,6 +83,8 @@ public class Cancion {
             nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm", iso = DateTimeFormat.ISO.DATE_TIME)
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime lanzamiento;
 
     // ---------------------
