@@ -14,15 +14,13 @@ public interface CancionService {
 	// Mostrar todas las canciones
     List<CancionDto> getCanciones() throws TakinaException;
 
+	// US023 - Como usuario administrador de un perfil de artista Quiero subir una cancion Para que se cree un proyecto musical de sencillo automaticamente
+	CancionDto createCancion(CreateCancionDto createCancionDto) throws TakinaException;
+
     // US006 - Como usuario Quiero buscar una canción Para encontrar la canción que deseo escuchar en ese instante
     List<CancionDto> getCancionesByNombre(String nombre) throws TakinaException;
 
-	// US<NO EXISTE> - Como usuario Quiero buscar canciones por su genero musical Para escuchar y armar mi playlist ideal
+	// US025 - Como usuario Quiero buscar canciones por su genero musical Para escuchar y armar mi playlist ideal
 	List<CancionDto> getCancionesByGeneroMusical(String nombre) throws TakinaException;
-
-    // US023 - Como usuario administrador de un perfil de artista Quiero subir una cancion Para que se cree un proyecto musical de sencillo automaticamente
-    CancionDto createCancion(CreateCancionDto createCancionDto) throws TakinaException;
-
-
 	
 }

@@ -108,11 +108,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	// --------------------------------------------------------
 	// Login de usuario usando contraseña
-	@Transactional
 	@Override
     public UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(String login, String password) throws TakinaException {
 		Boolean encontrado = false;
 		Usuario Usuario = getUsuarioEntityApodo(login);
+
+		System.out.println(Usuario.getPassword());
+		System.out.println(password);
 		
 		if (Usuario.getPassword() == password) {
 			encontrado = true;
