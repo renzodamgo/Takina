@@ -18,14 +18,16 @@ public class CancionController {
     @Autowired
     private CancionService cancionService;
 
+	// Crear cancion
 	@ResponseStatus(HttpStatus.OK)
     @PostMapping("/canciones/nuevo")
     public TakinaResponse<CancionDto> createCancion(@RequestBody CreateCancionDto createCancionDto)
-            throws TakinaException{
+            throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 cancionService.createCancion(createCancionDto));
     }
 
+	// Mostrar todas las canciones
 	@ResponseStatus(HttpStatus.OK)
     @GetMapping("/canciones/todos")
     public TakinaResponse<List<CancionDto>> getCanciones()
@@ -34,9 +36,11 @@ public class CancionController {
 				cancionService.getCanciones());
     }
 
+	// Getters
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/canciones/id/{cancionId}")
-    public TakinaResponse<CancionDto> getCancionById(@PathVariable Long cancionId) throws TakinaException {
+    public TakinaResponse<CancionDto> getCancionById(@PathVariable Long cancionId)
+			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 				cancionService.getCancionId(cancionId));
 
@@ -44,7 +48,8 @@ public class CancionController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/canciones/name/{cancionNombre}")
-    public TakinaResponse<CancionDto> getCancionByNombre(@PathVariable String cancionNombre) throws TakinaException {
+    public TakinaResponse<CancionDto> getCancionByNombre(@PathVariable String cancionNombre)
+			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 				cancionService.getCancionNombre(cancionNombre));
     }

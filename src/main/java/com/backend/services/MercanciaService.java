@@ -15,5 +15,6 @@ public interface MercanciaService {
     // US015 Como usuario administrador de un perfil de artista Quiero publicar un articulo de mi mercancía Para que los usuarios sepan que esta en venta y obtener remuneración a través de la venta
     MercanciaDto createMercancia(CreateMercanciaDto createMercanciaDto) throws TakinaException;
 
-
+	// Obtener mercancia de un artista
+	// Implementar
 }

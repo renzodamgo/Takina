@@ -24,6 +24,7 @@ public class MercanciaController {
     @Autowired
     private MercanciaService mercanciaService;
 
+	// Crear Mercancia
 	@ResponseStatus(HttpStatus.OK)
     @PostMapping("/mercancias/nuevo")
     public TakinaResponse<MercanciaDto> createMercancia(@RequestBody CreateMercanciaDto createMercanciaDto)
@@ -32,6 +33,7 @@ public class MercanciaController {
                 mercanciaService.createMercancia(createMercanciaDto));
     }
 
+	// Mostrar todas las mercancias
 	@ResponseStatus(HttpStatus.OK)
     @GetMapping("/mercancias/todos")
     public TakinaResponse<List<MercanciaDto>> getMercancias()
@@ -40,6 +42,7 @@ public class MercanciaController {
 				mercanciaService.getMercancias());
     }
 
+	// Getters
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/mercancias/id/{mercanciaId}")
     public TakinaResponse<MercanciaDto> getMercanciaId(@PathVariable Long mercanciaId)
@@ -47,9 +50,5 @@ public class MercanciaController {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK), "OK",mercanciaService.getMercanciaId(mercanciaId));
 
     }
-
-
-
-
     
 }

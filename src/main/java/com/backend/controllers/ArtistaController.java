@@ -27,6 +27,16 @@ public class ArtistaController {
 					artistaService.createArtista(createArtistaDto));
     }
 
+	// Mostrar todos los artistas
+	@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/artistas/todos")
+    public TakinaResponse<List<ArtistaDto>> getArtistas()
+			throws TakinaException {
+        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+					artistaService.getArtistas());
+    }
+
+	// Getters
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/artistas/id/{artistaId}")
     public TakinaResponse<ArtistaDto> getArtistaById(@PathVariable Long artistaId)
@@ -41,14 +51,6 @@ public class ArtistaController {
 			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.getArtistaNombre(artistaNombre));
-    }
-
-	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/artistas/todos")
-    public TakinaResponse<List<ArtistaDto>> getArtistas()
-			throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
-					artistaService.getArtistas());
     }
 
 	// Busqueda basica
