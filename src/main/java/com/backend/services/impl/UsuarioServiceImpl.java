@@ -1,5 +1,6 @@
 package com.backend.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,6 +56,28 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
     }
 
+	// -------------------------------------------------------
+	@Override
+	public UsuarioDto getUsuarioApodo(String apodo) throws TakinaException {
+	 return modelMapper.map(getUsuarioEntityApodo(apodo),UsuarioDto.class);
+	}
+ 
+	private Usuario getUsuarioEntityApodo(String apodo) throws TakinaException {
+       return usuarioRepository.findByApodo(apodo)
+               .orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+    }
+
+	// -------------------------------------------------------
+	@Override
+	public UsuarioDto getUsuarioCorreo(String correo) throws TakinaException {
+	 return modelMapper.map(getUsuarioEntityCorreo(correo),UsuarioDto.class);
+	}
+ 
+	private Usuario getUsuarioEntityCorreo(String correo) throws TakinaException {
+        return usuarioRepository.findByCorreo(correo)
+                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+    }
+
     // --------------------------------------------------------
     @Transactional
     @Override
@@ -65,12 +88,40 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario.setPassword(createUsuarioDto.getPassword());
         Usuario.setCorreo(createUsuarioDto.getCorreo());
         Usuario.setFotoPerfil(createUsuarioDto.getFotoPerfil());
-
+		Usuario.setUltimoIngreso(LocalDateTime.now());
+		
         try {
             Usuario = usuarioRepository.save(Usuario);
         }catch (Exception ex){
             throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_CREATED");
         }
         return modelMapper.map(getUsuarioEntity(Usuario.getId()),UsuarioDto.class);
+    }
+
+	// --------------------------------------------------------
+	// Login de usuario usando contraseña
+	@Override
+    public UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(String login, String password) throws TakinaException {
+		Boolean encontrado = false;
+		Usuario Usuario = getUsuarioEntityApodo(login);
+		
+		if (Usuario.getPassword() == password) {
+			encontrado = true;
+			System.out.println("ENCONTRADO");
+		}
+
+		if (!encontrado) {
+			Usuario = getUsuarioEntityCorreo(login);
+			if (Usuario.getPassword() == password) {
+				encontrado = true;
+			}
+		}
+
+		if (!encontrado) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_FOUND");
+		}
+
+		System.out.println("RETURN:");
+		return modelMapper.map(getUsuarioEntity(Usuario.getId()),UsuarioDto.class);
     }
 }

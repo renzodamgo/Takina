@@ -13,12 +13,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     Optional<Usuario> findById(Long id);
     Optional<Usuario> findByNombre(String nombre);
 
-	@Query("SELECT Us FROM Usuario Us")
+	@Query("SELECT u FROM Usuario u")
 	List<Usuario> findAll();
 
-	@Query("SELECT Us FROM Usuario Us WHERE us.correo = ?1")
-	Usuario findByCorreo(String correo);
+	//@Query("SELECT u FROM Usuario u WHERE u.correo = :correo")
+	Optional<Usuario> findByCorreo(String correo);
 
-	@Query("SELECT Us FROM Usuario Us WHERE us.correo = ?1")
-	Usuario findByApodo(String apodo);
+	//@Query("SELECT u FROM Usuario u WHERE u.apodo = ?1")
+	Optional<Usuario> findByApodo(String apodo);
 }

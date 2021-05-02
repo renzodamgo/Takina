@@ -15,6 +15,6 @@ public interface CancionRepository extends JpaRepository<Cancion,Long> {
 
 	List<Cancion> findByNombreContainingIgnoreCase(String nombre);
 
-	@Query("SELECT Can FROM Cancion Can")
+	@Query("SELECT c FROM Cancion c")
 	List<Cancion> findAll();
 }

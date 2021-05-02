@@ -13,6 +13,6 @@ public interface MercanciaRepository extends JpaRepository<Mercancia,Long> {
     Optional<Mercancia> findById(Long id);
     Optional<Mercancia> findByNombre(String nombre);
 	
-	@Query("SELECT Mer FROM Mercancia Mer")
+	@Query("SELECT m FROM Mercancia m")
 	List<Mercancia> findAll();
 }

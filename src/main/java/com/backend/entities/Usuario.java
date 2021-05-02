@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="usuarios"
-        // uniqueConstraints = {
-        //         @UniqueConstraint(name="usuario_name_unique",
-        //                 columnNames = "name")
-        // }
+        name="usuarios",
+        uniqueConstraints = {
+                @UniqueConstraint(name="usuario_apodo_unique",columnNames="apodo"),
+				@UniqueConstraint(name="usuario_correo_unique",columnNames="correo")
+        }
 )
 @Data
 @AllArgsConstructor
@@ -75,7 +75,7 @@ public class Usuario {
 
     @Column(
             name="ultimoIngreso",
-            //nullable = false,
+            nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
     private LocalDateTime ultimoIngreso;
@@ -92,8 +92,7 @@ public class Usuario {
     // ---------------------
 
     @Column(
-        name = "premium",
-        nullable = false
+        name = "premium"
     )
     private boolean premium = false;
 
