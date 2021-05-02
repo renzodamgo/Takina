@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public class CreateEventoDto {
     private String nombre;
     private String lugar;
+	private String departamento;
     private LocalDateTime fecha;
     private Float precio;
     private String fotoPortada;

@@ -8,8 +8,12 @@ import com.backend.dtos.creates.CreateProyectoMusicalDto;
 import com.backend.exceptions.TakinaException;
 
 public interface ProyectoMusicalService {
+
+	// Obtener proyecto ID
     ProyectoMusicalDto getProyectoMusicalById(Long cancionId) throws TakinaException;
+	// Obtener proyecto por Nombre
 	ProyectoMusicalDto getProyectoMusicalNombre(String nombre) throws TakinaException;
+	// Mostrar todos los proyectos musicales
     List<ProyectoMusicalDto> getProyectosMusicales() throws TakinaException;
 
     // US022 - Como usuario Quiero buscar un proyecto musical según una porción de texto Para revisar la produccion musical en ese instante

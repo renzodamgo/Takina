@@ -51,6 +51,15 @@ public class Evento {
     )
     private String lugar;
 
+	// ----------------------
+
+    @Column(
+        name = "departamento",
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
+    private String departamento;
+
     // ----------------------
 
     @Column(

@@ -25,6 +25,7 @@ public class MercanciaServiceImpl implements MercanciaService {
 
     @Autowired
     private ArtistaRepository artistaRepository;
+
     @Autowired
     private MercanciaRepository mercanciaRepository;
     private static final ModelMapper modelMapper = new ModelMapper();
@@ -41,7 +42,7 @@ public class MercanciaServiceImpl implements MercanciaService {
 
     // ----------------------------------------------------------------
     @Override
-    public List<MercanciaDto> getMercancia() throws TakinaException {
+    public List<MercanciaDto> getMercancias() throws TakinaException {
         List<Mercancia> mercanciaEntity = mercanciaRepository.findAll();
         return mercanciaEntity.stream().map(mercancia -> modelMapper.map(mercancia, MercanciaDto.class)).collect(Collectors.toList());
     }

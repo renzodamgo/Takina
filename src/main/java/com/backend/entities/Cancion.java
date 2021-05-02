@@ -66,11 +66,11 @@ public class Cancion {
     // ---------------------
 
     @Column(
-        name = "imagen",
+        name = "rutaImagen",
         nullable = false,
         columnDefinition = "TEXT"
     )
-    private String imagen;
+    private String rutaImagen;
 
     // ----------------------
 

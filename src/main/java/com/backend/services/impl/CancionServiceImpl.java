@@ -42,7 +42,7 @@ public class CancionServiceImpl implements CancionService {
     }
 
     // -------------------------------------------------------
-    @Override
+	@Override
     public List<CancionDto> getCanciones() throws TakinaException {
         List<Cancion> cancionesEntity = cancionRepository.findAll();
         return cancionesEntity.stream().map(cancion -> modelMapper.map(cancion, CancionDto.class)).collect(Collectors.toList());
@@ -69,7 +69,7 @@ public class CancionServiceImpl implements CancionService {
         Cancion cancion = new Cancion();
         cancion.setNombre(createCancionDto.getNombre());
         cancion.setAudio(createCancionDto.getAudio());
-		cancion.setImagen(createCancionDto.getImagen());
+		cancion.setRutaImagen(proyectoId.getRutaImagen());
 		cancion.setLanzamiento(createCancionDto.getLanzamiento());
         cancion.setGeneroMusical(createCancionDto.getGeneroMusical());
         cancion.setDuracion(createCancionDto.getDuracion());
@@ -81,5 +81,12 @@ public class CancionServiceImpl implements CancionService {
             throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
         }
         return modelMapper.map(getCancionEntity(cancion.getId()),CancionDto.class);
+    }
+	// --------------------------------------------------------
+	// Buscar por nombre
+	@Override
+    public List<CancionDto> getCancionesByNombre(String nombre) throws TakinaException{
+        List<Cancion> results = cancionRepository.findByNombreContainingIgnoreCase(nombre);
+        return results.stream().map(cancion -> modelMapper.map(cancion,CancionDto.class)).collect(Collectors.toList());
     }
 }

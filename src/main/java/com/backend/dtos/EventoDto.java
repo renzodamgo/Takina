@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class EventoDto {
     private String nombre;
     private String lugar;
+	private String departamento;
     private LocalDateTime fecha;
     private Float precio;
     private String fotoPortada;

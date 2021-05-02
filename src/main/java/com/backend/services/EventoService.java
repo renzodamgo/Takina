@@ -7,16 +7,17 @@ import com.backend.dtos.creates.CreateEventoDto;
 import com.backend.exceptions.TakinaException;
 
 public interface EventoService {
-
+	// Obtener Evento por ID
     EventoDto getEventoId(Long eventoId) throws TakinaException;
+	// Obtener Evento por Nombre
+	EventoDto getEventoNombre(String nombre) throws TakinaException;
+	// Mostrar todos los eventos
+	List<EventoDto> getEventos() throws TakinaException;
 
-    // (codigo) - Como usuario quiero ver todos lo eventos que hay Para decidir cual me interesa y poder asistir
-    List<EventoDto> getEventos() throws TakinaException;
+    // US024 - Como usuario Quiero ver todos lo eventos que hay cerca de mi Para decidir cual me interesa y asistir
+    List<EventoDto> getEventosByDepartamento(String departamento) throws TakinaException;
 
-    // (codigo) - Como usuario Quiero buscar una canción para encontrar la canción que deseo escuchar en ese instante
-    EventoDto getEventoNombre(String nombre) throws TakinaException;
-
-    // (US016) - Como artista quiero publicar mis eventos y conciertos Para que mis seguidores esten al tanto de mis actividades
+    // US016 - Como artista quiero publicar un eventos y conciertos Para que mis seguidores esten al tanto de mis actividades
     EventoDto createEvento(CreateEventoDto createEventoDto) throws TakinaException;
     
 }

@@ -45,7 +45,7 @@ public class ArtistaController {
 
 	@ResponseStatus(HttpStatus.OK)
     @GetMapping("/artistas/todos")
-    public TakinaResponse<List<ArtistaDto>> getArtistaByNombre()
+    public TakinaResponse<List<ArtistaDto>> getArtistas()
 			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.getArtistas());

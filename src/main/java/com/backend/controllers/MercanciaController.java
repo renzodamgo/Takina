@@ -1,5 +1,7 @@
 package com.backend.controllers;
 
+import java.util.List;
+
 import com.backend.dtos.MercanciaDto;
 import com.backend.dtos.creates.CreateMercanciaDto;
 import com.backend.exceptions.TakinaException;
@@ -19,24 +21,34 @@ import org.springframework.http.HttpStatus;
 @RestController
 @RequestMapping(path = "/takina"+"/v1")
 public class MercanciaController {
-
     @Autowired
     private MercanciaService mercanciaService;
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/mercancias/id/{mercanciaId}")
-    public TakinaResponse<MercanciaDto> getMercanciaId(@PathVariable Long mercanciaId) throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK), "OK",mercanciaService.getMercanciaId(mercanciaId));
-
-    }
-
-    @ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.OK)
     @PostMapping("/mercancias/nuevo")
     public TakinaResponse<MercanciaDto> createMercancia(@RequestBody CreateMercanciaDto createMercanciaDto)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 mercanciaService.createMercancia(createMercanciaDto));
     }
+
+	@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/mercancias/todos")
+    public TakinaResponse<List<MercanciaDto>> getMercancias()
+			throws TakinaException {
+        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+				mercanciaService.getMercancias());
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/mercancias/id/{mercanciaId}")
+    public TakinaResponse<MercanciaDto> getMercanciaId(@PathVariable Long mercanciaId)
+			throws TakinaException {
+        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK), "OK",mercanciaService.getMercanciaId(mercanciaId));
+
+    }
+
+
 
 
     

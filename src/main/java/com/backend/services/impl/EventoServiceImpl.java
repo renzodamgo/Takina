@@ -55,13 +55,13 @@ public class EventoServiceImpl implements EventoService {
     // -------------------------------------------------------
     @Override
     public EventoDto createEvento(CreateEventoDto createEventoDto) throws TakinaException {
-
         Evento evento = new Evento();
         evento.setNombre(createEventoDto.getNombre());
         evento.setLugar(createEventoDto.getLugar());
         evento.setFecha(createEventoDto.getFecha());
         evento.setPrecio(createEventoDto.getPrecio());
         evento.setFotoPortada(createEventoDto.getFotoPortada());
+		evento.setDepartamento(createEventoDto.getDepartamento());
 
         try {
             evento = eventoRepository.save(evento);
@@ -74,5 +74,9 @@ public class EventoServiceImpl implements EventoService {
         
     }
     
-    
+    @Override
+	public List<EventoDto> getEventosByDepartamento(String departamento) throws TakinaException {
+		List<Evento> results = eventoRepository.findByDepartamentoContainingIgnoreCase(departamento);
+        return results.stream().map(evento -> modelMapper.map(evento,EventoDto.class)).collect(Collectors.toList());
+	}
 }

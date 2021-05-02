@@ -9,10 +9,8 @@ import com.backend.exceptions.TakinaException;
 public interface ArtistaService {
 	// Obtener artista por el id
     ArtistaDto getArtista(Long Id) throws TakinaException;
-
 	// Lista de todos los artistas
 	List<ArtistaDto> getArtistas() throws TakinaException;
-
 	// Obtener artista por su nombre (no case-sensitive)
 	ArtistaDto getArtistaNombre(String nombre) throws TakinaException;
 
