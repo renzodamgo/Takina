@@ -99,7 +99,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
 	// --------------------------------------------------------
+	// Busqueda de usuarios por nombre
+	@Override
+    public List<UsuarioDto> getUsuariosByNombre(String nombre) throws TakinaException{
+        List<Usuario> results = usuarioRepository.findByNombreContainingIgnoreCase(nombre);
+        return results.stream().map(usuario -> modelMapper.map(usuario,UsuarioDto.class)).collect(Collectors.toList());
+    }
+
+	// --------------------------------------------------------
 	// Login de usuario usando contraseña
+	@Transactional
 	@Override
     public UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(String login, String password) throws TakinaException {
 		Boolean encontrado = false;
@@ -107,7 +116,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 		if (Usuario.getPassword() == password) {
 			encontrado = true;
-			System.out.println("ENCONTRADO");
 		}
 
 		if (!encontrado) {

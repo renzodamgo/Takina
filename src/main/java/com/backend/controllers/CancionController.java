@@ -47,7 +47,7 @@ public class CancionController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/canciones/name/{cancionNombre}")
+    @GetMapping("/canciones/nombre/{cancionNombre}")
     public TakinaResponse<CancionDto> getCancionByNombre(@PathVariable String cancionNombre)
 			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
@@ -57,11 +57,20 @@ public class CancionController {
 
 	// Busqueda por nombre
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/artistas/buscar/nombre/{cancionNombre}")
+    @GetMapping("/canciones/buscar/nombre/{cancionNombre}")
     public  TakinaResponse<List<CancionDto>> getCancionesByNombre(@PathVariable String cancionNombre)
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				cancionService.getCancionesByNombre(cancionNombre));
+    }
+
+	// Busqueda por genero
+	@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/canciones/buscar/genero/{generoMusical}")
+    public  TakinaResponse<List<CancionDto>> getCancionesByGeneroMusical(@PathVariable String generoMusical)
+			throws TakinaException {
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				cancionService.getCancionesByGeneroMusical(generoMusical));
     }
 
 }

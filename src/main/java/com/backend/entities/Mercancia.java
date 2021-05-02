@@ -39,6 +39,15 @@ public class Mercancia {
         columnDefinition = "TEXT"
     )
     private String nombre;
+	
+	// ---------------------
+
+    @Column(
+        name = "descripcion",
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
+    private String descripcion;
 
     // ----------------------
 

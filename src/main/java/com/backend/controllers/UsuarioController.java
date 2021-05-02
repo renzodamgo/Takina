@@ -1,5 +1,7 @@
 package com.backend.controllers;
 
+import java.util.List;
+
 import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.exceptions.TakinaException;
@@ -25,25 +27,34 @@ public class UsuarioController {
                 usuarioService.createUsuario(createUsuarioDto));
     }
 
+	// Mostrar todos los usuarios
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/usuarios/todos")
+	public TakinaResponse<List<UsuarioDto>> getUsuarios()
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				usuarioService.getUsuarios());
+	}
+
 	// Getter
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/usuarios/id/{usuarioId}")
     public TakinaResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId) throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getUsuarioId(usuarioId));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/usuarios/nombre/{usuarioNombre}")
     public TakinaResponse<UsuarioDto> getUsuarioByNombre(@PathVariable String usuarioNombre) throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getUsuarioNombre(usuarioNombre));
     }
 
 	@ResponseStatus(HttpStatus.OK)
     @GetMapping("/usuarios/apodo/{usuarioApodo}")
     public TakinaResponse<UsuarioDto> getUsuarioByApodo(@PathVariable String usuarioApodo) throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getUsuarioApodo(usuarioApodo));
     }
 
@@ -54,8 +65,14 @@ public class UsuarioController {
 				usuarioService.getUsuarioCorreo(usuarioCorreo));
     }
 
-	// Busqueda de usuarios
-	// Implementar
+	// Busqueda de usuarios por Apodo
+	@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/usuarios/buscar/nombre/{usuarioNombre}")
+    public TakinaResponse<List<UsuarioDto>> getUsuariosByNombre(@PathVariable String usuarioNombre)
+			throws TakinaException {
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				usuarioService.getUsuariosByNombre(usuarioNombre));
+    }
 
 	// Funcion Login
 	@ResponseStatus(HttpStatus.OK)

@@ -58,6 +58,7 @@ public class MercanciaServiceImpl implements MercanciaService {
         mercancia.setNombre(createMercanciaDto.getNombre());
         mercancia.setPrecio(createMercanciaDto.getPrecio());
         mercancia.setFoto(createMercanciaDto.getFoto());
+		mercancia.setDescripcion(createMercanciaDto.getDescripcion());
         mercancia.setArtista(artistaId);
 
         try {

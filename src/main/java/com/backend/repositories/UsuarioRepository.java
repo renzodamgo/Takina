@@ -12,13 +12,15 @@ import java.util.List;
 public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     Optional<Usuario> findById(Long id);
     Optional<Usuario> findByNombre(String nombre);
-
-	@Query("SELECT u FROM Usuario u")
-	List<Usuario> findAll();
+	List<Usuario> findByNombreContainingIgnoreCase(String nombre);
 
 	//@Query("SELECT u FROM Usuario u WHERE u.correo = :correo")
 	Optional<Usuario> findByCorreo(String correo);
 
 	//@Query("SELECT u FROM Usuario u WHERE u.apodo = ?1")
 	Optional<Usuario> findByApodo(String apodo);
+
+	@Query("SELECT u FROM Usuario u")
+	List<Usuario> findAll();
+
 }

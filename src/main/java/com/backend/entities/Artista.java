@@ -11,16 +11,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="artistas"
-        // uniqueConstraints = {
-        //         @UniqueConstraint(name="artistas_name_unique",
-        //                 columnNames = "name")
-        // }
+        name="artistas",
+        uniqueConstraints = {
+                @UniqueConstraint(name="artistas_name_unique",
+                        columnNames = "nombre")
+        }
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//TODO Que el Artista y el ArtistaDTO Tengan los Mismos nombres de las variables
 public class Artista {
 
     // ---------------------

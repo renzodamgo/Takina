@@ -9,5 +9,6 @@ public class MercanciaDto {
     private String nombre;
     private Float precio;
     private String foto;
+	private String descripcion;
 	private Long artistaId;
 }

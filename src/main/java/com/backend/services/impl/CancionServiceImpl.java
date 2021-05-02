@@ -86,8 +86,14 @@ public class CancionServiceImpl implements CancionService {
 	// --------------------------------------------------------
 	// Buscar por nombre
 	@Override
-    public List<CancionDto> getCancionesByNombre(String nombre) throws TakinaException{
+    public List<CancionDto> getCancionesByNombre(String nombre) throws TakinaException {
         List<Cancion> results = cancionRepository.findByNombreContainingIgnoreCase(nombre);
         return results.stream().map(cancion -> modelMapper.map(cancion,CancionDto.class)).collect(Collectors.toList());
     }
+	// Buscar por genero musical
+	@Override
+	public List<CancionDto> getCancionesByGeneroMusical(String generoMusical) throws TakinaException {
+		List<Cancion> results = cancionRepository.findByGeneroMusicalContainingIgnoreCase(generoMusical);
+        return results.stream().map(cancion -> modelMapper.map(cancion,CancionDto.class)).collect(Collectors.toList());
+	}
 }

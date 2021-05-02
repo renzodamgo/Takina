@@ -32,7 +32,7 @@ public class ArtistaController {
     @GetMapping("/artistas/todos")
     public TakinaResponse<List<ArtistaDto>> getArtistas()
 			throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.getArtistas());
     }
 
