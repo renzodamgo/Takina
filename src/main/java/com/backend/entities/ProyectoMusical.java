@@ -107,6 +107,15 @@ public class ProyectoMusical {
     )
     private String discografica;
 
+	// ----------------------
+
+    @Column(
+        name = "generoMusical",
+        nullable = false,
+        columnDefinition = "TEXT"
+    )
+    private String generoMusical;
+
     // ----------------------
 
     // Relaciones con las tablas de base de datos 

@@ -16,5 +16,6 @@ public class ProyectoMusicalDto {
 	private Integer canciones;
 	private String discografica;
 	private String rutaImagen;
+	private String generoMusical;
 	private Long artistaId;
 }

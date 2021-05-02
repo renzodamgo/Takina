@@ -14,7 +14,6 @@ public interface ArtistaRepository extends JpaRepository<Artista,Long> {
     Optional<Artista> findById(Long id);
     Optional<Artista> findByNombre(String nombre);
 
-
     List<Artista> findByNombreContainingIgnoreCase(String nombre);
     List<Artista> findByGeneroMusicalContainingIgnoreCase(String genero_musical);
     List<Artista> findByDepartamentoOrigenContainingIgnoreCase(String departamento_origen);

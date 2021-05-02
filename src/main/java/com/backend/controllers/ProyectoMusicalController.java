@@ -27,7 +27,7 @@ public class ProyectoMusicalController {
     @GetMapping("/proyectos/todos")
     public TakinaResponse<List<ProyectoMusicalDto>> getArtistaByNombre()
 			throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 			proyectoMusicalService.getProyectosMusicales());
     }
 
@@ -35,7 +35,7 @@ public class ProyectoMusicalController {
     @GetMapping("/proyectos/id/{proyectoId}")
     public TakinaResponse<ProyectoMusicalDto> getProyectoMusicalById(@PathVariable Long proyectoId)
 			throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 			proyectoMusicalService.getProyectoMusicalById(proyectoId));
     }
 
