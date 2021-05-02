@@ -28,7 +28,7 @@ public class EventoController {
 	// Crear evento
 	@ResponseStatus(HttpStatus.OK)
     @PostMapping("/eventos/nuevo")
-    public TakinaResponse<EventoDto> createArtista(@RequestBody CreateEventoDto createEventoDto)
+    public TakinaResponse<EventoDto> createEvento(@RequestBody CreateEventoDto createEventoDto)
             throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 eventoService.createEvento(createEventoDto));
@@ -63,7 +63,7 @@ public class EventoController {
 	// Busqueda por departamento
 	@ResponseStatus(HttpStatus.OK)
     @GetMapping("/eventos/buscar/departamento/{eventoDepartamento}")
-    public  TakinaResponse<List<EventoDto>> getCancionesByNombre(@PathVariable String eventoDepartamento)
+    public  TakinaResponse<List<EventoDto>> getEventosByDepartamento(@PathVariable String eventoDepartamento)
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				eventoService.getEventosByDepartamento(eventoDepartamento));
