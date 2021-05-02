@@ -25,7 +25,7 @@ public class ProyectoMusicalController {
 
 	@ResponseStatus(HttpStatus.OK)
     @GetMapping("/proyectos/todos")
-    public TakinaResponse<List<ProyectoMusicalDto>> getArtistaByNombre()
+    public TakinaResponse<List<ProyectoMusicalDto>> getProyectosMusicales()
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 			proyectoMusicalService.getProyectosMusicales());
