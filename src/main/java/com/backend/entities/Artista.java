@@ -143,5 +143,5 @@ public class Artista {
             name = "lista_evento_artistas",
             joinColumns = @JoinColumn(name = "artista_id"),
             inverseJoinColumns = @JoinColumn(name = "evento_id"))
-    List<Eventos> listaEventosArtistas;
+    List<Evento> listaEventoArtistas;
 }

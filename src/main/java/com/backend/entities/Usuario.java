@@ -75,7 +75,7 @@ public class Usuario {
 
     @Column(
             name="ultimoIngreso",
-            nullable = false,
+            //nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
     private LocalDateTime ultimoIngreso;
