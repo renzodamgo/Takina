@@ -15,6 +15,6 @@ public class ProyectoMusicalDto {
 	private LocalDateTime lanzamiento;
 	private Integer canciones;
 	private String discografica;
-	private Long artistaId;
 	private String rutaImagen;
+	private Long artistaId;
 }

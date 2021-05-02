@@ -16,7 +16,6 @@ public class ProyectoMusicalController {
     @Autowired
     ProyectoMusicalService proyectoMusicalService;
 
-
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/proyectos")
     public TakinaResponse<ProyectoMusicalDto> createProyectoMusical(@RequestBody CreateProyectoMusicalDto createProyectoMusicalDto)

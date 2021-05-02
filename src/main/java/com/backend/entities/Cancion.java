@@ -93,7 +93,7 @@ public class Cancion {
         nullable = false,
 		columnDefinition = "TEXT"
     )
-    private String genero_musical;
+    private String generoMusical;
 	
 	// ---------------------
 
