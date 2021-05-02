@@ -35,7 +35,7 @@ public class CancionController {
 
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/canciones")
+    @PostMapping("/canciones/nuevo")
     public TakinaResponse<CancionDto> createCancion(@RequestBody CreateCancionDto createCancionDto)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",

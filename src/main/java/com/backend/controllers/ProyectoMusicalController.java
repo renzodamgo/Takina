@@ -17,17 +17,22 @@ public class ProyectoMusicalController {
     ProyectoMusicalService proyectoMusicalService;
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/proyectos")
-    public TakinaResponse<ProyectoMusicalDto> createProyectoMusical(@RequestBody CreateProyectoMusicalDto createProyectoMusicalDto)
-        throws TakinaException{
+    @PostMapping("/proyectos/nuevo")
+    public TakinaResponse<ProyectoMusicalDto> createProyectoMusical(@RequestBody CreateProyectoMusicalDto createProyectoMusicalDto) throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 proyectoMusicalService.createProyectoMusical(createProyectoMusicalDto));
     }
 
 	@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/proyectos/id/{proyectoId}")
+    public TakinaResponse<ProyectoMusicalDto> getArtistaById(@PathVariable Long proyectoId) throws TakinaException {
+        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),
+                "OK",proyectoMusicalService.getProyectoMusicalById(proyectoId));
+    }
+
+	@ResponseStatus(HttpStatus.OK)
     @GetMapping("/proyectos/buscar/nombre/{proyectoMusicalNombre}")
-    public  TakinaResponse<List<ProyectoMusicalDto>> getProyectosMusicalesByNombre(@PathVariable String proyectoMusicalNombre)
-        throws TakinaException{
+    public  TakinaResponse<List<ProyectoMusicalDto>> getProyectosMusicalesByNombre(@PathVariable String proyectoMusicalNombre) throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 			proyectoMusicalService.getProyectosMusicalesByNombre(proyectoMusicalNombre));
     }

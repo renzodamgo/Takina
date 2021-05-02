@@ -24,14 +24,14 @@ public class MercanciaController {
     private MercanciaService mercanciaService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/mercancia/id/{mercanciaId}")
+    @GetMapping("/mercancias/id/{mercanciaId}")
     public TakinaResponse<MercanciaDto> getMercanciaId(@PathVariable Long mercanciaId) throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK), "OK",mercanciaService.getMercanciaId(mercanciaId));
 
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/mercancia")
+    @PostMapping("/mercancias/nuevo")
     public TakinaResponse<MercanciaDto> createMercancia(@RequestBody CreateMercanciaDto createMercanciaDto)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",

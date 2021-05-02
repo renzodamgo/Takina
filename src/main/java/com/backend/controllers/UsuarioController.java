@@ -21,7 +21,6 @@ public class UsuarioController {
     public TakinaResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId) throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),
                 "OK",usuarioService.getUsuarioId(usuarioId));
-
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -29,13 +28,10 @@ public class UsuarioController {
     public TakinaResponse<UsuarioDto> getUsuarioByNombre(@PathVariable String usuarioNombre) throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),
                 "OK",usuarioService.getUsuarioNombre(usuarioNombre));
-
     }
 
-
-
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/usuarios")
+    @PostMapping("/usuarios/nuevo")
     public TakinaResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",

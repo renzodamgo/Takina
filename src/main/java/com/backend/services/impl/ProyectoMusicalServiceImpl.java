@@ -30,7 +30,7 @@ public class ProyectoMusicalServiceImpl implements ProyectoMusicalService {
 
     // -------------------------------------------------------
     @Override
-    public ProyectoMusicalDto getProyectoMusicalId(Long ProyectoMusicalId) throws TakinaException {
+    public ProyectoMusicalDto getProyectoMusicalById(Long ProyectoMusicalId) throws TakinaException {
         return modelMapper.map(getProyectoMusicalEntity(ProyectoMusicalId),ProyectoMusicalDto.class);
 
     }

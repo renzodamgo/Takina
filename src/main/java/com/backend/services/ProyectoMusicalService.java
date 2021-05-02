@@ -8,7 +8,7 @@ import com.backend.dtos.creates.CreateProyectoMusicalDto;
 import com.backend.exceptions.TakinaException;
 
 public interface ProyectoMusicalService {
-    ProyectoMusicalDto getProyectoMusicalId(Long cancionId) throws TakinaException;
+    ProyectoMusicalDto getProyectoMusicalById(Long cancionId) throws TakinaException;
 	ProyectoMusicalDto getProyectoMusicalNombre(String nombre) throws TakinaException;
     List<ProyectoMusicalDto> getProyectosMusicales() throws TakinaException;
 

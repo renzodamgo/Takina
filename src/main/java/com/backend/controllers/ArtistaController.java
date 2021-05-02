@@ -24,48 +24,64 @@ public class ArtistaController {
     public TakinaResponse<ArtistaDto> createArtista(@RequestBody CreateArtistaDto createArtistaDto)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-                artistaService.createArtista(createArtistaDto));
+					artistaService.createArtista(createArtistaDto));
     }
-
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/artistas/id/{artistaId}")
-    public TakinaResponse<ArtistaDto> getArtistaById(@PathVariable Long artistaId) throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),
-                "OK",artistaService.getArtista(artistaId));
-
+    public TakinaResponse<ArtistaDto> getArtistaById(@PathVariable Long artistaId)
+			throws TakinaException {
+        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+					artistaService.getArtista(artistaId));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/artistas/nombre/{artistaNombre}")
-    public TakinaResponse<ArtistaDto> getArtistaByNombre(@PathVariable String artistaNombre) throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),
-                "OK",artistaService.getArtistaNombre(artistaNombre));
-
+    public TakinaResponse<ArtistaDto> getArtistaByNombre(@PathVariable String artistaNombre)
+			throws TakinaException {
+        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+					artistaService.getArtistaNombre(artistaNombre));
     }
 
+	@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/artistas/todos")
+    public TakinaResponse<List<ArtistaDto>> getArtistaByNombre()
+			throws TakinaException {
+        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+					artistaService.getArtistas());
+    }
 
+	// Busqueda basica
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/artistas/buscar/artista/nombre/{artistaNombre}")
+    @GetMapping("/artistas/buscar/nombre/{artistaNombre}")
     public  TakinaResponse<List<ArtistaDto>> getArtistasByNombre(@PathVariable String artistaNombre)
-        throws TakinaException{
+			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-                artistaService.getArtistasByNombre(artistaNombre));
+					artistaService.getArtistasByNombre(artistaNombre));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/artistas/buscar/artista/genero/{artistaGenero}")
+    @GetMapping("/artistas/buscar/genero/{artistaGenero}")
     public  TakinaResponse<List<ArtistaDto>> getArtistasByGeneroMusical(@PathVariable String artistaGenero)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-                artistaService.getArtistasByGeneroMusical(artistaGenero));
+					artistaService.getArtistasByGeneroMusical(artistaGenero));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/artistas/buscar/artista/departamento/{artistaDepartamento}")
+    @GetMapping("/artistas/buscar/departamento/{artistaDepartamento}")
     public  TakinaResponse<List<ArtistaDto>> getArtistasByDepartamento(@PathVariable String artistaDepartamento)
-            throws TakinaException{
+			throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-                artistaService.getArtistasByDepartamento(artistaDepartamento));
+					artistaService.getArtistasByDepartamento(artistaDepartamento));
+    }
+
+	// Busqueda avanzada
+	@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/artistas/busqueda/{artistaNombre}")
+    public  TakinaResponse<List<ArtistaDto>> searchArtistasByNombre(@PathVariable String artistaNombre)
+			throws TakinaException {
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+					artistaService.searchArtistasByNombre(artistaNombre));
     }
 }
