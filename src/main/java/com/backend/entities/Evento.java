@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Eventos {
+public class Evento {
 
     @Id
     @GeneratedValue(
@@ -83,10 +83,10 @@ public class Eventos {
         name = "interesados",
         nullable = false
     )
-    private Integer interesados;
+    private Integer interesados = 0;
 
     // Relations many to many
-    @ManyToMany(mappedBy = "listaEventosArtistas")
+    @ManyToMany(mappedBy = "listaEventoArtistas")
     List<Artista> listaArtistasEventos;
 
 }
