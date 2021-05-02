@@ -1,5 +1,7 @@
 package com.backend.services.impl;
 
+import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,9 +72,10 @@ public class ArtistaServiceImpl implements ArtistaService {
         return modelMapper.map(getArtistaEntity(artista.getId()),ArtistaDto.class);
 
     }
-    //Buscar Artidtar por nombre
+    // Artista - Busquedas
+
     @Override
-    public List<ArtistaDto> getArtistasByName(String nombre) throws TakinaException{
+    public List<ArtistaDto> getArtistasByNombre(String nombre) throws TakinaException{
         List<Artista> results = artistaRepository.findByNombreContainingIgnoreCase(nombre);
         return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
     }
@@ -89,4 +92,28 @@ public class ArtistaServiceImpl implements ArtistaService {
         return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
     }
 
+	// Busqueda Test
+	@Override
+    public List<ArtistaDto> searchArtistasByNombre(String nombre) throws TakinaException{
+        List<Artista> artistas = artistaRepository.findAll();
+		List<Artista> resultados = new ArrayList<Artista>();
+
+		String busqueda = Normalizer.normalize(nombre, Normalizer.Form.NFD)
+									.replaceAll("[^\\p{ASCII}]", "")
+									.toLowerCase();
+
+		for (int i = 0; i < artistas.size(); i++) {
+			String nombre_i = artistas.get(i).getNombre();
+
+			nombre_i = Normalizer.normalize(nombre_i, Normalizer.Form.NFD)
+								.replaceAll("[^\\p{ASCII}]", "")
+								.toLowerCase();
+
+			if (nombre_i.indexOf(busqueda) != -1) {
+				resultados.add(artistas.get(i));
+			}
+		}
+
+        return resultados.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
+    }
 }

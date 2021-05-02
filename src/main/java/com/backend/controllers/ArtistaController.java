@@ -18,6 +18,16 @@ public class ArtistaController {
     @Autowired
     private ArtistaService artistaService;
 
+	// Crear Artista
+	@ResponseStatus(HttpStatus.OK)
+    @PostMapping("/artistas/nuevo")
+    public TakinaResponse<ArtistaDto> createArtista(@RequestBody CreateArtistaDto createArtistaDto)
+            throws TakinaException{
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+                artistaService.createArtista(createArtistaDto));
+    }
+
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/artistas/id/{artistaId}")
     public TakinaResponse<ArtistaDto> getArtistaById(@PathVariable Long artistaId) throws TakinaException {
@@ -34,25 +44,18 @@ public class ArtistaController {
 
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/artistas")
-    public TakinaResponse<ArtistaDto> createArtista(@RequestBody CreateArtistaDto createArtistaDto)
-            throws TakinaException{
-        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-                artistaService.createArtista(createArtistaDto));
-    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/artistas/buscar/artista/nombre/{artistaNombre}")
     public  TakinaResponse<List<ArtistaDto>> getArtistasByNombre(@PathVariable String artistaNombre)
         throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-                artistaService.getArtistasByName(artistaNombre));
+                artistaService.getArtistasByNombre(artistaNombre));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/artistas/buscar/artista/genero/{artistaGenero}")
-    public  TakinaResponse<List<ArtistaDto>> getArtistasByGenero_musical(@PathVariable String artistaGenero)
+    public  TakinaResponse<List<ArtistaDto>> getArtistasByGeneroMusical(@PathVariable String artistaGenero)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 artistaService.getArtistasByGeneroMusical(artistaGenero));

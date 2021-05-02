@@ -58,8 +58,7 @@ public class ProyectoMusical {
 
 	@Column(
         name = "duracion",
-        nullable = false,
-        columnDefinition = "TEXT"
+        nullable = false
     )
     private float duracion;
 	// EJM: 3.4 => 3 minutos 24 segundos
@@ -68,9 +67,8 @@ public class ProyectoMusical {
     // ---------------------
 
     @Column(
-            name="lanzamiento",
-            nullable = false,
-            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+    	name="lanzamiento",
+        nullable = false
     )
     private LocalDateTime lanzamiento;
 

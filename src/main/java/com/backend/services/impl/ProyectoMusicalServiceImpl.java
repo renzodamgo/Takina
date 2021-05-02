@@ -83,4 +83,10 @@ public class ProyectoMusicalServiceImpl implements ProyectoMusicalService {
         }
         return modelMapper.map(getProyectoMusicalEntity(ProyectoMusical.getId()),ProyectoMusicalDto.class);
     }
+
+	@Override
+    public List<ProyectoMusicalDto> getProyectosMusicalesByNombre(String nombre) throws TakinaException{
+        List<ProyectoMusical> results = proyectoMusicalRepository.findByNombreContainingIgnoreCase(nombre);
+        return results.stream().map(proyectoMusical -> modelMapper.map(proyectoMusical,ProyectoMusicalDto.class)).collect(Collectors.toList());
+    }
 }
