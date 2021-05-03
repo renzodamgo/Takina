@@ -121,15 +121,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 		if (Usuario.getPassword().equals(password)) {
 			encontrado = true;
-            System.out.println("Usuario ha sido encontrado");
 		}
-
 
 		if (!encontrado) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_FOUND");
 		}
-
-		System.out.println("RETURN:");
+		
 		return modelMapper.map(getUsuarioEntity(Usuario.getId()),UsuarioDto.class);
     }
 }
