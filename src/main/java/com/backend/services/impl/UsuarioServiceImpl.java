@@ -38,6 +38,12 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
     }
 
+    private Usuario getUsuarioLogin(String login) throws TakinaException {
+        return usuarioRepository.findByApodoOrCorreo(login,login)
+                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+    }
+
+
     // -------------------------------------------------------
     @Override
     public List<UsuarioDto> getUsuarios() throws TakinaException {
@@ -111,21 +117,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
     public UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(String login, String password) throws TakinaException {
 		Boolean encontrado = false;
-		Usuario Usuario = getUsuarioEntityApodo(login);
-
-		System.out.println(Usuario.getPassword());
-		System.out.println(password);
+		Usuario Usuario = getUsuarioLogin(login);
 		
-		if (Usuario.getPassword() == password) {
+		if (Usuario.getPassword().equals(password)) {
 			encontrado = true;
+            System.out.println("Usuario ha sido encontrado");
 		}
 
-		if (!encontrado) {
-			Usuario = getUsuarioEntityCorreo(login);
-			if (Usuario.getPassword() == password) {
-				encontrado = true;
-			}
-		}
 
 		if (!encontrado) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_FOUND");
