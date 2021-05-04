@@ -11,11 +11,10 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="listaRepreduccion"
-        // uniqueConstraints = {
-        //         @UniqueConstraint(name="listaRepreduccion_name_unique",
-        //                 columnNames = "name")
-        // }
+        name="listas_reproduccion"
+        //uniqueConstraints = {
+        //        @UniqueConstraint(name="listaRepreduccion_name_unique", columnNames = "name")
+        //}
 )
 @Data
 @AllArgsConstructor
@@ -82,7 +81,7 @@ public class ListaReproduccion {
             name = "playlist_canciones",
             joinColumns = @JoinColumn(name = "lista_reproduccion_id"),
             inverseJoinColumns = @JoinColumn(name = "cancion_id"))
-    List<Cancion> PlaylistCanciones;
+    List<Cancion> playlistCanciones;
 
 
 

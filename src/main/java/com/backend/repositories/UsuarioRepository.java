@@ -14,12 +14,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     Optional<Usuario> findByNombre(String nombre);
 	List<Usuario> findByNombreContainingIgnoreCase(String nombre);
 
-	//@Query("SELECT u FROM Usuario u WHERE u.correo = :correo")
+	//@Query("SELECT u FROM Usuario u WHERE u.correo = ?1")
 	Optional<Usuario> findByCorreo(String correo);
 
-	Optional<Usuario> findByApodoOrCorreo(String login,String login1);
 	//@Query("SELECT u FROM Usuario u WHERE u.apodo = ?1")
 	Optional<Usuario> findByApodo(String apodo);
+
+	Optional<Usuario> findByApodoOrCorreo(String apodo, String correo);
 
 	@Query("SELECT u FROM Usuario u")
 	List<Usuario> findAll();

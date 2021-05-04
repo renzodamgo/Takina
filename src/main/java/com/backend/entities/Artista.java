@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(
         name="artistas",
         uniqueConstraints = {
-                @UniqueConstraint(name="artistas_name_unique",
-                        columnNames = "nombre")
+                @UniqueConstraint(name="artistas_nombre_unique", columnNames = "nombre")
         }
 )
 @Data
@@ -105,7 +104,6 @@ public class Artista {
     // --------------------
 
     // Relaciones con las tablas de base de datos 
-
     @OneToMany(
         mappedBy = "artista",
         cascade = {CascadeType.PERSIST, CascadeType.REMOVE},

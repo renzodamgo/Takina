@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @Table(
         name="usuarios",
         uniqueConstraints = {
-                @UniqueConstraint(name="usuario_apodo_unique",columnNames="apodo"),
-				@UniqueConstraint(name="usuario_correo_unique",columnNames="correo"),
+                @UniqueConstraint(name="usuario_apodo_unique", columnNames="apodo"),
+				@UniqueConstraint(name="usuario_correo_unique", columnNames="correo")
         }
 )
 @Data

@@ -12,10 +12,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(
         name="canciones"
-        // uniqueConstraints = {
-        //         @UniqueConstraint(name="cancion_name_unique",
-        //                 columnNames = "name")
-        // }
+        //uniqueConstraints = {
+        //        @UniqueConstraint(name="cancion_nombre_unique",columnNames = "nombre")
+        //}
 )
 @Data
 @AllArgsConstructor
@@ -109,6 +108,6 @@ public class Cancion {
     @ManyToMany(mappedBy = "colaboradores")
     List<Artista> colaboradores;
 
-    @ManyToMany(mappedBy = "playlist_canciones")
+    @ManyToMany(mappedBy = "playlistCanciones")
     List<ListaReproduccion> playlistCanciones;
 }
