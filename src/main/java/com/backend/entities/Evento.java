@@ -95,7 +95,7 @@ public class Evento {
     private Integer interesados = 0;
 
     // Relations many to many
-    @ManyToMany(mappedBy = "listaEventoArtistas")
-    List<Artista> listaArtistasEventos;
+    @ManyToMany(mappedBy = "participantes")
+    List<Artista> participantes;
 
 }

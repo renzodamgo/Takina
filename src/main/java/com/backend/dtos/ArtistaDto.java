@@ -10,7 +10,7 @@ public class ArtistaDto {
     private String fotoPerfil;
     private String fotoPortada;
     private String biografia;
-    private Integer seguidores;
+    private Integer seguidoresTotal;
     private Integer oyentesTotal;
 	private String departamentoOrigen;
 	private String generoMusical;

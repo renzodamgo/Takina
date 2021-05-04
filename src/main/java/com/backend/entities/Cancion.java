@@ -106,9 +106,9 @@ public class Cancion {
     private ProyectoMusical proyecto;
 
     //Relations many to many
-    @ManyToMany(mappedBy = "listaCancionArtista")
-    List<Artista> listaArtistaCanciones;
+    @ManyToMany(mappedBy = "colaboradores")
+    List<Artista> colaboradores;
 
-    @ManyToMany(mappedBy = "listaCancionReproducciones")
-    List<ListaReproduccion> listaReproduccionCanciones;
+    @ManyToMany(mappedBy = "playlist_canciones")
+    List<ListaReproduccion> playlistCanciones;
 }

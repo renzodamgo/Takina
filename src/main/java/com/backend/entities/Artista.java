@@ -91,9 +91,9 @@ public class Artista {
 	// ---------------------
 
 	@Column(
-		name = "seguidores"
+		name = "seguidoresTotal"
 	)
-	private Long seguidores = 0L;
+	private Long seguidoresTotal = 0L;
 	
 	// ---------------------
 	
@@ -123,24 +123,31 @@ public class Artista {
     private List<ProyectoMusical> proyectos = new ArrayList<>();
 
     //Relations many to many
-    @ManyToMany
+	@ManyToMany
     @JoinTable(
-            name = "lista_cancion_artista",
-            joinColumns = @JoinColumn(name = "artista_id"),
-            inverseJoinColumns = @JoinColumn(name = "cancion_id"))
-    List<Cancion> listaCancionArtista;
-
-    @ManyToMany
-    @JoinTable(
-            name = "lista_administradores_artista",
+            name = "administradores",
             joinColumns = @JoinColumn(name = "artista_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-    List<Usuario> listaAdministradoresArtista;
+    List<Usuario> administradores;
+
+	@ManyToMany
+    @JoinTable(
+            name = "seguidores",
+            joinColumns = @JoinColumn(name = "artista_id"),
+            inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+    List<Usuario> seguidores;
 
     @ManyToMany
     @JoinTable(
-            name = "lista_evento_artistas",
+            name = "colaboradores",
+            joinColumns = @JoinColumn(name = "artista_id"),
+            inverseJoinColumns = @JoinColumn(name = "cancion_id"))
+    List<Cancion> colaboradores;
+
+    @ManyToMany
+    @JoinTable(
+            name = "participantes",
             joinColumns = @JoinColumn(name = "artista_id"),
             inverseJoinColumns = @JoinColumn(name = "evento_id"))
-    List<Evento> listaEventoArtistas;
+    List<Evento> participantes;
 }

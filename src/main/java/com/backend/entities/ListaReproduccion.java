@@ -65,7 +65,6 @@ public class ListaReproduccion {
     // ---------------------
 
     // Relaciones con las tablas de base de datos 
-
     @ManyToOne
     @JoinColumn(
             name = "usuario_id",
@@ -80,10 +79,10 @@ public class ListaReproduccion {
     // Relations many to many
     @ManyToMany
     @JoinTable(
-            name = "lista_lista_cancion",
+            name = "playlist_canciones",
             joinColumns = @JoinColumn(name = "lista_reproduccion_id"),
             inverseJoinColumns = @JoinColumn(name = "cancion_id"))
-    List<Cancion> listaCancionReproducciones;
+    List<Cancion> PlaylistCanciones;
 
 
 

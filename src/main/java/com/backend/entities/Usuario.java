@@ -106,7 +106,12 @@ public class Usuario {
     private List<ListaReproduccion> listas = new ArrayList<>();
 
     //Relations many to many
-    @ManyToMany(mappedBy = "listaAdministradoresArtista")
-    private List<Artista> listaArtistaUsuarios;
+	// Artista a Usuario para registrar los Administradores de página
+    @ManyToMany(mappedBy = "administradores")
+    private List<Artista> administradores;
+
+	// Artista a Usuario para registrar los timestamps de los seguimientos
+	@ManyToMany(mappedBy = "seguidores")
+    private List<Artista> seguidores;
 
 }
