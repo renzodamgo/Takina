@@ -41,6 +41,7 @@
   .owl-carousel .owl-item {
     position: relative;
     min-height: 1px;
+    height:auto;
     float: left;
     -webkit-backface-visibility: hidden;
     -webkit-tap-highlight-color: transparent;
@@ -168,3 +169,22 @@
   z-index: 1;
   height: 100%;
   width: 100%; }
+
+.owl-item {height: 0;}    
+.owl-item.active {height: auto;}
+.owl-item{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: auto !important;
+}
+
+.owl-stage {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
