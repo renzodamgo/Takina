@@ -7,9 +7,9 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-/backend-takina
-.idea
-target
+# /backend-takina
+# .idea
+# target
 # Generated files
 .idea/**/contentModel.xml
 
