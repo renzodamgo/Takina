@@ -42,7 +42,7 @@ public class ProyectoMusicalController {
     }
 
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/busqueda/{proyectoMusicalNombre}")
+    @GetMapping("/busqueda/nombre/{proyectoMusicalNombre}")
     public TakinaResponse<List<ProyectoMusicalDto>> getProyectosMusicalesByNombre(@PathVariable String proyectoMusicalNombre)
 			throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
