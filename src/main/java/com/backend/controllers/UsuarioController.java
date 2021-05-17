@@ -12,54 +12,53 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/takina"+"/v1")
+@RequestMapping(path = "/takina"+"/usuarios")
 public class UsuarioController {
-
     @Autowired
     private UsuarioService usuarioService;
 
-	// Crear nuevo usuario
-	@ResponseStatus(HttpStatus.OK)
-    @PostMapping("/usuarios/nuevo")
-    public TakinaResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
-            throws TakinaException{
-        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-                usuarioService.createUsuario(createUsuarioDto));
-    }
-
 	// Mostrar todos los usuarios
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/usuarios/todos")
+	@GetMapping
 	public TakinaResponse<List<UsuarioDto>> getUsuarios()
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getUsuarios());
 	}
 
+	// Crear nuevo usuario
+	@ResponseStatus(HttpStatus.OK)
+    @PostMapping
+    public TakinaResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
+            throws TakinaException{
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+                usuarioService.createUsuario(createUsuarioDto));
+    }
+
 	// Getter
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/usuarios/id/{usuarioId}")
+    @GetMapping("/id/{usuarioId}")
     public TakinaResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId) throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getUsuarioId(usuarioId));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/usuarios/nombre/{usuarioNombre}")
+    @GetMapping("/nombre/{usuarioNombre}")
     public TakinaResponse<UsuarioDto> getUsuarioByNombre(@PathVariable String usuarioNombre) throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getUsuarioNombre(usuarioNombre));
     }
 
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/usuarios/apodo/{usuarioApodo}")
+    @GetMapping("/apodo/{usuarioApodo}")
     public TakinaResponse<UsuarioDto> getUsuarioByApodo(@PathVariable String usuarioApodo) throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getUsuarioApodo(usuarioApodo));
     }
 
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/usuarios/correo/{usuarioCorreo}")
+    @GetMapping("/correo/{usuarioCorreo}")
     public TakinaResponse<UsuarioDto> getUsuarioByCorreo(@PathVariable String usuarioCorreo) throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getUsuarioCorreo(usuarioCorreo));
@@ -67,7 +66,7 @@ public class UsuarioController {
 
 	// Busqueda de usuarios por Apodo
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/usuarios/buscar/nombre/{usuarioNombre}")
+    @GetMapping("busqueda/nombre/{usuarioNombre}")
     public TakinaResponse<List<UsuarioDto>> getUsuariosByNombre(@PathVariable String usuarioNombre)
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
@@ -76,7 +75,7 @@ public class UsuarioController {
 
 	// Funcion Login
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/usuarios/login/{login}/{password}")
+    @GetMapping("/login/{login}/{password}")
     public TakinaResponse<UsuarioDto> loginUsuarioByApodoOrCorreoUsingPassword(@PathVariable String login, @PathVariable String password)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",

@@ -11,20 +11,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/takina"+"/v1")
+@RequestMapping(path = "/takina"+"/proyectos")
 public class ProyectoMusicalController {
     @Autowired
-    ProyectoMusicalService proyectoMusicalService;
-
+    private ProyectoMusicalService proyectoMusicalService;
+	
+	// Crear proyecto
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/proyectos/nuevo")
+    @PostMapping
     public TakinaResponse<ProyectoMusicalDto> createProyectoMusical(@RequestBody CreateProyectoMusicalDto createProyectoMusicalDto) throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 proyectoMusicalService.createProyectoMusical(createProyectoMusicalDto));
     }
 
+	// Obtener todos los proyectos
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/proyectos/todos")
+    @GetMapping
     public TakinaResponse<List<ProyectoMusicalDto>> getProyectosMusicales()
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
@@ -32,7 +34,7 @@ public class ProyectoMusicalController {
     }
 
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/proyectos/id/{proyectoId}")
+    @GetMapping("/id/{proyectoId}")
     public TakinaResponse<ProyectoMusicalDto> getProyectoMusicalById(@PathVariable Long proyectoId)
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
@@ -40,7 +42,7 @@ public class ProyectoMusicalController {
     }
 
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/proyectos/buscar/nombre/{proyectoMusicalNombre}")
+    @GetMapping("/busqueda/{proyectoMusicalNombre}")
     public TakinaResponse<List<ProyectoMusicalDto>> getProyectosMusicalesByNombre(@PathVariable String proyectoMusicalNombre)
 			throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",

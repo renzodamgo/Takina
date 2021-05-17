@@ -19,23 +19,23 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 
 @RestController
-@RequestMapping(path = "/takina"+"/v1")
+@RequestMapping(path = "/takina"+"/mercancias")
 public class MercanciaController {
     @Autowired
     private MercanciaService mercanciaService;
 
 	// Crear Mercancia
 	@ResponseStatus(HttpStatus.OK)
-    @PostMapping("/mercancias/nuevo")
+    @PostMapping
     public TakinaResponse<MercanciaDto> createMercancia(@RequestBody CreateMercanciaDto createMercanciaDto)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 mercanciaService.createMercancia(createMercanciaDto));
     }
 
-	// Mostrar todas las mercancias
+	// Obtener todas las mercancias
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/mercancias/todos")
+    @GetMapping
     public TakinaResponse<List<MercanciaDto>> getMercancias()
 			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
@@ -44,7 +44,7 @@ public class MercanciaController {
 
 	// Getters
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/mercancias/id/{mercanciaId}")
+    @GetMapping("/id/{mercanciaId}")
     public TakinaResponse<MercanciaDto> getMercanciaId(@PathVariable Long mercanciaId)
 			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK), "OK",mercanciaService.getMercanciaId(mercanciaId));

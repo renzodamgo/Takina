@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/takina"+"/v1")
+@RequestMapping(path = "/takina"+"/canciones")
 public class CancionController {
-
     @Autowired
     private CancionService cancionService;
 
 	// Crear cancion
 	@ResponseStatus(HttpStatus.OK)
-    @PostMapping("/canciones/nuevo")
+    @PostMapping
     public TakinaResponse<CancionDto> createCancion(@RequestBody CreateCancionDto createCancionDto)
             throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
@@ -29,7 +28,7 @@ public class CancionController {
 
 	// Mostrar todas las canciones
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/canciones/todos")
+    @GetMapping
     public TakinaResponse<List<CancionDto>> getCanciones()
 			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
@@ -38,7 +37,7 @@ public class CancionController {
 
 	// Getters
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/canciones/id/{cancionId}")
+    @GetMapping("/id/{cancionId}")
     public TakinaResponse<CancionDto> getCancionById(@PathVariable Long cancionId)
 			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
@@ -47,7 +46,7 @@ public class CancionController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/canciones/nombre/{cancionNombre}")
+    @GetMapping("/nombre/{cancionNombre}")
     public TakinaResponse<CancionDto> getCancionByNombre(@PathVariable String cancionNombre)
 			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
@@ -57,7 +56,7 @@ public class CancionController {
 
 	// Busqueda por nombre
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/canciones/buscar/nombre/{cancionNombre}")
+    @GetMapping("/busqueda/nombre/{cancionNombre}")
     public  TakinaResponse<List<CancionDto>> getCancionesByNombre(@PathVariable String cancionNombre)
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
@@ -66,7 +65,7 @@ public class CancionController {
 
 	// Busqueda por genero
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/canciones/buscar/genero/{generoMusical}")
+    @GetMapping("/busqueda/genero/{generoMusical}")
     public  TakinaResponse<List<CancionDto>> getCancionesByGeneroMusical(@PathVariable String generoMusical)
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
