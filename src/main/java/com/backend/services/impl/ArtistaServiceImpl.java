@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.entities.Artista;
@@ -65,7 +67,8 @@ public class ArtistaServiceImpl implements ArtistaService {
     }
 
     // --------------------------------------------------------
-    @Override
+    @Transactional
+	@Override
     public ArtistaDto createArtista(CreateArtistaDto createArtistaDto) throws TakinaException {
         Artista artista = new Artista();
 		artista.setNombre(createArtistaDto.getNombre());

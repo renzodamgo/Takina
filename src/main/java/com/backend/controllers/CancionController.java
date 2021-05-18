@@ -2,6 +2,7 @@ package com.backend.controllers;
 
 import com.backend.dtos.CancionDto;
 import com.backend.dtos.creates.CreateCancionDto;
+import com.backend.dtos.creates.CreateCancionSencilloDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
 import com.backend.services.CancionService;
@@ -33,6 +34,15 @@ public class CancionController {
 			throws TakinaException {
         return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 				cancionService.getCanciones());
+    }
+
+	// Crear cancion
+	@ResponseStatus(HttpStatus.OK)
+    @PostMapping("/sencillo")
+    public TakinaResponse<CancionDto> createCancionSencillo(@RequestBody CreateCancionSencilloDto createCancionSencilloDto)
+            throws TakinaException {
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+                cancionService.createCancionSencillo(createCancionSencilloDto));
     }
 
 	// Getters
