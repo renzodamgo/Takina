@@ -27,4 +27,8 @@ public interface ArtistaService {
 
     // US013 - Como usuario Quiero registrar un perfil de Músico Para subir contenido musical propio y que esté disponible en la plataforma
     ArtistaDto createArtista(CreateArtistaDto createArtistaDto) throws TakinaException;
+
+	// US017 - Como usuario administrador Quiero otorgarle permisos a otra cuenta Para tener más personas en la administración del musico
+	ArtistaDto giveAdministrador(Long artistaId, Long usuarioId, Integer nivel) throws TakinaException;
+
 }

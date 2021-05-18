@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UsuarioDto {
+	private Long id;
     private String apodo;
 	private String correo;
 	private String password;

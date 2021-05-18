@@ -1,6 +1,7 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -22,11 +23,11 @@ public class Administrador {
     // ---------------------
     @Id
     @GeneratedValue(
-            strategy = GenerationType.IDENTITY
+        strategy = GenerationType.IDENTITY
     )
     @Column(
-            name="id",
-            updatable = false
+        name="id",
+        updatable = false
     )
     private Long id;
 
@@ -51,7 +52,11 @@ public class Administrador {
     @JoinColumn(
 		name = "usuarios_id",
 		updatable = false,
-        nullable = false
+        nullable = false,
+        referencedColumnName = "id",
+        foreignKey = @ForeignKey(
+            name = "usuarios_artistas_fk"
+        )
 	)
 	private Usuario usuario;
 	
@@ -59,13 +64,11 @@ public class Administrador {
 	@JoinColumn(
         name = "artistas_id",
 		updatable = false,
-        nullable = false
-		/* 
+        nullable = false,
         referencedColumnName = "id",
         foreignKey = @ForeignKey(
-                name = "artista_mercancia_fk"
+    		name = "artistas_usuarios_fk"
         )
-		*/
     )
 	private Artista artista;
 }

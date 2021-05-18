@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="artistas",
-        uniqueConstraints = {
-                @UniqueConstraint(name="artistas_nombre_unique", columnNames = "nombre")
-        }
+    name="artistas",
+    uniqueConstraints = {
+        @UniqueConstraint(name="artistas_nombre_unique", columnNames = "nombre")
+    }
 )
 @Data
 @AllArgsConstructor
@@ -25,11 +25,11 @@ public class Artista {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.IDENTITY
+        strategy = GenerationType.IDENTITY
     )
     @Column(
-            name="id",
-            updatable = false
+        name="id",
+        updatable = false
     )
     private Long id;
 
@@ -118,7 +118,7 @@ public class Artista {
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 		fetch = FetchType.LAZY
 	)
-	private List<Administrador> administradores;
+	private List<Administrador> administradores = new ArrayList<>();
 
 	// --------------------
 	// (One Artista - Many Mercancia)

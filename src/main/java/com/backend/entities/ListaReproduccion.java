@@ -1,7 +1,7 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
-import java.util.List;
+//import java.util.List;
 
 import javax.persistence.*;
 
@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="listas_reproduccion"
-        //uniqueConstraints = {
-        //        @UniqueConstraint(name="listas_reproduccion_name_unique", columnNames = "name")
-        //}
+    name="listas_reproduccion"
+    //uniqueConstraints = {
+    //        @UniqueConstraint(name="listas_reproduccion_name_unique", columnNames = "name")
+    //}
 )
 @Data
 @AllArgsConstructor
@@ -22,14 +22,14 @@ import lombok.NoArgsConstructor;
 public class ListaReproduccion {
     @Id
     @GeneratedValue(
-            strategy = GenerationType.IDENTITY
+        strategy = GenerationType.IDENTITY
     )
 
     // ---------------------
 
     @Column(
-            name="id",
-            updatable = false
+        name="id",
+        updatable = false
     )
     private Long id;
 
@@ -56,9 +56,9 @@ public class ListaReproduccion {
     // ---------------------
 
     @Column(
-            name="creacion",
-            nullable = false,
-            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+        name="creacion",
+        nullable = false,
+        columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
     private LocalDateTime creacion;
 
@@ -75,8 +75,8 @@ public class ListaReproduccion {
     // ---------------------
 
     @Column(
-            name="numeroCanciones",
-            nullable = false
+        name="numeroCanciones",
+        nullable = false
     )
     private Integer numeroCanciones = 0;
 
@@ -85,12 +85,12 @@ public class ListaReproduccion {
     // Relaciones con las tablas de base de datos 
     @ManyToOne
     @JoinColumn(
-            name = "usuario_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "usuario_listaReproduccion_fk"
-            )
+        name = "usuarios_id",
+        nullable = false,
+        referencedColumnName = "id",
+        foreignKey = @ForeignKey(
+            name = "usuario_fk"
+        )
     )
     private Usuario usuario;
 

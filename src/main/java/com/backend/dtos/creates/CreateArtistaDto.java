@@ -12,4 +12,5 @@ public class CreateArtistaDto {
     private String fotoPortada;
 	private String departamento;
 	private String genero;
+	private Long usuarioId;
 }

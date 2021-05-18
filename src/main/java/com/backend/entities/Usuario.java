@@ -101,14 +101,6 @@ public class Usuario {
     )
     private boolean premium = false;
 
-    // ---------------------
-
-    @OneToMany(
-        mappedBy = "usuario",
-        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-        fetch = FetchType.LAZY
-    )
-    private List<ListaReproduccion> listasReproduccion = new ArrayList<>();
 
     //Relations many to many
     // Artista a Usuario para registrar los Administradores de página
@@ -120,6 +112,15 @@ public class Usuario {
     private List<Administrador> administradores = new ArrayList<>();
 
     /*
+
+	// ---------------------
+    @OneToMany(
+        mappedBy = "usuario",
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+        fetch = FetchType.LAZY
+    )
+    private List<ListaReproduccion> listasReproduccion = new ArrayList<>();
+
 	// Artista a Usuario para registrar los timestamps de los seguimientos
 	@ManyToMany(mappedBy = "seguidores")
     private List<Artista> seguidores;

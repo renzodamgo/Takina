@@ -1,11 +1,14 @@
 package com.backend.dtos;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class ArtistaDto {
+	private Long id;
     private String nombre;
     private String fotoPerfil;
     private String fotoPortada;
@@ -14,6 +17,7 @@ public class ArtistaDto {
     private Integer oyentesTotal;
 	private String departamento;
 	private String genero;
+	private List<AdministradorDto> administradores;
 
 
     // Cuantos oyentes hay al mes

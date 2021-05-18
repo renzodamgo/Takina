@@ -1,7 +1,7 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
-import java.util.List;
+//import java.util.List;
 
 import javax.persistence.*;
 
@@ -97,12 +97,13 @@ public class Cancion {
 	// Relaciones con las tablas de base de datos 
 	@ManyToOne
     @JoinColumn(
-            name = "proyectoMusical_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "proyectoMusical_cancion_fk"
-            )
+        name = "proyectos_musicales_id",
+		updatable = false,
+		nullable = false,
+        referencedColumnName = "id",
+        foreignKey = @ForeignKey(
+            name = "proyectos_musicales_canciones_fk"
+        )
     )
     private ProyectoMusical proyecto;
 

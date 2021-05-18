@@ -56,7 +56,7 @@ public class ArtistaController {
 	// Busqueda basica
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/busqueda/nombre/{artistaNombre}")
-    public  TakinaResponse<List<ArtistaDto>> getArtistasByNombre(@PathVariable String artistaNombre)
+    public TakinaResponse<List<ArtistaDto>> getArtistasByNombre(@PathVariable String artistaNombre)
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.getArtistasByNombre(artistaNombre));
@@ -64,7 +64,7 @@ public class ArtistaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/busqueda/genero/{artistaGenero}")
-    public  TakinaResponse<List<ArtistaDto>> getArtistasByGeneroMusical(@PathVariable String artistaGenero)
+    public TakinaResponse<List<ArtistaDto>> getArtistasByGeneroMusical(@PathVariable String artistaGenero)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.getArtistasByGeneroMusical(artistaGenero));
@@ -72,7 +72,7 @@ public class ArtistaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/busqueda/departamento/{artistaDepartamento}")
-    public  TakinaResponse<List<ArtistaDto>> getArtistasByDepartamento(@PathVariable String artistaDepartamento)
+    public TakinaResponse<List<ArtistaDto>> getArtistasByDepartamento(@PathVariable String artistaDepartamento)
 			throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.getArtistasByDepartamento(artistaDepartamento));
@@ -81,9 +81,19 @@ public class ArtistaController {
 	// Busqueda avanzada
 	@ResponseStatus(HttpStatus.OK)
     @GetMapping("/busqueda/{artistaNombre}")
-    public  TakinaResponse<List<ArtistaDto>> searchArtistasByNombre(@PathVariable String artistaNombre)
+    public TakinaResponse<List<ArtistaDto>> searchArtistasByNombre(@PathVariable String artistaNombre)
 			throws TakinaException {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.searchArtistasByNombre(artistaNombre));
     }
+
+	// Otorgar permisos administrativos a otro usuario
+	@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/administracion/{artistaid}/usuario/{usuarioId}/nivel/{nivel}")
+    public TakinaResponse<ArtistaDto> giveAdministrador(@PathVariable Long artistaid, @PathVariable Long usuarioId, @PathVariable Integer nivel)
+			throws TakinaException {
+        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+					artistaService.giveAdministrador(artistaid,usuarioId,nivel));
+    }
+
 }

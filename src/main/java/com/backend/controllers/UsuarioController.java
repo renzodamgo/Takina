@@ -81,4 +81,7 @@ public class UsuarioController {
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
                 usuarioService.loginUsuarioByApodoOrCorreoUsingPassword(login,password));
     }
+
+	// Dar moderador de perfil de Músico a otro usuario
+	
 }
