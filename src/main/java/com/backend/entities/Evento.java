@@ -37,25 +37,48 @@ public class Evento {
     @Column(
         name = "nombre",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(30)",
+        length = 30
     )
     private String nombre;
 
-    // ----------------------
+	// ---------------------
 
+    @Column(
+        name = "descripcion",
+        nullable = false,
+        columnDefinition = "VARCHAR(140)",
+        length = 140
+    )
+    private String descripcion;
+
+    // ----------------------
+	// venue = lugar de eventos
     @Column(
         name = "lugar",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(30)",
+        length = 30
     )
     private String lugar;
+
+	// ----------------------
+
+	@Column(
+        name = "direccion",
+        nullable = false,
+        columnDefinition = "VARCHAR(50)",
+        length = 50
+    )
+    private String direccion;
 
 	// ----------------------
 
     @Column(
         name = "departamento",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(20)",
+        length = 20
     )
     private String departamento;
 
@@ -81,7 +104,8 @@ public class Evento {
     @Column(
         name = "fotoPortada",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+        length = 50
     )
     private String fotoPortada;
 
@@ -94,7 +118,8 @@ public class Evento {
     private Integer interesados = 0;
 
     // Relations many to many
+	/*
     @ManyToMany(mappedBy = "participantes")
-    List<Artista> participantes;
-
+    private List<Artista> participantes;
+	*/
 }

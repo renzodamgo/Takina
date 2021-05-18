@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(
         name="proyectos_musicales"
-        // uniqueConstraints = {
-        //         @UniqueConstraint(name="proyectoMusical_name_unique", columnNames = "name")
-        // }
+        //uniqueConstraints = {
+        //        @UniqueConstraint(name="proyectos_musicales_name_unique", columnNames = "name")
+        //}
 )
 @Data
 @AllArgsConstructor
@@ -40,7 +40,8 @@ public class ProyectoMusical {
     @Column(
         name = "nombre",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+        length = 50
     )
     private String nombre;
 
@@ -49,7 +50,8 @@ public class ProyectoMusical {
     @Column(
         name = "tipoProyecto",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(20)",
+        length = 20
     )
     private String tipoProyecto;
 
@@ -67,7 +69,8 @@ public class ProyectoMusical {
 
     @Column(
     	name="lanzamiento",
-        nullable = false
+        nullable = false,
+		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
     private LocalDateTime lanzamiento;
 
@@ -76,18 +79,20 @@ public class ProyectoMusical {
     @Column(
         name = "descripcion",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(140)",
+        length = 140
     )
     private String descripcion;
 
     // ----------------------
 
     @Column(
-        name = "rutaImagen",
+        name = "foto_portada",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+        length = 50
     )
-    private String rutaImagen;
+    private String fotoPortada;
 
     // ----------------------
 
@@ -95,25 +100,27 @@ public class ProyectoMusical {
         name = "canciones",
         nullable = false
     )
-    private Integer canciones;
+    private Integer canciones = 0;
 
     // ----------------------
 
     @Column(
         name = "discografica",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(30)",
+        length = 30
     )
     private String discografica;
 
 	// ----------------------
 
     @Column(
-        name = "generoMusical",
+        name = "genero",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(20)",
+        length = 20
     )
-    private String generoMusical;
+    private String genero;
 
     // ----------------------
 

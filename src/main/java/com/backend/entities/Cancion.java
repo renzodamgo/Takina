@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(
         name="canciones"
         //uniqueConstraints = {
-        //        @UniqueConstraint(name="cancion_nombre_unique",columnNames = "nombre")
+        //        @UniqueConstraint(name="canciones_nombre_unique",columnNames = "nombre")
         //}
 )
 @Data
@@ -39,7 +39,8 @@ public class Cancion {
     @Column(
         name = "nombre",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+		length = 50
     )
     private String nombre;
 
@@ -58,42 +59,43 @@ public class Cancion {
     @Column(
         name = "audio",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+		length = 50
     )
     private String audio;
 
     // ---------------------
 
     @Column(
-        name = "rutaImagen",
+        name = "foto_portada",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+		length = 50
     )
-    private String rutaImagen;
+    private String FotoPortada;
 
     // ----------------------
 
     @Column(
-            name="lanzamiento",
-            nullable = false
+        name="lanzamiento",
+        nullable = false,
+		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm", iso = DateTimeFormat.ISO.DATE_TIME)
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime lanzamiento;
 
     // ---------------------
 
 	@Column(
-        name = "generoMusical",
+        name = "genero",
         nullable = false,
-		columnDefinition = "TEXT"
+		columnDefinition = "VARCHAR(20)",
+		length = 20
     )
-    private String generoMusical;
+    private String genero;
 	
-	// ---------------------
-
-    // Relaciones con las tablas de base de datos 
-    @ManyToOne
+	// --------------------
+	// Relaciones con las tablas de base de datos 
+	@ManyToOne
     @JoinColumn(
             name = "proyectoMusical_id",
             nullable = false,
@@ -104,10 +106,12 @@ public class Cancion {
     )
     private ProyectoMusical proyecto;
 
+	/*
     //Relations many to many
     @ManyToMany(mappedBy = "colaboradores")
     List<Artista> colaboradores;
 
     @ManyToMany(mappedBy = "playlistCanciones")
     List<ListaReproduccion> playlistCanciones;
+	*/
 }

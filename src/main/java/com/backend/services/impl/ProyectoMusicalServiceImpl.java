@@ -74,8 +74,8 @@ public class ProyectoMusicalServiceImpl implements ProyectoMusicalService {
 		ProyectoMusical.setCanciones(createProyectoMusicalDto.getCanciones());
 		ProyectoMusical.setDiscografica(createProyectoMusicalDto.getDiscografica());
 		ProyectoMusical.setArtista(artistaId);
-		ProyectoMusical.setRutaImagen(createProyectoMusicalDto.getRutaImagen());
-		ProyectoMusical.setGeneroMusical(artistaId.getGeneroMusical());
+		ProyectoMusical.setFotoPortada(createProyectoMusicalDto.getFotoPortada());
+		ProyectoMusical.setGenero(artistaId.getGenero());
 
         try {
             ProyectoMusical = proyectoMusicalRepository.save(ProyectoMusical);

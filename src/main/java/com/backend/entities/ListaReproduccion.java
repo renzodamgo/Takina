@@ -13,14 +13,13 @@ import lombok.NoArgsConstructor;
 @Table(
         name="listas_reproduccion"
         //uniqueConstraints = {
-        //        @UniqueConstraint(name="listaRepreduccion_name_unique", columnNames = "name")
+        //        @UniqueConstraint(name="listas_reproduccion_name_unique", columnNames = "name")
         //}
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ListaReproduccion {
-    
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
@@ -37,6 +36,26 @@ public class ListaReproduccion {
     // ---------------------
 
     @Column(
+        name = "nombre",
+        nullable = false,
+        columnDefinition = "VARCHAR(50)",
+        length = 50
+    )
+    private String nombre;
+
+    // ---------------------
+
+    @Column(
+        name = "descripcion",
+        nullable = false,
+        columnDefinition = "VARCHAR(140)",
+        length = 140
+    )
+    private String descripcion;
+
+    // ---------------------
+
+    @Column(
             name="creacion",
             nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
@@ -45,11 +64,11 @@ public class ListaReproduccion {
 
     // ---------------------
 
-    // TODOO: FALTA PONER LA DURACION DE LA CANCION
-	@Column(
-            name="duracion",
-            nullable = false,
-            columnDefinition = "FLOAT TO TIME"
+    // TODO: FALTA PONER LA DURACION DE LA CANCION
+    @Column(
+        name="duracion",
+        nullable = false,
+        columnDefinition = "FLOAT TO TIME"
     )
     private Float duracion;
 
@@ -59,7 +78,7 @@ public class ListaReproduccion {
             name="numeroCanciones",
             nullable = false
     )
-    private Integer numeroCanciones;
+    private Integer numeroCanciones = 0;
 
     // ---------------------
 
@@ -75,14 +94,14 @@ public class ListaReproduccion {
     )
     private Usuario usuario;
 
-    // Relations many to many
+    /* 
     @ManyToMany
     @JoinTable(
             name = "playlist_canciones",
             joinColumns = @JoinColumn(name = "lista_reproduccion_id"),
             inverseJoinColumns = @JoinColumn(name = "cancion_id"))
-    List<Cancion> playlistCanciones;
-
+    private List<Cancion> playlistCanciones;
+    */
 
 
 

@@ -38,7 +38,8 @@ public class Artista {
 	@Column(
         name = "nombre",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+		length = 50
     )
     private String nombre;
 
@@ -47,7 +48,8 @@ public class Artista {
     @Column(
         name = "biografia",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(140)",
+		length = 140
     )
     private String biografia;
 
@@ -56,7 +58,8 @@ public class Artista {
     @Column(
         name = "fotoPerfil",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+		length = 50
     )
     private String fotoPerfil;
 
@@ -65,27 +68,30 @@ public class Artista {
     @Column(
         name = "fotoPortada",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+		length = 50
     )
     private String fotoPortada;
 
     // --------------------
 
 	@Column(
-        name = "departamentoOrigen",
+        name = "departamento",
         nullable = false,
-		columnDefinition = "TEXT"
+		columnDefinition = "VARCHAR(20)",
+		length = 20
     )
-    private String departamentoOrigen;
+    private String departamento;
 
 	 // --------------------
 
 	 @Column(
-        name = "generoMusical",
+        name = "genero",
         nullable = false,
-		columnDefinition = "TEXT"
+		columnDefinition = "VARCHAR(20)",
+		length = 20
     )
-    private String generoMusical;
+    private String genero;
 
 	// ---------------------
 
@@ -102,17 +108,29 @@ public class Artista {
 	private Long oyentesTotal = 0L;
 
     // --------------------
+	// Relaciones con las tablas de base de datos 
 
-    // Relaciones con las tablas de base de datos 
-    @OneToMany(
+	// --------------------
+	// Administradores (One Artista - Many Administrador)
+	// (Many Usuario - Many Artista)
+	@OneToMany(
+		mappedBy = "artista",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Administrador> administradores;
+
+	// --------------------
+	// (One Artista - Many Mercancia)
+	@OneToMany(
         mappedBy = "artista",
         cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
         fetch = FetchType.LAZY
     )
     private List<Mercancia> mercancias = new ArrayList<>();
-
+	
     // --------------------
-    
+    // (One Artista - Many Proyecto Musical)
     @OneToMany(
         mappedBy = "artista",
         cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
@@ -120,32 +138,32 @@ public class Artista {
     )
     private List<ProyectoMusical> proyectos = new ArrayList<>();
 
-    //Relations many to many
-	@ManyToMany
-    @JoinTable(
-            name = "administradores",
-            joinColumns = @JoinColumn(name = "artista_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-    List<Usuario> administradores;
 
+
+    
+	/*
+    
+
+    //Relations many to many
 	@ManyToMany
     @JoinTable(
             name = "seguidores",
             joinColumns = @JoinColumn(name = "artista_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-    List<Usuario> seguidores;
+    private List<Usuario> seguidores;
 
     @ManyToMany
     @JoinTable(
             name = "colaboradores",
             joinColumns = @JoinColumn(name = "artista_id"),
             inverseJoinColumns = @JoinColumn(name = "cancion_id"))
-    List<Cancion> colaboradores;
+    private List<Cancion> colaboradores;
 
     @ManyToMany
     @JoinTable(
             name = "participantes",
             joinColumns = @JoinColumn(name = "artista_id"),
             inverseJoinColumns = @JoinColumn(name = "evento_id"))
-    List<Evento> participantes;
+	private List<Evento> participantes;
+	*/
 }

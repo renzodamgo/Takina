@@ -58,10 +58,12 @@ public class EventoServiceImpl implements EventoService {
         Evento evento = new Evento();
         evento.setNombre(createEventoDto.getNombre());
         evento.setLugar(createEventoDto.getLugar());
+		evento.setDireccion(createEventoDto.getDireccion());
         evento.setFecha(createEventoDto.getFecha());
         evento.setPrecio(createEventoDto.getPrecio());
         evento.setFotoPortada(createEventoDto.getFotoPortada());
 		evento.setDepartamento(createEventoDto.getDepartamento());
+		evento.setDescripcion(createEventoDto.getDescripcion());
 
         try {
             evento = eventoRepository.save(evento);

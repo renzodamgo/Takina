@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 public class CancionDto {
     private String nombre;
     private String audio;
-    private String rutaImagen;
+    private String fotoPortada;
     private LocalDateTime lanzamiento;
-	private String generoMusical;
+	private String genero;
 	private Float duracion;
 	private Long proyectoId;
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Table(
         name="mercancias"
         // uniqueConstraints = {
-        //         @UniqueConstraint(name="mercancia_name_unique", columnNames = "name")
+        //         @UniqueConstraint(name="mercancias_name_unique", columnNames = "name")
         // }
 )
 @Data
@@ -20,7 +20,7 @@ public class Mercancia {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.IDENTITY
+        strategy = GenerationType.IDENTITY
     )
     // ---------------------
 
@@ -35,7 +35,8 @@ public class Mercancia {
     @Column(
         name = "nombre",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(30)",
+        length = 30
     )
     private String nombre;
 	
@@ -44,7 +45,8 @@ public class Mercancia {
     @Column(
         name = "descripcion",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(140)",
+        length = 140
     )
     private String descripcion;
 
@@ -61,7 +63,8 @@ public class Mercancia {
     @Column(
         name = "foto",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+        length = 50
     )
     private String foto;
 

@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @Table(
         name="usuarios",
         uniqueConstraints = {
-                @UniqueConstraint(name="usuario_apodo_unique", columnNames="apodo"),
-				@UniqueConstraint(name="usuario_correo_unique", columnNames="correo")
+                @UniqueConstraint(name="usuarios_apodo_unique", columnNames="apodo"),
+				@UniqueConstraint(name="usuarios_correo_unique", columnNames="correo")
         }
 )
 @Data
@@ -40,7 +40,8 @@ public class Usuario {
     @Column(
         name = "apodo",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(20)",
+        length = 20
     )
     private String apodo;
 
@@ -49,7 +50,8 @@ public class Usuario {
     @Column(
         name = "password",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(30)",
+        length = 30
     )
     private String password;
 
@@ -58,7 +60,8 @@ public class Usuario {
     @Column(
         name = "nombre",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+		length = 50
     )
     private String nombre;
 
@@ -67,16 +70,17 @@ public class Usuario {
     @Column(
         name = "correo",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(30)",
+		length = 30
     )
     private String correo;
 
     // ----------------------
 
     @Column(
-            name="ultimoIngreso",
-            nullable = false,
-            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+        name="ultimoIngreso",
+        nullable = false,
+        columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
     private LocalDateTime ultimoIngreso;
 
@@ -85,7 +89,8 @@ public class Usuario {
     @Column(
         name = "fotoPerfil",
         nullable = false,
-        columnDefinition = "TEXT"
+        columnDefinition = "VARCHAR(50)",
+		length = 50
     )
     private String fotoPerfil;
 
@@ -103,15 +108,21 @@ public class Usuario {
         cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
         fetch = FetchType.LAZY
     )
-    private List<ListaReproduccion> listas = new ArrayList<>();
+    private List<ListaReproduccion> listasReproduccion = new ArrayList<>();
 
     //Relations many to many
-	// Artista a Usuario para registrar los Administradores de página
-    @ManyToMany(mappedBy = "administradores")
-    private List<Artista> administradores;
+    // Artista a Usuario para registrar los Administradores de página
+    @OneToMany(
+    	mappedBy = "usuario",
+    	cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+    	fetch = FetchType.LAZY
+    )
+    private List<Administrador> administradores = new ArrayList<>();
 
+    /*
 	// Artista a Usuario para registrar los timestamps de los seguimientos
 	@ManyToMany(mappedBy = "seguidores")
     private List<Artista> seguidores;
+    */
 
 }
