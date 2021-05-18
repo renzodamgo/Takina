@@ -93,7 +93,7 @@ public class CancionServiceImpl implements CancionService {
 	// Buscar por genero musical
 	@Override
 	public List<CancionDto> getCancionesByGeneroMusical(String generoMusical) throws TakinaException {
-		List<Cancion> results = cancionRepository.findByGeneroMusicalContainingIgnoreCase(generoMusical);
+		List<Cancion> results = cancionRepository.findByGeneroContainingIgnoreCase(generoMusical);
         return results.stream().map(cancion -> modelMapper.map(cancion,CancionDto.class)).collect(Collectors.toList());
 	}
 }
