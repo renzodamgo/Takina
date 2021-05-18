@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="proyectos_musicales"
-        //uniqueConstraints = {
-        //        @UniqueConstraint(name="proyectos_musicales_name_unique", columnNames = "name")
-        //}
+    name="proyectos_musicales"
+    //uniqueConstraints = {
+    //        @UniqueConstraint(name="proyectos_musicales_name_unique", columnNames = "name")
+    //}
 )
 @Data
 @AllArgsConstructor
@@ -30,8 +30,8 @@ public class ProyectoMusical {
     // ---------------------
 
     @Column(
-            name="id",
-            updatable = false
+        name="id",
+        updatable = false
     )
     private Long id;
 
@@ -123,17 +123,16 @@ public class ProyectoMusical {
     private String genero;
 
     // ----------------------
-
     // Relaciones con las tablas de base de datos 
 
     @ManyToOne
     @JoinColumn(
-            name = "artista_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "artista_proyectoMusical_fk"
-            )
+        name = "artista_id",
+        nullable = false,
+        referencedColumnName = "id",
+        foreignKey = @ForeignKey(
+                name = "artista_proyectoMusical_fk"
+        )
     )
     private Artista artista;
 

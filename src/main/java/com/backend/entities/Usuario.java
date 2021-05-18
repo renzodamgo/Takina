@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="usuarios",
-        uniqueConstraints = {
-                @UniqueConstraint(name="usuarios_apodo_unique", columnNames="apodo"),
-				@UniqueConstraint(name="usuarios_correo_unique", columnNames="correo")
-        }
+    name="usuarios",
+    uniqueConstraints = {
+        @UniqueConstraint(name="usuarios_apodo_unique", columnNames="apodo"),
+		@UniqueConstraint(name="usuarios_correo_unique", columnNames="correo")
+    }
 )
 @Data
 @AllArgsConstructor
@@ -25,13 +25,13 @@ public class Usuario {
     
     @Id
     @GeneratedValue(
-            strategy = GenerationType.IDENTITY
+        strategy = GenerationType.IDENTITY
     )
     // ---------------------
 
     @Column(
-            name="id",
-            updatable = false
+        name="id",
+        updatable = false
     )
     private Long id;
 
