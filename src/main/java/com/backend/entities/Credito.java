@@ -1,7 +1,5 @@
 package com.backend.entities;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -10,15 +8,12 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-		name="administradores"
-		//uniqueConstraints = {
-		//        @UniqueConstraint(name="artistas_nombre_unique", columnNames = "nombre")
-		//}
+	name="creditos"
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Administrador {
+public class Credito {
 	// ---------------------
 	@Id
 	@GeneratedValue(
@@ -31,33 +26,25 @@ public class Administrador {
 	private Long id;
 
 	@Column(
-		name = "nivel",
+		name="descripcion",
 		nullable = false,
-		columnDefinition = "VARCHAR(15)",
-		length = 15
+		columnDefinition = "VARCHAR(30)",
+		length = 30
 	)
-	private String nivel = "Administrador";
-
-
-	@Column(
-		name="fecha_registro",
-		nullable = false,
-		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
-	)
-	private LocalDateTime fechaRegistro;
+	private String descripcion = "Productor principal";
 
 	/// Many to One
 	@ManyToOne
 	@JoinColumn(
-		name = "usuarios_id",
+		name = "canciones_id",
 		updatable = false,
 		nullable = false,
 		referencedColumnName = "id",
 		foreignKey = @ForeignKey(
-			name = "usuarios_artistas_fk"
+			name = "canciones_artistas_fk"
 		)
 	)
-	private Usuario usuario;
+	private Cancion cancion;
 	
 	@ManyToOne
 	@JoinColumn(
@@ -66,8 +53,9 @@ public class Administrador {
 		nullable = false,
 		referencedColumnName = "id",
 		foreignKey = @ForeignKey(
-			name = "artistas_usuarios_fk"
+			name = "artistas_canciones_fk"
 		)
 	)
 	private Artista artista;
+
 }

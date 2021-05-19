@@ -23,51 +23,51 @@ import org.springframework.stereotype.Service;
 @Service
 public class MercanciaServiceImpl implements MercanciaService {
 
-    @Autowired
-    private ArtistaRepository artistaRepository;
+	@Autowired
+	private ArtistaRepository artistaRepository;
 
-    @Autowired
-    private MercanciaRepository mercanciaRepository;
-    private static final ModelMapper modelMapper = new ModelMapper();
+	@Autowired
+	private MercanciaRepository mercanciaRepository;
+	private static final ModelMapper modelMapper = new ModelMapper();
 
-    @Override
-    public MercanciaDto getMercanciaId(Long mercanciaId) throws TakinaException {
-        return modelMapper.map(getMercanciaEntity(mercanciaId), MercanciaDto.class);     
-    }
+	@Override
+	public MercanciaDto getMercanciaId(Long mercanciaId) throws TakinaException {
+		return modelMapper.map(getMercanciaEntity(mercanciaId), MercanciaDto.class);     
+	}
 
-    private Object getMercanciaEntity(Long mercanciaId) throws NotFoundException {
-        return mercanciaRepository.findById(mercanciaId)
-                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
-    }
+	private Object getMercanciaEntity(Long mercanciaId) throws NotFoundException {
+		return mercanciaRepository.findById(mercanciaId)
+				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+	}
 
-    // ----------------------------------------------------------------
-    @Override
-    public List<MercanciaDto> getMercancias() throws TakinaException {
-        List<Mercancia> mercanciaEntity = mercanciaRepository.findAll();
-        return mercanciaEntity.stream().map(mercancia -> modelMapper.map(mercancia, MercanciaDto.class)).collect(Collectors.toList());
-    }
+	// ----------------------------------------------------------------
+	@Override
+	public List<MercanciaDto> getMercancias() throws TakinaException {
+		List<Mercancia> mercanciaEntity = mercanciaRepository.findAll();
+		return mercanciaEntity.stream().map(mercancia -> modelMapper.map(mercancia, MercanciaDto.class)).collect(Collectors.toList());
+	}
 
-    // ----------------------------------------------------------------
-    @Transactional
-    @Override
-    public MercanciaDto createMercancia(CreateMercanciaDto createMercanciaDto) throws TakinaException {
+	// ----------------------------------------------------------------
+	@Transactional
+	@Override
+	public MercanciaDto createMercancia(CreateMercanciaDto createMercanciaDto) throws TakinaException {
 
-        Artista artistaId = artistaRepository.findById(createMercanciaDto.getArtistaId()).orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
+		Artista artistaId = artistaRepository.findById(createMercanciaDto.getArtistaId()).orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
 
-        Mercancia mercancia = new Mercancia();
-        mercancia.setNombre(createMercanciaDto.getNombre());
-        mercancia.setPrecio(createMercanciaDto.getPrecio());
-        mercancia.setFoto(createMercanciaDto.getFoto());
+		Mercancia mercancia = new Mercancia();
+		mercancia.setNombre(createMercanciaDto.getNombre());
+		mercancia.setPrecio(createMercanciaDto.getPrecio());
+		mercancia.setFoto(createMercanciaDto.getFoto());
 		mercancia.setDescripcion(createMercanciaDto.getDescripcion());
-        mercancia.setArtista(artistaId);
+		mercancia.setArtista(artistaId);
 
-        try {
-            mercancia = mercanciaRepository.save(mercancia);
-        }catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
-        }
-        return modelMapper.map(getMercanciaEntity(mercancia.getId()),MercanciaDto.class);
-        
-    }
-    
+		try {
+			mercancia = mercanciaRepository.save(mercancia);
+		}catch (Exception ex){
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
+		}
+		return modelMapper.map(getMercanciaEntity(mercancia.getId()),MercanciaDto.class);
+		
+	}
+	
 }

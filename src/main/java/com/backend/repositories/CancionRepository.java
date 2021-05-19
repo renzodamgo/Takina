@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface CancionRepository extends JpaRepository<Cancion,Long> {
-    Optional<Cancion> findById(Long id);
-    Optional<Cancion> findByNombre(String nombre);
+	Optional<Cancion> findById(Long id);
+	Optional<Cancion> findByNombre(String nombre);
 
 	List<Cancion> findByNombreContainingIgnoreCase(String nombre);
 	List<Cancion> findByGeneroContainingIgnoreCase(String generoMusical);

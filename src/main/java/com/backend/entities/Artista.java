@@ -11,87 +11,87 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="artistas",
-        uniqueConstraints = {
-                @UniqueConstraint(name="artistas_nombre_unique", columnNames = "nombre")
-        }
+	name="artistas",
+	uniqueConstraints = {
+		@UniqueConstraint(name="artistas_nombre_unique", columnNames = "nombre")
+	}
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Artista {
 
-    // ---------------------
+	// ---------------------
 
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
-    @Column(
-            name="id",
-            updatable = false
-    )
-    private Long id;
+	@Id
+	@GeneratedValue(
+		strategy = GenerationType.IDENTITY
+	)
+	@Column(
+		name="id",
+		updatable = false
+	)
+	private Long id;
 
-    // ---------------------
+	// ---------------------
 	
 	@Column(
-        name = "nombre",
-        nullable = false,
-        columnDefinition = "VARCHAR(50)",
+		name = "nombre",
+		nullable = false,
+		columnDefinition = "VARCHAR(50)",
 		length = 50
-    )
-    private String nombre;
-
-    // ---------------------
-
-    @Column(
-        name = "biografia",
-        nullable = false,
-        columnDefinition = "VARCHAR(140)",
-		length = 140
-    )
-    private String biografia;
-
-    // ---------------------
-	
-    @Column(
-        name = "fotoPerfil",
-        nullable = false,
-        columnDefinition = "VARCHAR(50)",
-		length = 50
-    )
-    private String fotoPerfil;
+	)
+	private String nombre;
 
 	// ---------------------
 
-    @Column(
-        name = "fotoPortada",
-        nullable = false,
-        columnDefinition = "VARCHAR(50)",
-		length = 50
-    )
-    private String fotoPortada;
+	@Column(
+		name = "biografia",
+		nullable = false,
+		columnDefinition = "VARCHAR(140)",
+		length = 140
+	)
+	private String biografia;
 
-    // --------------------
+	// ---------------------
+	
+	@Column(
+		name = "fotoPerfil",
+		nullable = false,
+		columnDefinition = "VARCHAR(50)",
+		length = 50
+	)
+	private String fotoPerfil;
+
+	// ---------------------
 
 	@Column(
-        name = "departamento",
-        nullable = false,
+		name = "fotoPortada",
+		nullable = false,
+		columnDefinition = "VARCHAR(50)",
+		length = 50
+	)
+	private String fotoPortada;
+
+	// --------------------
+
+	@Column(
+		name = "departamento",
+		nullable = false,
 		columnDefinition = "VARCHAR(20)",
 		length = 20
-    )
-    private String departamento;
+	)
+	private String departamento;
 
 	 // --------------------
 
 	 @Column(
-        name = "genero",
-        nullable = false,
+		name = "genero",
+		nullable = false,
 		columnDefinition = "VARCHAR(20)",
 		length = 20
-    )
-    private String genero;
+	)
+	private String genero;
 
 	// ---------------------
 
@@ -107,63 +107,64 @@ public class Artista {
 	)
 	private Long oyentesTotal = 0L;
 
-    // --------------------
+	// --------------------
 	// Relaciones con las tablas de base de datos 
 
 	// --------------------
-	// Administradores (One Artista - Many Administrador)
-	// (Many Usuario - Many Artista)
+	// Administradores (One Usuario - Many Administrador - One Artista)
 	@OneToMany(
 		mappedBy = "artista",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 		fetch = FetchType.LAZY
 	)
-	private List<Administrador> administradores;
+	private List<Administrador> administradores = new ArrayList<>();
+
+	// --------------------
+	// Creditos (One Artista - Many Credito - One Cancion)
+	@OneToMany(
+		mappedBy = "artista",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Credito> creditos = new ArrayList<>();
+
 
 	// --------------------
 	// (One Artista - Many Mercancia)
 	@OneToMany(
-        mappedBy = "artista",
-        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-        fetch = FetchType.LAZY
-    )
-    private List<Mercancia> mercancias = new ArrayList<>();
+		mappedBy = "artista",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Mercancia> mercancias = new ArrayList<>();
 	
-    // --------------------
-    // (One Artista - Many Proyecto Musical)
-    @OneToMany(
-        mappedBy = "artista",
-        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-        fetch = FetchType.LAZY
-    )
-    private List<ProyectoMusical> proyectos = new ArrayList<>();
+	// --------------------
+	// (One Artista - Many Proyecto Musical)
+	@OneToMany(
+		mappedBy = "artista",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<ProyectoMusical> proyectos = new ArrayList<>();
 
 
-
-    
+	
 	/*
-    
+	
 
-    //Relations many to many
+	//Relations many to many
 	@ManyToMany
-    @JoinTable(
-            name = "seguidores",
-            joinColumns = @JoinColumn(name = "artista_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-    private List<Usuario> seguidores;
+	@JoinTable(
+			name = "seguidores",
+			joinColumns = @JoinColumn(name = "artista_id"),
+			inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+	private List<Usuario> seguidores;
 
-    @ManyToMany
-    @JoinTable(
-            name = "colaboradores",
-            joinColumns = @JoinColumn(name = "artista_id"),
-            inverseJoinColumns = @JoinColumn(name = "cancion_id"))
-    private List<Cancion> colaboradores;
-
-    @ManyToMany
-    @JoinTable(
-            name = "participantes",
-            joinColumns = @JoinColumn(name = "artista_id"),
-            inverseJoinColumns = @JoinColumn(name = "evento_id"))
+	@ManyToMany
+	@JoinTable(
+			name = "participantes",
+			joinColumns = @JoinColumn(name = "artista_id"),
+			inverseJoinColumns = @JoinColumn(name = "evento_id"))
 	private List<Evento> participantes;
 	*/
 }

@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface ProyectoMusicalRepository extends JpaRepository<ProyectoMusical,Long> {
-    Optional<ProyectoMusical> findById(Long id);
-    Optional<ProyectoMusical> findByNombre(String nombre);
+	Optional<ProyectoMusical> findById(Long id);
+	Optional<ProyectoMusical> findByNombre(String nombre);
 
 	List<ProyectoMusical> findByNombreContainingIgnoreCase(String nombre);
 

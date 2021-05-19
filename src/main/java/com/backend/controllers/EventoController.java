@@ -21,50 +21,50 @@ import org.springframework.http.HttpStatus;
 @RestController
 @RequestMapping(path = "/takina"+"/eventos")
 public class EventoController {
-    @Autowired
-    private EventoService eventoService;
+	@Autowired
+	private EventoService eventoService;
 
 	// Mostrar todos los eventos
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping
-    public TakinaResponse<List<EventoDto>> getEventos()
+	@GetMapping
+	public TakinaResponse<List<EventoDto>> getEventos()
 			throws TakinaException {
-        return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK),"OK",
+		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK),"OK",
 				eventoService.getEventos());
-    }
+	}
 
 	// Crear evento
 	@ResponseStatus(HttpStatus.OK)
-    @PostMapping
-    public TakinaResponse<EventoDto> createEvento(@RequestBody CreateEventoDto createEventoDto)
-            throws TakinaException {
-        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-                eventoService.createEvento(createEventoDto));
-    }
+	@PostMapping
+	public TakinaResponse<EventoDto> createEvento(@RequestBody CreateEventoDto createEventoDto)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				eventoService.createEvento(createEventoDto));
+	}
 
 	// Getters
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/id/{eventoId}")
-    public TakinaResponse<EventoDto> getEventoId(@PathVariable Long eventoId)
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/id/{eventoId}")
+	public TakinaResponse<EventoDto> getEventoId(@PathVariable Long eventoId)
 			throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 				eventoService.getEventoId(eventoId));
-    }
+	}
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/nombre/{eventoNombre}")
-    public TakinaResponse<EventoDto> getEventoNombre(@PathVariable String eventoNombre)
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/nombre/{eventoNombre}")
+	public TakinaResponse<EventoDto> getEventoNombre(@PathVariable String eventoNombre)
 			throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 				eventoService.getEventoNombre(eventoNombre));
-    }
+	}
 
 	// Busqueda por departamento
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/busqueda/departamento/{eventoDepartamento}")
-    public  TakinaResponse<List<EventoDto>> getEventosByDepartamento(@PathVariable String eventoDepartamento)
+	@GetMapping("/busqueda/departamento/{eventoDepartamento}")
+	public  TakinaResponse<List<EventoDto>> getEventosByDepartamento(@PathVariable String eventoDepartamento)
 			throws TakinaException {
-        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				eventoService.getEventosByDepartamento(eventoDepartamento));
-    }
+	}
 }

@@ -19,66 +19,66 @@ import org.springframework.stereotype.Service;
 @Service 
 public class EventoServiceImpl implements EventoService {
 
-    @Autowired
-    private EventoRepository eventoRepository;
-    private static final ModelMapper modelMapper = new ModelMapper();
+	@Autowired
+	private EventoRepository eventoRepository;
+	private static final ModelMapper modelMapper = new ModelMapper();
 
-    @Override
-    public EventoDto getEventoId(Long eventoId) throws TakinaException {
-        return modelMapper.map(getEventoEntity(eventoId), EventoDto.class);
-    }
-
-
-    private Object getEventoEntity(Long eventoId) throws NotFoundException {
-        return eventoRepository.findById(eventoId).orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
-    }
+	@Override
+	public EventoDto getEventoId(Long eventoId) throws TakinaException {
+		return modelMapper.map(getEventoEntity(eventoId), EventoDto.class);
+	}
 
 
-    // -------------------------------------------------------
-    @Override
-    public List<EventoDto> getEventos() throws TakinaException {
-        List<Evento> eventoEntity = eventoRepository.findAll();
-        return eventoEntity.stream().map(evento -> modelMapper.map(evento, EventoDto.class)).collect(Collectors.toList());
-    }
-
-    // -------------------------------------------------------
-    @Override
-    public EventoDto getEventoNombre(String nombre) throws TakinaException {
-        return modelMapper.map(getEventoEntityNombre(nombre), EventoDto.class);
-    }
-
-    private Object getEventoEntityNombre(String nombre) throws NotFoundException {
-        return eventoRepository.findByNombre(nombre).orElseThrow(()-> new NotFoundException("NOTFOUND-404","CANCION_NOTFOUND-404"));
-    }
+	private Object getEventoEntity(Long eventoId) throws NotFoundException {
+		return eventoRepository.findById(eventoId).orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+	}
 
 
-    // -------------------------------------------------------
-    @Override
-    public EventoDto createEvento(CreateEventoDto createEventoDto) throws TakinaException {
-        Evento evento = new Evento();
-        evento.setNombre(createEventoDto.getNombre());
-        evento.setLugar(createEventoDto.getLugar());
+	// -------------------------------------------------------
+	@Override
+	public List<EventoDto> getEventos() throws TakinaException {
+		List<Evento> eventoEntity = eventoRepository.findAll();
+		return eventoEntity.stream().map(evento -> modelMapper.map(evento, EventoDto.class)).collect(Collectors.toList());
+	}
+
+	// -------------------------------------------------------
+	@Override
+	public EventoDto getEventoNombre(String nombre) throws TakinaException {
+		return modelMapper.map(getEventoEntityNombre(nombre), EventoDto.class);
+	}
+
+	private Object getEventoEntityNombre(String nombre) throws NotFoundException {
+		return eventoRepository.findByNombre(nombre).orElseThrow(()-> new NotFoundException("NOTFOUND-404","CANCION_NOTFOUND-404"));
+	}
+
+
+	// -------------------------------------------------------
+	@Override
+	public EventoDto createEvento(CreateEventoDto createEventoDto) throws TakinaException {
+		Evento evento = new Evento();
+		evento.setNombre(createEventoDto.getNombre());
+		evento.setLugar(createEventoDto.getLugar());
 		evento.setDireccion(createEventoDto.getDireccion());
-        evento.setFecha(createEventoDto.getFecha());
-        evento.setPrecio(createEventoDto.getPrecio());
-        evento.setFotoPortada(createEventoDto.getFotoPortada());
+		evento.setFecha(createEventoDto.getFecha());
+		evento.setPrecio(createEventoDto.getPrecio());
+		evento.setFotoPortada(createEventoDto.getFotoPortada());
 		evento.setDepartamento(createEventoDto.getDepartamento());
 		evento.setDescripcion(createEventoDto.getDescripcion());
 
-        try {
-            evento = eventoRepository.save(evento);
-        }
-        catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
-        }
+		try {
+			evento = eventoRepository.save(evento);
+		}
+		catch (Exception ex){
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
+		}
 
-        return modelMapper.map(getEventoEntity(evento.getId()),EventoDto.class);
-        
-    }
-    
-    @Override
+		return modelMapper.map(getEventoEntity(evento.getId()),EventoDto.class);
+		
+	}
+	
+	@Override
 	public List<EventoDto> getEventosByDepartamento(String departamento) throws TakinaException {
 		List<Evento> results = eventoRepository.findByDepartamentoContainingIgnoreCase(departamento);
-        return results.stream().map(evento -> modelMapper.map(evento,EventoDto.class)).collect(Collectors.toList());
+		return results.stream().map(evento -> modelMapper.map(evento,EventoDto.class)).collect(Collectors.toList());
 	}
 }
