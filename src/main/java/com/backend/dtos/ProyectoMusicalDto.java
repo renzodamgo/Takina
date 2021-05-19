@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class ProyectoMusicalDto {
 	private Long id;
-    private String nombre;
+	private String nombre;
 	private String tipo;
 	private Float duracion;
 	private String descripcion;

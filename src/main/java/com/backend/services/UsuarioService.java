@@ -10,7 +10,7 @@ public interface UsuarioService {
 	// Obtener todos los usuarios
 	List<UsuarioDto> getUsuarios() throws TakinaException;
 	// Obtener usuario por ID
-    UsuarioDto getUsuarioId(Long cancionId) throws TakinaException;
+	UsuarioDto getUsuarioId(Long cancionId) throws TakinaException;
 	// Obtener usuario por Apodo
 	UsuarioDto getUsuarioApodo(String apodo) throws TakinaException;
 	// Obtener usuario por Correo

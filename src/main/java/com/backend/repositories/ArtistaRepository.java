@@ -11,12 +11,12 @@ import java.util.Optional;
 
 @Repository
 public interface ArtistaRepository extends JpaRepository<Artista,Long> {
-    Optional<Artista> findById(Long id);
-    Optional<Artista> findByNombre(String nombre);
+	Optional<Artista> findById(Long id);
+	Optional<Artista> findByNombre(String nombre);
 
-    List<Artista> findByNombreContainingIgnoreCase(String nombre);
-    List<Artista> findByGeneroContainingIgnoreCase(String genero);
-    List<Artista> findByDepartamentoContainingIgnoreCase(String departamento);
+	List<Artista> findByNombreContainingIgnoreCase(String nombre);
+	List<Artista> findByGeneroContainingIgnoreCase(String genero);
+	List<Artista> findByDepartamentoContainingIgnoreCase(String departamento);
 
 	@Query("SELECT a FROM Artista a")
 	List<Artista> findAll();

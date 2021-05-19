@@ -12,12 +12,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-
-    @Bean
-    public Docket api() {
-
-        // https://takina.herokuapp.com/swagger-ui.html
-        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("com.backend.controllers")).paths(PathSelectors.any()).build();
-    }
-    
+	// https://takina.herokuapp.com/swagger-ui.html
+	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("com.backend.controllers")).paths(PathSelectors.any()).build();
+	}
+	
 }

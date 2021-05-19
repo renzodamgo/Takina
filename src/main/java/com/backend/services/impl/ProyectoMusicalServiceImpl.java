@@ -24,50 +24,50 @@ public class ProyectoMusicalServiceImpl implements ProyectoMusicalService {
 	@Autowired
 	private ArtistaRepository artistaRepository;
 
-    @Autowired
-    private ProyectoMusicalRepository proyectoMusicalRepository;
-    private static final ModelMapper modelMapper = new ModelMapper();
+	@Autowired
+	private ProyectoMusicalRepository proyectoMusicalRepository;
+	private static final ModelMapper modelMapper = new ModelMapper();
 
-    // -------------------------------------------------------
-    @Override
-    public ProyectoMusicalDto getProyectoMusicalById(Long ProyectoMusicalId) throws TakinaException {
-        return modelMapper.map(getProyectoMusicalEntity(ProyectoMusicalId),ProyectoMusicalDto.class);
+	// -------------------------------------------------------
+	@Override
+	public ProyectoMusicalDto getProyectoMusicalById(Long ProyectoMusicalId) throws TakinaException {
+		return modelMapper.map(getProyectoMusicalEntity(ProyectoMusicalId),ProyectoMusicalDto.class);
 
-    }
+	}
 
-    private ProyectoMusical getProyectoMusicalEntity(Long ProyectoMusicalId) throws TakinaException {
-        return proyectoMusicalRepository.findById(ProyectoMusicalId)
-                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
-    }
+	private ProyectoMusical getProyectoMusicalEntity(Long ProyectoMusicalId) throws TakinaException {
+		return proyectoMusicalRepository.findById(ProyectoMusicalId)
+				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
+	}
 
-    // -------------------------------------------------------
-    @Override
-    public List<ProyectoMusicalDto> getProyectosMusicales() throws TakinaException {
-        List<ProyectoMusical> proyectoMusicalesEntity = proyectoMusicalRepository.findAll();
-        return proyectoMusicalesEntity.stream().map(ProyectoMusical -> modelMapper.map(ProyectoMusical, ProyectoMusicalDto.class)).collect(Collectors.toList());
-    }
+	// -------------------------------------------------------
+	@Override
+	public List<ProyectoMusicalDto> getProyectosMusicales() throws TakinaException {
+		List<ProyectoMusical> proyectoMusicalesEntity = proyectoMusicalRepository.findAll();
+		return proyectoMusicalesEntity.stream().map(ProyectoMusical -> modelMapper.map(ProyectoMusical, ProyectoMusicalDto.class)).collect(Collectors.toList());
+	}
 
-    // -------------------------------------------------------
-    @Override
-    public ProyectoMusicalDto getProyectoMusicalNombre(String nombre) throws TakinaException {
-        return modelMapper.map(getProyectoMusicalEntityNombre(nombre),ProyectoMusicalDto.class);
-    }
+	// -------------------------------------------------------
+	@Override
+	public ProyectoMusicalDto getProyectoMusicalNombre(String nombre) throws TakinaException {
+		return modelMapper.map(getProyectoMusicalEntityNombre(nombre),ProyectoMusicalDto.class);
+	}
 
-    private ProyectoMusical getProyectoMusicalEntityNombre(String nombre) throws TakinaException {
-        return proyectoMusicalRepository.findByNombre(nombre)
-                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
-    }
+	private ProyectoMusical getProyectoMusicalEntityNombre(String nombre) throws TakinaException {
+		return proyectoMusicalRepository.findByNombre(nombre)
+				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
+	}
 
-    // --------------------------------------------------------
-    @Transactional
-    @Override
-    public ProyectoMusicalDto createProyectoMusical(CreateProyectoMusicalDto createProyectoMusicalDto) throws TakinaException {
+	// --------------------------------------------------------
+	@Transactional
+	@Override
+	public ProyectoMusicalDto createProyectoMusical(CreateProyectoMusicalDto createProyectoMusicalDto) throws TakinaException {
 		Artista artista = artistaRepository.findById(createProyectoMusicalDto.getArtistaId())
 				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
 
-        ProyectoMusical proyectoMusical = new ProyectoMusical();
-        proyectoMusical.setNombre(createProyectoMusicalDto.getNombre());
-        proyectoMusical.setDuracion(createProyectoMusicalDto.getDuracion());
+		ProyectoMusical proyectoMusical = new ProyectoMusical();
+		proyectoMusical.setNombre(createProyectoMusicalDto.getNombre());
+		proyectoMusical.setDuracion(createProyectoMusicalDto.getDuracion());
 		proyectoMusical.setTipo(createProyectoMusicalDto.getTipo());
 		proyectoMusical.setDescripcion(createProyectoMusicalDto.getDescripcion());
 		proyectoMusical.setLanzamiento(createProyectoMusicalDto.getLanzamiento());
@@ -77,20 +77,20 @@ public class ProyectoMusicalServiceImpl implements ProyectoMusicalService {
 		proyectoMusical.setFotoPortada(createProyectoMusicalDto.getFotoPortada());
 		proyectoMusical.setGenero(artista.getGenero());
 
-        try {
-            proyectoMusical = proyectoMusicalRepository.save(proyectoMusical);
-        }catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
-        }
+		try {
+			proyectoMusical = proyectoMusicalRepository.save(proyectoMusical);
+		}catch (Exception ex){
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
+		}
 
 		artista.getProyectos().add(proyectoMusical);
 
-        return modelMapper.map(getProyectoMusicalEntity(proyectoMusical.getId()),ProyectoMusicalDto.class);
-    }
+		return modelMapper.map(getProyectoMusicalEntity(proyectoMusical.getId()),ProyectoMusicalDto.class);
+	}
 
 	@Override
-    public List<ProyectoMusicalDto> getProyectosMusicalesByNombre(String nombre) throws TakinaException{
-        List<ProyectoMusical> results = proyectoMusicalRepository.findByNombreContainingIgnoreCase(nombre);
-        return results.stream().map(proyectoMusical -> modelMapper.map(proyectoMusical,ProyectoMusicalDto.class)).collect(Collectors.toList());
-    }
+	public List<ProyectoMusicalDto> getProyectosMusicalesByNombre(String nombre) throws TakinaException{
+		List<ProyectoMusical> results = proyectoMusicalRepository.findByNombreContainingIgnoreCase(nombre);
+		return results.stream().map(proyectoMusical -> modelMapper.map(proyectoMusical,ProyectoMusicalDto.class)).collect(Collectors.toList());
+	}
 }

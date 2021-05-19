@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
-    Optional<Usuario> findById(Long id);
-    Optional<Usuario> findByNombre(String nombre);
+	Optional<Usuario> findById(Long id);
+	Optional<Usuario> findByNombre(String nombre);
 	List<Usuario> findByNombreContainingIgnoreCase(String nombre);
 
 	//@Query("SELECT u FROM Usuario u WHERE u.correo = ?1")

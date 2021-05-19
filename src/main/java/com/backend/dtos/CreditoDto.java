@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class CreditoDto {
 	private Long artistaId;
-    private Long cancionId;
+	private Long cancionId;
 	private String descripcion;
 }

@@ -10,64 +10,64 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-        name="administradores"
-        //uniqueConstraints = {
-        //        @UniqueConstraint(name="artistas_nombre_unique", columnNames = "nombre")
-        //}
+		name="administradores"
+		//uniqueConstraints = {
+		//        @UniqueConstraint(name="artistas_nombre_unique", columnNames = "nombre")
+		//}
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Administrador {
-    // ---------------------
-    @Id
-    @GeneratedValue(
-        strategy = GenerationType.IDENTITY
-    )
-    @Column(
-        name="id",
-        updatable = false
-    )
-    private Long id;
+	// ---------------------
+	@Id
+	@GeneratedValue(
+		strategy = GenerationType.IDENTITY
+	)
+	@Column(
+		name="id",
+		updatable = false
+	)
+	private Long id;
 
-    @Column(
-        name = "nivel",
-        nullable = false,
-        columnDefinition = "VARCHAR(15)",
-        length = 15
-    )
-    private String nivel = "Administrador";
+	@Column(
+		name = "nivel",
+		nullable = false,
+		columnDefinition = "VARCHAR(15)",
+		length = 15
+	)
+	private String nivel = "Administrador";
 
 
-    @Column(
-        name="fecha_registro",
-        nullable = false,
-        columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
-    )
-    private LocalDateTime fechaRegistro;
+	@Column(
+		name="fecha_registro",
+		nullable = false,
+		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+	)
+	private LocalDateTime fechaRegistro;
 
-    /// Many to One
-    @ManyToOne
-    @JoinColumn(
-        name = "usuarios_id",
-        updatable = false,
-        nullable = false,
-        referencedColumnName = "id",
-        foreignKey = @ForeignKey(
-            name = "usuarios_artistas_fk"
-        )
-    )
-    private Usuario usuario;
-    
-    @ManyToOne
-    @JoinColumn(
-        name = "artistas_id",
-        updatable = false,
-        nullable = false,
-        referencedColumnName = "id",
-        foreignKey = @ForeignKey(
-            name = "artistas_usuarios_fk"
-        )
-    )
-    private Artista artista;
+	/// Many to One
+	@ManyToOne
+	@JoinColumn(
+		name = "usuarios_id",
+		updatable = false,
+		nullable = false,
+		referencedColumnName = "id",
+		foreignKey = @ForeignKey(
+			name = "usuarios_artistas_fk"
+		)
+	)
+	private Usuario usuario;
+	
+	@ManyToOne
+	@JoinColumn(
+		name = "artistas_id",
+		updatable = false,
+		nullable = false,
+		referencedColumnName = "id",
+		foreignKey = @ForeignKey(
+			name = "artistas_usuarios_fk"
+		)
+	)
+	private Artista artista;
 }

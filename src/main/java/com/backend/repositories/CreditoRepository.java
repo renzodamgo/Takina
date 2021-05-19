@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface CreditoRepository extends JpaRepository<Credito,Long> {
-    Optional<Credito> findById(Long id);
+	Optional<Credito> findById(Long id);
 
 	@Query("SELECT a FROM Administrador a")
 	List<Credito> findAll();

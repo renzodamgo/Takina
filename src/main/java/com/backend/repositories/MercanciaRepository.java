@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface MercanciaRepository extends JpaRepository<Mercancia,Long> {
-    Optional<Mercancia> findById(Long id);
-    Optional<Mercancia> findByNombre(String nombre);
+	Optional<Mercancia> findById(Long id);
+	Optional<Mercancia> findByNombre(String nombre);
 	
 	@Query("SELECT m FROM Mercancia m")
 	List<Mercancia> findAll();

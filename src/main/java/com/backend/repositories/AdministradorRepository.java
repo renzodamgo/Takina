@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface AdministradorRepository extends JpaRepository<Administrador,Long> {
-    Optional<Administrador> findById(Long id);
+	Optional<Administrador> findById(Long id);
 
 	@Query("SELECT a FROM Administrador a")
 	List<Administrador> findAll();

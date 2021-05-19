@@ -21,34 +21,34 @@ import org.springframework.http.HttpStatus;
 @RestController
 @RequestMapping(path = "/takina"+"/mercancias")
 public class MercanciaController {
-    @Autowired
-    private MercanciaService mercanciaService;
+	@Autowired
+	private MercanciaService mercanciaService;
 
 	// Crear Mercancia
 	@ResponseStatus(HttpStatus.OK)
-    @PostMapping
-    public TakinaResponse<MercanciaDto> createMercancia(@RequestBody CreateMercanciaDto createMercanciaDto)
-            throws TakinaException{
-        return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-                mercanciaService.createMercancia(createMercanciaDto));
-    }
+	@PostMapping
+	public TakinaResponse<MercanciaDto> createMercancia(@RequestBody CreateMercanciaDto createMercanciaDto)
+			throws TakinaException{
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				mercanciaService.createMercancia(createMercanciaDto));
+	}
 
 	// Obtener todas las mercancias
 	@ResponseStatus(HttpStatus.OK)
-    @GetMapping
-    public TakinaResponse<List<MercanciaDto>> getMercancias()
+	@GetMapping
+	public TakinaResponse<List<MercanciaDto>> getMercancias()
 			throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 				mercanciaService.getMercancias());
-    }
+	}
 
 	// Getters
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/id/{mercanciaId}")
-    public TakinaResponse<MercanciaDto> getMercanciaId(@PathVariable Long mercanciaId)
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/id/{mercanciaId}")
+	public TakinaResponse<MercanciaDto> getMercanciaId(@PathVariable Long mercanciaId)
 			throws TakinaException {
-        return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK), "OK",mercanciaService.getMercanciaId(mercanciaId));
+		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK), "OK",mercanciaService.getMercanciaId(mercanciaId));
 
-    }
-    
+	}
+	
 }

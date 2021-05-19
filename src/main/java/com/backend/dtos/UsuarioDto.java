@@ -9,11 +9,11 @@ import lombok.Setter;
 @Setter
 public class UsuarioDto {
 	private Long id;
-    private String apodo;
+	private String apodo;
 	private String correo;
 	private String password;
-    private String nombre;
-    private String fotoPerfil;
-    private boolean premium;
+	private String nombre;
+	private String fotoPerfil;
+	private boolean premium;
 	private LocalDateTime ultimoIngreso;
 }

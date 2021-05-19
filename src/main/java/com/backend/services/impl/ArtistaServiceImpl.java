@@ -29,9 +29,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArtistaServiceImpl implements ArtistaService {
 
-    @Autowired
-    private ArtistaRepository artistaRepository;
-    private static final ModelMapper modelMapper = new ModelMapper();
+	@Autowired
+	private ArtistaRepository artistaRepository;
+	private static final ModelMapper modelMapper = new ModelMapper();
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -39,43 +39,43 @@ public class ArtistaServiceImpl implements ArtistaService {
 	@Autowired
 	private AdministradorRepository administradorRepository;
 
-    @Override
-    public ArtistaDto getArtista(Long artistaId) throws TakinaException{
-        return modelMapper.map(getArtistaEntity(artistaId), ArtistaDto.class);
-    }
-
-    private Artista getArtistaEntity(Long artistaId) throws TakinaException {
-        return artistaRepository.findById(artistaId)
-                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","ARTISTA_NOTFOUND-404"));
-    }
-
-    // --------------------------------------------------------
-
-    public ArtistaDto getArtistaNombre(String nombre) throws TakinaException {
-        return modelMapper.map(getArtistaEntityNombre(nombre), ArtistaDto.class);
-    }
-
-    private Object getArtistaEntityNombre(String nombre) throws NotFoundException {
-        return artistaRepository.findByNombre(nombre).orElseThrow(()-> new NotFoundException("NOTFOUND-404","CANCION_NOTFOUND-404"));
-    }
-
-    // --------------------------------------------------------
-    @Override
-    public List<ArtistaDto> getArtistas() throws TakinaException {
-        List<Artista> artistaEntity = artistaRepository.findAll();
-        return artistaEntity.stream().map(artista -> modelMapper.map(artista, ArtistaDto.class)).collect(Collectors.toList());
-    }
-
-    // --------------------------------------------------------
-    @Transactional
 	@Override
-    public ArtistaDto createArtista(CreateArtistaDto createArtistaDto) throws TakinaException {
-        Artista artista = new Artista();
+	public ArtistaDto getArtista(Long artistaId) throws TakinaException{
+		return modelMapper.map(getArtistaEntity(artistaId), ArtistaDto.class);
+	}
+
+	private Artista getArtistaEntity(Long artistaId) throws TakinaException {
+		return artistaRepository.findById(artistaId)
+				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","ARTISTA_NOTFOUND-404"));
+	}
+
+	// --------------------------------------------------------
+
+	public ArtistaDto getArtistaNombre(String nombre) throws TakinaException {
+		return modelMapper.map(getArtistaEntityNombre(nombre), ArtistaDto.class);
+	}
+
+	private Object getArtistaEntityNombre(String nombre) throws NotFoundException {
+		return artistaRepository.findByNombre(nombre).orElseThrow(()-> new NotFoundException("NOTFOUND-404","CANCION_NOTFOUND-404"));
+	}
+
+	// --------------------------------------------------------
+	@Override
+	public List<ArtistaDto> getArtistas() throws TakinaException {
+		List<Artista> artistaEntity = artistaRepository.findAll();
+		return artistaEntity.stream().map(artista -> modelMapper.map(artista, ArtistaDto.class)).collect(Collectors.toList());
+	}
+
+	// --------------------------------------------------------
+	@Transactional
+	@Override
+	public ArtistaDto createArtista(CreateArtistaDto createArtistaDto) throws TakinaException {
+		Artista artista = new Artista();
 		artista.setNombre(createArtistaDto.getNombre());
 		artista.setBiografia(createArtistaDto.getBiografia());
-        artista.setFotoPerfil(createArtistaDto.getFotoPerfil());
+		artista.setFotoPerfil(createArtistaDto.getFotoPerfil());
 		artista.setFotoPortada(createArtistaDto.getFotoPortada());
-        artista.setDepartamento(createArtistaDto.getDepartamento());
+		artista.setDepartamento(createArtistaDto.getDepartamento());
 		artista.setGenero(createArtistaDto.getGenero());
 
 		Usuario usuario = usuarioRepository.findById(createArtistaDto.getUsuarioId())
@@ -89,14 +89,14 @@ public class ArtistaServiceImpl implements ArtistaService {
 		usuario.getAdministradores().add(administrador);
 		artista.getAdministradores().add(administrador);
 
-        try {
-            artista = artistaRepository.save(artista);
+		try {
+			artista = artistaRepository.save(artista);
 			administrador = administradorRepository.save(administrador);
-        }catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ARTISTA_NOT_CREATED");
-        }
-        return modelMapper.map(getArtistaEntity(artista.getId()),ArtistaDto.class);
-    }
+		}catch (Exception ex){
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ARTISTA_NOT_CREATED");
+		}
+		return modelMapper.map(getArtistaEntity(artista.getId()),ArtistaDto.class);
+	}
 
 	@Override
 	public ArtistaDto giveAdministrador(Long artistaId, Long usuarioId, Integer nivel) throws TakinaException {
@@ -109,13 +109,13 @@ public class ArtistaServiceImpl implements ArtistaService {
 		String nivelString;
 		switch(nivel) {
 			case 1:
-                nivelString = "Moderador"; break;
+				nivelString = "Moderador"; break;
 			case 2:
-                nivelString = "Ayudante"; break;
-            case 3:
-                nivelString = "Publicitario"; break;
+				nivelString = "Ayudante"; break;
+			case 3:
+				nivelString = "Publicitario"; break;
 			default:
-                nivelString = "Administrador";
+				nivelString = "Administrador";
 		  }
 
 		Administrador administrador = new Administrador();
@@ -124,40 +124,40 @@ public class ArtistaServiceImpl implements ArtistaService {
 		administrador.setNivel(nivelString);
 		administrador.setFechaRegistro(LocalDateTime.now());
 
-        usuario.getAdministradores().add(administrador);
+		usuario.getAdministradores().add(administrador);
 		artista.getAdministradores().add(administrador);
 
 		try {
 			administrador = administradorRepository.save(administrador);
-        }catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ARTISTA_NOT_CREATED");
-        }
-        return modelMapper.map(getArtistaEntity(artista.getId()),ArtistaDto.class);
+		}catch (Exception ex){
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ARTISTA_NOT_CREATED");
+		}
+		return modelMapper.map(getArtistaEntity(artista.getId()),ArtistaDto.class);
 	}
 	
-    // Artista - Busquedas
-    @Override
-    public List<ArtistaDto> getArtistasByNombre(String nombre) throws TakinaException {
-        List<Artista> results = artistaRepository.findByNombreContainingIgnoreCase(nombre);
-        return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
-    }
+	// Artista - Busquedas
+	@Override
+	public List<ArtistaDto> getArtistasByNombre(String nombre) throws TakinaException {
+		List<Artista> results = artistaRepository.findByNombreContainingIgnoreCase(nombre);
+		return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
+	}
 
-    @Override
-    public List<ArtistaDto> getArtistasByGenero(String genero) throws TakinaException {
-        List<Artista> results = artistaRepository.findByGeneroContainingIgnoreCase(genero);
-        return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
-    }
+	@Override
+	public List<ArtistaDto> getArtistasByGenero(String genero) throws TakinaException {
+		List<Artista> results = artistaRepository.findByGeneroContainingIgnoreCase(genero);
+		return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
+	}
 
-    @Override
-    public List<ArtistaDto> getArtistasByDepartamento(String departamento) throws TakinaException {
-        List<Artista> results = artistaRepository.findByDepartamentoContainingIgnoreCase(departamento);
-        return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
-    }
+	@Override
+	public List<ArtistaDto> getArtistasByDepartamento(String departamento) throws TakinaException {
+		List<Artista> results = artistaRepository.findByDepartamentoContainingIgnoreCase(departamento);
+		return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
+	}
 
 	// Busqueda Test
 	@Override
-    public List<ArtistaDto> searchArtistasByNombre(String nombre) throws TakinaException {
-        List<Artista> artistas = artistaRepository.findAll();
+	public List<ArtistaDto> searchArtistasByNombre(String nombre) throws TakinaException {
+		List<Artista> artistas = artistaRepository.findAll();
 		List<Artista> resultados = new ArrayList<Artista>();
 
 		String busqueda = Normalizer.normalize(nombre, Normalizer.Form.NFD)
@@ -176,6 +176,6 @@ public class ArtistaServiceImpl implements ArtistaService {
 			}
 		}
 
-        return resultados.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
-    }
+		return resultados.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
+	}
 }

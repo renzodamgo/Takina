@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ListaReproduccionDto {
-    private LocalDateTime creacion;
-    private Integer numeroCanciones;
+	private LocalDateTime creacion;
+	private Integer numeroCanciones;
 	private Float duracion; // decimales a hora
 }

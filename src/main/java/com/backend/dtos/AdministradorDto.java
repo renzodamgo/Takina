@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class AdministradorDto {
 	private Long usuarioId;
-    private Long artistaId;
+	private Long artistaId;
 	private String nivel;
 	private LocalDateTime fechaRegistro;
 }
