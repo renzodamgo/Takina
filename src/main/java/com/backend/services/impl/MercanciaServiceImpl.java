@@ -28,6 +28,7 @@ public class MercanciaServiceImpl implements MercanciaService {
 
 	@Autowired
 	private MercanciaRepository mercanciaRepository;
+
 	private static final ModelMapper modelMapper = new ModelMapper();
 
 	@Override
@@ -51,8 +52,8 @@ public class MercanciaServiceImpl implements MercanciaService {
 	@Transactional
 	@Override
 	public MercanciaDto createMercancia(CreateMercanciaDto createMercanciaDto) throws TakinaException {
-
-		Artista artistaId = artistaRepository.findById(createMercanciaDto.getArtistaId()).orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
+		Artista artistaId = artistaRepository.findById(createMercanciaDto.getArtistaId())
+				.orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
 
 		Mercancia mercancia = new Mercancia();
 		mercancia.setNombre(createMercanciaDto.getNombre());

@@ -111,15 +111,16 @@ public class Usuario {
 	)
 	private List<Administrador> administradores = new ArrayList<>();
 
-	/*
-
-	// ---------------------
 	@OneToMany(
 		mappedBy = "usuario",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 		fetch = FetchType.LAZY
 	)
-	private List<ListaReproduccion> listasReproduccion = new ArrayList<>();
+	private List<Playlist> playlists = new ArrayList<>();
+
+	/*
+
+	// ---------------------
 
 	// Artista a Usuario para registrar los timestamps de los seguimientos
 	@ManyToMany(mappedBy = "seguidores")

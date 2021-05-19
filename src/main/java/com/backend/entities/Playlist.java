@@ -26,7 +26,6 @@ public class Playlist {
 	)
 
 	// ---------------------
-
 	@Column(
 		name="id",
 		updatable = false
@@ -34,7 +33,6 @@ public class Playlist {
 	private Long id;
 
 	// ---------------------
-
 	@Column(
 		name = "nombre",
 		nullable = false,
@@ -44,7 +42,6 @@ public class Playlist {
 	private String nombre;
 
 	// ---------------------
-
 	@Column(
 		name = "descripcion",
 		nullable = false,
@@ -54,7 +51,6 @@ public class Playlist {
 	private String descripcion;
 
 	// ---------------------
-
 	@Column(
 		name="creacion",
 		nullable = false,
@@ -63,7 +59,6 @@ public class Playlist {
 	private LocalDateTime creacion;
 
 	// ---------------------
-
 	// TODO: FALTA PONER LA DURACION DE LA CANCION
 	@Column(
 		name="duracion",
@@ -73,7 +68,6 @@ public class Playlist {
 	private Float duracion;
 
 	// ---------------------
-
 	@Column(
 		name="numeroCanciones",
 		nullable = false
@@ -81,15 +75,15 @@ public class Playlist {
 	private Integer numeroCanciones = 0;
 
 	// ---------------------
-
 	// Relaciones con las tablas de base de datos 
 	@ManyToOne
 	@JoinColumn(
 		name = "usuarios_id",
+		updatable = false,
 		nullable = false,
 		referencedColumnName = "id",
 		foreignKey = @ForeignKey(
-			name = "usuario_fk"
+			name = "usuarios_playlists_fk"
 		)
 	)
 	private Usuario usuario;
