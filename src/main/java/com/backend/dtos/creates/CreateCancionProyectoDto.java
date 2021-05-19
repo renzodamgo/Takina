@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateCancionSencilloDto {
+public class CreateCancionProyectoDto {
 	private String nombre;
 	private Float duracion;
     private String audio;

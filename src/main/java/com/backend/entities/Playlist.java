@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-    name="listas_reproduccion"
+    name="playlists"
     //uniqueConstraints = {
     //        @UniqueConstraint(name="listas_reproduccion_name_unique", columnNames = "name")
     //}
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ListaReproduccion {
+public class Playlist {
     @Id
     @GeneratedValue(
         strategy = GenerationType.IDENTITY

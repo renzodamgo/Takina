@@ -42,7 +42,7 @@ public class Evento {
     )
     private String nombre;
 
-	// ---------------------
+    // ---------------------
 
     @Column(
         name = "descripcion",
@@ -53,7 +53,7 @@ public class Evento {
     private String descripcion;
 
     // ----------------------
-	// venue = lugar de eventos
+    // venue = lugar de eventos
     @Column(
         name = "lugar",
         nullable = false,
@@ -62,9 +62,9 @@ public class Evento {
     )
     private String lugar;
 
-	// ----------------------
+    // ----------------------
 
-	@Column(
+    @Column(
         name = "direccion",
         nullable = false,
         columnDefinition = "VARCHAR(50)",
@@ -72,7 +72,7 @@ public class Evento {
     )
     private String direccion;
 
-	// ----------------------
+    // ----------------------
 
     @Column(
         name = "departamento",
@@ -118,8 +118,8 @@ public class Evento {
     private Integer interesados = 0;
 
     // Relations many to many
-	/*
+    /*
     @ManyToMany(mappedBy = "participantes")
     private List<Artista> participantes;
-	*/
+    */
 }

@@ -1,9 +1,9 @@
 package com.backend.dtos;
 
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-
 
 import java.time.LocalDateTime;
 
@@ -17,4 +17,5 @@ public class CancionDto {
 	private String genero;
 	private Float duracion;
 	private Long proyectoId;
+	private List<CreditoDto> creditos;
 }

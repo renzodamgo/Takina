@@ -34,12 +34,12 @@ public class Artista {
     private Long id;
 
     // ---------------------
-	
-	@Column(
+    
+    @Column(
         name = "nombre",
         nullable = false,
         columnDefinition = "VARCHAR(50)",
-		length = 50
+        length = 50
     )
     private String nombre;
 
@@ -49,86 +49,95 @@ public class Artista {
         name = "biografia",
         nullable = false,
         columnDefinition = "VARCHAR(140)",
-		length = 140
+        length = 140
     )
     private String biografia;
 
     // ---------------------
-	
+    
     @Column(
         name = "fotoPerfil",
         nullable = false,
         columnDefinition = "VARCHAR(50)",
-		length = 50
+        length = 50
     )
     private String fotoPerfil;
 
-	// ---------------------
+    // ---------------------
 
     @Column(
         name = "fotoPortada",
         nullable = false,
         columnDefinition = "VARCHAR(50)",
-		length = 50
+        length = 50
     )
     private String fotoPortada;
 
     // --------------------
 
-	@Column(
+    @Column(
         name = "departamento",
         nullable = false,
-		columnDefinition = "VARCHAR(20)",
-		length = 20
+        columnDefinition = "VARCHAR(20)",
+        length = 20
     )
     private String departamento;
 
-	 // --------------------
+     // --------------------
 
-	 @Column(
+     @Column(
         name = "genero",
         nullable = false,
-		columnDefinition = "VARCHAR(20)",
-		length = 20
+        columnDefinition = "VARCHAR(20)",
+        length = 20
     )
     private String genero;
 
-	// ---------------------
+    // ---------------------
 
-	@Column(
-		name = "seguidoresTotal"
-	)
-	private Long seguidoresTotal = 0L;
-	
-	// ---------------------
-	
-	@Column(
-		name = "oyentesTotal"
-	)
-	private Long oyentesTotal = 0L;
+    @Column(
+        name = "seguidoresTotal"
+    )
+    private Long seguidoresTotal = 0L;
+    
+    // ---------------------
+    
+    @Column(
+        name = "oyentesTotal"
+    )
+    private Long oyentesTotal = 0L;
 
     // --------------------
-	// Relaciones con las tablas de base de datos 
+    // Relaciones con las tablas de base de datos 
 
-	// --------------------
-	// Administradores (One Artista - Many Administrador)
-	// (Many Usuario - Many Artista)
-	@OneToMany(
-		mappedBy = "artista",
-		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-		fetch = FetchType.LAZY
-	)
-	private List<Administrador> administradores = new ArrayList<>();
+    // --------------------
+    // Administradores (One Usuario - Many Administrador - One Artista)
+    @OneToMany(
+        mappedBy = "artista",
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+        fetch = FetchType.LAZY
+    )
+    private List<Administrador> administradores = new ArrayList<>();
 
-	// --------------------
-	// (One Artista - Many Mercancia)
-	@OneToMany(
+    // --------------------
+    // Creditos (One Artista - Many Credito - One Cancion)
+    @OneToMany(
+        mappedBy = "artista",
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+        fetch = FetchType.LAZY
+    )
+    private List<Credito> creditos = new ArrayList<>();
+
+
+    // --------------------
+    // (One Artista - Many Mercancia)
+    @OneToMany(
         mappedBy = "artista",
         cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
         fetch = FetchType.LAZY
     )
     private List<Mercancia> mercancias = new ArrayList<>();
-	
+    
     // --------------------
     // (One Artista - Many Proyecto Musical)
     @OneToMany(
@@ -139,13 +148,12 @@ public class Artista {
     private List<ProyectoMusical> proyectos = new ArrayList<>();
 
 
-
     
-	/*
+    /*
     
 
     //Relations many to many
-	@ManyToMany
+    @ManyToMany
     @JoinTable(
             name = "seguidores",
             joinColumns = @JoinColumn(name = "artista_id"),
@@ -154,16 +162,9 @@ public class Artista {
 
     @ManyToMany
     @JoinTable(
-            name = "colaboradores",
-            joinColumns = @JoinColumn(name = "artista_id"),
-            inverseJoinColumns = @JoinColumn(name = "cancion_id"))
-    private List<Cancion> colaboradores;
-
-    @ManyToMany
-    @JoinTable(
             name = "participantes",
             joinColumns = @JoinColumn(name = "artista_id"),
             inverseJoinColumns = @JoinColumn(name = "evento_id"))
-	private List<Evento> participantes;
-	*/
+    private List<Evento> participantes;
+    */
 }

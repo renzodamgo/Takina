@@ -8,13 +8,13 @@ import lombok.Setter;
 @Setter
 public class CreateProyectoMusicalDto {
     private String nombre;
-	private String tipoProyecto;
+	private String tipo;
 	private Float duracion;
 	private String descripcion;
 	private LocalDateTime lanzamiento;
 	private Integer canciones;
 	private String discografica;
 	private String fotoPortada;
-	private String generoMusical;
+	private String genero;
 	private Long artistaId;
 }

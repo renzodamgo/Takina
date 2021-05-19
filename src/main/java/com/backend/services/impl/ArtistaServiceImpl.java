@@ -137,26 +137,26 @@ public class ArtistaServiceImpl implements ArtistaService {
 	
     // Artista - Busquedas
     @Override
-    public List<ArtistaDto> getArtistasByNombre(String nombre) throws TakinaException{
+    public List<ArtistaDto> getArtistasByNombre(String nombre) throws TakinaException {
         List<Artista> results = artistaRepository.findByNombreContainingIgnoreCase(nombre);
         return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public List<ArtistaDto> getArtistasByGeneroMusical(String genero) throws TakinaException{
+    public List<ArtistaDto> getArtistasByGenero(String genero) throws TakinaException {
         List<Artista> results = artistaRepository.findByGeneroContainingIgnoreCase(genero);
         return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public List<ArtistaDto> getArtistasByDepartamento(String departamento) throws TakinaException{
+    public List<ArtistaDto> getArtistasByDepartamento(String departamento) throws TakinaException {
         List<Artista> results = artistaRepository.findByDepartamentoContainingIgnoreCase(departamento);
         return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
     }
 
 	// Busqueda Test
 	@Override
-    public List<ArtistaDto> searchArtistasByNombre(String nombre) throws TakinaException{
+    public List<ArtistaDto> searchArtistasByNombre(String nombre) throws TakinaException {
         List<Artista> artistas = artistaRepository.findAll();
 		List<Artista> resultados = new ArrayList<Artista>();
 

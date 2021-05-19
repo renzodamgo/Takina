@@ -48,29 +48,29 @@ public class ProyectoMusical {
     // ----------------------
 
     @Column(
-        name = "tipoProyecto",
+        name = "tipo",
         nullable = false,
         columnDefinition = "VARCHAR(20)",
         length = 20
     )
-    private String tipoProyecto;
+    private String tipo;
 
     // ----------------------
 
-	@Column(
+    @Column(
         name = "duracion",
         nullable = false
     )
     private float duracion;
-	// EJM: 3.4 => 3 minutos 24 segundos
-	// int(duracion) minutos - int(duracion%1 * 60) segundos
+    // EJM: 3.4 => 3 minutos 24 segundos
+    // int(duracion) minutos - int(duracion%1 * 60) segundos
 
     // ---------------------
 
     @Column(
-    	name="lanzamiento",
+        name="lanzamiento",
         nullable = false,
-		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+        columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
     private LocalDateTime lanzamiento;
 
@@ -112,7 +112,7 @@ public class ProyectoMusical {
     )
     private String discografica;
 
-	// ----------------------
+    // ----------------------
 
     @Column(
         name = "genero",

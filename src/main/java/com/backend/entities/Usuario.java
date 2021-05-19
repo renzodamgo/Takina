@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
     name="usuarios",
     uniqueConstraints = {
         @UniqueConstraint(name="usuarios_apodo_unique", columnNames="apodo"),
-		@UniqueConstraint(name="usuarios_correo_unique", columnNames="correo")
+        @UniqueConstraint(name="usuarios_correo_unique", columnNames="correo")
     }
 )
 @Data
@@ -61,7 +61,7 @@ public class Usuario {
         name = "nombre",
         nullable = false,
         columnDefinition = "VARCHAR(50)",
-		length = 50
+        length = 50
     )
     private String nombre;
 
@@ -71,7 +71,7 @@ public class Usuario {
         name = "correo",
         nullable = false,
         columnDefinition = "VARCHAR(30)",
-		length = 30
+        length = 30
     )
     private String correo;
 
@@ -90,7 +90,7 @@ public class Usuario {
         name = "fotoPerfil",
         nullable = false,
         columnDefinition = "VARCHAR(50)",
-		length = 50
+        length = 50
     )
     private String fotoPerfil;
 
@@ -105,15 +105,15 @@ public class Usuario {
     //Relations many to many
     // Artista a Usuario para registrar los Administradores de página
     @OneToMany(
-    	mappedBy = "usuario",
-    	cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-    	fetch = FetchType.LAZY
+        mappedBy = "usuario",
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+        fetch = FetchType.LAZY
     )
     private List<Administrador> administradores = new ArrayList<>();
 
     /*
 
-	// ---------------------
+    // ---------------------
     @OneToMany(
         mappedBy = "usuario",
         cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
@@ -121,8 +121,8 @@ public class Usuario {
     )
     private List<ListaReproduccion> listasReproduccion = new ArrayList<>();
 
-	// Artista a Usuario para registrar los timestamps de los seguimientos
-	@ManyToMany(mappedBy = "seguidores")
+    // Artista a Usuario para registrar los timestamps de los seguimientos
+    @ManyToMany(mappedBy = "seguidores")
     private List<Artista> seguidores;
     */
 

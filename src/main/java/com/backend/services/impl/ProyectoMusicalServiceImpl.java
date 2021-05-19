@@ -37,7 +37,7 @@ public class ProyectoMusicalServiceImpl implements ProyectoMusicalService {
 
     private ProyectoMusical getProyectoMusicalEntity(Long ProyectoMusicalId) throws TakinaException {
         return proyectoMusicalRepository.findById(ProyectoMusicalId)
-                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","ProyectoMusical_NOTFOUND-404"));
+                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
     }
 
     // -------------------------------------------------------
@@ -55,34 +55,37 @@ public class ProyectoMusicalServiceImpl implements ProyectoMusicalService {
 
     private ProyectoMusical getProyectoMusicalEntityNombre(String nombre) throws TakinaException {
         return proyectoMusicalRepository.findByNombre(nombre)
-                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","ProyectoMusical_NOTFOUND-404"));
+                .orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
     }
 
     // --------------------------------------------------------
     @Transactional
     @Override
     public ProyectoMusicalDto createProyectoMusical(CreateProyectoMusicalDto createProyectoMusicalDto) throws TakinaException {
-		Artista artistaId = artistaRepository.findById(createProyectoMusicalDto.getArtistaId())
-				.orElseThrow(()->new NotFoundException("NOT-401-1","RESTAURANT_NOT_FOUND"));
+		Artista artista = artistaRepository.findById(createProyectoMusicalDto.getArtistaId())
+				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
 
-        ProyectoMusical ProyectoMusical = new ProyectoMusical();
-        ProyectoMusical.setNombre(createProyectoMusicalDto.getNombre());
-        ProyectoMusical.setDuracion(createProyectoMusicalDto.getDuracion());
-		ProyectoMusical.setTipoProyecto(createProyectoMusicalDto.getTipoProyecto());
-		ProyectoMusical.setDescripcion(createProyectoMusicalDto.getDescripcion());
-		ProyectoMusical.setLanzamiento(createProyectoMusicalDto.getLanzamiento());
-		ProyectoMusical.setCanciones(createProyectoMusicalDto.getCanciones());
-		ProyectoMusical.setDiscografica(createProyectoMusicalDto.getDiscografica());
-		ProyectoMusical.setArtista(artistaId);
-		ProyectoMusical.setFotoPortada(createProyectoMusicalDto.getFotoPortada());
-		ProyectoMusical.setGenero(artistaId.getGenero());
+        ProyectoMusical proyectoMusical = new ProyectoMusical();
+        proyectoMusical.setNombre(createProyectoMusicalDto.getNombre());
+        proyectoMusical.setDuracion(createProyectoMusicalDto.getDuracion());
+		proyectoMusical.setTipo(createProyectoMusicalDto.getTipo());
+		proyectoMusical.setDescripcion(createProyectoMusicalDto.getDescripcion());
+		proyectoMusical.setLanzamiento(createProyectoMusicalDto.getLanzamiento());
+		proyectoMusical.setCanciones(createProyectoMusicalDto.getCanciones());
+		proyectoMusical.setDiscografica(createProyectoMusicalDto.getDiscografica());
+		proyectoMusical.setArtista(artista);
+		proyectoMusical.setFotoPortada(createProyectoMusicalDto.getFotoPortada());
+		proyectoMusical.setGenero(artista.getGenero());
 
         try {
-            ProyectoMusical = proyectoMusicalRepository.save(ProyectoMusical);
+            proyectoMusical = proyectoMusicalRepository.save(proyectoMusical);
         }catch (Exception ex){
             throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
         }
-        return modelMapper.map(getProyectoMusicalEntity(ProyectoMusical.getId()),ProyectoMusicalDto.class);
+
+		artista.getProyectos().add(proyectoMusical);
+
+        return modelMapper.map(getProyectoMusicalEntity(proyectoMusical.getId()),ProyectoMusicalDto.class);
     }
 
 	@Override

@@ -15,13 +15,14 @@ public interface ArtistaService {
 	ArtistaDto getArtistaNombre(String nombre) throws TakinaException;
 
 	// US004 - Buscar artista por genero musical
-    List<ArtistaDto> getArtistasByGeneroMusical(String genero_musical) throws TakinaException;
+    List<ArtistaDto> getArtistasByGenero(String genero) throws TakinaException;
 
 	// US005 - Buscar artista por departamento origen
-    List<ArtistaDto> getArtistasByDepartamento(String departamento_origen) throws TakinaException;
+    List<ArtistaDto> getArtistasByDepartamento(String departamento) throws TakinaException;
 
     // US010 - Como usuario Quiero buscar a un artista por su nombre para ver y escuchar su musica y su contenido
 	List<ArtistaDto> getArtistasByNombre(String nombre) throws TakinaException;
+
 	// Busqueda profunda de nombre de artista (sin tildes, enyes, mayusculas)
 	List<ArtistaDto> searchArtistasByNombre(String nombre) throws TakinaException;
 

@@ -39,8 +39,8 @@ public class Mercancia {
         length = 30
     )
     private String nombre;
-	
-	// ---------------------
+    
+    // ---------------------
 
     @Column(
         name = "descripcion",

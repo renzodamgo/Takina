@@ -64,10 +64,10 @@ public class ArtistaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/busqueda/genero/{artistaGenero}")
-    public TakinaResponse<List<ArtistaDto>> getArtistasByGeneroMusical(@PathVariable String artistaGenero)
+    public TakinaResponse<List<ArtistaDto>> getArtistasByGenero(@PathVariable String artistaGenero)
             throws TakinaException{
         return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-					artistaService.getArtistasByGeneroMusical(artistaGenero));
+					artistaService.getArtistasByGenero(artistaGenero));
     }
 
     @ResponseStatus(HttpStatus.OK)

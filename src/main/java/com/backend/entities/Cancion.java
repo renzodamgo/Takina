@@ -1,7 +1,10 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
-//import java.util.List;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 import javax.persistence.*;
 
@@ -23,14 +26,14 @@ public class Cancion {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.IDENTITY
+        strategy = GenerationType.IDENTITY
     )
 
     // ---------------------
-	
+    
     @Column(
-            name="id",
-            updatable = false
+        name="id",
+        updatable = false
     )
     private Long id;
 
@@ -40,19 +43,19 @@ public class Cancion {
         name = "nombre",
         nullable = false,
         columnDefinition = "VARCHAR(50)",
-		length = 50
+        length = 50
     )
     private String nombre;
 
     // ----------------------
-	
-	@Column(
+    
+    @Column(
         name = "duracion",
         nullable = false
     )
     private float duracion;
-	// EJM: 3.4 => 3 minutos 24 segundos
-	// int(duracion) minutos - int(duracion%1 * 60) segundos
+    // EJM: 3.4 => 3 minutos 24 segundos
+    // int(duracion) minutos - int(duracion%1 * 60) segundos
 
     // ---------------------
 
@@ -60,7 +63,7 @@ public class Cancion {
         name = "audio",
         nullable = false,
         columnDefinition = "VARCHAR(50)",
-		length = 50
+        length = 50
     )
     private String audio;
 
@@ -70,7 +73,7 @@ public class Cancion {
         name = "foto_portada",
         nullable = false,
         columnDefinition = "VARCHAR(50)",
-		length = 50
+        length = 50
     )
     private String FotoPortada;
 
@@ -79,27 +82,27 @@ public class Cancion {
     @Column(
         name="lanzamiento",
         nullable = false,
-		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+        columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
     private LocalDateTime lanzamiento;
 
     // ---------------------
 
-	@Column(
+    @Column(
         name = "genero",
         nullable = false,
-		columnDefinition = "VARCHAR(20)",
-		length = 20
+        columnDefinition = "VARCHAR(20)",
+        length = 20
     )
     private String genero;
-	
-	// --------------------
-	// Relaciones con las tablas de base de datos 
-	@ManyToOne
+    
+    // --------------------
+    // Relaciones con las tablas de base de datos 
+    @ManyToOne
     @JoinColumn(
         name = "proyectos_musicales_id",
-		updatable = false,
-		nullable = false,
+        updatable = false,
+        nullable = false,
         referencedColumnName = "id",
         foreignKey = @ForeignKey(
             name = "proyectos_musicales_canciones_fk"
@@ -107,12 +110,20 @@ public class Cancion {
     )
     private ProyectoMusical proyecto;
 
-	/*
+    
+    @OneToMany(
+        mappedBy = "cancion",
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+        fetch = FetchType.LAZY
+    )
+    private List<Credito> creditos = new ArrayList<>();
+
+    /*
     //Relations many to many
     @ManyToMany(mappedBy = "colaboradores")
     List<Artista> colaboradores;
 
     @ManyToMany(mappedBy = "playlistCanciones")
     List<ListaReproduccion> playlistCanciones;
-	*/
+    */
 }
