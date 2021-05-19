@@ -13,22 +13,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(
 	name="proyectos_musicales"
-	//uniqueConstraints = {
-	//        @UniqueConstraint(name="proyectos_musicales_name_unique", columnNames = "name")
-	//}
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProyectoMusical {
-
 	@Id
 	@GeneratedValue(
 			strategy = GenerationType.IDENTITY
 	)
-
-	// ---------------------
-
 	@Column(
 		name="id",
 		updatable = false
@@ -97,10 +90,10 @@ public class ProyectoMusical {
 	// ----------------------
 
 	@Column(
-		name = "canciones",
+		name = "numCanciones",
 		nullable = false
 	)
-	private Integer canciones = 0;
+	private Integer numCanciones = 0;
 
 	// ----------------------
 
@@ -143,6 +136,6 @@ public class ProyectoMusical {
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 		fetch = FetchType.LAZY
 	)
-	private List<Cancion> cancion = new ArrayList<>();
+	private List<Cancion> canciones = new ArrayList<>();
 	
 }

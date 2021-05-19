@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(
 		name="eventos",
 		uniqueConstraints = {
-				@UniqueConstraint(name="eventos_name_unique", columnNames = "nombre")
+			@UniqueConstraint(name="eventos_name_unique", columnNames = "nombre")
 		}
 )
 @Data
@@ -24,8 +24,6 @@ public class Evento {
 	@GeneratedValue(
 			strategy = GenerationType.IDENTITY
 	)
-	// ---------------------
-
 	@Column(
 			name="id",
 			updatable = false

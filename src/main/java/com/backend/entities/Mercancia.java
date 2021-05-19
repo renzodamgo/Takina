@@ -9,24 +9,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(
 	name="mercancias"
-	// uniqueConstraints = {
-	//         @UniqueConstraint(name="mercancias_name_unique", columnNames = "name")
-	// }
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Mercancia {
-
 	@Id
 	@GeneratedValue(
 		strategy = GenerationType.IDENTITY
 	)
-	// ---------------------
-
 	@Column(
-			name="id",
-			updatable = false
+		name="id",
+		updatable = false
 	)
 	private Long id;
 

@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface PlaylistRepository extends JpaRepository<Playlist,Long> {
 	Optional<Playlist> findById(Long id);
 	
-	@Query("SELECT p FROM Playlist p")
+	@Query("SELECT pl FROM Playlist pl")
 	List<Playlist> findAll();
 }

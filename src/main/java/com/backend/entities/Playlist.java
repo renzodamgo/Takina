@@ -12,9 +12,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(
 	name="playlists"
-	//uniqueConstraints = {
-	//        @UniqueConstraint(name="listas_reproduccion_name_unique", columnNames = "name")
-	//}
 )
 @Data
 @AllArgsConstructor
@@ -24,8 +21,6 @@ public class Playlist {
 	@GeneratedValue(
 		strategy = GenerationType.IDENTITY
 	)
-
-	// ---------------------
 	@Column(
 		name="id",
 		updatable = false
@@ -44,7 +39,6 @@ public class Playlist {
 	// ---------------------
 	@Column(
 		name = "descripcion",
-		nullable = false,
 		columnDefinition = "VARCHAR(140)",
 		length = 140
 	)
@@ -59,13 +53,11 @@ public class Playlist {
 	private LocalDateTime creacion;
 
 	// ---------------------
-	// TODO: FALTA PONER LA DURACION DE LA CANCION
 	@Column(
 		name="duracion",
-		nullable = false,
-		columnDefinition = "FLOAT TO TIME"
+		nullable = false
 	)
-	private Float duracion;
+	private Float duracion = 0F;
 
 	// ---------------------
 	@Column(

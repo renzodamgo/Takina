@@ -2,6 +2,8 @@ package com.backend.dtos;
 
 import java.time.LocalDateTime;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,4 +18,5 @@ public class UsuarioDto {
 	private String fotoPerfil;
 	private boolean premium;
 	private LocalDateTime ultimoIngreso;
+	private List<PlaylistMiniDto> playlists;
 }

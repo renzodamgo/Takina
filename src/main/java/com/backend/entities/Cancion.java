@@ -15,9 +15,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(
 	name="canciones"
-	//uniqueConstraints = {
-	//        @UniqueConstraint(name="canciones_nombre_unique",columnNames = "nombre")
-	//}
 )
 @Data
 @AllArgsConstructor
@@ -28,9 +25,6 @@ public class Cancion {
 	@GeneratedValue(
 		strategy = GenerationType.IDENTITY
 	)
-
-	// ---------------------
-	
 	@Column(
 		name="id",
 		updatable = false
@@ -119,9 +113,6 @@ public class Cancion {
 	private List<Credito> creditos = new ArrayList<>();
 
 	/*
-	//Relations many to many
-	@ManyToMany(mappedBy = "colaboradores")
-	List<Artista> colaboradores;
 
 	@ManyToMany(mappedBy = "playlistCanciones")
 	List<ListaReproduccion> playlistCanciones;

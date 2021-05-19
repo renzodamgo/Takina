@@ -22,13 +22,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Usuario {
-	
 	@Id
 	@GeneratedValue(
 		strategy = GenerationType.IDENTITY
 	)
-	// ---------------------
-
 	@Column(
 		name="id",
 		updatable = false
@@ -117,7 +114,6 @@ public class Usuario {
 		fetch = FetchType.LAZY
 	)
 	private List<Playlist> playlists = new ArrayList<>();
-
 	/*
 
 	// ---------------------

@@ -94,6 +94,9 @@ public class CancionServiceImpl implements CancionService {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
 		}
 
+		proyectoMusical.getCanciones().add(cancion);
+		proyectoMusical.setNumCanciones(proyectoMusical.getNumCanciones()+1);
+		
 		Credito credito = new Credito();
 		credito.setArtista(proyectoMusical.getArtista());
 		credito.setCancion(cancion);
@@ -121,7 +124,7 @@ public class CancionServiceImpl implements CancionService {
 		proyectoMusical.setTipo("Sencillo");
 		proyectoMusical.setDescripcion(createCancionProyectoDto.getDescripcion());
 		proyectoMusical.setLanzamiento(createCancionProyectoDto.getLanzamiento());
-		proyectoMusical.setCanciones(1);
+		proyectoMusical.setNumCanciones(1);
 		proyectoMusical.setDiscografica(createCancionProyectoDto.getDiscografica());
 		proyectoMusical.setArtista(artista);
 		proyectoMusical.setFotoPortada(createCancionProyectoDto.getFotoPortada());
@@ -132,6 +135,8 @@ public class CancionServiceImpl implements CancionService {
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
 		}
+
+		artista.getProyectos().add(proyectoMusical);
 
 		Cancion cancion = new Cancion();
 		cancion.setNombre(createCancionProyectoDto.getNombre());
@@ -148,6 +153,8 @@ public class CancionServiceImpl implements CancionService {
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
 		}
+
+		proyectoMusical.getCanciones().add(cancion);
 
 		Credito credito = new Credito();
 		credito.setArtista(proyectoMusical.getArtista());

@@ -15,6 +15,6 @@ public interface ProyectoMusicalRepository extends JpaRepository<ProyectoMusical
 
 	List<ProyectoMusical> findByNombreContainingIgnoreCase(String nombre);
 
-	@Query("SELECT p FROM ProyectoMusical p")
+	@Query("SELECT pm FROM ProyectoMusical pm")
 	List<ProyectoMusical> findAll();
 }

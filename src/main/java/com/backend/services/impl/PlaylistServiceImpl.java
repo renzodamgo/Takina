@@ -40,7 +40,7 @@ public class PlaylistServiceImpl implements PlaylistService {
 	}
 	private Object getPlaylistEntity(Long playlistId) throws NotFoundException {
 		return playlistRepository.findById(playlistId)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Playlist_NOTFOUND-404"));
+				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PLAYLIST_NOTFOUND-404"));
 	}
 
 	// ----------------------------------------------------------------

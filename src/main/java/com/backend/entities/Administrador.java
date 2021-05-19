@@ -11,9 +11,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(
 		name="administradores"
-		//uniqueConstraints = {
-		//        @UniqueConstraint(name="artistas_nombre_unique", columnNames = "nombre")
-		//}
 )
 @Data
 @AllArgsConstructor
