@@ -21,13 +21,12 @@
 >> que se liste las playlists
 
 
-
 ## TODO:
 Revisar:
 - Eventos
 - Mercancia
 
-crear:
-Reproducciones
-Seguidores
-Participantes
+Crear:
+- Reproducciones
+- Seguidores
+- Participantes
