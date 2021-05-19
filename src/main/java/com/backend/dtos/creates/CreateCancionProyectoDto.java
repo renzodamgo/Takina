@@ -11,7 +11,6 @@ public class CreateCancionProyectoDto {
 	private String nombre;
 	private Float duracion;
 	private String audio;
-	
 	private String descripcion;
 	private LocalDateTime lanzamiento;
 	private String discografica;

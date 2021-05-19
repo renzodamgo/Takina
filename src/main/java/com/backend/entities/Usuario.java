@@ -75,7 +75,7 @@ public class Usuario {
 	// ----------------------
 
 	@Column(
-		name="ultimoIngreso",
+		name="ultimo_ingreso",
 		nullable = false,
 		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
 	)
@@ -84,7 +84,7 @@ public class Usuario {
 	// ---------------------
 
 	@Column(
-		name = "fotoPerfil",
+		name = "foto_perfil",
 		nullable = false,
 		columnDefinition = "VARCHAR(50)",
 		length = 50

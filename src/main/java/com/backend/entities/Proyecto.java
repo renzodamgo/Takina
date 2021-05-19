@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-	name="proyectos_musicales"
+	name="proyectos"
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProyectoMusical {
+public class Proyecto {
 	@Id
 	@GeneratedValue(
 			strategy = GenerationType.IDENTITY
@@ -54,7 +54,7 @@ public class ProyectoMusical {
 		name = "duracion",
 		nullable = false
 	)
-	private float duracion;
+	private float duracion = 0F;
 	// EJM: 3.4 => 3 minutos 24 segundos
 	// int(duracion) minutos - int(duracion%1 * 60) segundos
 
@@ -90,7 +90,7 @@ public class ProyectoMusical {
 	// ----------------------
 
 	@Column(
-		name = "numCanciones",
+		name = "num_canciones",
 		nullable = false
 	)
 	private Integer numCanciones = 0;

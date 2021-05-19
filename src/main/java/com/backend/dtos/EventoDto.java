@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class EventoDto {
+	private Long id;
 	private String nombre;
 	private String descripcion;
 	private String lugar;

@@ -1,7 +1,8 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
-//import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -61,10 +62,10 @@ public class Playlist {
 
 	// ---------------------
 	@Column(
-		name="numeroCanciones",
+		name="num_canciones",
 		nullable = false
 	)
-	private Integer numeroCanciones = 0;
+	private Integer numCanciones = 0;
 
 	// ---------------------
 	// Relaciones con las tablas de base de datos 
@@ -80,15 +81,10 @@ public class Playlist {
 	)
 	private Usuario usuario;
 
-	/* 
-	@ManyToMany
-	@JoinTable(
-			name = "playlist_canciones",
-			joinColumns = @JoinColumn(name = "lista_reproduccion_id"),
-			inverseJoinColumns = @JoinColumn(name = "cancion_id"))
-	private List<Cancion> playlistCanciones;
-	*/
-
-
-
+	@OneToMany(
+		mappedBy = "playlist",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Listado> listados = new ArrayList<>();
 }

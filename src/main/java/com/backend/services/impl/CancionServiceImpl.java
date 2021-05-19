@@ -9,14 +9,14 @@ import com.backend.dtos.CancionDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.dtos.creates.CreateCancionProyectoDto;
 import com.backend.entities.Cancion;
-import com.backend.entities.ProyectoMusical;
+import com.backend.entities.Proyecto;
 import com.backend.entities.Artista;
 import com.backend.entities.Credito;
 import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
 import com.backend.repositories.CancionRepository;
-import com.backend.repositories.ProyectoMusicalRepository;
+import com.backend.repositories.ProyectoRepository;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.CreditoRepository;
 import com.backend.services.CancionService;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CancionServiceImpl implements CancionService {
 	@Autowired
-	private ProyectoMusicalRepository proyectoMusicalRepository;
+	private ProyectoRepository proyectoRepository;
 
 	@Autowired
 	private ArtistaRepository artistaRepository;
@@ -75,7 +75,7 @@ public class CancionServiceImpl implements CancionService {
 	@Transactional
 	@Override
 	public CancionDto createCancion(CreateCancionDto createCancionDto) throws TakinaException {
-		ProyectoMusical proyectoMusical = proyectoMusicalRepository.findById(createCancionDto.getProyectoId())
+		Proyecto proyecto = proyectoRepository.findById(createCancionDto.getProyectoId())
 				.orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
 
 		Cancion cancion = new Cancion();
@@ -83,10 +83,10 @@ public class CancionServiceImpl implements CancionService {
 		cancion.setAudio(createCancionDto.getAudio());
 		cancion.setDuracion(createCancionDto.getDuracion());
 		
-		cancion.setFotoPortada(proyectoMusical.getFotoPortada());
-		cancion.setLanzamiento(proyectoMusical.getLanzamiento());
-		cancion.setGenero(proyectoMusical.getGenero());
-		cancion.setProyecto(proyectoMusical);
+		cancion.setFotoPortada(proyecto.getFotoPortada());
+		cancion.setLanzamiento(proyecto.getLanzamiento());
+		cancion.setGenero(proyecto.getGenero());
+		cancion.setProyecto(proyecto);
 
 		try {
 			cancion = cancionRepository.save(cancion);
@@ -94,11 +94,12 @@ public class CancionServiceImpl implements CancionService {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
 		}
 
-		proyectoMusical.getCanciones().add(cancion);
-		proyectoMusical.setNumCanciones(proyectoMusical.getNumCanciones()+1);
+		proyecto.getCanciones().add(cancion);
+		proyecto.setNumCanciones(proyecto.getNumCanciones()+1);
+		proyecto.setDuracion(proyecto.getDuracion()+cancion.getDuracion());
 		
 		Credito credito = new Credito();
-		credito.setArtista(proyectoMusical.getArtista());
+		credito.setArtista(proyecto.getArtista());
 		credito.setCancion(cancion);
 
 		try {
@@ -118,46 +119,45 @@ public class CancionServiceImpl implements CancionService {
 		Artista artista = artistaRepository.findById(createCancionProyectoDto.getArtistaId())
 				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
 
-		ProyectoMusical proyectoMusical = new ProyectoMusical();
-		proyectoMusical.setNombre(createCancionProyectoDto.getNombre());
-		proyectoMusical.setDuracion(createCancionProyectoDto.getDuracion());
-		proyectoMusical.setTipo("Sencillo");
-		proyectoMusical.setDescripcion(createCancionProyectoDto.getDescripcion());
-		proyectoMusical.setLanzamiento(createCancionProyectoDto.getLanzamiento());
-		proyectoMusical.setNumCanciones(1);
-		proyectoMusical.setDiscografica(createCancionProyectoDto.getDiscografica());
-		proyectoMusical.setArtista(artista);
-		proyectoMusical.setFotoPortada(createCancionProyectoDto.getFotoPortada());
-		proyectoMusical.setGenero(artista.getGenero());
+		Proyecto proyecto = new Proyecto();
+		proyecto.setNombre(createCancionProyectoDto.getNombre());
+		proyecto.setDuracion(createCancionProyectoDto.getDuracion());
+		proyecto.setTipo("Sencillo");
+		proyecto.setDescripcion(createCancionProyectoDto.getDescripcion());
+		proyecto.setLanzamiento(createCancionProyectoDto.getLanzamiento());
+		proyecto.setNumCanciones(1);
+		proyecto.setDiscografica(createCancionProyectoDto.getDiscografica());
+		proyecto.setArtista(artista);
+		proyecto.setFotoPortada(createCancionProyectoDto.getFotoPortada());
+		proyecto.setGenero(artista.getGenero());
 
 		try {
-			proyectoMusical = proyectoMusicalRepository.save(proyectoMusical);
+			proyecto = proyectoRepository.save(proyecto);
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
 		}
 
-		artista.getProyectos().add(proyectoMusical);
+		artista.getProyectos().add(proyecto);
 
 		Cancion cancion = new Cancion();
 		cancion.setNombre(createCancionProyectoDto.getNombre());
 		cancion.setAudio(createCancionProyectoDto.getAudio());
 		cancion.setDuracion(createCancionProyectoDto.getDuracion());
 
-		cancion.setFotoPortada(proyectoMusical.getFotoPortada());
-		cancion.setLanzamiento(proyectoMusical.getLanzamiento());
-		cancion.setGenero(proyectoMusical.getGenero());
-		cancion.setProyecto(proyectoMusical);
+		cancion.setFotoPortada(proyecto.getFotoPortada());
+		cancion.setLanzamiento(proyecto.getLanzamiento());
+		cancion.setGenero(proyecto.getGenero());
+		cancion.setProyecto(proyecto);
 		
 		try {
 			cancion = cancionRepository.save(cancion);	
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
 		}
-
-		proyectoMusical.getCanciones().add(cancion);
+		//proyecto.getCanciones().add(cancion);
 
 		Credito credito = new Credito();
-		credito.setArtista(proyectoMusical.getArtista());
+		credito.setArtista(proyecto.getArtista());
 		credito.setCancion(cancion);
 
 		try {
@@ -165,8 +165,7 @@ public class CancionServiceImpl implements CancionService {
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CREDITO_NOT_CREATED");
 		}
-
-		cancion.getCreditos().add(credito);
+		//cancion.getCreditos().add(credito);
 
 		return modelMapper.map(getCancionEntity(cancion.getId()),CancionDto.class);
 	}

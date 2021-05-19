@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -102,15 +101,21 @@ public class Cancion {
 			name = "proyectos_musicales_canciones_fk"
 		)
 	)
-	private ProyectoMusical proyecto;
+	private Proyecto proyecto;
 
-	
 	@OneToMany(
 		mappedBy = "cancion",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 		fetch = FetchType.LAZY
 	)
 	private List<Credito> creditos = new ArrayList<>();
+
+	@OneToMany(
+		mappedBy = "cancion",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Listado> listados = new ArrayList<>();
 
 	/*
 

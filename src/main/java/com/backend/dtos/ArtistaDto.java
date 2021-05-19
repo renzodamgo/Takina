@@ -14,13 +14,9 @@ public class ArtistaDto {
 	private String fotoPortada;
 	private String biografia;
 	private Integer seguidoresTotal;
-	private Integer oyentesTotal;
+	private Integer reproduccionesTotal;
 	private String departamento;
 	private String genero;
 	private List<AdministradorDto> administradores;
-	private List<ProyectoMusicalMiniDto> proyectos;
-
-	// Cuantos oyentes hay al mes
-	// query -> tabla_cancion_usuario
-	// mes actual -> canciones que pertenezcan al artista -> cantidad unica de usuarios escuchandola
+	private List<ProyectoMiniDto> proyectos;
 }

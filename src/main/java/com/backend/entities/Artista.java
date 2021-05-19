@@ -56,7 +56,7 @@ public class Artista {
 	// ---------------------
 	
 	@Column(
-		name = "fotoPerfil",
+		name = "foto_perfil",
 		nullable = false,
 		columnDefinition = "VARCHAR(50)",
 		length = 50
@@ -96,16 +96,16 @@ public class Artista {
 	// ---------------------
 
 	@Column(
-		name = "seguidoresTotal"
+		name = "seguidores_total"
 	)
 	private Long seguidoresTotal = 0L;
 	
 	// ---------------------
 	
 	@Column(
-		name = "oyentesTotal"
+		name = "reproducciones_total"
 	)
-	private Long oyentesTotal = 0L;
+	private Long reproduccionesTotal = 0L;
 
 	// --------------------
 	// Relaciones con las tablas de base de datos 
@@ -139,13 +139,13 @@ public class Artista {
 	private List<Mercancia> mercancias = new ArrayList<>();
 	
 	// --------------------
-	// (One Artista - Many Proyecto Musical)
+	// (One Artista - Many Proyecto)
 	@OneToMany(
 		mappedBy = "artista",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 		fetch = FetchType.LAZY
 	)
-	private List<ProyectoMusical> proyectos = new ArrayList<>();
+	private List<Proyecto> proyectos = new ArrayList<>();
 
 
 	

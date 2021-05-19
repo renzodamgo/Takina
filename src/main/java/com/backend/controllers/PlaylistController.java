@@ -11,7 +11,7 @@ import com.backend.responses.TakinaResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,5 +42,24 @@ public class PlaylistController {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				playlistService.createPlaylist(createPlaylistDto));
 	}
+
+	// Obtener por ID
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/id/{playlistId}")
+	public TakinaResponse<PlaylistDto> getPlaylistById(@PathVariable Long playlistId)
+			throws TakinaException{
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				playlistService.getPlaylistById(playlistId));
+	}
+
+	// Añadir cancion a playlist
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/id/{playlistId}/cancion/{cancionId}")
+	public TakinaResponse<PlaylistDto> addToPlaylist(@PathVariable Long playlistId, @PathVariable Long cancionId)
+			throws TakinaException{
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				playlistService.addToPlaylist(playlistId,cancionId));
+	}
+
 
 }

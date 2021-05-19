@@ -16,6 +16,6 @@ public interface PlaylistService {
 	PlaylistDto createPlaylist(CreatePlaylistDto createPlaylistDto) throws TakinaException;
 
 	// US008 - Como usuario Quiero añadir canciónes a mi lista de reproduccion Para escucharlas posteriormente junto a otras canciónes 
-	//PlaylistDto addToPlaylist(CreatePlaylistDto createPlaylistDto) throws TakinaException;
+	PlaylistDto addToPlaylist(Long playlistId, Long cancionId) throws TakinaException;
 	
 }

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class CancionDto {
+	private Long id;
 	private String nombre;
 	private String audio;
 	private String fotoPortada;
