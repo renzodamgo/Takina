@@ -90,11 +90,11 @@ public class CancionServiceImpl implements CancionService {
 
 		try {
 			cancion = cancionRepository.save(cancion);
+			//proyecto.getCanciones().add(cancion);
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
 		}
-
-		proyecto.getCanciones().add(cancion);
+		
 		proyecto.setNumCanciones(proyecto.getNumCanciones()+1);
 		proyecto.setDuracion(proyecto.getDuracion()+cancion.getDuracion());
 		
@@ -104,12 +104,11 @@ public class CancionServiceImpl implements CancionService {
 
 		try {
 			credito = creditoRepository.save(credito);
+			//cancion.getCreditos().add(credito);
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CREDITO_NOT_CREATED");
 		}
-
-		cancion.getCreditos().add(credito);
-
+		
 		return modelMapper.map(getCancionEntity(cancion.getId()),CancionDto.class);
 	}
 	// --------------------------------------------------------
@@ -133,28 +132,26 @@ public class CancionServiceImpl implements CancionService {
 
 		try {
 			proyecto = proyectoRepository.save(proyecto);
+			//artista.getProyectos().add(proyecto);
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
 		}
-
-		artista.getProyectos().add(proyecto);
-
+		
 		Cancion cancion = new Cancion();
 		cancion.setNombre(createCancionProyectoDto.getNombre());
 		cancion.setAudio(createCancionProyectoDto.getAudio());
 		cancion.setDuracion(createCancionProyectoDto.getDuracion());
-
 		cancion.setFotoPortada(proyecto.getFotoPortada());
 		cancion.setLanzamiento(proyecto.getLanzamiento());
 		cancion.setGenero(proyecto.getGenero());
 		cancion.setProyecto(proyecto);
 		
 		try {
-			cancion = cancionRepository.save(cancion);	
+			cancion = cancionRepository.save(cancion);
+			//proyecto.getCanciones().add(cancion);	
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
 		}
-		//proyecto.getCanciones().add(cancion);
 
 		Credito credito = new Credito();
 		credito.setArtista(proyecto.getArtista());
@@ -162,11 +159,11 @@ public class CancionServiceImpl implements CancionService {
 
 		try {
 			credito = creditoRepository.save(credito);
+			//cancion.getCreditos().add(credito);
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CREDITO_NOT_CREATED");
 		}
-		//cancion.getCreditos().add(credito);
-
+	
 		return modelMapper.map(getCancionEntity(cancion.getId()),CancionDto.class);
 	}
 	
@@ -177,6 +174,7 @@ public class CancionServiceImpl implements CancionService {
 		List<Cancion> results = cancionRepository.findByNombreContainingIgnoreCase(nombre);
 		return results.stream().map(cancion -> modelMapper.map(cancion,CancionDto.class)).collect(Collectors.toList());
 	}
+	
 	// Buscar por genero musical
 	@Override
 	public List<CancionDto> getCancionesByGeneroMusical(String generoMusical) throws TakinaException {

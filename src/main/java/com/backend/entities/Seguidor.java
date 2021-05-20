@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-		name="listados"
+	name="seguidores"
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Listado {
-	// ---------------------
+public class Seguidor {
 	@Id
 	@GeneratedValue(
 		strategy = GenerationType.IDENTITY
@@ -26,34 +25,33 @@ public class Listado {
 	private Long id;
 
 	@Column(
-		name="fecha_adicion",
+		name="fecha_seguimiento",
 		nullable = false,
 		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
 	)
-	private LocalDateTime fechaAdicion;
+	private LocalDateTime fecha;
 
-	/// Many to One
 	@ManyToOne
 	@JoinColumn(
-		name = "playlist_id",
+		name = "usuarios_id",
 		updatable = false,
 		nullable = false,
 		referencedColumnName = "id",
 		foreignKey = @ForeignKey(
-			name = "playlist_cancion_fk"
+			name = "usuarios_artistas_fk"
 		)
 	)
-	private Playlist playlist;
+	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn(
-		name = "cancion_id",
+		name = "artistas_id",
 		updatable = false,
 		nullable = false,
 		referencedColumnName = "id",
 		foreignKey = @ForeignKey(
-			name = "cancion_playlist_fk"
+			name = "artistas_usuarios_fk"
 		)
 	)
-	private Cancion cancion;
+	private Artista artista;
 }

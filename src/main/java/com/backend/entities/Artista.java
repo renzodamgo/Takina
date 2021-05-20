@@ -2,9 +2,7 @@ package com.backend.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -119,8 +117,6 @@ public class Artista {
 	)
 	private List<Administrador> administradores = new ArrayList<>();
 
-	// --------------------
-	// Creditos (One Artista - Many Credito - One Cancion)
 	@OneToMany(
 		mappedBy = "artista",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
@@ -128,9 +124,6 @@ public class Artista {
 	)
 	private List<Credito> creditos = new ArrayList<>();
 
-
-	// --------------------
-	// (One Artista - Many Mercancia)
 	@OneToMany(
 		mappedBy = "artista",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
@@ -138,8 +131,6 @@ public class Artista {
 	)
 	private List<Mercancia> mercancias = new ArrayList<>();
 	
-	// --------------------
-	// (One Artista - Many Proyecto)
 	@OneToMany(
 		mappedBy = "artista",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
@@ -147,19 +138,21 @@ public class Artista {
 	)
 	private List<Proyecto> proyectos = new ArrayList<>();
 
+	@OneToMany(
+		mappedBy = "artista",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Seguidor> seguidores = new ArrayList<>();
 
+	@OneToMany(
+		mappedBy = "artista",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Invitado> invitados = new ArrayList<>();
 	
 	/*
-	
-
-	//Relations many to many
-	@ManyToMany
-	@JoinTable(
-			name = "seguidores",
-			joinColumns = @JoinColumn(name = "artista_id"),
-			inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-	private List<Usuario> seguidores;
-
 	@ManyToMany
 	@JoinTable(
 			name = "participantes",

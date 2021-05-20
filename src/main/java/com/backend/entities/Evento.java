@@ -1,9 +1,9 @@
 package com.backend.entities;
+
 import java.time.LocalDateTime;
-//import java.util.List;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -114,6 +114,13 @@ public class Evento {
 		nullable = false
 	)
 	private Integer interesados = 0;
+
+	@OneToMany(
+		mappedBy = "evento",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Invitado> invitados = new ArrayList<>();
 
 	// Relations many to many
 	/*

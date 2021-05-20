@@ -1,6 +1,7 @@
 package com.backend.entities;
 
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
+import java.time.LocalTime;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,13 +9,12 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-		name="listados"
+	name="seguidores"
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Listado {
-	// ---------------------
+public class Invitado {
 	@Id
 	@GeneratedValue(
 		strategy = GenerationType.IDENTITY
@@ -26,34 +26,40 @@ public class Listado {
 	private Long id;
 
 	@Column(
-		name="fecha_adicion",
+		name = "hora_inicio",
 		nullable = false,
-		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+		columnDefinition = "TIME"
 	)
-	private LocalDateTime fechaAdicion;
+	private LocalTime horaInicio;
 
-	/// Many to One
-	@ManyToOne
-	@JoinColumn(
-		name = "playlist_id",
-		updatable = false,
+	@Column(
+		name = "hora_fin",
 		nullable = false,
-		referencedColumnName = "id",
-		foreignKey = @ForeignKey(
-			name = "playlist_cancion_fk"
-		)
+		columnDefinition = "TIME"
 	)
-	private Playlist playlist;
+	private LocalTime horaFin;
 	
 	@ManyToOne
 	@JoinColumn(
-		name = "cancion_id",
+		name = "artistas_id",
 		updatable = false,
 		nullable = false,
 		referencedColumnName = "id",
 		foreignKey = @ForeignKey(
-			name = "cancion_playlist_fk"
+			name = "artistas_eventos_fk"
 		)
 	)
-	private Cancion cancion;
+	private Artista artista;
+
+	@ManyToOne
+	@JoinColumn(
+		name = "eventos_id",
+		updatable = false,
+		nullable = false,
+		referencedColumnName = "id",
+		foreignKey = @ForeignKey(
+			name = "eventos_artistas_fk"
+		)
+	)
+	private Evento evento;
 }

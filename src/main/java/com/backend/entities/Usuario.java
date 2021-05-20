@@ -3,9 +3,7 @@ package com.backend.entities;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -114,13 +112,19 @@ public class Usuario {
 		fetch = FetchType.LAZY
 	)
 	private List<Playlist> playlists = new ArrayList<>();
-	/*
 
-	// ---------------------
+	@OneToMany(
+		mappedBy = "usuario",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Reproduccion> reproducciones = new ArrayList<>();
 
-	// Artista a Usuario para registrar los timestamps de los seguimientos
-	@ManyToMany(mappedBy = "seguidores")
-	private List<Artista> seguidores;
-	*/
+	@OneToMany(
+		mappedBy = "usuario",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Seguidor> seguidores = new ArrayList<>();
 
 }

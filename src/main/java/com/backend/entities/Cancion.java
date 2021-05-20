@@ -1,12 +1,9 @@
 package com.backend.entities;
 
 import java.time.LocalDateTime;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -116,6 +113,13 @@ public class Cancion {
 		fetch = FetchType.LAZY
 	)
 	private List<Listado> listados = new ArrayList<>();
+
+	@OneToMany(
+		mappedBy = "cancion",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Reproduccion> reproducciones = new ArrayList<>();
 
 	/*
 
