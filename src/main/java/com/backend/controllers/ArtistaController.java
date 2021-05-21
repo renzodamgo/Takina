@@ -74,7 +74,7 @@ public class ArtistaController {
 
 	// Otorgar permisos administrativos a otro usuario
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/administracion/{artistaid}/usuario/{usuarioId}/nivel/{nivel}")
+	@GetMapping("/administracion/{artistaid}/{usuarioId}/{nivel}")
 	public TakinaResponse<ArtistaDto> giveAdministrador(@PathVariable Long artistaid, @PathVariable Long usuarioId, @PathVariable Integer nivel)
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",

@@ -3,6 +3,7 @@ package com.backend.controllers;
 import java.util.List;
 
 import com.backend.dtos.UsuarioDto;
+import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
@@ -61,6 +62,13 @@ public class UsuarioController {
 				usuarioService.loginUsuarioByApodoOrCorreoUsingPassword(login,password));
 	}
 
-	// Dar moderador de perfil de Músico a otro usuario
+	// Registrar una reproduccion
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/reproduccion/{usuarioId}/{cancionId}")
+	public TakinaResponse<ReproduccionDto> createReproduccion(@PathVariable Long usuarioId, @PathVariable Long cancionId)
+			throws TakinaException{
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				usuarioService.createReproduccion(usuarioId,cancionId));
+	}
 	
 }

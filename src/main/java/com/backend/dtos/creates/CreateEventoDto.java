@@ -17,5 +17,5 @@ public class CreateEventoDto {
 	private LocalDateTime fecha;
 	private Float precio;
 	private String fotoPortada;
-	private Integer interesados;
+	//private Integer interesados;
 }

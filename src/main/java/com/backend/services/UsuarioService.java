@@ -3,6 +3,7 @@ package com.backend.services;
 import java.util.List;
 
 import com.backend.dtos.UsuarioDto;
+import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.exceptions.TakinaException;
 
@@ -18,12 +19,29 @@ public interface UsuarioService {
 	// Obtener usuario por Nombre
 	UsuarioDto getUsuarioNombre(String nombre) throws TakinaException;
 
-	// US001 - Como internauta Quiero registrarme en la aplicación Para usar la Plataforma
+	// US001 - Registro
 	UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws TakinaException;
 
-	// US002 - Como usuario registrado Quiero ingresar a la aplicacion Para utilizar la plataforma // Reparar
+	// US002 - Login
 	UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(String login, String password) throws TakinaException;
 
-	// US021 - Como usuario Quiero buscar a otro usuario por su nombre Para encontrar su perfil y conocer más de el/ella. 
+	// US021 - Buscar otro usuario por su nombre
 	List<UsuarioDto> getUsuariosByNombre(String nombre) throws TakinaException;
+
+	// Crear Reproduccion
+	ReproduccionDto createReproduccion (Long usuarioId, Long cancionId) throws TakinaException;
+
+	// US030 - Revisar las ultimas reproducciones
+
+
+	// US009 - Creacion de seguidor
+	
+	// US031 - Eliminacion de seguidor
+	
+	// US032 - Creacion de asistente
+	
+	// US033 - Eliminacion de asistente
+	
+	// US011 - Actualizacion a premium
+	// ¿¿¿???
 }

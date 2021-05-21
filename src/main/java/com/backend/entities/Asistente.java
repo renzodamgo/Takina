@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Interesado {
+public class Asistente {
 	@Id
 	@GeneratedValue(
 		strategy = GenerationType.IDENTITY
