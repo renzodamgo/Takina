@@ -35,7 +35,7 @@ public class UsuarioController {
 				usuarioService.createUsuario(createUsuarioDto));
 	}
 
-	// Getter
+	// Obtener por ID
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/id/{usuarioId}")
 	public TakinaResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId) throws TakinaException {
@@ -43,30 +43,9 @@ public class UsuarioController {
 				usuarioService.getUsuarioId(usuarioId));
 	}
 
-	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/nombre/{usuarioNombre}")
-	public TakinaResponse<UsuarioDto> getUsuarioByNombre(@PathVariable String usuarioNombre) throws TakinaException {
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-				usuarioService.getUsuarioNombre(usuarioNombre));
-	}
-
-	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/apodo/{usuarioApodo}")
-	public TakinaResponse<UsuarioDto> getUsuarioByApodo(@PathVariable String usuarioApodo) throws TakinaException {
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-				usuarioService.getUsuarioApodo(usuarioApodo));
-	}
-
-	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/correo/{usuarioCorreo}")
-	public TakinaResponse<UsuarioDto> getUsuarioByCorreo(@PathVariable String usuarioCorreo) throws TakinaException {
-		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
-				usuarioService.getUsuarioCorreo(usuarioCorreo));
-	}
-
 	// Busqueda de usuarios por Apodo
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("busqueda/nombre/{usuarioNombre}")
+	@GetMapping("/busqueda/{usuarioNombre}")
 	public TakinaResponse<List<UsuarioDto>> getUsuariosByNombre(@PathVariable String usuarioNombre)
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",

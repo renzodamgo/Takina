@@ -33,7 +33,7 @@ public class MercanciaController {
 				mercanciaService.createMercancia(createMercanciaDto));
 	}
 
-	// Obtener todas las mercancias
+	// Mostrar todas las mercancias
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping
 	public TakinaResponse<List<MercanciaDto>> getMercancias()
@@ -42,7 +42,7 @@ public class MercanciaController {
 				mercanciaService.getMercancias());
 	}
 
-	// Getters
+	// Obtener por ID
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/id/{mercanciaId}")
 	public TakinaResponse<MercanciaDto> getMercanciaId(@PathVariable Long mercanciaId)

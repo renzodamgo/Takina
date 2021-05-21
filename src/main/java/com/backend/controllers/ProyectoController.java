@@ -33,6 +33,7 @@ public class ProyectoController {
 			proyectoService.getProyectos());
 	}
 
+	// Obtener por ID
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/id/{proyectoId}")
 	public TakinaResponse<ProyectoDto> getProyectoById(@PathVariable Long proyectoId)
@@ -41,12 +42,15 @@ public class ProyectoController {
 			proyectoService.getProyectoById(proyectoId));
 	}
 
+	// Busqueda de proyectos por nombre
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/busqueda/nombre/{proyectoNombre}")
+	@GetMapping("/busqueda/{proyectoNombre}")
 	public TakinaResponse<List<ProyectoDto>> getProyectosByNombre(@PathVariable String proyectoNombre)
 			throws TakinaException{
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 			proyectoService.getProyectosByNombre(proyectoNombre));
 	}
+
+	// Busqueda de proyectos por genero musical
 
 }
