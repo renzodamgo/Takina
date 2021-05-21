@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Proyecto {
 	@Id
 	@GeneratedValue(
-			strategy = GenerationType.IDENTITY
+		strategy = GenerationType.IDENTITY
 	)
 	@Column(
 		name="id",

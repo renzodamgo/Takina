@@ -1,11 +1,13 @@
 package com.backend.services.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.UsuarioDto;
+import com.backend.dtos.HistorialDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.entities.Usuario;
 import com.backend.entities.Cancion;
@@ -24,6 +26,7 @@ import com.backend.services.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -54,7 +57,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioRepository.findById(UsuarioId)
 				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
 	}
-
 
 	// -------------------------------------------------------
 	@Override
@@ -110,7 +112,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 		try {
 			Usuario = usuarioRepository.save(Usuario);
-		}catch (Exception ex){
+		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_CREATED");
 		}
 		return modelMapper.map(getUsuarioEntity(Usuario.getId()),UsuarioDto.class);
@@ -126,16 +128,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	// --------------------------------------------------------
 	@Override
 	public UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(String login, String password) throws TakinaException {
-		Boolean encontrado = false;
 		Usuario Usuario = getUsuarioByApodoOrCorreo(login);
 		
-		if (Usuario.getPassword().equals(password)) {
-			encontrado = true;
-		}
-
-		if (!encontrado) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_FOUND");
-		}
+		Boolean encontrado = false;
+		if (Usuario.getPassword().equals(password)) encontrado = true;
+		if (!encontrado) throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_FOUND");
 		
 		return modelMapper.map(getUsuarioEntity(Usuario.getId()),UsuarioDto.class);
 	}
@@ -149,9 +146,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Transactional
 	@Override
 	public ReproduccionDto createReproduccion (Long usuarioId, Long cancionId) throws TakinaException {
-		Usuario usuario = usuarioRepository.findById(usuarioId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","USUARIO_NOT_FOUND"));
-		
+
+		// Validacion de repeticion de reproducciones para registrar solo la que tiene fecha reciente
+		//Optional<Reproduccion> validacion = reproduccionRepository.findByUsuarioIdAndCancionId(usuarioId, cancionId);
+		//if (validacion.isPresent()) reproduccionRepository.deleteById(validacion.get().getId());
+
+		Usuario usuario = getUsuarioEntity(usuarioId);
 		Cancion cancion = cancionRepository.findById(cancionId)
 				.orElseThrow(()->new NotFoundException("NOT-401-1","CANCION_NOT_FOUND"));
 
@@ -162,10 +162,41 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 		try {
 			reproduccion = reproduccionRepository.save(reproduccion);
-		}catch (Exception ex) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_CREATED");
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","REPRODUCCION_NOT_CREATED");
 		}
-		
+
 		return modelMapper.map(reproduccion,ReproduccionDto.class);
+	}
+	// --------------------------------------------------------
+	@Override
+	public HistorialDto getHistorial(Long usuarioId) throws TakinaException {
+		List<Reproduccion> reproducciones = reproduccionRepository.findByUsuarioIdOrderByFecha(usuarioId);
+											//.stream().limit(20).collect(Collectors.toList());
+
+		List<Reproduccion> historial = new ArrayList<>();
+		Integer cantidad = 20;
+		for(int i = 0; i < reproducciones.size(); i++){
+			if(historial.size() == cantidad) break;
+			
+			Boolean found = false;
+			for(int j = 0; j < historial.size(); j++) {
+				if(reproducciones.get(i).getUsuario().getId() == historial.get(j).getUsuario().getId() &&
+					reproducciones.get(i).getCancion().getId() == historial.get(j).getCancion().getId()) {
+					found = true;
+					break;
+				}
+			}
+
+			if(!found) historial.add(reproducciones.get(i));
+		}
+
+		HistorialDto history = new HistorialDto();
+		history.setApodo(getUsuarioEntity(usuarioId).getApodo());
+		history.setReproducciones(historial.stream()
+										.map(reproduccion -> modelMapper.map(reproduccion,ReproduccionDto.class))
+										.collect(Collectors.toList()));
+		
+		return history;
 	}
 }

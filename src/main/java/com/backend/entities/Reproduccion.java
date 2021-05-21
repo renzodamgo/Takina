@@ -15,9 +15,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Reproduccion {
 	@Id
-	@GeneratedValue(
-		strategy = GenerationType.IDENTITY
-	)
+	@SequenceGenerator(
+        name="reproduccion_sequence",
+        sequenceName = "reproduccion_sequence",
+        allocationSize = 1
+    )
+    @GeneratedValue(
+    	strategy = GenerationType.SEQUENCE,
+    	generator = "reproduccion_sequence"
+    )
 	@Column(
 		name="id",
 		updatable = false

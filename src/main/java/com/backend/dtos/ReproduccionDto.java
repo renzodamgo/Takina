@@ -8,7 +8,8 @@ import lombok.Setter;
 @Setter
 public class ReproduccionDto {
 	//private Long usuarioId;
-	private Long cancionId;
+	//private Long cancionId;
+	private String cancionProyectoArtistaNombre;
 	private String cancionNombre;
 	private LocalDateTime fecha;
 }

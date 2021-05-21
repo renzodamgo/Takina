@@ -21,7 +21,4 @@ public class TakinaResponse<T> {
 		this.message = message;
 	}
 
-
-
-
 }

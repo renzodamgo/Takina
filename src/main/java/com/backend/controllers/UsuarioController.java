@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.ReproduccionDto;
+import com.backend.dtos.HistorialDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
@@ -69,6 +70,15 @@ public class UsuarioController {
 			throws TakinaException{
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.createReproduccion(usuarioId,cancionId));
+	}
+
+	// Revisar el historial de reproduccion de un usuario
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/historial/{usuarioId}")
+	public TakinaResponse<HistorialDto> getHistorial(@PathVariable Long usuarioId)
+			throws TakinaException{
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				usuarioService.getHistorial(usuarioId));
 	}
 	
 }

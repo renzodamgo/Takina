@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.ReproduccionDto;
+import com.backend.dtos.HistorialDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.exceptions.TakinaException;
 
@@ -29,10 +30,10 @@ public interface UsuarioService {
 	List<UsuarioDto> getUsuariosByNombre(String nombre) throws TakinaException;
 
 	// Crear Reproduccion
-	ReproduccionDto createReproduccion (Long usuarioId, Long cancionId) throws TakinaException;
+	ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException;
 
-	// US030 - Revisar las ultimas reproducciones
-
+	// US030 - Historial de reproducciones
+	HistorialDto getHistorial(Long usuarioId) throws TakinaException;
 
 	// US009 - Creacion de seguidor
 	

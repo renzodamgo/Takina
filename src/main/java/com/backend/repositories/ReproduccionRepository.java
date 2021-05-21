@@ -10,7 +10,15 @@ import java.util.List;
 @Repository
 public interface ReproduccionRepository extends JpaRepository<Reproduccion,Long> {
 	Optional<Reproduccion> findById(Long id);
+	void deleteById(Long id);
 
 	@Query("SELECT r FROM Reproduccion r")
 	List<Reproduccion> findAll();
+	
+
+	@Query("SELECT r FROM Reproduccion r WHERE r.usuario.id = ?1 and r.cancion.id = ?2")
+	Optional<Reproduccion> findByUsuarioIdAndCancionId(Long usuarioId, long cancionId);
+
+	@Query("SELECT r FROM Reproduccion r WHERE r.usuario.id = ?1 ORDER BY r.fecha DESC")
+	List<Reproduccion> findByUsuarioIdOrderByFecha(Long usuarioId);
 }
