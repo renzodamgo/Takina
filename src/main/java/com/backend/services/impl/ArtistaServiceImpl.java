@@ -78,6 +78,12 @@ public class ArtistaServiceImpl implements ArtistaService {
 		artista.setDepartamento(createArtistaDto.getDepartamento());
 		artista.setGenero(createArtistaDto.getGenero());
 
+		try {
+			artista = artistaRepository.save(artista);
+		} catch (Exception ex){
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ARTISTA_NOT_CREATED");
+		}
+
 		Usuario usuario = usuarioRepository.findById(createArtistaDto.getUsuarioId())
 				.orElseThrow(()->new NotFoundException("NOT-401-1","RESTAURANT_NOT_FOUND"));
 
@@ -86,15 +92,15 @@ public class ArtistaServiceImpl implements ArtistaService {
 		administrador.setUsuario(usuario);
 		administrador.setFechaRegistro(LocalDateTime.now());
 
-		usuario.getAdministradores().add(administrador);
-		artista.getAdministradores().add(administrador);
+		// usuario.getAdministradores().add(administrador);
+		// artista.getAdministradores().add(administrador);
 
 		try {
-			artista = artistaRepository.save(artista);
 			administrador = administradorRepository.save(administrador);
-		}catch (Exception ex){
+		} catch (Exception ex){
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ARTISTA_NOT_CREATED");
 		}
+
 		return modelMapper.map(getArtistaEntity(artista.getId()),ArtistaDto.class);
 	}
 
