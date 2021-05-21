@@ -25,7 +25,7 @@ public class PlaylistController {
 	@Autowired
 	private PlaylistService playlistService;
 
-	// Obtener todas las playlists
+	// Mostrar todas las playlists
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping
 	public TakinaResponse<List<PlaylistDto>> getPlaylists()
@@ -54,7 +54,7 @@ public class PlaylistController {
 
 	// Añadir cancion a playlist
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/id/{playlistId}/cancion/{cancionId}")
+	@GetMapping("/adicion/{playlistId}/{cancionId}")
 	public TakinaResponse<PlaylistDto> addToPlaylist(@PathVariable Long playlistId, @PathVariable Long cancionId)
 			throws TakinaException{
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",

@@ -42,7 +42,7 @@ public class EventoController {
 				eventoService.createEvento(createEventoDto));
 	}
 
-	// Getters
+	// Obtener evento por ID
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/id/{eventoId}")
 	public TakinaResponse<EventoDto> getEventoId(@PathVariable Long eventoId)
@@ -51,13 +51,7 @@ public class EventoController {
 				eventoService.getEventoId(eventoId));
 	}
 
-	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/nombre/{eventoNombre}")
-	public TakinaResponse<EventoDto> getEventoNombre(@PathVariable String eventoNombre)
-			throws TakinaException {
-		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
-				eventoService.getEventoNombre(eventoNombre));
-	}
+	// Busqueda por nombre
 
 	// Busqueda por departamento
 	@ResponseStatus(HttpStatus.OK)

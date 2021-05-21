@@ -19,14 +19,3 @@
 >> que se liste las canciones
 * ver todos los usuarios
 >> que se liste las playlists
-
-
-## TODO:
-Revisar:
-- Eventos
-- Mercancia
-
-Crear:
-- Reproducciones
-- Seguidores
-- Participantes
