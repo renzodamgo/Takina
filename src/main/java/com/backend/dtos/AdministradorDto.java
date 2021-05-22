@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AdministradorDto {
-	private Long usuarioId;
+	//private Long usuarioId;
 	private String usuarioNombre;
 	private String nivel;
 	private LocalDateTime fechaRegistro;

@@ -282,12 +282,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	// --------------------------------------------------------
 	@Override
 	public void deleteAsistente(Long usuarioId, Long eventoId) throws TakinaException {
-		Optional<Seguidor> validacion = seguidorRepository.findByUsuarioIdAndArtistaId(usuarioId, eventoId);
+		Optional<Asistente> validacion = asistenteRepository.findByUsuarioIdAndEventoId(usuarioId, eventoId);
 		if (validacion.isPresent()) {
-			seguidorRepository.deleteById(validacion.get().getId());
+			asistenteRepository.deleteById(validacion.get().getId());
 
 			Evento evento = eventoRepository.findById(eventoId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+				.orElseThrow(()->new NotFoundException("NOT-401-1","EVENTO_NOT_FOUND"));
 			evento.setInteresados(evento.getInteresados()-1);
 
 		} else {
