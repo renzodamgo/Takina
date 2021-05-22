@@ -6,6 +6,7 @@ import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.HistorialDto;
 import com.backend.dtos.SeguidorDto;
+import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
@@ -99,4 +100,23 @@ public class UsuarioController {
 		usuarioService.deleteSeguidor(usuarioId, artistaId);
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
 	}
+
+	// Registrar un asistente
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/asistente/{usuarioId}/{eventoId}")
+	public TakinaResponse<AsistenteDto> createAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
+			throws TakinaException{
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				usuarioService.createAsistente(usuarioId, eventoId));
+	}
+
+	// Eliminar un asistente
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/asistente/{usuarioId}/{eventoId}")
+	public TakinaResponse<String> deleteAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
+			throws TakinaException{
+		usuarioService.deleteAsistente(usuarioId, eventoId);
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
+	}
+
 }

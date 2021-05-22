@@ -96,9 +96,7 @@ public class Usuario {
 	)
 	private boolean premium = false;
 
-
 	//Relations many to many
-	// Artista a Usuario para registrar los Administradores de página
 	@OneToMany(
 		mappedBy = "usuario",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
@@ -126,5 +124,11 @@ public class Usuario {
 		fetch = FetchType.LAZY
 	)
 	private List<Seguidor> seguidores = new ArrayList<>();
-
+	
+	@OneToMany(
+		mappedBy = "usuario",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Asistente> asistentes = new ArrayList<>();
 }

@@ -6,6 +6,7 @@ import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.HistorialDto;
 import com.backend.dtos.SeguidorDto;
+import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.exceptions.TakinaException;
 
@@ -43,8 +44,10 @@ public interface UsuarioService {
 	void deleteSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
 	
 	// US032 - Creacion de asistente
-	
+	AsistenteDto createAsistente(Long usuarioId, Long eventoId) throws TakinaException;
+
 	// US033 - Eliminacion de asistente
+	void deleteAsistente(Long usuarioId, Long artistaId) throws TakinaException;
 	
 	// US011 - Actualizacion a premium
 	// ¿¿¿???

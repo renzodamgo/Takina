@@ -122,9 +122,11 @@ public class Evento {
 	)
 	private List<Invitado> invitados = new ArrayList<>();
 
-	// Relations many to many
-	/*
-	@ManyToMany(mappedBy = "participantes")
-	private List<Artista> participantes;
-	*/
+	@OneToMany(
+		mappedBy = "evento",
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		fetch = FetchType.LAZY
+	)
+	private List<Asistente> asistentes = new ArrayList<>();
+
 }

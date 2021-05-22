@@ -2,8 +2,8 @@ package com.backend.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,5 +18,5 @@ public class EventoDto {
 	private Float precio;
 	private String fotoPortada;
 	private Integer interesados;
-	
+	private List<AsistenteDto> asistentes;
 }
