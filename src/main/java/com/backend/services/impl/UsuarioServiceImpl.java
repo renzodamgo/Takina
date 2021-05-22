@@ -173,6 +173,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","REPRODUCCION_NOT_CREATED");
 		}
 
+		cancion.getProyecto().getArtista().setTotalReproducciones(
+			cancion.getProyecto().getArtista().getTotalReproducciones()+1
+		);
+
 		return modelMapper.map(reproduccion,ReproduccionDto.class);
 	}
 	// --------------------------------------------------------
@@ -246,7 +250,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
 			
 			artista.setTotalSeguidores(artista.getTotalSeguidores()-1);
-
 		} else {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
 		}
@@ -264,7 +267,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 		Usuario usuario = getUsuarioEntity(usuarioId);
 		Evento evento = eventoRepository.findById(eventoId)
 				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
-		evento.setInteresados(evento.getInteresados()+1);
 
 		Asistente asistente = new Asistente();
 		asistente.setUsuario(usuario);
@@ -276,6 +278,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
 		}
+
+		evento.setInteresados(evento.getInteresados()+1);
 
 		return modelMapper.map(asistente,AsistenteDto.class);
 	}

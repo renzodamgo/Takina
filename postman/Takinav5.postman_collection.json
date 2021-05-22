@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "32f91ed7-14b3-4a10-8551-6572d1ecc15a",
-		"name": "Takina v4",
+		"name": "Takina v5",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -70,76 +70,18 @@
 			"response": []
 		},
 		{
-			"name": "Get Usuario by Nombre",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/usuarios/nombre/fran",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"usuarios",
-						"nombre",
-						"fran"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Usuario by Apodo",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/usuarios/apodo/fran",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"usuarios",
-						"apodo",
-						"fran"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Usuario by Correo",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/usuarios/correo/what",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"usuarios",
-						"correo",
-						"what"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Search Usuario by Nombre",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/usuarios/busqueda/nombre/fran",
+					"raw": "{{base_url}}/usuarios/busqueda/fran",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"usuarios",
 						"busqueda",
-						"nombre",
 						"fran"
 					]
 				}
@@ -231,48 +173,6 @@
 			"response": []
 		},
 		{
-			"name": "Give Admin to UserId",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/artistas/administracion/1/usuario/2/nivel/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"artistas",
-						"administracion",
-						"1",
-						"usuario",
-						"2",
-						"nivel",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Artista by Nombre",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/artistas/nombre/Keiko Fuyimori",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"artistas",
-						"nombre",
-						"Keiko Fuyimori"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Search Artista by Nombre Avanzada",
 			"request": {
 				"method": "GET",
@@ -286,38 +186,6 @@
 						"artistas",
 						"busqueda",
 						"kEí"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Search Artista by Nombre",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/artistas/busqueda/nombre/kei",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"artistas",
-						"busqueda",
-						"nombre",
-						"kei"
 					]
 				}
 			},
@@ -358,6 +226,27 @@
 						"busqueda",
 						"genero",
 						"jaz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Give Admin to UserId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/artistas/administracion/1/2/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"administracion",
+						"1",
+						"2",
+						"1"
 					]
 				}
 			},
@@ -454,7 +343,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"Los 600 millones de papi\",\n    \"duracion\":2.2,\n    \"audio\":\"huelga.mp3\",\n    \"proyectoId\":1\n}",
+					"raw": "{\n    \"nombre\": \"600 millones\",\n    \"duracion\":2.2,\n    \"audio\":\"huelga.mp3\",\n    \"proyectoId\":1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -540,38 +429,18 @@
 			"response": []
 		},
 		{
-			"name": "Get Cancion by Nombre",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/canciones/nombre/Algun día lo sabrás",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"canciones",
-						"nombre",
-						"Algun día lo sabrás"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Search Cancion by Nombre",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/canciones/buscar/nombre/algun",
+					"raw": "{{base_url}}/canciones/buscar/algun",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"canciones",
 						"buscar",
-						"nombre",
 						"algun"
 					]
 				}
@@ -668,15 +537,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/playlists/id/1/cancion/1",
+					"raw": "{{base_url}}/playlists/adicion/1/1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"playlists",
-						"id",
+						"adicion",
 						"1",
-						"cancion",
 						"1"
 					]
 				}
@@ -698,13 +566,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/mercancias/nuevo",
+					"raw": "{{base_url}}/mercancias/",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"mercancias",
-						"nuevo"
+						""
 					]
 				}
 			},
@@ -716,13 +584,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/mercancias/todos",
+					"raw": "{{base_url}}/mercancias/",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"mercancias",
-						"todos"
+						""
 					]
 				}
 			},
@@ -754,7 +622,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\":\"Trujillopalooza\",\r\n    \"lugar\":\"Municipalidad de Trujillo\",\r\n    \"departamento\":\"Trujillo\",\r\n    \"fecha\":\"2021-06-16T19:00:00\",\r\n    \"precio\":50.5,\r\n    \"fotoPortada\":\"recordings/mun.jpg\",\r\n    \"interesados\":400\r\n}",
+					"raw": "{\r\n    \"nombre\":\"Trujillopalooza\",\r\n    \"descripcion\":\"Un festival de musica desde trujillo para el mundo!\",\r\n    \"lugar\":\"Municipalidad de Trujillo\",\r\n    \"direccion\":\"Av. Calle del diablo 1324 3er piso\",\r\n    \"departamento\":\"Trujillo\",\r\n    \"fecha\":\"2021-06-16T19:00:00\",\r\n    \"precio\":50.5,\r\n    \"fotoPortada\":\"recordings/mun.jpg\",\r\n    \"interesados\":0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -762,13 +630,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/eventos/nuevo",
+					"raw": "{{base_url}}/eventos/",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"eventos",
-						"nuevo"
+						""
 					]
 				}
 			},
@@ -812,39 +680,139 @@
 			"response": []
 		},
 		{
-			"name": "Get Evento by Nombre",
+			"name": "Search Evento by Departamento",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/eventos/nombre/Trujillopalooza",
+					"raw": "{{base_url}}/eventos/busqueda/departamento/truji",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"eventos",
-						"nombre",
-						"Trujillopalooza"
+						"busqueda",
+						"departamento",
+						"truji"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Search Evento by Departamento",
+			"name": "Create Reproduccion",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/eventos/buscar/departamento/truji",
+					"raw": "{{base_url}}/usuarios/reproduccion/1/3",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"eventos",
-						"buscar",
-						"departamento",
-						"truji"
+						"usuarios",
+						"reproduccion",
+						"1",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Historial By UserID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/historial/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"historial",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Seguidor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/seguidor/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"seguidor",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Seguidor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/seguidor/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"seguidor",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Asistente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/asistente/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"asistente",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Asistente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/asistente/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"asistente",
+						"1",
+						"1"
 					]
 				}
 			},

@@ -1,6 +1,6 @@
 ### RUTINA DE CHEQUEO
 
-+ crear usuario
++ crear 2 usuarios
 + crear artista
 + crear proyecto
 + crear 3 canciones
@@ -19,3 +19,21 @@
 >> que se liste las canciones
 * ver todos los usuarios
 >> que se liste las playlists
+
++ crear 6 reproducciones con las 3 canciones de manera aleatoria para un usuarioId
+* ver el historial de ese userId
+>> revisar que solo se liste una reproduccion por cancion y la fecha sea descendente
+
++ crear 2 seguidores para un artista
+*ver todos los artistas
+>> revisar si se listan los seguidores
+- eliminar un seguidor
+*ver todos los artistas
+>> revisar si el seguidor se elimino
+
++ crear 2 asistentes para un evento
+* ver todos los eventos
+>> revisar si se listan los asistentes
+- eliminar un asistente
+*ver todos los eventos
+>> revisar si el asistente se elimino
