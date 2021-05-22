@@ -8,7 +8,9 @@ import javax.transaction.Transactional;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.HistorialDto;
+import com.backend.dtos.SeguidorDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
+import com.backend.entities.Artista;
 import com.backend.entities.Usuario;
 import com.backend.entities.Cancion;
 import com.backend.entities.Reproduccion;
@@ -19,6 +21,7 @@ import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
 import com.backend.repositories.UsuarioRepository;
 import com.backend.repositories.SeguidorRepository;
+import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.ReproduccionRepository;
 import com.backend.repositories.AsistenteRepository;
 import com.backend.repositories.CancionRepository;
@@ -37,6 +40,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private AsistenteRepository asistenteRepository;
+
+	@Autowired
+	private ArtistaRepository artistaRepository;
 
 	@Autowired
 	private CancionRepository cancionRepository;
@@ -145,12 +151,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	// --------------------------------------------------------
 	@Transactional
 	@Override
-	public ReproduccionDto createReproduccion (Long usuarioId, Long cancionId) throws TakinaException {
-
-		// Validacion de repeticion de reproducciones para registrar solo la que tiene fecha reciente
-		//Optional<Reproduccion> validacion = reproduccionRepository.findByUsuarioIdAndCancionId(usuarioId, cancionId);
-		//if (validacion.isPresent()) reproduccionRepository.deleteById(validacion.get().getId());
-
+	public ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException {
 		Usuario usuario = getUsuarioEntity(usuarioId);
 		Cancion cancion = cancionRepository.findById(cancionId)
 				.orElseThrow(()->new NotFoundException("NOT-401-1","CANCION_NOT_FOUND"));
@@ -198,5 +199,50 @@ public class UsuarioServiceImpl implements UsuarioService {
 										.collect(Collectors.toList()));
 		
 		return history;
+	}
+	// --------------------------------------------------------
+	@Transactional
+	@Override
+	public SeguidorDto createSeguidor(Long usuarioId, Long artistaId) throws TakinaException {
+		Optional<Seguidor> validacion = seguidorRepository.findByUsuarioIdAndArtistaId(usuarioId, artistaId);
+		
+		if (validacion.isPresent()) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
+		}
+
+		Usuario usuario = getUsuarioEntity(usuarioId);
+		Artista artista = artistaRepository.findById(artistaId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+
+		artista.setTotalSeguidores(artista.getTotalSeguidores()+1);
+
+		Seguidor seguidor = new Seguidor();
+		seguidor.setUsuario(usuario);
+		seguidor.setArtista(artista);
+		seguidor.setFecha(LocalDateTime.now());
+
+		try {
+			seguidor = seguidorRepository.save(seguidor);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
+		}
+
+		return modelMapper.map(seguidor,SeguidorDto.class);
+	}
+	// --------------------------------------------------------
+	@Override
+	public void deleteSeguidor(Long usuarioId, Long artistaId) throws TakinaException {
+		Optional<Seguidor> validacion = seguidorRepository.findByUsuarioIdAndArtistaId(usuarioId, artistaId);
+		if (validacion.isPresent()) {
+			seguidorRepository.deleteById(validacion.get().getId());
+
+			Artista artista = artistaRepository.findById(artistaId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+			
+			artista.setTotalSeguidores(artista.getTotalSeguidores()-1);
+
+		} else {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
+		}
 	}
 }

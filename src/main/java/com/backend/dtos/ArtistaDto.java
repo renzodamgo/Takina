@@ -13,10 +13,11 @@ public class ArtistaDto {
 	private String fotoPerfil;
 	private String fotoPortada;
 	private String biografia;
-	private Integer seguidoresTotal;
-	private Integer reproduccionesTotal;
+	private Integer totalSeguidores;
+	private Integer totalReproducciones;
 	private String departamento;
 	private String genero;
 	private List<AdministradorDto> administradores;
 	private List<ProyectoMiniDto> proyectos;
+	private List<SeguidorDto> seguidores; 
 }

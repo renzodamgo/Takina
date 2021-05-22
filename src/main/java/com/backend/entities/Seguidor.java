@@ -15,9 +15,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Seguidor {
 	@Id
-	@GeneratedValue(
-		strategy = GenerationType.IDENTITY
-	)
+	@SequenceGenerator(
+        name="seguidor_sequence",
+        sequenceName = "seguidor_sequence",
+        allocationSize = 1
+    )
+    @GeneratedValue(
+    	strategy = GenerationType.SEQUENCE,
+    	generator = "seguidor_sequence"
+    )
 	@Column(
 		name="id",
 		updatable = false
@@ -25,7 +31,7 @@ public class Seguidor {
 	private Long id;
 
 	@Column(
-		name="fecha_seguimiento",
+		name="fecha",
 		nullable = false,
 		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
 	)

@@ -94,16 +94,16 @@ public class Artista {
 	// ---------------------
 
 	@Column(
-		name = "seguidores_total"
+		name = "total_seguidores"
 	)
-	private Long seguidoresTotal = 0L;
+	private Long totalSeguidores = 0L;
 	
 	// ---------------------
 	
 	@Column(
 		name = "reproducciones_total"
 	)
-	private Long reproduccionesTotal = 0L;
+	private Long totalReproducciones = 0L;
 
 	// --------------------
 	// Relaciones con las tablas de base de datos 
@@ -151,13 +151,5 @@ public class Artista {
 		fetch = FetchType.LAZY
 	)
 	private List<Invitado> invitados = new ArrayList<>();
-	
-	/*
-	@ManyToMany
-	@JoinTable(
-			name = "participantes",
-			joinColumns = @JoinColumn(name = "artista_id"),
-			inverseJoinColumns = @JoinColumn(name = "evento_id"))
-	private List<Evento> participantes;
-	*/
+
 }

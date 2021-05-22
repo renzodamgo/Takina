@@ -5,6 +5,7 @@ import java.util.List;
 import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.HistorialDto;
+import com.backend.dtos.SeguidorDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.exceptions.TakinaException;
 
@@ -36,8 +37,10 @@ public interface UsuarioService {
 	HistorialDto getHistorial(Long usuarioId) throws TakinaException;
 
 	// US009 - Creacion de seguidor
+	SeguidorDto createSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
 	
 	// US031 - Eliminacion de seguidor
+	void deleteSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
 	
 	// US032 - Creacion de asistente
 	

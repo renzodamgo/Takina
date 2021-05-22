@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-	name="seguidores"
+	name="asistentes"
 )
 @Data
 @AllArgsConstructor

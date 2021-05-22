@@ -5,6 +5,7 @@ import java.util.List;
 import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.HistorialDto;
+import com.backend.dtos.SeguidorDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
@@ -80,5 +81,22 @@ public class UsuarioController {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getHistorial(usuarioId));
 	}
-	
+
+	// Registrar un seguidor
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/seguidor/{usuarioId}/{artistaId}")
+	public TakinaResponse<SeguidorDto> createSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
+			throws TakinaException{
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				usuarioService.createSeguidor(usuarioId, artistaId));
+	}
+
+	// Eliminar un seguidor
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/seguidor/{usuarioId}/{artistaId}")
+	public TakinaResponse<String> deleteSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
+			throws TakinaException{
+		usuarioService.deleteSeguidor(usuarioId, artistaId);
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
+	}
 }

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-	name="seguidores"
+	name="invitados"
 )
 @Data
 @AllArgsConstructor
