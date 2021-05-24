@@ -81,4 +81,10 @@ public class EventoServiceImpl implements EventoService {
 		List<Evento> results = eventoRepository.findByDepartamentoContainingIgnoreCase(departamento);
 		return results.stream().map(evento -> modelMapper.map(evento,EventoDto.class)).collect(Collectors.toList());
 	}
+
+	@Override
+	public List<EventoDto> getEventosByNombre(String nombre) throws TakinaException {
+		List<Evento> results = eventoRepository.findByNombreContainingIgnoreCase(nombre);
+		return results.stream().map(evento -> modelMapper.map(evento,EventoDto.class)).collect(Collectors.toList());
+	}
 }

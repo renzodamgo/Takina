@@ -15,6 +15,9 @@ public interface EventoRepository extends JpaRepository<Evento,Long> {
 
 	List<Evento> findByDepartamentoContainingIgnoreCase(String departamento);
 
+	@Query("SELECT e FROM Evento e WHERE UPPER(e.nombre) LIKE UPPER(CONCAT('%',?1,'%'))")
+	List<Evento> findByNombreContainingIgnoreCase(String departamento);
+
 	@Query("SELECT e FROM Evento e")
 	List<Evento> findAll();
 }

@@ -52,6 +52,13 @@ public class EventoController {
 	}
 
 	// Busqueda por nombre
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/busqueda/nombre/{eventoNombre}")
+	public  TakinaResponse<List<EventoDto>> getEventosByNombre(@PathVariable String eventoNombre)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				eventoService.getEventosByNombre(eventoNombre));
+	}
 
 	// Busqueda por departamento
 	@ResponseStatus(HttpStatus.OK)
@@ -61,4 +68,6 @@ public class EventoController {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				eventoService.getEventosByDepartamento(eventoDepartamento));
 	}
+
+	
 }
