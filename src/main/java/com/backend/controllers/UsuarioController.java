@@ -49,7 +49,7 @@ public class UsuarioController {
 
 	// Busqueda de usuarios por Apodo
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/busqueda/{usuarioNombre}")
+	@GetMapping("/nombre/{usuarioNombre}")
 	public TakinaResponse<List<UsuarioDto>> getUsuariosByNombre(@PathVariable String usuarioNombre)
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",

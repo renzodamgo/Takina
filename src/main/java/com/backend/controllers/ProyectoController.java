@@ -44,7 +44,7 @@ public class ProyectoController {
 
 	// Busqueda de proyectos por nombre
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/busqueda/{proyectoNombre}")
+	@GetMapping("/nombre/{proyectoNombre}")
 	public TakinaResponse<List<ProyectoDto>> getProyectosByNombre(@PathVariable String proyectoNombre)
 			throws TakinaException{
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
