@@ -63,7 +63,7 @@ public class ArtistaController {
 					artistaService.getArtistasByDepartamento(artistaDepartamento));
 	}
 
-	// Busqueda avanzada por nombre
+	// Busqueda por nombre
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/nombre/{artistaNombre}")
 	public TakinaResponse<List<ArtistaDto>> searchArtistasByNombre(@PathVariable String artistaNombre)
