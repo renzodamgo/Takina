@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class InvitadoDto {
 	//private Long eventoId;
-	private Long artistaId;
+	private String artistaNombre;
 	private LocalTime horaInicio;
 	private LocalTime horaFin;
 }

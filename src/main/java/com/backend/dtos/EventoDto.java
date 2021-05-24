@@ -19,4 +19,5 @@ public class EventoDto {
 	private String fotoPortada;
 	private Integer interesados;
 	private List<AsistenteDto> asistentes;
+	private List<InvitadoDto> invitados;
 }

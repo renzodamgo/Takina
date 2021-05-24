@@ -1,36 +1,51 @@
 package com.backend.services.impl;
 
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import java.util.stream.Collectors;
-
 import com.backend.dtos.EventoDto;
 import com.backend.dtos.creates.CreateEventoDto;
+import com.backend.dtos.creates.CreateInvitadoDto;
 import com.backend.entities.Evento;
+import com.backend.entities.Invitado;
+import com.backend.dtos.InvitadoDto;
+import com.backend.repositories.InvitadoRepository;
+import com.backend.entities.Artista;
+import com.backend.repositories.ArtistaRepository;
 import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
 import com.backend.repositories.EventoRepository;
 import com.backend.services.EventoService;
 import org.modelmapper.ModelMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service 
 public class EventoServiceImpl implements EventoService {
+	private static final ModelMapper modelMapper = new ModelMapper();
 
 	@Autowired
 	private EventoRepository eventoRepository;
-	private static final ModelMapper modelMapper = new ModelMapper();
+
+	@Autowired
+	private ArtistaRepository artistaRepository;
+
+	@Autowired
+	private InvitadoRepository invitadoRepository;
+
 
 	@Override
 	public EventoDto getEventoId(Long eventoId) throws TakinaException {
 		return modelMapper.map(getEventoEntity(eventoId), EventoDto.class);
 	}
+	
 
 
-	private Object getEventoEntity(Long eventoId) throws NotFoundException {
-		return eventoRepository.findById(eventoId).orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+	private Evento getEventoEntity(Long eventoId) throws NotFoundException {
+		return eventoRepository.findById(eventoId)
+				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Evento_NOTFOUND-404"));
 	}
 
 
@@ -87,4 +102,46 @@ public class EventoServiceImpl implements EventoService {
 		List<Evento> results = eventoRepository.findByNombreContainingIgnoreCase(nombre);
 		return results.stream().map(evento -> modelMapper.map(evento,EventoDto.class)).collect(Collectors.toList());
 	}
+
+
+	@Transactional
+	@Override
+	public InvitadoDto createInvitado(CreateInvitadoDto createInvitadoDto) throws TakinaException {
+		Optional<Invitado> validacion = invitadoRepository.findByEventoIdAndArtistaId(
+			createInvitadoDto.getEventoId(), createInvitadoDto.getArtistaId());
+		
+		if (validacion.isPresent()) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INVITADO_NOT_CREATED");
+		}
+
+		Evento evento = getEventoEntity(createInvitadoDto.getEventoId());
+		Artista artista = artistaRepository.findById(createInvitadoDto.getArtistaId())
+				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+
+		Invitado invitado = new Invitado();
+		invitado.setArtista(artista);
+		invitado.setEvento(evento);
+		invitado.setHoraInicio(createInvitadoDto.getHoraInicio());
+		invitado.setHoraFin(createInvitadoDto.getHoraFin());
+
+		try {
+			invitado = invitadoRepository.save(invitado);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INVITADO_NOT_FOUND");
+		}
+
+		return modelMapper.map(invitado,InvitadoDto.class);
+	}
+
+	@Override
+	public void deleteInvitado(Long eventoId, Long artistaId) throws TakinaException {
+		Optional<Invitado> validacion = invitadoRepository.findByEventoIdAndArtistaId(eventoId, artistaId);
+		if (validacion.isPresent()) {
+			invitadoRepository.deleteById(validacion.get().getId());
+		} else {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INVITADO_NOT_FOUND");
+		}
+	}
+
+
 }

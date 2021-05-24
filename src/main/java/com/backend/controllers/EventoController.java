@@ -3,12 +3,15 @@ package com.backend.controllers;
 import java.util.List;
 
 import com.backend.dtos.EventoDto;
+import com.backend.dtos.InvitadoDto;
 import com.backend.dtos.creates.CreateEventoDto;
+import com.backend.dtos.creates.CreateInvitadoDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
 import com.backend.services.EventoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,6 +70,25 @@ public class EventoController {
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				eventoService.getEventosByDepartamento(eventoDepartamento));
+	}
+
+	// Creacion de invitado
+	@ResponseStatus(HttpStatus.OK)
+	@PostMapping("/invitados")
+	public  TakinaResponse<InvitadoDto> createInvitado(@RequestBody CreateInvitadoDto createInvitadoDto)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				eventoService.createInvitado(createInvitadoDto));
+	}
+
+	// Eliminar invitado
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/invitados/{eventoId}/{artistaId}")
+	public  TakinaResponse<String> deleteInvitado(@PathVariable Long eventoId, @PathVariable Long artistaId)
+			throws TakinaException {
+		eventoService.deleteInvitado(eventoId, artistaId);
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				"Invitado eliminado satisfactoriamente.");
 	}
 
 	
