@@ -5,14 +5,10 @@ import { Song } from './song.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'platzi-store';
-
-  items = ['nicolas', 'julian', 'perez'];
-
-  objeto = {};
+  title = 'Takina';
 
   songs: Song[] = [
     {
@@ -31,14 +27,6 @@ export class AppComponent {
       title: 'Purified',
     },
   ];
-
-  addItem() {
-    this.items.push('nuevo item');
-  }
-
-  deleteItem(index: number) {
-    this.items.splice(index, 1);
-  }
 
   clickSong(id: number) {
     console.log('song');

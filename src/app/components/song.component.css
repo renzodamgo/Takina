@@ -28,6 +28,12 @@ img {
     transition: .3s ease;
 }
 
+button{
+    color: red;
+    background-color: yellow;
+    border: solid;
+}
+
 :host:hover .capa{
     transform: scale(1);
 }
