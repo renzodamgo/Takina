@@ -32,8 +32,10 @@
 >> revisar si el seguidor se elimino
 
 + crear 2 asistentes para un evento
++ crear un invitado para un evento
 * ver todos los eventos
->> revisar si se listan los asistentes
+>> revisar si se listan los asistentes y los invitados
 - eliminar un asistente
+- eliminar un invitado
 *ver todos los eventos
->> revisar si el asistente se elimino
+>> revisar si el asistente e invitado se elimino

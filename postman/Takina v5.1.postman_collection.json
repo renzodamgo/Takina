@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "32f91ed7-14b3-4a10-8551-6572d1ecc15a",
-		"name": "Takina v5",
+		"name": "Takina v5.1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -178,13 +178,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/artistas/busqueda/kEí",
+					"raw": "{{base_url}}/artistas/nombre/kEí",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"artistas",
-						"busqueda",
+						"nombre",
 						"kEí"
 					]
 				}
@@ -197,13 +197,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/artistas/busqueda/departamento/lim",
+					"raw": "{{base_url}}/artistas/departamento/lim",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"artistas",
-						"busqueda",
 						"departamento",
 						"lim"
 					]
@@ -217,13 +216,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/artistas/busqueda/genero/jaz",
+					"raw": "{{base_url}}/artistas/genero/jaz",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"artistas",
-						"busqueda",
 						"genero",
 						"jaz"
 					]
@@ -322,13 +320,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/proyectos/busqueda/nombre/año",
+					"raw": "{{base_url}}/proyectos/nombre/año",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"proyectos",
-						"busqueda",
 						"nombre",
 						"año"
 					]
@@ -434,13 +431,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/canciones/buscar/algun",
+					"raw": "{{base_url}}/canciones/nombre/algun",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"canciones",
-						"buscar",
+						"nombre",
 						"algun"
 					]
 				}
@@ -453,13 +450,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/canciones/buscar/genero/rock",
+					"raw": "{{base_url}}/canciones/genero/rock",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"canciones",
-						"buscar",
 						"genero",
 						"rock"
 					]
@@ -685,14 +681,32 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/eventos/busqueda/departamento/truji",
+					"raw": "{{base_url}}/eventos/departamento/truji",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"eventos",
-						"busqueda",
 						"departamento",
+						"truji"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Evento by Nombre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/eventos/nombre/truji",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						"nombre",
 						"truji"
 					]
 				}
@@ -811,6 +825,62 @@
 					"path": [
 						"usuarios",
 						"asistente",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Invitado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/eventos/invitados",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						"invitados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Invitado",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/eventos/invitados/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						"invitados",
 						"1",
 						"1"
 					]
