@@ -17,6 +17,7 @@ import com.backend.repositories.ArtistaRepository;
 import com.backend.services.ProyectoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -70,6 +71,22 @@ public class ProyectoServiceImpl implements ProyectoService {
 		proyecto.setArtista(artista);
 		proyecto.setFotoPortada(createproyectoDto.getFotoPortada());
 		proyecto.setGenero(artista.getGenero());
+
+		try {
+			proyecto = proyectoRepository.save(proyecto);
+		}catch (Exception ex){
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
+		}
+		//artista.getProyectos().add(proyecto);
+
+		return modelMapper.map(getProyectoEntity(proyecto.getId()),ProyectoDto.class);
+	}
+
+	public ProyectoDto replaceDescription(ProyectoDto proyectoDto)throws TakinaException {
+		Proyecto proyecto = proyectoRepository.findById(proyectoDto.getId())
+				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
+
+		proyecto.setDescripcion(proyectoDto.getDescripcion());
 
 		try {
 			proyecto = proyectoRepository.save(proyecto);

@@ -15,7 +15,7 @@ import java.util.List;
 public class ProyectoController {
 	@Autowired
 	private ProyectoService proyectoService;
-	
+
 	// Crear proyecto
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping
@@ -51,6 +51,16 @@ public class ProyectoController {
 			proyectoService.getProyectosByNombre(proyectoNombre));
 	}
 
-	// Busqueda de proyectos por genero musical
+	//TODO: cambiar descripcion de proyecto musical (PUT)
+	@ResponseStatus(HttpStatus.OK)
+	@PutMapping
+	public TakinaResponse<ProyectoDto> updateDescription(@RequestBody ProyectoDto proyectoDto)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				proyectoService.replaceDescription(proyectoDto));
+	}
+	//TODO: validacion de creacion artista no puede tener 2 proyectos del mismo nombre
+
+	//TODO: Busqueda de proyectos por genero musical
 
 }
