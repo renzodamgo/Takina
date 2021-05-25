@@ -317,5 +317,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 		return modelMapper.map(usuario,UsuarioDto.class);
 	}
+	// --------------------------------------------------------
+	@Override
+	public UsuarioDto togglePremium(Long usuarioId) throws TakinaException {
+		Usuario usuario = getUsuarioEntity(usuarioId);
+		usuario.setPremium(usuario.getPremium() ^ true);
 
+		try {
+			usuario = usuarioRepository.save(usuario);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USER_NOT_EDITED");
+		}
+
+		return modelMapper.map(usuario,UsuarioDto.class);
+	}
 }

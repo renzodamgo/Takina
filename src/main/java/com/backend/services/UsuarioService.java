@@ -54,5 +54,5 @@ public interface UsuarioService {
 	UsuarioDto editUsuario(EditUsuarioDto editUsuarioDto) throws TakinaException;
 	
 	// US011 - Actualizacion a premium
-	// ¿¿¿???
+	UsuarioDto togglePremium(Long usuarioId) throws TakinaException;
 }

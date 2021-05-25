@@ -35,7 +35,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping
 	public TakinaResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
-			throws TakinaException{
+			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.createUsuario(createUsuarioDto));
 	}
@@ -61,7 +61,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/login/{login}/{password}")
 	public TakinaResponse<UsuarioDto> loginUsuarioByApodoOrCorreoUsingPassword(@PathVariable String login, @PathVariable String password)
-			throws TakinaException{
+			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.loginUsuarioByApodoOrCorreoUsingPassword(login,password));
 	}
@@ -70,7 +70,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/reproduccion/{usuarioId}/{cancionId}")
 	public TakinaResponse<ReproduccionDto> createReproduccion(@PathVariable Long usuarioId, @PathVariable Long cancionId)
-			throws TakinaException{
+			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.createReproduccion(usuarioId,cancionId));
 	}
@@ -79,7 +79,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/historial/{usuarioId}")
 	public TakinaResponse<HistorialDto> getHistorial(@PathVariable Long usuarioId)
-			throws TakinaException{
+			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getHistorial(usuarioId));
 	}
@@ -88,7 +88,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/seguidor/{usuarioId}/{artistaId}")
 	public TakinaResponse<SeguidorDto> createSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
-			throws TakinaException{
+			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.createSeguidor(usuarioId, artistaId));
 	}
@@ -97,7 +97,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("/seguidor/{usuarioId}/{artistaId}")
 	public TakinaResponse<String> deleteSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
-			throws TakinaException{
+			throws TakinaException {
 		usuarioService.deleteSeguidor(usuarioId, artistaId);
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
 	}
@@ -106,7 +106,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/asistente/{usuarioId}/{eventoId}")
 	public TakinaResponse<AsistenteDto> createAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
-			throws TakinaException{
+			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.createAsistente(usuarioId, eventoId));
 	}
@@ -115,7 +115,7 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("/asistente/{usuarioId}/{eventoId}")
 	public TakinaResponse<String> deleteAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
-			throws TakinaException{
+			throws TakinaException {
 		usuarioService.deleteAsistente(usuarioId, eventoId);
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
 	}
@@ -124,9 +124,18 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping
 	public TakinaResponse<UsuarioDto> editUsuario(@RequestBody EditUsuarioDto editUsuarioDto)
-			throws TakinaException{
+			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.editUsuario(editUsuarioDto));
+	}
+
+	// Cambiar valor de premium
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/premium/{usuarioId}")
+	public TakinaResponse<UsuarioDto> togglePremium(@PathVariable Long usuarioId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				usuarioService.togglePremium(usuarioId));
 	}
 
 }
