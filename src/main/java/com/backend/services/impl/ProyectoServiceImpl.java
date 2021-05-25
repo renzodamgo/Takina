@@ -37,7 +37,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return proyectoEntity.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
 	}
 
-
+	@Override
 	public List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) {
 		List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(aritstaId);
 		return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());

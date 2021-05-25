@@ -14,7 +14,8 @@ public interface ProyectoService {
 	ProyectoDto getProyectoById(Long cancionId) throws TakinaException;
 	// Obtener proyecto por Nombre
 	ProyectoDto getProyectoByNombre(String nombre) throws TakinaException;
-	// Mostrar todos los proyectos 
+
+	// Mostrar todos los proyectos
 	List<ProyectoDto> getProyectos() throws TakinaException;
 
 	// US022 - Como usuario Quiero buscar un proyecto  según una porción de texto Para revisar la produccion  en ese instante
@@ -24,4 +25,6 @@ public interface ProyectoService {
 	ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException;
 
 	ProyectoDto replaceDescription(ProyectoDto proyectoDto) throws TakinaException;
+
+	List<ProyectoDto> getProyectosByAritstaId(Long aritstaId);
 }

@@ -46,17 +46,24 @@ public class ProyectoController {
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/nombre/{proyectoNombre}")
 	public TakinaResponse<List<ProyectoDto>> getProyectosByNombre(@PathVariable String proyectoNombre)
-			throws TakinaException{
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-			proyectoService.getProyectosByNombre(proyectoNombre));
+			throws TakinaException {
+		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
+				proyectoService.getProyectosByNombre(proyectoNombre));
 	}
 
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/artista_id/{artistaId}")
+	public TakinaResponse<List<ProyectoDto>> getProyectoByArtistaId(@PathVariable Long artistaId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
+				proyectoService.getProyectosByAritstaId(artistaId));
+	}
 
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping
 	public TakinaResponse<ProyectoDto> updateDescription(@RequestBody ProyectoDto proyectoDto)
 			throws TakinaException {
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
 				proyectoService.replaceDescription(proyectoDto));
 	}
 
