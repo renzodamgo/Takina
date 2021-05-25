@@ -9,11 +9,14 @@ import java.util.Optional;
 import java.util.List;
 
 @Repository
-public interface ProyectoRepository extends JpaRepository<Proyecto,Long> {
+public interface ProyectoRepository extends JpaRepository<Proyecto, Long> {
 	Optional<Proyecto> findById(Long id);
+
 	Optional<Proyecto> findByNombre(String nombre);
 
 	List<Proyecto> findByNombreContainingIgnoreCase(String nombre);
+
+	List<Proyecto> findByArtistaId(Long artista_id);
 
 	@Query("SELECT pm FROM Proyecto pm")
 	List<Proyecto> findAll();

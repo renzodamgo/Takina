@@ -51,7 +51,7 @@ public class ProyectoController {
 			proyectoService.getProyectosByNombre(proyectoNombre));
 	}
 
-	//TODO: cambiar descripcion de proyecto musical (PUT)
+
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping
 	public TakinaResponse<ProyectoDto> updateDescription(@RequestBody ProyectoDto proyectoDto)
@@ -59,7 +59,7 @@ public class ProyectoController {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				proyectoService.replaceDescription(proyectoDto));
 	}
-	//TODO: validacion de creacion artista no puede tener 2 proyectos del mismo nombre
+
 
 	//TODO: Busqueda de proyectos por genero musical
 
