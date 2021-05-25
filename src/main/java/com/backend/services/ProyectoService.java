@@ -6,7 +6,6 @@ import java.util.List;
 import com.backend.dtos.ProyectoDto;
 import com.backend.dtos.creates.CreateProyectoDto;
 import com.backend.exceptions.TakinaException;
-import com.backend.responses.TakinaResponse;
 
 public interface ProyectoService {
 

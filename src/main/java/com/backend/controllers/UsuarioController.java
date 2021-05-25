@@ -8,6 +8,7 @@ import com.backend.dtos.HistorialDto;
 import com.backend.dtos.SeguidorDto;
 import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
+import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
 import com.backend.services.UsuarioService;
@@ -117,6 +118,15 @@ public class UsuarioController {
 			throws TakinaException{
 		usuarioService.deleteAsistente(usuarioId, eventoId);
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
+	}
+
+	// Editar un usuario
+	@ResponseStatus(HttpStatus.OK)
+	@PutMapping
+	public TakinaResponse<UsuarioDto> editUsuario(@RequestBody EditUsuarioDto editUsuarioDto)
+			throws TakinaException{
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				usuarioService.editUsuario(editUsuarioDto));
 	}
 
 }

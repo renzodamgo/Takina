@@ -2,9 +2,7 @@ package com.backend.services.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
-
 import com.backend.dtos.ProyectoDto;
 import com.backend.dtos.creates.CreateProyectoDto;
 import com.backend.entities.Proyecto;
@@ -17,7 +15,6 @@ import com.backend.repositories.ArtistaRepository;
 import com.backend.services.ProyectoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -74,7 +71,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 
 		try {
 			proyecto = proyectoRepository.save(proyecto);
-		}catch (Exception ex){
+		} catch (Exception ex){
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
 		}
 		//artista.getProyectos().add(proyecto);
@@ -90,7 +87,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 
 		try {
 			proyecto = proyectoRepository.save(proyecto);
-		}catch (Exception ex){
+		} catch (Exception ex){
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
 		}
 		//artista.getProyectos().add(proyecto);
