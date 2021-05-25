@@ -55,8 +55,13 @@ public class ProyectoController {
 	@GetMapping("/artista_id/{artistaId}")
 	public TakinaResponse<List<ProyectoDto>> getProyectoByArtistaId(@PathVariable Long artistaId)
 			throws TakinaException {
-		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
-				proyectoService.getProyectosByAritstaId(artistaId));
+		try {
+			return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
+					proyectoService.getProyectosByAritstaId(artistaId));
+		} catch (Exception err) {
+			return new TakinaResponse<>("Failure", String.valueOf(HttpStatus.NOT_FOUND), String.format("NO PROJECTS WHERE FOUND WITH ARTIST ID: %d", artistaId));
+		}
+
 	}
 
 	@ResponseStatus(HttpStatus.OK)
@@ -66,8 +71,5 @@ public class ProyectoController {
 		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
 				proyectoService.replaceDescription(proyectoDto));
 	}
-
-
-	//TODO: Busqueda de proyectos por genero musical
 
 }

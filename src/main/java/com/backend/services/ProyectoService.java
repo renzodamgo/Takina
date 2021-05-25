@@ -26,5 +26,5 @@ public interface ProyectoService {
 
 	ProyectoDto replaceDescription(ProyectoDto proyectoDto) throws TakinaException;
 
-	List<ProyectoDto> getProyectosByAritstaId(Long aritstaId);
+	List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) throws TakinaException;
 }

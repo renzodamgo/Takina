@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import com.backend.dtos.ProyectoDto;
 import com.backend.dtos.creates.CreateProyectoDto;
+import com.backend.entities.Cancion;
 import com.backend.entities.Proyecto;
 import com.backend.entities.Artista;
 import com.backend.exceptions.InternalServerErrorException;
@@ -37,11 +38,14 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return proyectoEntity.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
 	}
 
-	@Override
-	public List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) {
-		List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(aritstaId);
-		return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
-	}
+    @Override
+    public List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) throws TakinaException {
+        List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(aritstaId);
+        if (proyectoEntities.isEmpty()) {
+            throw new NotFoundException("NOTFOUND-404", "CANCION_NOTFOUND-404");
+        }
+        return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
+    }
 
 	// -------------------------------------------------------
 	@Override
