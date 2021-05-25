@@ -29,6 +29,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 
 	@Autowired
 	private ProyectoRepository proyectoRepository;
+
 	// -------------------------------------------------------
 	@Override
 	public List<ProyectoDto> getProyectos() throws TakinaException {
@@ -36,15 +37,22 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return proyectoEntity.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
 	}
 
+
+	public List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) {
+		List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(aritstaId);
+		return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
+	}
+
 	// -------------------------------------------------------
 	@Override
 	public ProyectoDto getProyectoById(Long proyectoId) throws TakinaException {
-		return modelMapper.map(getProyectoEntity(proyectoId),ProyectoDto.class);
+		return modelMapper.map(getProyectoEntity(proyectoId), ProyectoDto.class);
 
 	}
+
 	private Proyecto getProyectoEntity(Long proyectoId) throws TakinaException {
 		return proyectoRepository.findById(proyectoId)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
+				.orElseThrow(() -> new NotFoundException("NOTFOUND-404", "PROYECTO_NOTFOUND-404"));
 	}
 	// -------------------------------------------------------
 	@Override
@@ -65,9 +73,9 @@ public class ProyectoServiceImpl implements ProyectoService {
 				.orElseThrow(() -> new NotFoundException("NOT-401-1", "ARTISTA_NOT_FOUND"));
 
 //		if (proyectoRepository.findByNombre(createproyectoDto.getNombre())==createproyectoDto.getNombre())
-		List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(createproyectoDto.getArtistaId());
+		List<ProyectoDto> proyectoEntities = getProyectosByAritstaId(createproyectoDto.getArtistaId());
 
-		for (Proyecto p : proyectoEntities) {
+		for (ProyectoDto p : proyectoEntities) {
 			if (p.getNombre().equals(createproyectoDto.getNombre())) {
 				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "PROYECTO_MUST_HAVE_DIFFERENT_NAME");
 			}
