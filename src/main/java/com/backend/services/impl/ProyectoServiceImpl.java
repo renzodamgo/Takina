@@ -53,11 +53,22 @@ public class ProyectoServiceImpl implements ProyectoService {
 				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
 	}
 	// --------------------------------------------------------
+
+
 	@Transactional
 	@Override
 	public ProyectoDto createProyecto(CreateProyectoDto createproyectoDto) throws TakinaException {
 		Artista artista = artistaRepository.findById(createproyectoDto.getArtistaId())
-				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+				.orElseThrow(() -> new NotFoundException("NOT-401-1", "ARTISTA_NOT_FOUND"));
+
+//		if (proyectoRepository.findByNombre(createproyectoDto.getNombre())==createproyectoDto.getNombre())
+		List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(createproyectoDto.getArtistaId());
+
+		for (Proyecto p : proyectoEntities) {
+			if (p.getNombre().equals(createproyectoDto.getNombre())) {
+				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "PROYECTO_MUST_HAVE_DIFFERENT_NAME");
+			}
+		}
 
 		Proyecto proyecto = new Proyecto();
 		proyecto.setNombre(createproyectoDto.getNombre());
