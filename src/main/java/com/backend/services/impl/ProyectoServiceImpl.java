@@ -38,14 +38,23 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return proyectoEntity.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
 	}
 
-    @Override
-    public List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) throws TakinaException {
-        List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(aritstaId);
-        if (proyectoEntities.isEmpty()) {
-            throw new NotFoundException("NOTFOUND-404", "CANCION_NOTFOUND-404");
-        }
-        return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
-    }
+	@Override
+	public List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) throws TakinaException {
+		List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(aritstaId);
+		if (proyectoEntities.isEmpty()) {
+			throw new NotFoundException("NOTFOUND-404", "CANCION_NOTFOUND-404");
+		}
+		return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ProyectoDto> getProyectosByGenero(String genero) throws TakinaException {
+		List<Proyecto> proyectoEntities = proyectoRepository.findByGeneroContainingIgnoreCase(genero);
+		if (proyectoEntities.isEmpty()) {
+			throw new NotFoundException("NOTFOUND-404", "CANCION_NOTFOUND-404");
+		}
+		return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
+	}
 
 	// -------------------------------------------------------
 	@Override

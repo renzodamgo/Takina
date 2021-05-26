@@ -19,6 +19,8 @@ public interface ProyectoRepository extends JpaRepository<Proyecto, Long> {
 
 	List<Proyecto> findByArtistaId(Long artista_id);
 
+	List<Proyecto> findByGeneroContainingIgnoreCase(String genero);
+
 	@Query("SELECT pm FROM Proyecto pm")
 	List<Proyecto> findAll();
 }

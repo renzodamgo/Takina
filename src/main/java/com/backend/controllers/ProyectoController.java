@@ -65,6 +65,19 @@ public class ProyectoController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/genero/{genero}")
+	public TakinaResponse<List<ProyectoDto>> getProyectoByGenero(@PathVariable String genero)
+			throws TakinaException {
+		try {
+			return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
+					proyectoService.getProyectosByGenero(genero));
+		} catch (Exception err) {
+			return new TakinaResponse<>("Failure", String.valueOf(HttpStatus.NOT_FOUND), String.format("NO PROJECTS WHERE FOUND WITH GENRE: %s", genero));
+		}
+
+	}
+
+	@ResponseStatus(HttpStatus.OK)
 	@PutMapping
 	public TakinaResponse<ProyectoDto> updateDescription(@RequestBody ProyectoDto proyectoDto)
 			throws TakinaException {

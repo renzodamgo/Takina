@@ -18,13 +18,15 @@ public interface ProyectoService {
 	// Mostrar todos los proyectos
 	List<ProyectoDto> getProyectos() throws TakinaException;
 
-	// US022 - Como usuario Quiero buscar un proyecto  según una porción de texto Para revisar la produccion  en ese instante
-	List<ProyectoDto> getProyectosByNombre(String nombre) throws TakinaException;
+    // US022 - Como usuario Quiero buscar un proyecto  según una porción de texto Para revisar la produccion  en ese instante
+    List<ProyectoDto> getProyectosByNombre(String nombre) throws TakinaException;
 
-	// US014 - Como usuario administrador de un perfil de artista Quiero publicar proyectos  a la plataforma Para promocionar mi música públicamente
-	ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException;
+    // US014 - Como usuario administrador de un perfil de artista Quiero publicar proyectos  a la plataforma Para promocionar mi música públicamente
+    ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException;
 
-	ProyectoDto replaceDescription(ProyectoDto proyectoDto) throws TakinaException;
+    ProyectoDto replaceDescription(ProyectoDto proyectoDto) throws TakinaException;
 
-	List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) throws TakinaException;
+    List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) throws TakinaException;
+
+    List<ProyectoDto> getProyectosByGenero(String genero) throws TakinaException;
 }
