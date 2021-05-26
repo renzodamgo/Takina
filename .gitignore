@@ -42,3 +42,4 @@ build/
 !.vscode/extensions.json
 *.code-workspace
 .history/
+.DS_Store
