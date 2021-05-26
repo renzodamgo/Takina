@@ -53,11 +53,11 @@ public class ProyectoController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/artista_id/{artistaId}")
-	public TakinaResponse<List<ProyectoDto>> getProyectoByArtistaId(@PathVariable Long artistaId)
+	public TakinaResponse<List<ProyectoDto>> getProyectosByArtistaId(@PathVariable Long artistaId)
 			throws TakinaException {
 		try {
 			return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
-					proyectoService.getProyectosByAritstaId(artistaId));
+					proyectoService.getProyectosByArtistaId(artistaId));
 		} catch (Exception err) {
 			return new TakinaResponse<>("Failure", String.valueOf(HttpStatus.NOT_FOUND), String.format("NO PROJECTS WHERE FOUND WITH ARTIST ID: %d", artistaId));
 		}

@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import com.backend.dtos.ProyectoDto;
 import com.backend.dtos.creates.CreateProyectoDto;
-import com.backend.entities.Cancion;
 import com.backend.entities.Proyecto;
 import com.backend.entities.Artista;
 import com.backend.exceptions.InternalServerErrorException;
@@ -36,11 +35,8 @@ public class ProyectoServiceImpl implements ProyectoService {
 	}
 
 	@Override
-	public List<ProyectoDto> getProyectosByAritstaId(Long aritstaId) throws TakinaException {
-		List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(aritstaId);
-		if (proyectoEntities.isEmpty()) {
-			throw new NotFoundException("NOTFOUND-404", "CANCION_NOTFOUND-404");
-		}
+	public List<ProyectoDto> getProyectosByArtistaId(Long artistaId) throws TakinaException {
+		List<Proyecto> proyectoEntities = proyectoRepository.findByArtistaId(artistaId);
 		return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
 	}
 
@@ -78,27 +74,26 @@ public class ProyectoServiceImpl implements ProyectoService {
 
 	@Transactional
 	@Override
-	public ProyectoDto createProyecto(CreateProyectoDto createproyectoDto) throws TakinaException {
-		Artista artista = artistaRepository.findById(createproyectoDto.getArtistaId())
+	public ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException {
+		Artista artista = artistaRepository.findById(createProyectoDto.getArtistaId())
 				.orElseThrow(() -> new NotFoundException("NOT-401-1", "ARTISTA_NOT_FOUND"));
 
 //		if (proyectoRepository.findByNombre(createproyectoDto.getNombre())==createproyectoDto.getNombre())
-		List<ProyectoDto> proyectoEntities = getProyectosByAritstaId(createproyectoDto.getArtistaId());
-
+		List<ProyectoDto> proyectoEntities = getProyectosByArtistaId(createProyectoDto.getArtistaId());
 		for (ProyectoDto p : proyectoEntities) {
-			if (p.getNombre().equals(createproyectoDto.getNombre())) {
+			if (p.getNombre().equals(createProyectoDto.getNombre())) {
 				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "PROYECTO_MUST_HAVE_DIFFERENT_NAME");
 			}
 		}
 
 		Proyecto proyecto = new Proyecto();
-		proyecto.setNombre(createproyectoDto.getNombre());
-		proyecto.setTipo(createproyectoDto.getTipo());
-		proyecto.setDescripcion(createproyectoDto.getDescripcion());
-		proyecto.setLanzamiento(createproyectoDto.getLanzamiento());
-		proyecto.setDiscografica(createproyectoDto.getDiscografica());
+		proyecto.setNombre(createProyectoDto.getNombre());
+		proyecto.setTipo(createProyectoDto.getTipo());
+		proyecto.setDescripcion(createProyectoDto.getDescripcion());
+		proyecto.setLanzamiento(createProyectoDto.getLanzamiento());
+		proyecto.setDiscografica(createProyectoDto.getDiscografica());
 		proyecto.setArtista(artista);
-		proyecto.setFotoPortada(createproyectoDto.getFotoPortada());
+		proyecto.setFotoPortada(createProyectoDto.getFotoPortada());
 		proyecto.setGenero(artista.getGenero());
 
 		try {
@@ -106,7 +101,6 @@ public class ProyectoServiceImpl implements ProyectoService {
 		} catch (Exception ex){
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
 		}
-		//artista.getProyectos().add(proyecto);
 
 		return modelMapper.map(getProyectoEntity(proyecto.getId()),ProyectoDto.class);
 	}
@@ -122,10 +116,10 @@ public class ProyectoServiceImpl implements ProyectoService {
 		} catch (Exception ex){
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
 		}
-		//artista.getProyectos().add(proyecto);
 
 		return modelMapper.map(getProyectoEntity(proyecto.getId()),ProyectoDto.class);
 	}
+
 	@Override
 	public List<ProyectoDto> getProyectosByNombre(String nombre) throws TakinaException{
 		List<Proyecto> results = proyectoRepository.findByNombreContainingIgnoreCase(nombre);

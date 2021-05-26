@@ -52,6 +52,16 @@ public class CancionController {
 			throws TakinaException {
 		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 				cancionService.getCancionId(cancionId));
+	}
+
+	// Eliminar Cancion por ID
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/id/{cancionId}")
+	public TakinaResponse<String> deleteCancionById(@PathVariable Long cancionId)
+			throws TakinaException {
+		cancionService.deleteCancionById(cancionId);
+		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+				"Cancion Eliminada correctamente.");
 
 	}
 

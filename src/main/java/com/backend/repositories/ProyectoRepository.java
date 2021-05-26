@@ -1,6 +1,5 @@
 package com.backend.repositories;
 
-import com.backend.dtos.ProyectoDto;
 import com.backend.entities.Proyecto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
