@@ -26,5 +26,8 @@ public interface CancionService {
 
 	// US025 - Como usuario Quiero buscar canciones por su genero musical Para escuchar y armar mi playlist ideal
 	List<CancionDto> getCancionesByGeneroMusical(String nombre) throws TakinaException;
+
+	// US038 - Eliminar cancion de proyecto
+	void deleteCancionById(Long cancionId) throws TakinaException;
 	
 }

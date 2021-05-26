@@ -19,6 +19,8 @@ public interface CancionRepository extends JpaRepository<Cancion,Long> {
 	List<Cancion> findByNombreContainingIgnoreCase(String nombre);
 	List<Cancion> findByGeneroContainingIgnoreCase(String generoMusical);
 
+	void deleteById(Long id);
+
 	@Query("SELECT c FROM Cancion c")
 	List<Cancion> findAll();
 }

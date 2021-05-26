@@ -1,6 +1,7 @@
 package com.backend.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -179,11 +180,23 @@ public class CancionServiceImpl implements CancionService {
 		List<Cancion> results = cancionRepository.findByNombreContainingIgnoreCase(nombre);
 		return results.stream().map(cancion -> modelMapper.map(cancion,CancionDto.class)).collect(Collectors.toList());
 	}
-	
+	// --------------------------------------------------------
 	// Buscar por genero musical
 	@Override
 	public List<CancionDto> getCancionesByGeneroMusical(String generoMusical) throws TakinaException {
 		List<Cancion> results = cancionRepository.findByGeneroContainingIgnoreCase(generoMusical);
 		return results.stream().map(cancion -> modelMapper.map(cancion,CancionDto.class)).collect(Collectors.toList());
+	}
+	// --------------------------------------------------------
+	// Eliminar por ID
+	@Override
+	public void deleteCancionById(Long cancionId) throws TakinaException {
+		Optional<Cancion> validacion = cancionRepository.findById(cancionId);
+
+		if (validacion.isPresent()) {
+			cancionRepository.deleteById(cancionId);
+		} else {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_FOUND");
+		}
 	}
 }

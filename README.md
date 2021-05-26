@@ -13,9 +13,9 @@ Swagger: https://takina.herokuapp.com/swagger-ui.html
 - [ ] descarga de contenido - US012
 
 - [ ] (cancion) cancion tiene un track number en un proyecto musical
-- [ ] (cancion) eliminar cancion (cascade drop)
-- [ ] (cancion) mostrar informacion completa de cancion y sus creditos - US026
-- [ ] (cancion) validacion de creacion proyectos no puede tener 2 canciones del mismo nombre
+- [X] (cancion) eliminar cancion - US038 (cascade drop)
+- [X] (cancion) mostrar informacion completa de cancion y sus creditos - US026
+- [X] (cancion) validacion de creacion proyectos no puede tener 2 canciones del mismo nombre
 
 - [X] (proyecto) cambiar descripcion de proyecto musical (PUT)
 - [X] (proyecto) validacion de creacion artista no puede tener 2 proyectos del mismo nombre
