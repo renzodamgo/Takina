@@ -1,0 +1,974 @@
+{
+	"info": {
+		"_postman_id": "ff462f1d-ae5f-4074-9b5e-776958898a6b",
+		"name": "Takina v5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"apodo\": \"franyoss\",\r\n  \"password\": \"123456\",\r\n  \"nombre\": \"Francesco Bassura\",\r\n  \"correo\": \"what@the.foo\",\r\n  \"fotoPerfil\": \"perfil.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Usuario all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Usuario by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Usuario by Nombre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/busqueda/fran",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"busqueda",
+						"fran"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Usuario TEST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/login/franygay/123456",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"login",
+						"franygay",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Artista",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Keiko Fujimori\",\n    \"biografia\":\"Un peruana con sueños de dictadura\",\n    \"fotoPerfil\":\"600millones.jpg\",\n    \"fotoPortada\":\"panama/islasLagarto.png\",\n    \"departamento\":\"Lima\",\n    \"genero\":\"Hardcore Jazz\",\n    \"usuarioId\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/artistas/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Artista all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/artistas/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Artista by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/artistas/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Artista by Nombre Avanzada",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/artistas/busqueda/kEí",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"busqueda",
+						"kEí"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Artista by Departamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/artistas/busqueda/departamento/lim",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"busqueda",
+						"departamento",
+						"lim"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Artista by Genero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/artistas/busqueda/genero/jaz",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"busqueda",
+						"genero",
+						"jaz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Give Admin to UserId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/artistas/administracion/1/2/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"administracion",
+						"1",
+						"2",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Proyecto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"El Album Del Año\",\r\n    \"tipo\":\"LP\",\r\n    \"descripcion\":\"Un album para toda la gente, para que lo odien todos por igual. Igualdad por fin.\",\r\n    \"lanzamiento\":\"2019-10-21T13:00:23\",\r\n    \"discografica\":\"Hugo Chaves Records\",\r\n    \"fotoPortada\":\"iluminacion/karlMarx.png\",\r\n    \"genero\":\"Hardcore Pop\",\r\n    \"artistaId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/proyectos/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Proyecto Description",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"descripcion\": \"La nueva Descripcion del nuevo Album2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/proyectos/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Proyecto all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/proyectos/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Proyecto by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/proyectos/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Proyecto by Artista id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/proyectos/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Proyecto by Genero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/proyectos/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Proyecto by Nombre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/proyectos/busqueda/nombre/año",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						"busqueda",
+						"nombre",
+						"año"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cancion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"600 millones\",\n    \"duracion\":2.2,\n    \"audio\":\"huelga.mp3\",\n    \"proyectoId\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/canciones/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Cancion",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"600 millones\",\n    \"duracion\":2.2,\n    \"audio\":\"huelga.mp3\",\n    \"proyectoId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/canciones/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"canciones",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Create Cancion",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Señora K\",\n    \"duracion\":2.2,\n    \"audio\":\"cuellosblancos.mp3\",\n    \"proyectoId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/canciones/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"canciones",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Create Cancion Sencillo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Vladimiro es mi padrino\",\n    \"duracion\":4.07,\n    \"audio\":\"huelga.mp3\",\n    \"descripcion\":\"Una cancion romantica para el padrino que me pago los estudios\",\n\t\"lanzamiento\":\"2021-01-26T11:00:00\",\n\t\"discografica\":\"Fuerza Popular Records\",\n\t\"fotoPortada\":\"really/accesoTotal.jpg\",\n\t\"artistaId\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/canciones/sencillo/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						"sencillo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cancion all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/canciones/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cancion by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/canciones/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Cancion by Nombre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/canciones/buscar/algun",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						"buscar",
+						"algun"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Cancion by Genero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/canciones/buscar/genero/rock",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						"buscar",
+						"genero",
+						"rock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Playlist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Summer songs\",\r\n    \"descripcion\":\"Una playlist para el verano\",\r\n    \"usuarioId\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/playlists/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"playlists",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Playlist all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/playlists/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"playlists",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Playlist by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/playlists/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"playlists",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Song to Playlist by IDs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/playlists/adicion/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"playlists",
+						"adicion",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Mercancia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Album del año en vinilo\",\r\n    \"descripcion\":\"Un album hecho con amor en vinilo artesanal, sacado de las minas de Cajamarca.\",\r\n    \"foto\":\"karlmarxesmiHeroe.png\",\r\n    \"precio\":69.99,\r\n    \"artistaId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/mercancias/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"mercancias",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Mercancia all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/mercancias/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"mercancias",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Mercancia by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/mercancias/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"mercancias",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Evento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Trujillopalooza\",\r\n    \"descripcion\":\"Un festival de musica desde trujillo para el mundo!\",\r\n    \"lugar\":\"Municipalidad de Trujillo\",\r\n    \"direccion\":\"Av. Calle del diablo 1324 3er piso\",\r\n    \"departamento\":\"Trujillo\",\r\n    \"fecha\":\"2021-06-16T19:00:00\",\r\n    \"precio\":50.5,\r\n    \"fotoPortada\":\"recordings/mun.jpg\",\r\n    \"interesados\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/eventos/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Evento all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/eventos/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Evento by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/eventos/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Evento by Departamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/eventos/busqueda/departamento/truji",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						"busqueda",
+						"departamento",
+						"truji"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Reproduccion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/reproduccion/1/3",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"reproduccion",
+						"1",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Historial By UserID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/historial/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"historial",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Seguidor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/seguidor/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"seguidor",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Seguidor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/seguidor/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"seguidor",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Asistente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/asistente/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"asistente",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Asistente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/asistente/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"asistente",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8083/takina"
+		}
+	]
+}
