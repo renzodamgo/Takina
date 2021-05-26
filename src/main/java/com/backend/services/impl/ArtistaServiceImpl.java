@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.creates.CreateArtistaDto;
+import com.backend.dtos.edits.EditArtistaDto;
 import com.backend.entities.Artista;
 import com.backend.entities.Usuario;
 import com.backend.entities.Administrador;
@@ -185,5 +186,27 @@ public class ArtistaServiceImpl implements ArtistaService {
 		}
 
 		return resultados.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
+	}
+
+	// ------------- edit artista ----------------
+	@Override
+	public ArtistaDto editArtista(EditArtistaDto editArtistaDto) throws TakinaException {
+		Artista artista = getArtistaEntity(editArtistaDto.getId());
+
+		artista.setNombre(editArtistaDto.getNombre());
+		artista.setFotoPerfil(editArtistaDto.getFotoPerfil());
+		artista.setFotoPortada(editArtistaDto.getFotoPortada());
+		artista.setBiografia(editArtistaDto.getBiografia());
+		artista.setDepartamento(editArtistaDto.getDepartamento());
+		artista.setGenero(editArtistaDto.getGenero());
+
+		try {
+			artista = artistaRepository.save(artista);
+		} catch(Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USER_NOT_EDITED");
+		}
+
+		return modelMapper.map(artista, ArtistaDto.class);
+
 	}
 }

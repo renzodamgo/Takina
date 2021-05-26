@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.creates.CreateArtistaDto;
+import com.backend.dtos.edits.EditArtistaDto;
+import com.backend.entities.Artista;
 import com.backend.exceptions.TakinaException;
 
 public interface ArtistaService {
@@ -31,5 +33,8 @@ public interface ArtistaService {
 
 	// US017 - Como usuario administrador Quiero otorgarle permisos a otra cuenta Para tener más personas en la administración del musico
 	ArtistaDto giveAdministrador(Long artistaId, Long usuarioId, Integer nivelInt) throws TakinaException;
+
+	// US018 - Como artista quiero poder editar mis datos cuando lo necesite
+	ArtistaDto editArtista(EditArtistaDto editArtistaDto) throws TakinaException;
 
 }
