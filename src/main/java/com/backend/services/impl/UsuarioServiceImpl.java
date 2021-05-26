@@ -344,24 +344,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 		if (usuario.isPresent()) {
 			// Eliminar artistas que no tengan otro administrador nivel Administrador (No funciona)
-			//List<Administrador> admins = administradorRepository.findByUsuarioIdAndNivel(usuarioId,"Administrador");
 			//List<Long> artistasId = new ArrayList<>();
-
-			//for(Administrador a : admins) {
+			//for(Administrador a : administradorRepository.findByUsuarioIdAndNivel(usuarioId,"Administrador")) {
 			//	Integer count = 0;
 			//	for(Administrador adm : a.getArtista().getAdministradores()) {
 			//		if (adm.getUsuario().getId().equals(usuarioId)) continue;
 			//		if (adm.getNivel().equals("Administrador")) count++;
 			//	}
-			//	if(count == 0) artistasId.add(a.getArtista().getId());
+			//	if(count.equals(0)) artistasId.add(a.getArtista().getId());
 			//}
-			//admins.clear();
-
-			//for(Long id : artistasId){
-			//	artistaRepository.deleteById(id);
-			//	System.out.println("NIGGA");
-			//	System.out.println(id);
-			//}
+			//for(Long id : artistasId) artistaRepository.deleteById(id);
 			
 			usuarioRepository.deleteById(usuarioId);
 		} else {
