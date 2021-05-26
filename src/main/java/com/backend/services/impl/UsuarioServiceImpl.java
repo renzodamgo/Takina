@@ -11,6 +11,7 @@ import com.backend.dtos.HistorialDto;
 import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.SeguidorDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
+import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.entities.Artista;
 import com.backend.entities.Usuario;
 import com.backend.entities.Cancion;
@@ -297,5 +298,37 @@ public class UsuarioServiceImpl implements UsuarioService {
 		} else {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
 		}
+	}
+	// --------------------------------------------------------
+	@Override
+	public UsuarioDto editUsuario(EditUsuarioDto editUsuarioDto) throws TakinaException {
+		Usuario usuario = getUsuarioEntity(editUsuarioDto.getId());
+
+		usuario.setPassword(editUsuarioDto.getPassword());
+		usuario.setNombre(editUsuarioDto.getNombre());
+		usuario.setCorreo(editUsuarioDto.getCorreo());
+		usuario.setFotoPerfil(editUsuarioDto.getFotoPerfil());
+
+		try {
+			usuario = usuarioRepository.save(usuario);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USER_NOT_EDITED");
+		}
+
+		return modelMapper.map(usuario,UsuarioDto.class);
+	}
+	// --------------------------------------------------------
+	@Override
+	public UsuarioDto togglePremium(Long usuarioId) throws TakinaException {
+		Usuario usuario = getUsuarioEntity(usuarioId);
+		usuario.setPremium(usuario.getPremium() ^ true);
+
+		try {
+			usuario = usuarioRepository.save(usuario);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USER_NOT_EDITED");
+		}
+
+		return modelMapper.map(usuario,UsuarioDto.class);
 	}
 }

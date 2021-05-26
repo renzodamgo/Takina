@@ -92,9 +92,10 @@ public class Usuario {
 	// ---------------------
 
 	@Column(
-		name = "premium"
+		name = "premium",
+		nullable = false
 	)
-	private boolean premium = false;
+	private Boolean premium = false;
 
 	//Relations many to many
 	@OneToMany(
