@@ -55,4 +55,7 @@ public interface UsuarioService {
 	
 	// US011 - Actualizacion a premium
 	UsuarioDto togglePremium(Long usuarioId) throws TakinaException;
+
+	// US037 - eliminar usuario
+	void deleteUser(Long usuarioId) throws TakinaException;
 }

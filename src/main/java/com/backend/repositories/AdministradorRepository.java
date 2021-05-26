@@ -15,4 +15,11 @@ public interface AdministradorRepository extends JpaRepository<Administrador,Lon
 
 	@Query("SELECT adm FROM Administrador adm")
 	List<Administrador> findAll();
+
+	@Query("SELECT adm FROM Administrador adm WHERE adm.usuario.id = ?1 AND adm.nivel = ?2")
+	List<Administrador> findByUsuarioIdAndNivel(Long id, String nivel);
+
+	@Query("SELECT adm FROM Administrador adm WHERE adm.artista.id = ?1 AND adm.usuario.id = ?2")
+	Optional<Administrador> findByArtistaIdAndUsuarioId(Long artistaId, Long usuarioId);
+
 }

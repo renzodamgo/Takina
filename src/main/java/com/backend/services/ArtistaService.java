@@ -30,6 +30,6 @@ public interface ArtistaService {
 	ArtistaDto createArtista(CreateArtistaDto createArtistaDto) throws TakinaException;
 
 	// US017 - Como usuario administrador Quiero otorgarle permisos a otra cuenta Para tener más personas en la administración del musico
-	ArtistaDto giveAdministrador(Long artistaId, Long usuarioId, Integer nivel) throws TakinaException;
+	ArtistaDto giveAdministrador(Long artistaId, Long usuarioId, Integer nivelInt) throws TakinaException;
 
 }

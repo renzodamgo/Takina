@@ -4,10 +4,9 @@ import java.time.LocalDateTime;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
-
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.entities.Artista;
@@ -20,8 +19,6 @@ import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.UsuarioRepository;
 import com.backend.repositories.AdministradorRepository;
 import com.backend.services.ArtistaService;
-
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -91,10 +88,7 @@ public class ArtistaServiceImpl implements ArtistaService {
 		administrador.setArtista(artista);
 		administrador.setUsuario(usuario);
 		administrador.setFechaRegistro(LocalDateTime.now());
-
-		// usuario.getAdministradores().add(administrador);
-		// artista.getAdministradores().add(administrador);
-
+		
 		try {
 			administrador = administradorRepository.save(administrador);
 		} catch (Exception ex){
@@ -105,29 +99,37 @@ public class ArtistaServiceImpl implements ArtistaService {
 	}
 
 	@Override
-	public ArtistaDto giveAdministrador(Long artistaId, Long usuarioId, Integer nivel) throws TakinaException {
+	public ArtistaDto giveAdministrador(Long artistaId, Long usuarioId, Integer nivelInt) throws TakinaException {
+		Optional<Administrador> validation = administradorRepository.findByArtistaIdAndUsuarioId(artistaId, usuarioId);
+
+		if (validation.isPresent()) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ADMINISTRATOR_ALREADY_CREATED");
+		}
+
 		Artista artista = artistaRepository.findById(artistaId)
 				.orElseThrow(()->new NotFoundException("NOT-401-1","RESTAURANT_NOT_FOUND"));
 
 		Usuario usuario = usuarioRepository.findById(usuarioId)
 				.orElseThrow(()->new NotFoundException("NOT-401-1","RESTAURANT_NOT_FOUND"));
 
-		String nivelString;
-		switch(nivel) {
+		String nivel;
+		switch(nivelInt) {
+			case 0:
+				nivel = "Administrador"; break;
 			case 1:
-				nivelString = "Moderador"; break;
+				nivel = "Moderador"; break;
 			case 2:
-				nivelString = "Ayudante"; break;
+				nivel = "Ayudante"; break;
 			case 3:
-				nivelString = "Publicitario"; break;
+				nivel = "Publicitario"; break;
 			default:
-				nivelString = "Administrador";
+				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","LEVEL NOT VALID");
 		  }
 
 		Administrador administrador = new Administrador();
 		administrador.setArtista(artista);
 		administrador.setUsuario(usuario);
-		administrador.setNivel(nivelString);
+		administrador.setNivel(nivel);
 		administrador.setFechaRegistro(LocalDateTime.now());
 
 		usuario.getAdministradores().add(administrador);

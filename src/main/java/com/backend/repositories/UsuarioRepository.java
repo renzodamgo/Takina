@@ -14,6 +14,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
 	Optional<Usuario> findByNombre(String nombre);
 	List<Usuario> findByNombreContainingIgnoreCase(String nombre);
 
+	void deleteById(Long id);
+
 	//@Query("SELECT u FROM Usuario u WHERE u.correo = ?1")
 	Optional<Usuario> findByCorreo(String correo);
 

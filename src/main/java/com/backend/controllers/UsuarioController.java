@@ -40,10 +40,30 @@ public class UsuarioController {
 				usuarioService.createUsuario(createUsuarioDto));
 	}
 
+	// Editar un usuario
+	@ResponseStatus(HttpStatus.OK)
+	@PutMapping
+	public TakinaResponse<UsuarioDto> editUsuario(@RequestBody EditUsuarioDto editUsuarioDto)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				usuarioService.editUsuario(editUsuarioDto));
+	}
+
+	// Eliminar un usuario
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/id/{usuarioId}")
+	public TakinaResponse<String> deleteUser(@PathVariable Long usuarioId)
+			throws TakinaException {
+		usuarioService.deleteUser(usuarioId);
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				"Usuario eliminado.");
+	}
+
 	// Obtener por ID
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/id/{usuarioId}")
-	public TakinaResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId) throws TakinaException {
+	public TakinaResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId)
+			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getUsuarioId(usuarioId));
 	}
@@ -118,15 +138,6 @@ public class UsuarioController {
 			throws TakinaException {
 		usuarioService.deleteAsistente(usuarioId, eventoId);
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
-	}
-
-	// Editar un usuario
-	@ResponseStatus(HttpStatus.OK)
-	@PutMapping
-	public TakinaResponse<UsuarioDto> editUsuario(@RequestBody EditUsuarioDto editUsuarioDto)
-			throws TakinaException {
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-				usuarioService.editUsuario(editUsuarioDto));
 	}
 
 	// Cambiar valor de premium

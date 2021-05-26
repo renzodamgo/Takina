@@ -14,6 +14,7 @@ import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.entities.Artista;
 import com.backend.entities.Usuario;
+import com.backend.entities.Administrador;
 import com.backend.entities.Cancion;
 import com.backend.entities.Evento;
 import com.backend.entities.Reproduccion;
@@ -25,6 +26,7 @@ import com.backend.exceptions.TakinaException;
 import com.backend.repositories.UsuarioRepository;
 import com.backend.repositories.EventoRepository;
 import com.backend.repositories.SeguidorRepository;
+import com.backend.repositories.AdministradorRepository;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.ReproduccionRepository;
 import com.backend.repositories.AsistenteRepository;
@@ -32,6 +34,7 @@ import com.backend.repositories.CancionRepository;
 import com.backend.services.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -59,6 +62,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private EventoRepository eventoRepository;
+
+	@Autowired
+	private AdministradorRepository administradorRepository;
 	// -------------------------------------------------------
 	@Override
 	public UsuarioDto getUsuarioId(Long UsuarioId) throws TakinaException {
@@ -326,9 +332,41 @@ public class UsuarioServiceImpl implements UsuarioService {
 		try {
 			usuario = usuarioRepository.save(usuario);
 		} catch (Exception ex) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USER_NOT_EDITED");
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_MODIFIED");
 		}
 
 		return modelMapper.map(usuario,UsuarioDto.class);
 	}
+
+	@Override
+	public void deleteUser(Long usuarioId) throws TakinaException {
+		Optional<Usuario> usuario = usuarioRepository.findById(usuarioId);
+
+		if (usuario.isPresent()) {
+			// Eliminar artistas que no tengan otro administrador nivel Administrador (No funciona)
+			//List<Administrador> admins = administradorRepository.findByUsuarioIdAndNivel(usuarioId,"Administrador");
+			//List<Long> artistasId = new ArrayList<>();
+
+			//for(Administrador a : admins) {
+			//	Integer count = 0;
+			//	for(Administrador adm : a.getArtista().getAdministradores()) {
+			//		if (adm.getUsuario().getId().equals(usuarioId)) continue;
+			//		if (adm.getNivel().equals("Administrador")) count++;
+			//	}
+			//	if(count == 0) artistasId.add(a.getArtista().getId());
+			//}
+			//admins.clear();
+
+			//for(Long id : artistasId){
+			//	artistaRepository.deleteById(id);
+			//	System.out.println("NIGGA");
+			//	System.out.println(id);
+			//}
+			
+			usuarioRepository.deleteById(usuarioId);
+		} else {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_FOUND");
+		}
+	}
+
 }
