@@ -38,8 +38,9 @@ public interface ArtistaService {
 	ArtistaDto editArtista(EditArtistaDto editArtistaDto) throws TakinaException;
 
 	// US028 - Como usuario artista quiero revisar los seguidores en total que tengo para poder analizar mi progreso 
-	ArtistaDto totalSeguidores(Integer seguidres) throws TakinaException;
+	ArtistaDto totalSeguidores(Long artistaId) throws TakinaException;
 
 	// US029 - Como usuario artista quiero revisar las reproducciones en total que tiengo para poder analizar mi progreso 
+	ArtistaDto totalReproducciones(Long artistaIds) throws TakinaException;
 
 }

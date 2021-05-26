@@ -209,4 +209,17 @@ public class ArtistaServiceImpl implements ArtistaService {
 		return modelMapper.map(artista, ArtistaDto.class);
 
 	}
+
+	// ------------- total seguidores -----------
+	@Override
+	public ArtistaDto totalSeguidores(Long artistaId) throws TakinaException {
+		return modelMapper.map(getArtistaEntity(artistaId), ArtistaDto.class);
+	}
+
+	// ----------- total reproducciones ---------
+	@Override
+	public ArtistaDto totalReproducciones(Long artistaId) throws TakinaException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
