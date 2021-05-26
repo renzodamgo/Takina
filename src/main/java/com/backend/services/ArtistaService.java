@@ -34,9 +34,12 @@ public interface ArtistaService {
 	// US017 - Como usuario administrador Quiero otorgarle permisos a otra cuenta Para tener más personas en la administración del musico
 	ArtistaDto giveAdministrador(Long artistaId, Long usuarioId, Integer nivelInt) throws TakinaException;
 
-	// US018 - Como artista quiero poder editar mis datos cuando lo necesite
+	// US018 - Como usuario artista quiero poder editar mis datos cuando lo necesite
 	ArtistaDto editArtista(EditArtistaDto editArtistaDto) throws TakinaException;
 
-	// US028 - 
+	// US028 - Como usuario artista quiero revisar los seguidores en total que tengo para poder analizar mi progreso 
+	ArtistaDto totalSeguidores(Integer seguidres) throws TakinaException;
+
+	// US029 - Como usuario artista quiero revisar las reproducciones en total que tiengo para poder analizar mi progreso 
 
 }
