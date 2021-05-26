@@ -25,7 +25,7 @@ Swagger: https://takina.herokuapp.com/swagger-ui.html
 
 - [ ] (artista) revisar los seguidores en total que tiene un artista - US028
 - [ ] (artista) revisar las reproducciones en total que tiene un artista - US029
-- [ ] (artista) editar biografia (PUT) - US018
+- [X] (artista) editar biografia (PUT) - US018
 
 - [X] (usuario) actualizar a premium - US011
 - [X] (usuario) modificar foto de usuario (PUT) - US020
