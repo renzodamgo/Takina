@@ -43,3 +43,6 @@ build/
 *.code-workspace
 .history/
 .DS_Store
+
+### Frank fuckup ###
+node_modules/
