@@ -203,7 +203,7 @@ public class ArtistaServiceImpl implements ArtistaService {
 		try {
 			artista = artistaRepository.save(artista);
 		} catch(Exception ex) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USER_NOT_EDITED");
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ARTIST_NOT_EDITED");
 		}
 
 		return modelMapper.map(artista, ArtistaDto.class);

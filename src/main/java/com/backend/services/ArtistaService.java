@@ -37,4 +37,6 @@ public interface ArtistaService {
 	// US018 - Como artista quiero poder editar mis datos cuando lo necesite
 	ArtistaDto editArtista(EditArtistaDto editArtistaDto) throws TakinaException;
 
+	// US028 - 
+
 }

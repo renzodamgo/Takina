@@ -28,6 +28,13 @@ public class ArtistaController {
 					artistaService.createArtista(createArtistaDto));
 	}
 
+	// editar artista
+	@ResponseStatus(HttpStatus.OK)
+	@PutMapping
+	public TakinaResponse<ArtistaDto> editArtista(@RequestBody EditArtistaDto editArtistaDto) throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK), "OK", artistaService.editArtista(editArtistaDto));
+	}
+
 	// Mostrar todos los artistas
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping
@@ -80,13 +87,6 @@ public class ArtistaController {
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.giveAdministrador(artistaid,usuarioId,nivel));
-	}
-
-	// editar artista
-	@ResponseStatus(HttpStatus.OK)
-	@PutMapping
-	public TakinaResponse<ArtistaDto> editArtista(@RequestBody EditArtistaDto editArtistaDto) throws TakinaException {
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK), "OK", artistaService.editArtista(editArtistaDto));
 	}
 
 }
