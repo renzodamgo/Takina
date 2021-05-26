@@ -74,27 +74,26 @@ public class ProyectoServiceImpl implements ProyectoService {
 
 	@Transactional
 	@Override
-	public ProyectoDto createProyecto(CreateProyectoDto createproyectoDto) throws TakinaException {
-		Artista artista = artistaRepository.findById(createproyectoDto.getArtistaId())
+	public ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException {
+		Artista artista = artistaRepository.findById(createProyectoDto.getArtistaId())
 				.orElseThrow(() -> new NotFoundException("NOT-401-1", "ARTISTA_NOT_FOUND"));
 
 //		if (proyectoRepository.findByNombre(createproyectoDto.getNombre())==createproyectoDto.getNombre())
-		List<ProyectoDto> proyectoEntities = getProyectosByArtistaId(createproyectoDto.getArtistaId());
-
+		List<ProyectoDto> proyectoEntities = getProyectosByArtistaId(createProyectoDto.getArtistaId());
 		for (ProyectoDto p : proyectoEntities) {
-			if (p.getNombre().equals(createproyectoDto.getNombre())) {
+			if (p.getNombre().equals(createProyectoDto.getNombre())) {
 				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "PROYECTO_MUST_HAVE_DIFFERENT_NAME");
 			}
 		}
 
 		Proyecto proyecto = new Proyecto();
-		proyecto.setNombre(createproyectoDto.getNombre());
-		proyecto.setTipo(createproyectoDto.getTipo());
-		proyecto.setDescripcion(createproyectoDto.getDescripcion());
-		proyecto.setLanzamiento(createproyectoDto.getLanzamiento());
-		proyecto.setDiscografica(createproyectoDto.getDiscografica());
+		proyecto.setNombre(createProyectoDto.getNombre());
+		proyecto.setTipo(createProyectoDto.getTipo());
+		proyecto.setDescripcion(createProyectoDto.getDescripcion());
+		proyecto.setLanzamiento(createProyectoDto.getLanzamiento());
+		proyecto.setDiscografica(createProyectoDto.getDiscografica());
 		proyecto.setArtista(artista);
-		proyecto.setFotoPortada(createproyectoDto.getFotoPortada());
+		proyecto.setFotoPortada(createProyectoDto.getFotoPortada());
 		proyecto.setGenero(artista.getGenero());
 
 		try {

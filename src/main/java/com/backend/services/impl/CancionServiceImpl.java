@@ -78,11 +78,18 @@ public class CancionServiceImpl implements CancionService {
 		Proyecto proyecto = proyectoRepository.findById(createCancionDto.getProyectoId())
 				.orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
 
+		List<Cancion> validacion = cancionRepository.findByProyectoId(createCancionDto.getProyectoId());
+		for (Cancion c : validacion) {
+			if (c.getNombre().equals(createCancionDto.getNombre())) {
+				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "CANCION_MUST_HAVE_DIFFERENT_NAME");
+			}
+		}
+
 		Cancion cancion = new Cancion();
 		cancion.setNombre(createCancionDto.getNombre());
 		cancion.setAudio(createCancionDto.getAudio());
 		cancion.setDuracion(createCancionDto.getDuracion());
-		
+	
 		cancion.setFotoPortada(proyecto.getFotoPortada());
 		cancion.setLanzamiento(proyecto.getLanzamiento());
 		cancion.setGenero(proyecto.getGenero());
@@ -90,7 +97,6 @@ public class CancionServiceImpl implements CancionService {
 
 		try {
 			cancion = cancionRepository.save(cancion);
-			//proyecto.getCanciones().add(cancion);
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
 		}
@@ -104,7 +110,6 @@ public class CancionServiceImpl implements CancionService {
 
 		try {
 			credito = creditoRepository.save(credito);
-			//cancion.getCreditos().add(credito);
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CREDITO_NOT_CREATED");
 		}
