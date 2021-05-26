@@ -27,6 +27,6 @@ Swagger: https://takina.herokuapp.com/swagger-ui.html
 - [ ] (artista) revisar las reproducciones en total que tiene un artista - US029
 - [ ] (artista) editar biografia (PUT) - US018
 
-- [ ] (usuario) actualizar a premium - US011
-- [ ] (usuario) modificar foto de usuario (PUT) - US020
-- [ ] (usuario) eliminar usuario (cacade drop) - US037
+- [X] (usuario) actualizar a premium - US011
+- [X] (usuario) modificar foto de usuario (PUT) - US020
+- [X] (usuario) eliminar usuario - US037 : fix cascade drop
