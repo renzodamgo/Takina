@@ -1,7 +1,7 @@
 # Takina RESTAPI
 Backend de aplicación web Takina, !el nuevo reproductor musical para la industria peruana!
 
-Landing Page: https://frany-oss.github.io/Takina-RESTAPI/
+Landing Page: https://frany-oss.github.io/Takina/
 
 Swagger: https://takina.herokuapp.com/swagger-ui.html
 
