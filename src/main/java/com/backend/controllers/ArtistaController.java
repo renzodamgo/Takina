@@ -2,6 +2,7 @@ package com.backend.controllers;
 
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.creates.CreateArtistaDto;
+import com.backend.dtos.edits.EditArtistaDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
 import com.backend.services.ArtistaService;
@@ -79,6 +80,13 @@ public class ArtistaController {
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.giveAdministrador(artistaid,usuarioId,nivel));
+	}
+
+	// editar artista
+	@ResponseStatus(HttpStatus.OK)
+	@PutMapping
+	public TakinaResponse<ArtistaDto> editArtista(@RequestBody EditArtistaDto editArtistaDto) throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK), "OK", artistaService.editArtista(editArtistaDto));
 	}
 
 }
