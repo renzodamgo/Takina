@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "32f91ed7-14b3-4a10-8551-6572d1ecc15a",
-		"name": "Takina v5.1",
+		"name": "Takina v5.3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -45,6 +45,80 @@
 					"path": [
 						"usuarios",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"password\": \"password123\",\r\n    \"nombre\": \"Francesco Bassino\",\r\n    \"correo\": \"ferrari@aggin.com\",\r\n    \"fotoPerfil\": \"aceptar/tus/pecados.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"password\": \"password123\",\r\n    \"nombre\": \"Francesco Bassino\",\r\n    \"correo\": \"ferrari@aggin.com\",\r\n    \"fotoPerfil\": \"aceptar/tus/pecados.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Toggle Premium by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/premium/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"premium",
+						"1"
 					]
 				}
 			},
@@ -334,6 +408,33 @@
 			"response": []
 		},
 		{
+			"name": "Change Proyecto Description",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"descripcion\": \"La nueva Descripcion del nuevo Album2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/proyectos/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create Cancion",
 			"request": {
 				"method": "POST",
@@ -358,7 +459,68 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create Cancion",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"600 millones\",\n    \"duracion\":2.2,\n    \"audio\":\"huelga.mp3\",\n    \"proyectoId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/canciones/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"canciones",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Create Cancion",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Señora K\",\n    \"duracion\":2.2,\n    \"audio\":\"cuellosblancos.mp3\",\n    \"proyectoId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/canciones/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"canciones",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
 		},
 		{
 			"name": "Create Cancion Sencillo",
@@ -458,6 +620,25 @@
 						"canciones",
 						"genero",
 						"rock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Cancion by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/canciones/id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						"id",
+						"1"
 					]
 				}
 			},
