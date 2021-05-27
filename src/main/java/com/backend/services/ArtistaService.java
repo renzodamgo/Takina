@@ -5,7 +5,6 @@ import java.util.List;
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.dtos.edits.EditArtistaDto;
-import com.backend.entities.Artista;
 import com.backend.exceptions.TakinaException;
 
 public interface ArtistaService {

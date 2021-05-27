@@ -21,7 +21,7 @@ Swagger: https://takina.herokuapp.com/swagger-ui.html
 - [X] (proyecto) validacion de creacion artista no puede tener 2 proyectos del mismo nombre
 - [X] (proyecto) busqueda de proyectos por genero musical
 
-- [ ] (evento) mostrar artistas invitados al evento por ID - US027
+- [X] (evento) mostrar artistas invitados al evento por ID en orden cronologico - US027
 
 - [ ] (artista) revisar los seguidores en total que tiene un artista - US028
 - [ ] (artista) revisar las reproducciones en total que tiene un artista - US029

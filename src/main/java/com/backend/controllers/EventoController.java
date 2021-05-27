@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.backend.dtos.EventoDto;
 import com.backend.dtos.InvitadoDto;
+import com.backend.dtos.InvitadosDto;
 import com.backend.dtos.creates.CreateEventoDto;
 import com.backend.dtos.creates.CreateInvitadoDto;
 import com.backend.exceptions.TakinaException;
@@ -81,6 +82,16 @@ public class EventoController {
 				eventoService.createInvitado(createInvitadoDto));
 	}
 
+	// Get invitados por eventoId ordenado cronologicamente
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/invitados/{eventoId}")
+	public  TakinaResponse<InvitadosDto> getInvitadosByEventoId(@PathVariable Long eventoId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				eventoService.getInvitadosByEventoId(eventoId));
+	}
+	
+
 	// Eliminar invitado
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("/invitados/{eventoId}/{artistaId}")
@@ -90,6 +101,7 @@ public class EventoController {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				"Invitado eliminado satisfactoriamente.");
 	}
+
 
 	
 }

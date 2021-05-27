@@ -16,7 +16,10 @@ public interface InvitadoRepository extends JpaRepository<Invitado,Long> {
 	@Query("SELECT inv FROM Invitado inv")
 	List<Invitado> findAll();
 
-	@Query("SELECT inv FROM Invitado inv WHERE inv.evento.id = ?1 and inv.artista.id = ?2")
+	@Query("SELECT inv FROM Invitado inv WHERE inv.evento.id = ?1 AND inv.artista.id = ?2")
 	Optional<Invitado> findByEventoIdAndArtistaId(Long eventoId, long artistaId);
+
+	@Query("SELECT inv FROM Invitado inv WHERE inv.evento.id = ?1 ORDER BY inv.horaInicio")
+	List<Invitado> findByEventoIdOrderByHoraInicio(Long eventoId);
 
 }

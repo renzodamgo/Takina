@@ -1,5 +1,6 @@
 package com.backend.services.impl;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import com.backend.dtos.creates.CreateInvitadoDto;
 import com.backend.entities.Evento;
 import com.backend.entities.Invitado;
 import com.backend.dtos.InvitadoDto;
+import com.backend.dtos.InvitadosDto;
 import com.backend.repositories.InvitadoRepository;
 import com.backend.entities.Artista;
 import com.backend.repositories.ArtistaRepository;
@@ -142,6 +144,35 @@ public class EventoServiceImpl implements EventoService {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INVITADO_NOT_FOUND");
 		}
 	}
+
+	@Override
+	public InvitadosDto getInvitadosByEventoId(Long eventoId) throws TakinaException {
+		Evento evento = getEventoEntity(eventoId);
+		List<Invitado> resultado = invitadoRepository.findByEventoIdOrderByHoraInicio(eventoId);
+
+		//List<Invitado> resultado = evento.getInvitados();
+		// 1.
+		//resultado = resultado.stream()
+		//					.sorted(Comparator.comparing(Invitado::getHoraInicio)/*.reversed()//DESC*/)
+		//					.collect(Collectors.toList());
+		// 2.
+		//resultado = resultado.stream()
+		//						.sorted(new Comparator<Invitado>(){
+		//							@Override
+		//							public int compare(Invitado i1, Invitado i2) {
+		//								return i1.getHoraInicio().compareTo(i2.getHoraInicio()); // ASC
+		//								//return i2.getHoraInicio().compareTo(i1.getHoraInicio()); // DESC					
+		//						}})	
+		//						.collect(Collectors.toList());
+
+		InvitadosDto invitados = new InvitadosDto();
+		invitados.setNombre(evento.getNombre());
+		invitados.setInvitados(resultado.stream()
+										.map(invitado -> modelMapper.map(invitado,InvitadoDto.class))
+										.collect(Collectors.toList()));
+
+		return invitados;
+	}	
 
 
 }

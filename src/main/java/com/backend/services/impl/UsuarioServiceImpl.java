@@ -14,7 +14,6 @@ import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.entities.Artista;
 import com.backend.entities.Usuario;
-import com.backend.entities.Administrador;
 import com.backend.entities.Cancion;
 import com.backend.entities.Evento;
 import com.backend.entities.Reproduccion;
@@ -34,7 +33,6 @@ import com.backend.repositories.CancionRepository;
 import com.backend.services.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 

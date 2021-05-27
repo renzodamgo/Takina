@@ -5,6 +5,7 @@ import java.util.List;
 import com.backend.dtos.EventoDto;
 import com.backend.dtos.creates.CreateEventoDto;
 import com.backend.dtos.InvitadoDto;
+import com.backend.dtos.InvitadosDto;
 import com.backend.dtos.creates.CreateInvitadoDto;
 import com.backend.exceptions.TakinaException;
 
@@ -32,5 +33,5 @@ public interface EventoService {
 	void deleteInvitado(Long eventoId, Long artistaId) throws TakinaException;
 	
 	// US027 - Artistas invitados por evento ID
-	//List<InvitadoDto> getInvitadosByEventoId(Long eventoId) throws TakinaException;
+	InvitadosDto getInvitadosByEventoId(Long eventoId) throws TakinaException;
 }
