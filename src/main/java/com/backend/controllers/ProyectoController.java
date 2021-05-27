@@ -1,6 +1,7 @@
 package com.backend.controllers;
 
 import com.backend.dtos.ProyectoDto;
+import com.backend.dtos.ProyectoMiniDto;
 import com.backend.dtos.creates.CreateProyectoDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
@@ -40,6 +41,15 @@ public class ProyectoController {
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 			proyectoService.getProyectoById(proyectoId));
+	}
+
+	// Obtener por ID
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/ultimos")
+	public TakinaResponse<List<ProyectoMiniDto>> getUltimos10ProyectosSubidos()
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+			proyectoService.getUltimos10ProyectosSubidos());
 	}
 
 	// Busqueda de proyectos por nombre

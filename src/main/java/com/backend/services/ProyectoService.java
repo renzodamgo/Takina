@@ -4,6 +4,7 @@ package com.backend.services;
 import java.util.List;
 
 import com.backend.dtos.ProyectoDto;
+import com.backend.dtos.ProyectoMiniDto;
 import com.backend.dtos.creates.CreateProyectoDto;
 import com.backend.exceptions.TakinaException;
 
@@ -28,4 +29,7 @@ public interface ProyectoService {
     List<ProyectoDto> getProyectosByArtistaId(Long artistaId) throws TakinaException;
 
     List<ProyectoDto> getProyectosByGenero(String genero) throws TakinaException;
+
+	List<ProyectoMiniDto> getUltimos10ProyectosSubidos() throws TakinaException;
+
 }

@@ -1,5 +1,6 @@
 package com.backend.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -135,6 +136,7 @@ public class CancionServiceImpl implements CancionService {
 		proyecto.setArtista(artista);
 		proyecto.setFotoPortada(createCancionProyectoDto.getFotoPortada());
 		proyecto.setGenero(artista.getGenero());
+		proyecto.setFecha(LocalDateTime.now());
 
 		try {
 			proyecto = proyectoRepository.save(proyecto);

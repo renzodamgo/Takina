@@ -7,7 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProyectoMiniDto {
-	//private Long id;
+	private Long id;
 	private String nombre;
 	private LocalDateTime lanzamiento;
+	private LocalDateTime fecha;
 }

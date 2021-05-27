@@ -16,6 +16,7 @@ public class ProyectoDto {
 	private String descripcion;
 	private Integer numCanciones;
 	private LocalDateTime lanzamiento;
+	private LocalDateTime fecha;
 	private String discografica;
 	private String fotoPortada;
 	private String genero;

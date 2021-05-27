@@ -1,9 +1,11 @@
 package com.backend.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import com.backend.dtos.ProyectoDto;
+import com.backend.dtos.ProyectoMiniDto;
 import com.backend.dtos.creates.CreateProyectoDto;
 import com.backend.entities.Proyecto;
 import com.backend.entities.Artista;
@@ -95,6 +97,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 		proyecto.setArtista(artista);
 		proyecto.setFotoPortada(createProyectoDto.getFotoPortada());
 		proyecto.setGenero(artista.getGenero());
+		proyecto.setFecha(LocalDateTime.now());
 
 		try {
 			proyecto = proyectoRepository.save(proyecto);
@@ -121,8 +124,14 @@ public class ProyectoServiceImpl implements ProyectoService {
 	}
 
 	@Override
-	public List<ProyectoDto> getProyectosByNombre(String nombre) throws TakinaException{
+	public List<ProyectoDto> getProyectosByNombre(String nombre) throws TakinaException {
 		List<Proyecto> results = proyectoRepository.findByNombreContainingIgnoreCase(nombre);
 		return results.stream().map(proyecto -> modelMapper.map(proyecto,ProyectoDto.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ProyectoMiniDto> getUltimos10ProyectosSubidos() throws TakinaException {
+		List<Proyecto> top10 = proyectoRepository.findTop10OrderByFecha();
+		return top10.stream().map(proyecto -> modelMapper.map(proyecto,ProyectoMiniDto.class)).collect(Collectors.toList());
 	}
 }

@@ -57,13 +57,20 @@ public class Proyecto {
 	// int(duracion) minutos - int(duracion%1 * 60) segundos
 
 	// ---------------------
-
 	@Column(
 		name="lanzamiento",
 		nullable = false,
 		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
 	)
 	private LocalDateTime lanzamiento;
+
+	// ---------------------
+	@Column(
+		name="fecha",
+		nullable = false,
+		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+	)
+	private LocalDateTime fecha;
 
 	// ----------------------
 	
