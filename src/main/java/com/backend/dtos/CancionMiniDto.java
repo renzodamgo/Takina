@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class CancionMiniDto {
 	//private long id;
+	private Integer track;
 	private String nombre;
 	private Float duracion;
 }

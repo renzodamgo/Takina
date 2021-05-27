@@ -97,6 +97,8 @@ public class CancionServiceImpl implements CancionService {
 		cancion.setGenero(proyecto.getGenero());
 		cancion.setProyecto(proyecto);
 
+		cancion.setTrack(proyecto.getNumCanciones()+1);
+
 		try {
 			cancion = cancionRepository.save(cancion);
 		} catch (Exception ex) {
@@ -153,10 +155,10 @@ public class CancionServiceImpl implements CancionService {
 		cancion.setLanzamiento(proyecto.getLanzamiento());
 		cancion.setGenero(proyecto.getGenero());
 		cancion.setProyecto(proyecto);
+		cancion.setTrack(1);
 		
 		try {
 			cancion = cancionRepository.save(cancion);
-			//proyecto.getCanciones().add(cancion);	
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
 		}
@@ -167,7 +169,6 @@ public class CancionServiceImpl implements CancionService {
 
 		try {
 			credito = creditoRepository.save(credito);
-			//cancion.getCreditos().add(credito);
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CREDITO_NOT_CREATED");
 		}

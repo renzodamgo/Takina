@@ -25,7 +25,6 @@ import com.backend.exceptions.TakinaException;
 import com.backend.repositories.UsuarioRepository;
 import com.backend.repositories.EventoRepository;
 import com.backend.repositories.SeguidorRepository;
-import com.backend.repositories.AdministradorRepository;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.ReproduccionRepository;
 import com.backend.repositories.AsistenteRepository;
@@ -60,9 +59,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private EventoRepository eventoRepository;
-
-	@Autowired
-	private AdministradorRepository administradorRepository;
 	// -------------------------------------------------------
 	@Override
 	public UsuarioDto getUsuarioId(Long UsuarioId) throws TakinaException {

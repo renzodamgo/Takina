@@ -12,7 +12,7 @@ Swagger: https://takina.herokuapp.com/swagger-ui.html
 - [?] como implementamos un album de fotos para cada artista - US019
 - [?] descarga de contenido - US012
 
-- [ ] (cancion) cancion tiene un track number en un proyecto musical
+- [X] (cancion) cancion tiene un track number en un proyecto musical
 - [X] (cancion) eliminar cancion - US038 (cascade drop)
 - [X] (cancion) mostrar informacion completa de cancion y sus creditos - US026
 - [X] (cancion) validacion de creacion proyectos no puede tener 2 canciones del mismo nombre

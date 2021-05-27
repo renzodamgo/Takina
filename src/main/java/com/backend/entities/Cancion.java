@@ -30,6 +30,14 @@ public class Cancion {
 	// ---------------------
 
 	@Column(
+		name = "track",
+		nullable = false
+	)
+	private Integer track = 1;
+
+	// ---------------------
+
+	@Column(
 		name = "nombre",
 		nullable = false,
 		columnDefinition = "VARCHAR(50)",
@@ -43,12 +51,11 @@ public class Cancion {
 		name = "duracion",
 		nullable = false
 	)
-	private float duracion;
+	private Float duracion;
 	// EJM: 3.4 => 3 minutos 24 segundos
 	// int(duracion) minutos - int(duracion%1 * 60) segundos
 
 	// ---------------------
-
 	@Column(
 		name = "audio",
 		nullable = false,
