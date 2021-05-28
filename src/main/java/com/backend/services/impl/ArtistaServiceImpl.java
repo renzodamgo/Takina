@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import com.backend.dtos.ArtistaDto;
+import com.backend.dtos.EstadisticaDto;
 import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.dtos.edits.EditArtistaDto;
 import com.backend.entities.Artista;
@@ -17,7 +18,9 @@ import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
 import com.backend.repositories.ArtistaRepository;
+import com.backend.repositories.SeguidorRepository;
 import com.backend.repositories.UsuarioRepository;
+import com.backend.repositories.ReproduccionRepository;
 import com.backend.repositories.AdministradorRepository;
 import com.backend.services.ArtistaService;
 import org.modelmapper.ModelMapper;
@@ -36,6 +39,12 @@ public class ArtistaServiceImpl implements ArtistaService {
 
 	@Autowired
 	private AdministradorRepository administradorRepository;
+
+	@Autowired
+	private SeguidorRepository seguidorRepository;
+
+	@Autowired
+	private ReproduccionRepository reproduccionRepository;
 
 	@Override
 	public ArtistaDto getArtista(Long artistaId) throws TakinaException{
@@ -207,19 +216,24 @@ public class ArtistaServiceImpl implements ArtistaService {
 		}
 
 		return modelMapper.map(artista, ArtistaDto.class);
-
 	}
 
-	// ------------- total seguidores -----------
-	@Override
-	public ArtistaDto totalSeguidores(Long artistaId) throws TakinaException {
-		return modelMapper.map(getArtistaEntity(artistaId), ArtistaDto.class);
+	
+	public EstadisticaDto getSeguidoresByIdAndDate(Long artistaId, Integer indice) throws TakinaException {
+		Artista artista = getArtistaEntity(artistaId);
+
+		EstadisticaDto estadistica = new EstadisticaDto();
+		estadistica.setIndice(indice);
+		estadistica.setCantidad(
+			seguidorRepository.countByArtistaIdAndGreaterThanFecha(
+								artista.getId(),
+								LocalDateTime.now().minusMonths(indice).minusHours(1)));
+
+		return estadistica;
 	}
 
-	// ----------- total reproducciones ---------
-	@Override
-	public ArtistaDto totalReproducciones(Long artistaId) throws TakinaException {
-		// TODO Auto-generated method stub
-		return null;
+	public EstadisticaDto getReproduccionesByIdAndDate(Long artistaId, Integer indice) throws TakinaException {
+		// Implementar
+		return new EstadisticaDto();
 	}
 }

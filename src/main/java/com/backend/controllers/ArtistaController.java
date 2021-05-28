@@ -1,6 +1,7 @@
 package com.backend.controllers;
 
 import com.backend.dtos.ArtistaDto;
+import com.backend.dtos.EstadisticaDto;
 import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.dtos.edits.EditArtistaDto;
 import com.backend.exceptions.TakinaException;
@@ -82,11 +83,31 @@ public class ArtistaController {
 
 	// Otorgar permisos administrativos a otro usuario
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/administracion/{artistaid}/{usuarioId}/{nivel}")
-	public TakinaResponse<ArtistaDto> giveAdministrador(@PathVariable Long artistaid, @PathVariable Long usuarioId, @PathVariable Integer nivel)
+	@GetMapping("/administracion/{artistaId}/{usuarioId}/{nivel}")
+	public TakinaResponse<ArtistaDto> giveAdministrador(@PathVariable Long artistaId, @PathVariable Long usuarioId, @PathVariable Integer nivel)
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-					artistaService.giveAdministrador(artistaid,usuarioId,nivel));
+					artistaService.giveAdministrador(artistaId,usuarioId,nivel));
 	}
+
+	// Seguidores de los ultimos x meses
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/estadistica/seguidores/{artistaId}/{indice}")
+	public TakinaResponse<EstadisticaDto> getSeguidoresByIdAndDate(@PathVariable Long artistaId, @PathVariable Integer indice)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+					artistaService.getSeguidoresByIdAndDate(artistaId,indice));
+	}
+
+	// Reproducciones de los ultimos x meses
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/estadistica/reproducciones/{artistaId}/{indice}")
+	public TakinaResponse<EstadisticaDto> getReproduccionesByIdAndDate(@PathVariable Long artistaId, @PathVariable Integer indice)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+					artistaService.getReproduccionesByIdAndDate(artistaId,indice));
+	}
+
+
 
 }

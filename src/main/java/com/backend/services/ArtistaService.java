@@ -3,6 +3,7 @@ package com.backend.services;
 import java.util.List;
 
 import com.backend.dtos.ArtistaDto;
+import com.backend.dtos.EstadisticaDto;
 import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.dtos.edits.EditArtistaDto;
 import com.backend.exceptions.TakinaException;
@@ -36,10 +37,9 @@ public interface ArtistaService {
 	// US018 - Como usuario artista quiero poder editar mis datos cuando lo necesite
 	ArtistaDto editArtista(EditArtistaDto editArtistaDto) throws TakinaException;
 
-	// US028 - Como usuario artista quiero revisar los seguidores en total que tengo para poder analizar mi progreso 
-	ArtistaDto totalSeguidores(Long artistaId) throws TakinaException;
+	// US028 - revisar los seguidores en total que tiene un artista
+	EstadisticaDto getSeguidoresByIdAndDate(Long artistaId, Integer indice) throws TakinaException;
 
-	// US029 - Como usuario artista quiero revisar las reproducciones en total que tiengo para poder analizar mi progreso 
-	ArtistaDto totalReproducciones(Long artistaIds) throws TakinaException;
-
+	// US029 - revisar las reproducciones en total que tiene un artista
+	EstadisticaDto getReproduccionesByIdAndDate(Long artistaId, Integer indice) throws TakinaException;
 }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -19,4 +20,8 @@ public interface ReproduccionRepository extends JpaRepository<Reproduccion,Long>
 
 	@Query("SELECT r FROM Reproduccion r WHERE r.usuario.id = ?1 ORDER BY r.fecha DESC")
 	List<Reproduccion> findByUsuarioIdOrderByFecha(Long usuarioId);
+
+	@Query(value = "SELECT count(*) FROM reproducciones WHERE artistas_id = ?1 AND fecha > ?2",
+			nativeQuery = true)
+	Integer countByArtistaIdAndGreaterThanFecha(Long artistaId, LocalDateTime fecha);
 }
