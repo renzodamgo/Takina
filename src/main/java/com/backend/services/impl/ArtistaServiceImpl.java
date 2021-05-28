@@ -233,7 +233,14 @@ public class ArtistaServiceImpl implements ArtistaService {
 	}
 
 	public EstadisticaDto getReproduccionesByIdAndDate(Long artistaId, Integer indice) throws TakinaException {
-		// Implementar
+		Artista artista = getArtistaEntity(artistaId);
+
+		EstadisticaDto estadistica = new EstadisticaDto();
+		estadistica.setIndice(indice);
+		estadistica.setCantidad(
+			reproduccionRepository.countByArtistaIdAndGreaterThanFecha(
+								artista.getId(),
+								LocalDateTime.now().minusMonths(indice).minusHours(1)));
 		return new EstadisticaDto();
 	}
 }

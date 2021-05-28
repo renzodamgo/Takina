@@ -25,7 +25,7 @@ Swagger: https://takina.herokuapp.com/swagger-ui.html
 - [X] (evento) mostrar artistas invitados al evento por ID en orden cronologico - US027
 
 - [X] (artista) revisar los seguidores en total que tiene un artista - US028
-- [ ] (artista) revisar las reproducciones en total que tiene un artista - US029
+- [X] (artista) revisar las reproducciones en total que tiene un artista - US029
 - [X] (artista) editar biografia (PUT) - US018
 
 - [X] (usuario) actualizar a premium - US011
