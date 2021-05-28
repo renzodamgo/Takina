@@ -3,6 +3,7 @@ package com.backend.controllers;
 import com.backend.dtos.CancionDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.dtos.creates.CreateCancionProyectoDto;
+import com.backend.dtos.creates.CreateCreditoDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
 import com.backend.services.CancionService;
@@ -81,6 +82,15 @@ public class CancionController {
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				cancionService.getCancionesByGeneroMusical(generoMusical));
+	}
+
+	// Añadir credito a canción
+	@ResponseStatus(HttpStatus.OK)
+	@PostMapping("/credito")
+	public  TakinaResponse<CancionDto> createCredito(@RequestBody CreateCreditoDto createCreditoDto)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				cancionService.createCredito(createCreditoDto));
 	}
 
 }

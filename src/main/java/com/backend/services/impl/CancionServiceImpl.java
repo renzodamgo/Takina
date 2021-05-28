@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import com.backend.dtos.CancionDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.dtos.creates.CreateCancionProyectoDto;
+import com.backend.dtos.creates.CreateCreditoDto;
 import com.backend.entities.Cancion;
 import com.backend.entities.Proyecto;
 import com.backend.entities.Artista;
@@ -173,7 +174,7 @@ public class CancionServiceImpl implements CancionService {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CREDITO_NOT_CREATED");
 		}
 	
-		return modelMapper.map(getCancionEntity(cancion.getId()),CancionDto.class);
+		return modelMapper.map(getCancionEntity(credito.getCancion().getId()),CancionDto.class);
 	}
 	
 	// --------------------------------------------------------
@@ -201,5 +202,27 @@ public class CancionServiceImpl implements CancionService {
 		} else {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_FOUND");
 		}
+	}
+	// --------------------------------------------------------
+	@Override
+	public CancionDto createCredito(CreateCreditoDto createCreditoDto) throws TakinaException {
+		Artista artista = artistaRepository.findById(createCreditoDto.getArtistaId())
+				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+
+		Cancion cancion = cancionRepository.findById(createCreditoDto.getCancionId())
+				.orElseThrow(()->new NotFoundException("NOT-401-1","CANCION_NOT_FOUND"));
+
+		Credito credito = new Credito();
+		credito.setArtista(artista);
+		credito.setCancion(cancion);
+		credito.setDescripcion(createCreditoDto.getDescripcion());
+
+		try {
+			credito = creditoRepository.save(credito);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CREDITO_NOT_CREATED");
+		}
+
+		return modelMapper.map(getCancionEntity(credito.getCancion().getId()),CancionDto.class);
 	}
 }

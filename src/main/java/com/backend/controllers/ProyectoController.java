@@ -3,6 +3,7 @@ package com.backend.controllers;
 import com.backend.dtos.ProyectoDto;
 import com.backend.dtos.ProyectoMiniDto;
 import com.backend.dtos.creates.CreateProyectoDto;
+import com.backend.dtos.edits.EditProyectoDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
 import com.backend.services.ProyectoService;
@@ -62,7 +63,7 @@ public class ProyectoController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/artista_id/{artistaId}")
+	@GetMapping("/artista/{artistaId}")
 	public TakinaResponse<List<ProyectoDto>> getProyectosByArtistaId(@PathVariable Long artistaId)
 			throws TakinaException {
 		try {
@@ -89,10 +90,10 @@ public class ProyectoController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping
-	public TakinaResponse<ProyectoDto> updateDescription(@RequestBody ProyectoDto proyectoDto)
+	public TakinaResponse<ProyectoDto> editProyecto(@RequestBody EditProyectoDto editProyectoDto)
 			throws TakinaException {
 		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
-				proyectoService.replaceDescription(proyectoDto));
+				proyectoService.editProyecto(editProyectoDto));
 	}
 
 }

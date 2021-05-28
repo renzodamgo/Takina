@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "32f91ed7-14b3-4a10-8551-6572d1ecc15a",
-		"name": "Takina v5.3",
+		"name": "Takina v5.5",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,7 +12,61 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"apodo\": \"franyoss\",\r\n  \"password\": \"123456\",\r\n  \"nombre\": \"Francesco Bassura\",\r\n  \"correo\": \"what@the.foo\",\r\n  \"fotoPerfil\": \"perfil.png\"\r\n}",
+					"raw": "{\r\n    \"apodo\": \"renxzen\",\r\n    \"password\": \"google\",\r\n    \"nombre\": \"Menzo Mondragon\",\r\n    \"correo\": \"oh@neega.fu\",\r\n    \"fotoPerfil\": \"bol4Fanboy.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Usuario 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"apodo\": \"franyoss\",\r\n    \"password\": \"123456\",\r\n    \"nombre\": \"Francesco Bassura\",\r\n    \"correo\": \"what@the.foo\",\r\n    \"fotoPerfil\": \"perfil.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Usuario 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"apodo\": \"damian\",\r\n    \"password\": \"anticristo666\",\r\n    \"nombre\": \"Renzo Damian\",\r\n    \"correo\": \"apple@love\",\r\n    \"fotoPerfil\": \"25/nuevoperfil.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -210,6 +264,87 @@
 			"response": []
 		},
 		{
+			"name": "Create Artista 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Pedro Castillo\",\n    \"biografia\":\"Un cajamarquino con sueños de comunismo\",\n    \"fotoPerfil\":\"cuba/libre.png\",\n    \"fotoPortada\":\"casto.jpg\",\n    \"departamento\":\"Cajamarca\",\n    \"genero\":\"HyperFolklore\",\n    \"usuarioId\":2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/artistas/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Artista 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Hernando De Soto\",\n    \"biografia\":\"El liberalismo manifestado fisicamente\",\n    \"fotoPerfil\":\"liberalismo.jpg\",\n    \"fotoPortada\":\"liberalismo/liberalismo.png\",\n    \"departamento\":\"Arequipa\",\n    \"genero\":\"Hip Hop\",\n    \"usuarioId\":3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/artistas/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Artista",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Kenji Fujimori\",\r\n    \"fotoPerfil\": \"600millones.jpg\",\r\n    \"fotoPortada\": \"panama/islasLagarto.png\",\r\n    \"biografia\": \"Un peruana con sueños de dictadura\",\r\n    \"departamento\": \"Lima\",\r\n    \"genero\": \"Baladas\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/artistas/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Artista all",
 			"request": {
 				"method": "GET",
@@ -331,7 +466,61 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\":\"El Album Del Año\",\r\n    \"tipo\":\"LP\",\r\n    \"descripcion\":\"Un album para toda la gente, para que lo odien todos por igual. Igualdad por fin.\",\r\n    \"lanzamiento\":\"2019-10-21T13:00:23\",\r\n    \"discografica\":\"Hugo Chaves Records\",\r\n    \"fotoPortada\":\"iluminacion/karlMarx.png\",\r\n    \"genero\":\"Hardcore Pop\",\r\n    \"artistaId\":1\r\n}",
+					"raw": "{\r\n    \"nombre\":\"Dictadura Romantica\",\r\n    \"tipo\":\"LP\",\r\n    \"descripcion\":\"Khe mas nos queda que escuchar este album en ves de escuchar el otro.\",\r\n    \"lanzamiento\":\"2019-12-24T10:00:16\",\r\n    \"discografica\":\"Fuerza Popular Records\",\r\n    \"fotoPortada\":\"600.bmp\",\r\n    \"genero\":\"Kpop\",\r\n    \"artistaId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/proyectos/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Proyecto 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"El Album Del Año\",\r\n    \"tipo\":\"LP\",\r\n    \"descripcion\":\"Un album para toda la gente, para que lo odien todos por igual. Igualdad por fin.\",\r\n    \"lanzamiento\":\"2019-10-21T13:00:23\",\r\n    \"discografica\":\"Hugo Chaves Records\",\r\n    \"fotoPortada\":\"iluminacion/karlMarx.png\",\r\n    \"genero\":\"Hardcore Pop\",\r\n    \"artistaId\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/proyectos/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Proyecto 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"El gran recorrido\",\r\n    \"tipo\":\"EP\",\r\n    \"descripcion\":\"Hugo chavez me ilumino. De manera completamente gratuita, pero solo si donan 50 soles al partido de Perú libre.\",\r\n    \"lanzamiento\":\"2021-01-01T16:11:16\",\r\n    \"discografica\":\"Fidel Castro Music House\",\r\n    \"fotoPortada\":\"rusia/sovietica.bmp\",\r\n    \"genero\":\"Hardcore Pop\",\r\n    \"artistaId\":2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -389,6 +578,24 @@
 			"response": []
 		},
 		{
+			"name": "Get Last 10 Proyecto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/proyectos/ultimos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"proyectos",
+						"ultimos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Search Proyecto by Nombre",
 			"request": {
 				"method": "GET",
@@ -408,13 +615,13 @@
 			"response": []
 		},
 		{
-			"name": "Change Proyecto Description",
+			"name": "Edit Proyecto",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 2,\r\n    \"descripcion\": \"La nueva Descripcion del nuevo Album2\"\r\n}",
+					"raw": "{\r\n    \"id\":1,\r\n    \"nombre\":\"Dictadura Romantica\",\r\n    \"descripcion\":\"Una proclamacion de amor hacia el Fujimorismo autoritario de los 90s.\",\r\n    \"lanzamiento\":\"2019-12-24T10:00:16\",\r\n    \"discografica\":\"Fuerza Popular Records\",\r\n    \"fotoPortada\":\"narcotrafico.jpg\",\r\n    \"genero\":\"Kpop\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -459,68 +666,115 @@
 					]
 				}
 			},
-			"response": [
-				{
-					"name": "Create Cancion",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"600 millones\",\n    \"duracion\":2.2,\n    \"audio\":\"huelga.mp3\",\n    \"proyectoId\":1\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/canciones/",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"canciones",
-								""
-							]
+			"response": []
+		},
+		{
+			"name": "Create Cancion 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Kenji es mi hermano\",\n    \"duracion\":1.1,\n    \"audio\":\"buddy.mp3\",\n    \"proyectoId\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					},
-					"_postman_previewlanguage": "Text",
-					"header": [],
-					"cookie": [],
-					"body": ""
+					}
 				},
-				{
-					"name": "Create Cancion",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Señora K\",\n    \"duracion\":2.2,\n    \"audio\":\"cuellosblancos.mp3\",\n    \"proyectoId\":1\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/canciones/",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"canciones",
-								""
-							]
-						}
-					},
-					"_postman_previewlanguage": "Text",
-					"header": [],
-					"cookie": [],
-					"body": ""
+				"url": {
+					"raw": "{{base_url}}/canciones/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						""
+					]
 				}
-			]
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cancion 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Señora K\",\n    \"duracion\":2.2,\n    \"audio\":\"cuellosblancos.mp3\",\n    \"proyectoId\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/canciones/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cancion 4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Pobreza envidiable\",\n    \"duracion\":1.1,\n    \"audio\":\"camion.mp3\",\n    \"proyectoId\":2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/canciones/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cancion 5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Stalin el salvador\",\n    \"duracion\":4.4,\n    \"audio\":\"camion.mp3\",\n    \"proyectoId\":2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/canciones/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						""
+					]
+				}
+			},
+			"response": []
 		},
 		{
 			"name": "Create Cancion Sencillo",
@@ -530,6 +784,62 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"nombre\": \"Vladimiro es mi padrino\",\n    \"duracion\":4.07,\n    \"audio\":\"huelga.mp3\",\n    \"descripcion\":\"Una cancion romantica para el padrino que me pago los estudios\",\n\t\"lanzamiento\":\"2021-01-26T11:00:00\",\n\t\"discografica\":\"Fuerza Popular Records\",\n\t\"fotoPortada\":\"really/accesoTotal.jpg\",\n\t\"artistaId\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/canciones/sencillo/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						"sencillo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cancion Sencillo 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"El himno de la alegria version comunismo\",\n    \"duracion\":6.9,\n    \"audio\":\"marx.m4a\",\n    \"descripcion\":\"Sencillamente precioso\",\n\t\"lanzamiento\":\"2020-10-10T11:00:00\",\n\t\"discografica\":\"Marx Records\",\n\t\"fotoPortada\":\"comunism.jpg\",\n\t\"artistaId\":2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/canciones/sencillo/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						"sencillo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cancion Sencillo 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"El liberalismo es la solucion\",\n    \"duracion\":3.3,\n    \"audio\":\"Liberal.mp3\",\n    \"descripcion\":\"Una cancion muy liberal para el resto de personas liberales.\",\n\t\"lanzamiento\":\"2021-02-13T09:00:00\",\n\t\"discografica\":\"Hernandito Records\",\n\t\"fotoPortada\":\"Maldicion.jpg\",\n\t\"artistaId\":3\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -900,7 +1210,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/usuarios/reproduccion/1/3",
+					"raw": "{{base_url}}/usuarios/reproduccion/1/1",
 					"host": [
 						"{{base_url}}"
 					],
@@ -908,7 +1218,7 @@
 						"usuarios",
 						"reproduccion",
 						"1",
-						"3"
+						"1"
 					]
 				}
 			},
@@ -928,6 +1238,33 @@
 						"usuarios",
 						"historial",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Credito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"artistaId\":3,\r\n    \"cancionId\":1,\r\n    \"descripcion\":\"Vocales y letras\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/canciones/credito",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						"credito"
 					]
 				}
 			},
@@ -1020,7 +1357,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:00\",\r\n    \"horaFin\":\"18:30\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1035,6 +1372,91 @@
 					"path": [
 						"eventos",
 						"invitados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Invitado 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":2,\r\n    \"horaInicio\":\"18:30\",\r\n    \"horaFin\":\"20:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/eventos/invitados",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						"invitados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Invitado 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":3,\r\n    \"horaInicio\":\"20:00\",\r\n    \"horaFin\":\"22:30\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/eventos/invitados",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						"invitados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Invitados by EventoId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/eventos/invitados/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"eventos",
+						"invitados",
+						"1"
 					]
 				}
 			},
@@ -1062,6 +1484,72 @@
 					"path": [
 						"eventos",
 						"invitados",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Estadistica de seguidores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/artistas/estadistica/seguidores/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"estadistica",
+						"seguidores",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Estadistica de reproducciones",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/artistas/estadistica/reproducciones/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"estadistica",
+						"reproducciones",
 						"1",
 						"1"
 					]

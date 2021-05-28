@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import com.backend.dtos.ProyectoDto;
 import com.backend.dtos.ProyectoMiniDto;
 import com.backend.dtos.creates.CreateProyectoDto;
+import com.backend.dtos.edits.EditProyectoDto;
 import com.backend.entities.Proyecto;
 import com.backend.entities.Artista;
 import com.backend.exceptions.InternalServerErrorException;
@@ -133,5 +134,26 @@ public class ProyectoServiceImpl implements ProyectoService {
 	public List<ProyectoMiniDto> getUltimos10ProyectosSubidos() throws TakinaException {
 		List<Proyecto> top10 = proyectoRepository.findTop10OrderByFecha();
 		return top10.stream().map(proyecto -> modelMapper.map(proyecto,ProyectoMiniDto.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public ProyectoDto editProyecto(EditProyectoDto editProyectoDto) throws TakinaException {
+		Proyecto proyecto = proyectoRepository.findById(editProyectoDto.getId())
+				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
+		
+		proyecto.setNombre(editProyectoDto.getNombre());
+		proyecto.setDescripcion(editProyectoDto.getDescripcion());
+		proyecto.setLanzamiento(editProyectoDto.getLanzamiento());
+		proyecto.setDiscografica(editProyectoDto.getDiscografica());
+		proyecto.setFotoPortada(editProyectoDto.getFotoPortada());
+		proyecto.setGenero(editProyectoDto.getGenero());
+		
+		try {
+			proyecto = proyectoRepository.save(proyecto);
+		} catch (Exception ex){
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_EDITED");
+		}
+
+		return modelMapper.map(getProyectoEntity(proyecto.getId()),ProyectoDto.class);
 	}
 }

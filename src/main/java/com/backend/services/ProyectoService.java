@@ -6,6 +6,7 @@ import java.util.List;
 import com.backend.dtos.ProyectoDto;
 import com.backend.dtos.ProyectoMiniDto;
 import com.backend.dtos.creates.CreateProyectoDto;
+import com.backend.dtos.edits.EditProyectoDto;
 import com.backend.exceptions.TakinaException;
 
 public interface ProyectoService {
@@ -25,6 +26,8 @@ public interface ProyectoService {
     ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException;
 
     ProyectoDto replaceDescription(ProyectoDto proyectoDto) throws TakinaException;
+
+	ProyectoDto editProyecto(EditProyectoDto editProyectoDto) throws TakinaException;
 
     List<ProyectoDto> getProyectosByArtistaId(Long artistaId) throws TakinaException;
 

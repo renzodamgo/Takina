@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.backend.dtos.CancionDto;
 import com.backend.dtos.creates.CreateCancionDto;
+import com.backend.dtos.creates.CreateCreditoDto;
 import com.backend.dtos.creates.CreateCancionProyectoDto;
 import com.backend.exceptions.TakinaException;
 
@@ -29,5 +30,7 @@ public interface CancionService {
 
 	// US038 - Eliminar cancion de proyecto
 	void deleteCancionById(Long cancionId) throws TakinaException;
-	
+
+	// US040 - Crear credito
+	CancionDto createCredito(CreateCreditoDto createCreditoDto) throws TakinaException;
 }
