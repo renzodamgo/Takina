@@ -6,8 +6,12 @@ Swagger: https://takina.herokuapp.com/swagger-ui.html
 
 
 ## To Do:
-- [?] como implementamos un album de fotos para cada artista - US019
-- [?] descarga de contenido - US012
+- [ ] como implementamos un album de fotos para cada artista - US019
+- [ ] descarga de contenido - US012
+- [ ] eliminar credito
+- [ ] añadir el credito de otro artista a mi cancion
+- [ ] mostrar asistentes al evento
+- [ ] mostrar los eventos a los que le he dado asistir
 
 ## To Fix:
 - [X] (usuario) eliminar usuario - US037 : necesita fix. si un artista no tiene otro administrador mas que el usuario siendo eliminado, se elimina al artista, al igual que todas sus mercancias, proyectos musicales, canciones, reproducciones y administradores.

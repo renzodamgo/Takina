@@ -1024,14 +1024,34 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/playlists/adicion/1/1",
+					"raw": "{{base_url}}/playlists/1/cancion/1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"playlists",
-						"adicion",
 						"1",
+						"cancion",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Song from Playlist by IDs",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/playlists/1/cancion/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"playlists",
+						"1",
+						"cancion",
 						"1"
 					]
 				}
