@@ -18,4 +18,6 @@ public interface PlaylistService {
 	// US008 - Como usuario Quiero añadir canciónes a mi lista de reproduccion Para escucharlas posteriormente junto a otras canciónes 
 	PlaylistDto addToPlaylist(Long playlistId, Long cancionId) throws TakinaException;
 	
+	// US041 - Eliminar cancion del playlist
+	void deleteFromPlaylist(Long playlistId, Long cancionId) throws TakinaException;
 }

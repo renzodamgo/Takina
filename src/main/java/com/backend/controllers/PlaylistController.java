@@ -52,12 +52,20 @@ public class PlaylistController {
 
 	// Añadir cancion a playlist
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/adicion/{playlistId}/{cancionId}")
+	@GetMapping("/{playlistId}/cancion/{cancionId}")
 	public TakinaResponse<PlaylistDto> addToPlaylist(@PathVariable Long playlistId, @PathVariable Long cancionId)
 			throws TakinaException{
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				playlistService.addToPlaylist(playlistId,cancionId));
 	}
 
-
+	// Eliminar cancion de playlist
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/{playlistId}/cancion/{cancionId}")
+	public TakinaResponse<String> deleteFromPlaylist(@PathVariable Long playlistId, @PathVariable Long cancionId)
+			throws TakinaException{
+		playlistService.deleteFromPlaylist(playlistId,cancionId);
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				"Cancion eliminada del playlist correctamente.");
+	}
 }

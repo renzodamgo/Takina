@@ -1,6 +1,7 @@
 package com.backend.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.time.LocalDateTime;
 
@@ -87,6 +88,12 @@ public class PlaylistServiceImpl implements PlaylistService {
 	@Transactional
 	@Override
 	public PlaylistDto addToPlaylist(Long playlistId, Long cancionId) throws TakinaException {
+		Optional<Listado> validacion = listadoRepository.findByPlaylistIdAndCancionId(playlistId,cancionId);
+
+		if (validacion.isPresent()) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_ALREADY_PLAYLISTED");
+		}
+
 		Playlist playlist = playlistRepository.findById(playlistId)
 				.orElseThrow(()->new NotFoundException("NOT-401-1","PLAYLIST_NOT_FOUND"));
 
@@ -110,6 +117,17 @@ public class PlaylistServiceImpl implements PlaylistService {
 		playlist.setNumCanciones(playlist.getNumCanciones()+1);
 		
 		return modelMapper.map(getPlaylistEntity(playlist.getId()),PlaylistDto.class);
+	}
+
+	@Override
+	public void deleteFromPlaylist(Long playlistId, Long cancionId) throws TakinaException {
+		Optional<Listado> validacion = listadoRepository.findByPlaylistIdAndCancionId(playlistId,cancionId);
+
+		if (validacion.isPresent()) {
+			listadoRepository.deleteById(validacion.get().getId());
+		} else {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_PLAYLISTED");
+		}
 	}
 
 	

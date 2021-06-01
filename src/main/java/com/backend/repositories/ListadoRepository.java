@@ -11,7 +11,11 @@ import java.util.Optional;
 @Repository
 public interface ListadoRepository extends JpaRepository<Listado,Long> {
 	Optional<Listado> findById(Long id);
+	void deleteById(Long id);
 
 	@Query("SELECT lis FROM Listado lis")
 	List<Listado> findAll();
+
+	@Query("SELECT lis FROM Listado lis WHERE lis.playlist.id = ?1 AND lis.cancion.id = ?2")
+	Optional<Listado> findByPlaylistIdAndCancionId(Long playlistId, Long cancionId);
 }
