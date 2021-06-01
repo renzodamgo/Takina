@@ -2,6 +2,7 @@ package com.backend.services;
 
 import java.util.List;
 
+import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.EventoDto;
 import com.backend.dtos.creates.CreateEventoDto;
 import com.backend.dtos.InvitadoDto;
@@ -34,4 +35,10 @@ public interface EventoService {
 	
 	// US027 - Artistas invitados por evento ID
 	InvitadosDto getInvitadosByEventoId(Long eventoId) throws TakinaException;
+
+	// US032 - Creacion de asistente
+	AsistenteDto createAsistente(Long usuarioId, Long eventoId) throws TakinaException;
+	
+	// US033 - Eliminacion de asistente
+	void deleteAsistente(Long usuarioId, Long artistaId) throws TakinaException;
 }

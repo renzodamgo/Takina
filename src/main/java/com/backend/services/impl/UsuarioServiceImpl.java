@@ -8,27 +8,15 @@ import javax.transaction.Transactional;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.HistorialDto;
-import com.backend.dtos.AsistenteDto;
-import com.backend.dtos.SeguidorDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
-import com.backend.entities.Artista;
 import com.backend.entities.Usuario;
-import com.backend.entities.Cancion;
-import com.backend.entities.Evento;
 import com.backend.entities.Reproduccion;
-import com.backend.entities.Asistente;
-import com.backend.entities.Seguidor;
 import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
 import com.backend.repositories.UsuarioRepository;
-import com.backend.repositories.EventoRepository;
-import com.backend.repositories.SeguidorRepository;
-import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.ReproduccionRepository;
-import com.backend.repositories.AsistenteRepository;
-import com.backend.repositories.CancionRepository;
 import com.backend.services.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,22 +31,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	private UsuarioRepository usuarioRepository;
 
 	@Autowired
-	private AsistenteRepository asistenteRepository;
-
-	@Autowired
-	private ArtistaRepository artistaRepository;
-
-	@Autowired
-	private CancionRepository cancionRepository;
-
-	@Autowired
-	private SeguidorRepository seguidorRepository;
-
-	@Autowired
 	private ReproduccionRepository reproduccionRepository;
 
-	@Autowired
-	private EventoRepository eventoRepository;
 	// -------------------------------------------------------
 	@Override
 	public UsuarioDto getUsuarioId(Long UsuarioId) throws TakinaException {
@@ -154,32 +128,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioRepository.findByApodoOrCorreo(login,login)
 				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
 	}
-
-	// --------------------------------------------------------
-	@Transactional
-	@Override
-	public ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException {
-		Usuario usuario = getUsuarioEntity(usuarioId);
-		Cancion cancion = cancionRepository.findById(cancionId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","CANCION_NOT_FOUND"));
-
-		Reproduccion reproduccion = new Reproduccion();
-		reproduccion.setUsuario(usuario);
-		reproduccion.setCancion(cancion);
-		reproduccion.setFecha(LocalDateTime.now());
-
-		try {
-			reproduccion = reproduccionRepository.save(reproduccion);
-		} catch (Exception ex) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","REPRODUCCION_NOT_CREATED");
-		}
-
-		cancion.getProyecto().getArtista().setTotalReproducciones(
-			cancion.getProyecto().getArtista().getTotalReproducciones()+1
-		);
-
-		return modelMapper.map(reproduccion,ReproduccionDto.class);
-	}
 	// --------------------------------------------------------
 	@Override
 	public HistorialDto getHistorial(Long usuarioId) throws TakinaException {
@@ -211,94 +159,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 		return history;
 	}
-	// --------------------------------------------------------
-	@Transactional
-	@Override
-	public SeguidorDto createSeguidor(Long usuarioId, Long artistaId) throws TakinaException {
-		Optional<Seguidor> validacion = seguidorRepository.findByUsuarioIdAndArtistaId(usuarioId, artistaId);
-		
-		if (validacion.isPresent()) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
-		}
 
-		Usuario usuario = getUsuarioEntity(usuarioId);
-		Artista artista = artistaRepository.findById(artistaId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
-
-		artista.setTotalSeguidores(artista.getTotalSeguidores()+1);
-
-		Seguidor seguidor = new Seguidor();
-		seguidor.setUsuario(usuario);
-		seguidor.setArtista(artista);
-		seguidor.setFecha(LocalDateTime.now());
-
-		try {
-			seguidor = seguidorRepository.save(seguidor);
-		} catch (Exception ex) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
-		}
-
-		return modelMapper.map(seguidor,SeguidorDto.class);
-	}
-	// --------------------------------------------------------
-	@Override
-	public void deleteSeguidor(Long usuarioId, Long artistaId) throws TakinaException {
-		Optional<Seguidor> validacion = seguidorRepository.findByUsuarioIdAndArtistaId(usuarioId, artistaId);
-		if (validacion.isPresent()) {
-			seguidorRepository.deleteById(validacion.get().getId());
-
-			Artista artista = artistaRepository.findById(artistaId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
-			
-			artista.setTotalSeguidores(artista.getTotalSeguidores()-1);
-		} else {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
-		}
-	}
-	// --------------------------------------------------------
-	@Transactional
-	@Override
-	public AsistenteDto createAsistente(Long usuarioId, Long eventoId) throws TakinaException {
-		Optional<Asistente> validacion = asistenteRepository.findByUsuarioIdAndEventoId(usuarioId, eventoId);
-		
-		if (validacion.isPresent()) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
-		}
-
-		Usuario usuario = getUsuarioEntity(usuarioId);
-		Evento evento = eventoRepository.findById(eventoId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
-
-		Asistente asistente = new Asistente();
-		asistente.setUsuario(usuario);
-		asistente.setEvento(evento);
-		asistente.setFecha(LocalDateTime.now());
-
-		try {
-			asistente = asistenteRepository.save(asistente);
-		} catch (Exception ex) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
-		}
-
-		evento.setInteresados(evento.getInteresados()+1);
-
-		return modelMapper.map(asistente,AsistenteDto.class);
-	}
-	// --------------------------------------------------------
-	@Override
-	public void deleteAsistente(Long usuarioId, Long eventoId) throws TakinaException {
-		Optional<Asistente> validacion = asistenteRepository.findByUsuarioIdAndEventoId(usuarioId, eventoId);
-		if (validacion.isPresent()) {
-			asistenteRepository.deleteById(validacion.get().getId());
-
-			Evento evento = eventoRepository.findById(eventoId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","EVENTO_NOT_FOUND"));
-			evento.setInteresados(evento.getInteresados()-1);
-
-		} else {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
-		}
-	}
 	// --------------------------------------------------------
 	@Override
 	public UsuarioDto editUsuario(EditUsuarioDto editUsuarioDto) throws TakinaException {

@@ -13,6 +13,8 @@ import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.dtos.edits.EditArtistaDto;
 import com.backend.entities.Artista;
 import com.backend.entities.Usuario;
+import com.backend.dtos.SeguidorDto;
+import com.backend.entities.Seguidor;
 import com.backend.entities.Administrador;
 import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.NotFoundException;
@@ -243,4 +245,53 @@ public class ArtistaServiceImpl implements ArtistaService {
 								LocalDateTime.now().minusMonths(indice).minusHours(1)));
 		return new EstadisticaDto();
 	}
+
+	// --------------------------------------------------------
+	@Transactional
+	@Override
+	public SeguidorDto createSeguidor(Long usuarioId, Long artistaId) throws TakinaException {
+		Optional<Seguidor> validacion = seguidorRepository.findByUsuarioIdAndArtistaId(usuarioId, artistaId);
+		
+		if (validacion.isPresent()) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
+		}
+
+		Usuario usuario = usuarioRepository.findById(usuarioId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","USUARIO_NOT_FOUND"));
+
+		Artista artista = artistaRepository.findById(artistaId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+
+		artista.setTotalSeguidores(artista.getTotalSeguidores()+1);
+
+		Seguidor seguidor = new Seguidor();
+		seguidor.setUsuario(usuario);
+		seguidor.setArtista(artista);
+		seguidor.setFecha(LocalDateTime.now());
+
+		try {
+			seguidor = seguidorRepository.save(seguidor);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
+		}
+
+		return modelMapper.map(seguidor,SeguidorDto.class);
+	}
+	// --------------------------------------------------------
+	@Override
+	public void deleteSeguidor(Long usuarioId, Long artistaId) throws TakinaException {
+		Optional<Seguidor> validacion = seguidorRepository.findByUsuarioIdAndArtistaId(usuarioId, artistaId);
+		if (validacion.isPresent()) {
+			seguidorRepository.deleteById(validacion.get().getId());
+
+			Artista artista = artistaRepository.findById(artistaId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+			
+			artista.setTotalSeguidores(artista.getTotalSeguidores()-1);
+		} else {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
+		}
+	}
+
+
 }

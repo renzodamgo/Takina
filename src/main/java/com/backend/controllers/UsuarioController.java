@@ -3,10 +3,7 @@ package com.backend.controllers;
 import java.util.List;
 
 import com.backend.dtos.UsuarioDto;
-import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.HistorialDto;
-import com.backend.dtos.SeguidorDto;
-import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.exceptions.TakinaException;
@@ -86,15 +83,6 @@ public class UsuarioController {
 				usuarioService.loginUsuarioByApodoOrCorreoUsingPassword(login,password));
 	}
 
-	// Registrar una reproduccion
-	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/reproduccion/{usuarioId}/{cancionId}")
-	public TakinaResponse<ReproduccionDto> createReproduccion(@PathVariable Long usuarioId, @PathVariable Long cancionId)
-			throws TakinaException {
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-				usuarioService.createReproduccion(usuarioId,cancionId));
-	}
-
 	// Revisar el historial de reproduccion de un usuario
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/historial/{usuarioId}")
@@ -102,42 +90,6 @@ public class UsuarioController {
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				usuarioService.getHistorial(usuarioId));
-	}
-
-	// Registrar un seguidor
-	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/seguidor/{usuarioId}/{artistaId}")
-	public TakinaResponse<SeguidorDto> createSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
-			throws TakinaException {
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-				usuarioService.createSeguidor(usuarioId, artistaId));
-	}
-
-	// Eliminar un seguidor
-	@ResponseStatus(HttpStatus.OK)
-	@DeleteMapping("/seguidor/{usuarioId}/{artistaId}")
-	public TakinaResponse<String> deleteSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
-			throws TakinaException {
-		usuarioService.deleteSeguidor(usuarioId, artistaId);
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
-	}
-
-	// Registrar un asistente
-	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/asistente/{usuarioId}/{eventoId}")
-	public TakinaResponse<AsistenteDto> createAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
-			throws TakinaException {
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-				usuarioService.createAsistente(usuarioId, eventoId));
-	}
-
-	// Eliminar un asistente
-	@ResponseStatus(HttpStatus.OK)
-	@DeleteMapping("/asistente/{usuarioId}/{eventoId}")
-	public TakinaResponse<String> deleteAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
-			throws TakinaException {
-		usuarioService.deleteAsistente(usuarioId, eventoId);
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
 	}
 
 	// Cambiar valor de premium

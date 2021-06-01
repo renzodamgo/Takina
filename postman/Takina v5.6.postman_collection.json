@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "32f91ed7-14b3-4a10-8551-6572d1ecc15a",
-		"name": "Takina v5.5",
+		"name": "Takina v5.6",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -1210,12 +1210,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/usuarios/reproduccion/1/1",
+					"raw": "{{base_url}}/cancion/reproduccion/1/1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"usuarios",
+						"cancion",
 						"reproduccion",
 						"1",
 						"1"
@@ -1276,12 +1276,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/usuarios/seguidor/1/1",
+					"raw": "{{base_url}}/artista/seguidor/1/1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"usuarios",
+						"artista",
 						"seguidor",
 						"1",
 						"1"
@@ -1296,12 +1296,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/usuarios/seguidor/1/1",
+					"raw": "{{base_url}}/artista/seguidor/1/1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"usuarios",
+						"artista",
 						"seguidor",
 						"1",
 						"1"
@@ -1316,12 +1316,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/usuarios/asistente/1/1",
+					"raw": "{{base_url}}/evento/asistente/1/1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"usuarios",
+						"evento",
 						"asistente",
 						"1",
 						"1"
@@ -1336,12 +1336,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/usuarios/asistente/1/1",
+					"raw": "{{base_url}}/evento/asistente/1/1",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"usuarios",
+						"evento",
 						"asistente",
 						"1",
 						"1"

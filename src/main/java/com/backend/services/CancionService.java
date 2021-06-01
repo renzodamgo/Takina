@@ -3,6 +3,7 @@ package com.backend.services;
 import java.util.List;
 
 import com.backend.dtos.CancionDto;
+import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.dtos.creates.CreateCreditoDto;
 import com.backend.dtos.creates.CreateCancionProyectoDto;
@@ -33,4 +34,7 @@ public interface CancionService {
 
 	// US040 - Crear credito
 	CancionDto createCredito(CreateCreditoDto createCreditoDto) throws TakinaException;
+
+	// Crear Reproduccion
+	ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException;
 }

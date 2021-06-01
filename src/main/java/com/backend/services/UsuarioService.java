@@ -3,10 +3,7 @@ package com.backend.services;
 import java.util.List;
 
 import com.backend.dtos.UsuarioDto;
-import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.HistorialDto;
-import com.backend.dtos.SeguidorDto;
-import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.exceptions.TakinaException;
@@ -32,23 +29,10 @@ public interface UsuarioService {
 	// US021 - Buscar otro usuario por su nombre
 	List<UsuarioDto> getUsuariosByNombre(String nombre) throws TakinaException;
 
-	// Crear Reproduccion
-	ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException;
-
 	// US030 - Historial de reproducciones
 	HistorialDto getHistorial(Long usuarioId) throws TakinaException;
-
-	// US009 - Creacion de seguidor
-	SeguidorDto createSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
 	
-	// US031 - Eliminacion de seguidor
-	void deleteSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
-	
-	// US032 - Creacion de asistente
-	AsistenteDto createAsistente(Long usuarioId, Long eventoId) throws TakinaException;
 
-	// US033 - Eliminacion de asistente
-	void deleteAsistente(Long usuarioId, Long artistaId) throws TakinaException;
 
 	// US020 - Modificar foto de usuario (PUT de usuario)
 	UsuarioDto editUsuario(EditUsuarioDto editUsuarioDto) throws TakinaException;

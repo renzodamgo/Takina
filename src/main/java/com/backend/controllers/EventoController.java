@@ -2,6 +2,7 @@ package com.backend.controllers;
 
 import java.util.List;
 
+import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.EventoDto;
 import com.backend.dtos.InvitadoDto;
 import com.backend.dtos.InvitadosDto;
@@ -102,6 +103,22 @@ public class EventoController {
 				"Invitado eliminado satisfactoriamente.");
 	}
 
+	// Registrar un asistente
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/asistente/{usuarioId}/{eventoId}")
+	public TakinaResponse<AsistenteDto> createAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				eventoService.createAsistente(usuarioId, eventoId));
+	}
 
+	// Eliminar un asistente
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/asistente/{usuarioId}/{eventoId}")
+	public TakinaResponse<String> deleteAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
+			throws TakinaException {
+		eventoService.deleteAsistente(usuarioId, eventoId);
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
+	}
 	
 }

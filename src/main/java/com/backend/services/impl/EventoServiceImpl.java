@@ -1,19 +1,26 @@
 package com.backend.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import java.util.stream.Collectors;
+
+import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.EventoDto;
 import com.backend.dtos.creates.CreateEventoDto;
 import com.backend.dtos.creates.CreateInvitadoDto;
 import com.backend.entities.Evento;
 import com.backend.entities.Invitado;
+import com.backend.entities.Usuario;
 import com.backend.dtos.InvitadoDto;
 import com.backend.dtos.InvitadosDto;
 import com.backend.repositories.InvitadoRepository;
+import com.backend.repositories.UsuarioRepository;
 import com.backend.entities.Artista;
+import com.backend.entities.Asistente;
 import com.backend.repositories.ArtistaRepository;
+import com.backend.repositories.AsistenteRepository;
 import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
@@ -36,6 +43,11 @@ public class EventoServiceImpl implements EventoService {
 	@Autowired
 	private InvitadoRepository invitadoRepository;
 
+	@Autowired
+	private AsistenteRepository asistenteRepository;
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
 	@Override
 	public EventoDto getEventoId(Long eventoId) throws TakinaException {
@@ -103,7 +115,6 @@ public class EventoServiceImpl implements EventoService {
 		List<Evento> results = eventoRepository.findByNombreContainingIgnoreCase(nombre);
 		return results.stream().map(evento -> modelMapper.map(evento,EventoDto.class)).collect(Collectors.toList());
 	}
-
 
 	@Transactional
 	@Override
@@ -173,5 +184,50 @@ public class EventoServiceImpl implements EventoService {
 		return invitados;
 	}	
 
+	// --------------------------------------------------------
+	@Transactional
+	@Override
+	public AsistenteDto createAsistente(Long usuarioId, Long eventoId) throws TakinaException {
+		Optional<Asistente> validacion = asistenteRepository.findByUsuarioIdAndEventoId(usuarioId, eventoId);
+		
+		if (validacion.isPresent()) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
+		}
+
+		Usuario usuario = usuarioRepository.findById(usuarioId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","USUARIO_NOT_FOUND"));
+		Evento evento = eventoRepository.findById(eventoId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+
+		Asistente asistente = new Asistente();
+		asistente.setUsuario(usuario);
+		asistente.setEvento(evento);
+		asistente.setFecha(LocalDateTime.now());
+
+		try {
+			asistente = asistenteRepository.save(asistente);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_CREATED");
+		}
+
+		evento.setInteresados(evento.getInteresados()+1);
+
+		return modelMapper.map(asistente,AsistenteDto.class);
+	}
+	// --------------------------------------------------------
+	@Override
+	public void deleteAsistente(Long usuarioId, Long eventoId) throws TakinaException {
+		Optional<Asistente> validacion = asistenteRepository.findByUsuarioIdAndEventoId(usuarioId, eventoId);
+		if (validacion.isPresent()) {
+			asistenteRepository.deleteById(validacion.get().getId());
+
+			Evento evento = eventoRepository.findById(eventoId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","EVENTO_NOT_FOUND"));
+			evento.setInteresados(evento.getInteresados()-1);
+
+		} else {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
+		}
+	}
 
 }

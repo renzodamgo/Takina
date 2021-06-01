@@ -2,6 +2,7 @@ package com.backend.controllers;
 
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.EstadisticaDto;
+import com.backend.dtos.SeguidorDto;
 import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.dtos.edits.EditArtistaDto;
 import com.backend.exceptions.TakinaException;
@@ -106,6 +107,23 @@ public class ArtistaController {
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 					artistaService.getReproduccionesByIdAndDate(artistaId,indice));
+	}
+
+	// Registrar un seguidor
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/seguidor/{usuarioId}/{artistaId}")
+	public TakinaResponse<SeguidorDto> createSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				artistaService.createSeguidor(usuarioId, artistaId));
+	}
+		// Eliminar un seguidor
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/seguidor/{usuarioId}/{artistaId}")
+	public TakinaResponse<String> deleteSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
+			throws TakinaException {
+		artistaService.deleteSeguidor(usuarioId, artistaId);
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
 	}
 
 

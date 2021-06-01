@@ -1,6 +1,7 @@
 package com.backend.controllers;
 
 import com.backend.dtos.CancionDto;
+import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.dtos.creates.CreateCancionProyectoDto;
 import com.backend.dtos.creates.CreateCreditoDto;
@@ -93,4 +94,12 @@ public class CancionController {
 				cancionService.createCredito(createCreditoDto));
 	}
 
+	// Registrar una reproduccion
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/reproduccion/{usuarioId}/{cancionId}")
+	public TakinaResponse<ReproduccionDto> createReproduccion(@PathVariable Long usuarioId, @PathVariable Long cancionId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				cancionService.createReproduccion(usuarioId,cancionId));
+	}
 }

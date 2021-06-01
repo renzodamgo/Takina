@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.EstadisticaDto;
+import com.backend.dtos.SeguidorDto;
 import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.dtos.edits.EditArtistaDto;
 import com.backend.exceptions.TakinaException;
@@ -42,4 +43,10 @@ public interface ArtistaService {
 
 	// US029 - revisar las reproducciones en total que tiene un artista
 	EstadisticaDto getReproduccionesByIdAndDate(Long artistaId, Integer indice) throws TakinaException;
+
+	// US009 - Creacion de seguidor
+	SeguidorDto createSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
+
+	// US031 - Eliminacion de seguidor
+	void deleteSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
 }

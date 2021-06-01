@@ -4,15 +4,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
-
 import com.backend.dtos.CancionDto;
+import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.dtos.creates.CreateCancionProyectoDto;
 import com.backend.dtos.creates.CreateCreditoDto;
 import com.backend.entities.Cancion;
 import com.backend.entities.Proyecto;
+import com.backend.entities.Reproduccion;
+import com.backend.entities.Usuario;
 import com.backend.entities.Artista;
 import com.backend.entities.Credito;
 import com.backend.exceptions.InternalServerErrorException;
@@ -20,6 +21,8 @@ import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
 import com.backend.repositories.CancionRepository;
 import com.backend.repositories.ProyectoRepository;
+import com.backend.repositories.ReproduccionRepository;
+import com.backend.repositories.UsuarioRepository;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.CreditoRepository;
 import com.backend.services.CancionService;
@@ -40,6 +43,12 @@ public class CancionServiceImpl implements CancionService {
 
 	@Autowired
 	private CreditoRepository creditoRepository;
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private ReproduccionRepository reproduccionRepository;
 
 	private static final ModelMapper modelMapper = new ModelMapper();
 
@@ -224,5 +233,33 @@ public class CancionServiceImpl implements CancionService {
 		}
 
 		return modelMapper.map(getCancionEntity(credito.getCancion().getId()),CancionDto.class);
+	}
+
+	// --------------------------------------------------------
+	@Transactional
+	@Override
+	public ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException {
+		Usuario usuario = usuarioRepository.findById(usuarioId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","USUARIO_NOT_FOUND"));
+
+		Cancion cancion = cancionRepository.findById(cancionId)
+				.orElseThrow(()->new NotFoundException("NOT-401-1","CANCION_NOT_FOUND"));
+
+		Reproduccion reproduccion = new Reproduccion();
+		reproduccion.setUsuario(usuario);
+		reproduccion.setCancion(cancion);
+		reproduccion.setFecha(LocalDateTime.now());
+
+		try {
+			reproduccion = reproduccionRepository.save(reproduccion);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","REPRODUCCION_NOT_CREATED");
+		}
+
+		cancion.getProyecto().getArtista().setTotalReproducciones(
+			cancion.getProyecto().getArtista().getTotalReproducciones()+1
+		);
+
+		return modelMapper.map(reproduccion,ReproduccionDto.class);
 	}
 }
