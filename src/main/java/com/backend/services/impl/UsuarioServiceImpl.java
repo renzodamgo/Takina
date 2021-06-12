@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.HistorialDto;
+import com.backend.dtos.LoginDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.entities.Usuario;
@@ -114,18 +115,19 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	// --------------------------------------------------------
 	@Override
-	public UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(String login, String password) throws TakinaException {
-		Usuario Usuario = getUsuarioByApodoOrCorreo(login);
+	public UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(LoginDto loginDto) throws TakinaException {
+		Usuario Usuario = getUsuarioByApodoOrCorreo(loginDto.getLogin());
 		
 		Boolean encontrado = false;
-		if (Usuario.getPassword().equals(password)) encontrado = true;
+		if (Usuario.getPassword().equals(loginDto.getPassword())) encontrado = true;
+
 		if (!encontrado) throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_FOUND");
 		
 		return modelMapper.map(getUsuarioEntity(Usuario.getId()),UsuarioDto.class);
 	}
 
 	private Usuario getUsuarioByApodoOrCorreo(String login) throws TakinaException {
-		return usuarioRepository.findByApodoOrCorreo(login,login)
+		return usuarioRepository.findByApodoOrCorreo(login)
 				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
 	}
 	// --------------------------------------------------------

@@ -22,8 +22,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
 	//@Query("SELECT u FROM Usuario u WHERE u.apodo = ?1")
 	Optional<Usuario> findByApodo(String apodo);
 
-	//@Query("SELECT u FROM Usuario u WHERE u.apodo = ?1 or u.correo = ?2")
-	Optional<Usuario> findByApodoOrCorreo(String apodo, String correo);
+	@Query("SELECT u FROM Usuario u WHERE u.apodo = ?1 or u.correo = ?1")
+	Optional<Usuario> findByApodoOrCorreo(String login);
 
 	@Query("SELECT u FROM Usuario u")
 	List<Usuario> findAll();

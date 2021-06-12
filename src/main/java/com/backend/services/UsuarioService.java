@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.HistorialDto;
+import com.backend.dtos.LoginDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.exceptions.TakinaException;
@@ -24,15 +25,13 @@ public interface UsuarioService {
 	UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws TakinaException;
 
 	// US002 - Login
-	UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(String login, String password) throws TakinaException;
+	UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(LoginDto loginDto) throws TakinaException;
 
 	// US021 - Buscar otro usuario por su nombre
 	List<UsuarioDto> getUsuariosByNombre(String nombre) throws TakinaException;
 
 	// US030 - Historial de reproducciones
 	HistorialDto getHistorial(Long usuarioId) throws TakinaException;
-	
-
 
 	// US020 - Modificar foto de usuario (PUT de usuario)
 	UsuarioDto editUsuario(EditUsuarioDto editUsuarioDto) throws TakinaException;

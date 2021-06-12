@@ -8,6 +8,7 @@ import com.backend.dtos.creates.CreatePlaylistDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,12 +61,13 @@ public class PlaylistController {
 	}
 
 	// Eliminar cancion de playlist
-//	@ResponseStatus(HttpStatus.OK)
-//	@GetMapping("/{playlistId}/cancion/{cancionId}")
-//	public TakinaResponse<String> deleteFromPlaylist(@PathVariable Long playlistId, @PathVariable Long cancionId)
-//			throws TakinaException{
-//		playlistService.deleteFromPlaylist(playlistId,cancionId);
-//		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-//				"Cancion eliminada del playlist correctamente.");
-//	}
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/{playlistId}/cancion/{cancionId}")
+	public TakinaResponse<String> deleteFromPlaylist(@PathVariable Long playlistId, @PathVariable Long cancionId)
+			throws TakinaException{
+		playlistService.deleteFromPlaylist(playlistId,cancionId);
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				"Cancion eliminada del playlist correctamente.");
+	}
+
 }

@@ -6,6 +6,7 @@ import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.HistorialDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
+import com.backend.dtos.LoginDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
 import com.backend.services.UsuarioService;
@@ -76,11 +77,11 @@ public class UsuarioController {
 
 	// Funcion Login
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/login/{login}/{password}")
-	public TakinaResponse<UsuarioDto> loginUsuarioByApodoOrCorreoUsingPassword(@PathVariable String login, @PathVariable String password)
+	@PostMapping("/login")
+	public TakinaResponse<UsuarioDto> loginUsuarioByApodoOrCorreoUsingPassword(@RequestBody LoginDto loginDto)
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-				usuarioService.loginUsuarioByApodoOrCorreoUsingPassword(login,password));
+				usuarioService.loginUsuarioByApodoOrCorreoUsingPassword(loginDto));
 	}
 
 	// Revisar el historial de reproduccion de un usuario

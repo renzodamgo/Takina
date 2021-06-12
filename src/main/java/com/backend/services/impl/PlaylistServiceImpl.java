@@ -126,7 +126,7 @@ public class PlaylistServiceImpl implements PlaylistService {
 		if (validacion.isPresent()) {
 			listadoRepository.deleteById(validacion.get().getId());
 		} else {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_PLAYLISTED");
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_IN_PLAYLIST");
 		}
 	}
 
