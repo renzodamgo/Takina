@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "32f91ed7-14b3-4a10-8551-6572d1ecc15a",
-		"name": "Takina v5.6",
+		"name": "Takina v5.8",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -39,7 +39,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"apodo\": \"franyoss\",\r\n    \"password\": \"123456\",\r\n    \"nombre\": \"Francesco Bassura\",\r\n    \"correo\": \"what@the.foo\",\r\n    \"fotoPerfil\": \"perfil.png\"\r\n}",
+					"raw": "{\r\n    \"apodo\": \"damian\",\r\n    \"password\": \"anticristo666\",\r\n    \"nombre\": \"Renzo Damian\",\r\n    \"correo\": \"apple@love\",\r\n    \"fotoPerfil\": \"25/nuevoperfil.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -66,7 +66,34 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"apodo\": \"damian\",\r\n    \"password\": \"anticristo666\",\r\n    \"nombre\": \"Renzo Damian\",\r\n    \"correo\": \"apple@love\",\r\n    \"fotoPerfil\": \"25/nuevoperfil.png\"\r\n}",
+					"raw": "{\r\n    \"apodo\": \"franyoss\",\r\n    \"password\": \"123456\",\r\n    \"nombre\": \"Francesco Bassura\",\r\n    \"correo\": \"what@the.foo\",\r\n    \"fotoPerfil\": \"perfil.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Usuario 4 para eliminar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"apodo\": \"ronaldo\",\r\n    \"password\": \"realMadrid\",\r\n    \"nombre\": \"Ronaldo Cornejo\",\r\n    \"correo\": \"anco@vida.19\",\r\n    \"fotoPerfil\": \"salvador/asi.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -111,7 +138,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":1,\r\n    \"password\": \"password123\",\r\n    \"nombre\": \"Francesco Bassino\",\r\n    \"correo\": \"ferrari@aggin.com\",\r\n    \"fotoPerfil\": \"aceptar/tus/pecados.jpg\"\r\n}",
+					"raw": "{\r\n    \"id\":2,\r\n    \"password\": \"password123\",\r\n    \"nombre\": \"Francesco Bassino\",\r\n    \"correo\": \"ferrari@aggin.com\",\r\n    \"fotoPerfil\": \"aceptar/tus/pecados.jpg\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,14 +173,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/usuarios/id/1",
+					"raw": "{{base_url}}/usuarios/id/4",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"usuarios",
 						"id",
-						"1"
+						"4"
 					]
 				}
 			},
@@ -203,14 +230,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/usuarios/busqueda/fran",
+					"raw": "{{base_url}}/usuarios/nombre/france",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"usuarios",
-						"busqueda",
-						"fran"
+						"nombre",
+						"france"
 					]
 				}
 			},
@@ -219,18 +246,25 @@
 		{
 			"name": "Login Usuario TEST",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\":\"renxzen\",\r\n    \"password\":\"google\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{base_url}}/usuarios/login/franygay/123456",
+					"raw": "{{base_url}}/usuarios/login",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"usuarios",
-						"login",
-						"franygay",
-						"123456"
+						"login"
 					]
 				}
 			},
@@ -243,7 +277,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\":\"Keiko Fujimori\",\n    \"biografia\":\"Un peruana con sueños de dictadura\",\n    \"fotoPerfil\":\"600millones.jpg\",\n    \"fotoPortada\":\"panama/islasLagarto.png\",\n    \"departamento\":\"Lima\",\n    \"genero\":\"Hardcore Jazz\",\n    \"usuarioId\":1\n}",
+					"raw": "{\n    \"nombre\":\"Kenji Fujimori\",\n    \"biografia\":\"Un peruano gamer con ansias de capitalismo\",\n    \"fotoPerfil\":\"boxer.jpg\",\n    \"fotoPortada\":\"friiiifayerrr.png\",\n    \"departamento\":\"Lima\",\n    \"genero\":\"Rock And Roll\",\n    \"usuarioId\":1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -298,6 +332,33 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"nombre\":\"Hernando De Soto\",\n    \"biografia\":\"El liberalismo manifestado fisicamente\",\n    \"fotoPerfil\":\"liberalismo.jpg\",\n    \"fotoPortada\":\"liberalismo/liberalismo.png\",\n    \"departamento\":\"Arequipa\",\n    \"genero\":\"Hip Hop\",\n    \"usuarioId\":3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/artistas/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Artista 4 para editar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Keiko Fujimori\",\n    \"biografia\":\"Un peruana con sueños de dictadura\",\n    \"fotoPerfil\":\"600millones.jpg\",\n    \"fotoPortada\":\"panama/islasLagarto.png\",\n    \"departamento\":\"Lima\",\n    \"genero\":\"Hardcore Jazz\",\n    \"usuarioId\":1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -903,14 +964,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/canciones/nombre/algun",
+					"raw": "{{base_url}}/canciones/nombre/millo",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"canciones",
 						"nombre",
-						"algun"
+						"millo"
 					]
 				}
 			},
@@ -922,14 +983,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/canciones/genero/rock",
+					"raw": "{{base_url}}/canciones/genero/hyperfo",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"canciones",
 						"genero",
-						"rock"
+						"hyperfo"
 					]
 				}
 			},
@@ -1052,6 +1113,178 @@
 						"playlists",
 						"1",
 						"cancion",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Seguidor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/artista/seguidor/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artista",
+						"seguidor",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Seguidor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/artista/seguidor/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artista",
+						"seguidor",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Estadistica de seguidores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/artistas/estadistica/seguidores/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"estadistica",
+						"seguidores",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Estadistica de reproducciones",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/artistas/estadistica/reproducciones/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"artistas",
+						"estadistica",
+						"reproducciones",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Credito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"artistaId\":3,\r\n    \"cancionId\":1,\r\n    \"descripcion\":\"Vocales y letras\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/canciones/credito",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"canciones",
+						"credito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Reproduccion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/cancion/reproduccion/1/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cancion",
+						"reproduccion",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Historial By UserID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios/historial/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						"historial",
 						"1"
 					]
 				}
@@ -1219,112 +1452,6 @@
 						"eventos",
 						"nombre",
 						"truji"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Reproduccion",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/cancion/reproduccion/1/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"cancion",
-						"reproduccion",
-						"1",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Historial By UserID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/usuarios/historial/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"usuarios",
-						"historial",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Credito",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"artistaId\":3,\r\n    \"cancionId\":1,\r\n    \"descripcion\":\"Vocales y letras\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/canciones/credito",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"canciones",
-						"credito"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Seguidor",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/artista/seguidor/1/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"artista",
-						"seguidor",
-						"1",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Seguidor",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/artista/seguidor/1/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"artista",
-						"seguidor",
-						"1",
-						"1"
 					]
 				}
 			},
@@ -1504,72 +1631,6 @@
 					"path": [
 						"eventos",
 						"invitados",
-						"1",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Estadistica de seguidores",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/artistas/estadistica/seguidores/1/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"artistas",
-						"estadistica",
-						"seguidores",
-						"1",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Estadistica de reproducciones",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"eventoId\":1,\r\n    \"artistaId\":1,\r\n    \"horaInicio\":\"17:30\",\r\n    \"horaFin\":\"19:00\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/artistas/estadistica/reproducciones/1/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"artistas",
-						"estadistica",
-						"reproducciones",
 						"1",
 						"1"
 					]
