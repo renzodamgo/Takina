@@ -8,11 +8,11 @@
         <version>2.4.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.booking</groupId>
-    <artifactId>booking-restaurant-api</artifactId>
+    <groupId>com.backend</groupId>
+    <artifactId>backend-Takina</artifactId>
     <version>1.0.0</version>
-    <name>booking-restaurant-api</name>
-    <description>Demo project for Spring Boot</description>
+    <name>backend-Takina</name>
+    <description>Backend for Takina</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -36,17 +36,12 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
             <version>2.4.0</version>
         </dependency>
-
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -57,7 +52,16 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.10.5</version>
         </dependency>
-        
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.4.0</version>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
     <build>

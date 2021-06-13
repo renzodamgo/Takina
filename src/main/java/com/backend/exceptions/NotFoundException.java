@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 
 import java.util.Arrays;
 
-public class NotFoundException extends TakinaException{
-	public NotFoundException(String code,String message){
+public class NotFoundException extends TakinaException {
+	public NotFoundException(String code, String message){
 		super(code, HttpStatus.NOT_FOUND.value(), message);
 	}
 

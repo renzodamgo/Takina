@@ -1,11 +1,9 @@
 package com.backend.dtos;
+
 import java.time.LocalDateTime;
+import lombok.Data;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
+@Data
 public class ProyectoMiniDto {
 	private Long id;
 	private String nombre;

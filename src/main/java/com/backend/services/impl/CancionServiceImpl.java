@@ -17,8 +17,11 @@ import com.backend.entities.Usuario;
 import com.backend.entities.Artista;
 import com.backend.entities.Credito;
 import com.backend.exceptions.InternalServerErrorException;
-import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
+import com.backend.exceptions.UsuarioNotFoundException;
+import com.backend.exceptions.ArtistaNotFoundException;
+import com.backend.exceptions.ProyectoNotFoundException;
+import com.backend.exceptions.CancionNotFoundException;
 import com.backend.repositories.CancionRepository;
 import com.backend.repositories.ProyectoRepository;
 import com.backend.repositories.ReproduccionRepository;
@@ -52,7 +55,6 @@ public class CancionServiceImpl implements CancionService {
 
 	private static final ModelMapper modelMapper = new ModelMapper();
 
-
 	// -------------------------------------------------------
 	@Override
 	public CancionDto getCancionId(Long cancionId) throws TakinaException {
@@ -62,7 +64,7 @@ public class CancionServiceImpl implements CancionService {
 
 	private Cancion getCancionEntity(Long cancionId) throws TakinaException {
 		return cancionRepository.findById(cancionId)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","CANCION_NOTFOUND-404"));
+				.orElseThrow(()-> new CancionNotFoundException("Cancion not found."));
 	}
 
 	// -------------------------------------------------------
@@ -80,7 +82,7 @@ public class CancionServiceImpl implements CancionService {
 
 	private Cancion getCancionEntityNombre(String nombre) throws TakinaException {
 		return cancionRepository.findByNombre(nombre)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","CANCION_NOTFOUND-404"));
+				.orElseThrow(()-> new CancionNotFoundException("Cancion not found."));
 	}
 
 	// --------------------------------------------------------
@@ -88,7 +90,7 @@ public class CancionServiceImpl implements CancionService {
 	@Override
 	public CancionDto createCancion(CreateCancionDto createCancionDto) throws TakinaException {
 		Proyecto proyecto = proyectoRepository.findById(createCancionDto.getProyectoId())
-				.orElseThrow(()->new NotFoundException("NOT-401-1","PROYECTO_NOT_FOUND"));
+				.orElseThrow(()->new ProyectoNotFoundException("Proyecto not found."));
 
 		List<Cancion> validacion = cancionRepository.findByProyectoId(createCancionDto.getProyectoId());
 		for (Cancion c : validacion) {
@@ -135,7 +137,7 @@ public class CancionServiceImpl implements CancionService {
 	@Override
 	public CancionDto createCancionProyecto(CreateCancionProyectoDto createCancionProyectoDto) throws TakinaException {
 		Artista artista = artistaRepository.findById(createCancionProyectoDto.getArtistaId())
-				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+				.orElseThrow(()->new ArtistaNotFoundException("Artista not found."));
 
 		Proyecto proyecto = new Proyecto();
 		proyecto.setNombre(createCancionProyectoDto.getNombre());
@@ -216,10 +218,9 @@ public class CancionServiceImpl implements CancionService {
 	@Override
 	public CancionDto createCredito(CreateCreditoDto createCreditoDto) throws TakinaException {
 		Artista artista = artistaRepository.findById(createCreditoDto.getArtistaId())
-				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+				.orElseThrow(()->new ArtistaNotFoundException("Artista not found."));
 
-		Cancion cancion = cancionRepository.findById(createCreditoDto.getCancionId())
-				.orElseThrow(()->new NotFoundException("NOT-401-1","CANCION_NOT_FOUND"));
+		Cancion cancion = getCancionEntity(createCreditoDto.getCancionId());
 
 		Credito credito = new Credito();
 		credito.setArtista(artista);
@@ -240,10 +241,9 @@ public class CancionServiceImpl implements CancionService {
 	@Override
 	public ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException {
 		Usuario usuario = usuarioRepository.findById(usuarioId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","USUARIO_NOT_FOUND"));
+				.orElseThrow(()->new UsuarioNotFoundException("Usuario not found."));
 
-		Cancion cancion = cancionRepository.findById(cancionId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","CANCION_NOT_FOUND"));
+		Cancion cancion = getCancionEntity(cancionId);
 
 		Reproduccion reproduccion = new Reproduccion();
 		reproduccion.setUsuario(usuario);

@@ -14,8 +14,8 @@ import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.entities.Usuario;
 import com.backend.entities.Reproduccion;
 import com.backend.exceptions.InternalServerErrorException;
-import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
+import com.backend.exceptions.UsuarioNotFoundException;
 import com.backend.repositories.UsuarioRepository;
 import com.backend.repositories.ReproduccionRepository;
 import com.backend.services.UsuarioService;
@@ -43,7 +43,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	private Usuario getUsuarioEntity(Long UsuarioId) throws TakinaException {
 		return usuarioRepository.findById(UsuarioId)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+				.orElseThrow(()-> new UsuarioNotFoundException("Usuario not found."));
 	}
 
 	// -------------------------------------------------------
@@ -55,24 +55,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	// -------------------------------------------------------
 	@Override
-	public UsuarioDto getUsuarioNombre(String nombre) throws TakinaException {
-		return modelMapper.map(getUsuarioEntityNombre(nombre),UsuarioDto.class);
-	}
-
-	private Usuario getUsuarioEntityNombre(String nombre) throws TakinaException {
-		return usuarioRepository.findByNombre(nombre)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
-	}
-
-	// -------------------------------------------------------
-	@Override
 	public UsuarioDto getUsuarioApodo(String apodo) throws TakinaException {
 	 return modelMapper.map(getUsuarioEntityApodo(apodo),UsuarioDto.class);
 	}
  
 	private Usuario getUsuarioEntityApodo(String apodo) throws TakinaException {
 	   return usuarioRepository.findByApodo(apodo)
-			   .orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+			   .orElseThrow(()-> new UsuarioNotFoundException("Usuario not found."));
 	}
 
 	// -------------------------------------------------------
@@ -83,7 +72,7 @@ public class UsuarioServiceImpl implements UsuarioService {
  
 	private Usuario getUsuarioEntityCorreo(String correo) throws TakinaException {
 		return usuarioRepository.findByCorreo(correo)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+				.orElseThrow(()-> new UsuarioNotFoundException("Usuario not found."));
 	}
 
 	// --------------------------------------------------------
@@ -128,8 +117,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	private Usuario getUsuarioByApodoOrCorreo(String login) throws TakinaException {
 		return usuarioRepository.findByApodoOrCorreo(login)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
+				.orElseThrow(()-> new UsuarioNotFoundException("Usuario not found."));
 	}
+
 	// --------------------------------------------------------
 	@Override
 	public HistorialDto getHistorial(Long usuarioId) throws TakinaException {

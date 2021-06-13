@@ -10,21 +10,21 @@ import javax.transaction.Transactional;
 import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
-
+import com.backend.exceptions.PlaylistNotFoundException;
+import com.backend.exceptions.UsuarioNotFoundException;
+import com.backend.exceptions.CancionNotFoundException;
+import com.backend.exceptions.ListadoNotFoundException;
 import com.backend.dtos.PlaylistDto;
 import com.backend.dtos.creates.CreatePlaylistDto;
 import com.backend.entities.Playlist;
 import com.backend.repositories.PlaylistRepository;
 import com.backend.services.PlaylistService;
-
 import com.backend.entities.Listado;
 import com.backend.repositories.ListadoRepository;
 import com.backend.entities.Cancion;
 import com.backend.repositories.CancionRepository;
-
 import com.backend.entities.Usuario;
 import com.backend.repositories.UsuarioRepository;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,9 +50,9 @@ public class PlaylistServiceImpl implements PlaylistService {
 	public PlaylistDto getPlaylistById(Long playlistId) throws TakinaException {
 		return modelMapper.map(getPlaylistEntity(playlistId), PlaylistDto.class);  
 	}
-	private Object getPlaylistEntity(Long playlistId) throws NotFoundException {
+	private Playlist getPlaylistEntity(Long playlistId) throws NotFoundException {
 		return playlistRepository.findById(playlistId)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PLAYLIST_NOTFOUND-404"));
+				.orElseThrow(()-> new PlaylistNotFoundException("Playlist not found."));
 	}
 
 	// ----------------------------------------------------------------
@@ -67,7 +67,7 @@ public class PlaylistServiceImpl implements PlaylistService {
 	@Override
 	public PlaylistDto createPlaylist(CreatePlaylistDto createPlaylistDto) throws TakinaException {
 		Usuario usuario = usuarioRepository.findById(createPlaylistDto.getUsuarioId())
-				.orElseThrow(()->new NotFoundException("NOT-401-1","USUARIO_NOT_FOUND"));
+				.orElseThrow(()->new UsuarioNotFoundException("Usuario not found."));
 
 		Playlist playlist = new Playlist();
 		playlist.setNombre(createPlaylistDto.getNombre());
@@ -91,14 +91,13 @@ public class PlaylistServiceImpl implements PlaylistService {
 		Optional<Listado> validacion = listadoRepository.findByPlaylistIdAndCancionId(playlistId,cancionId);
 
 		if (validacion.isPresent()) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_ALREADY_PLAYLISTED");
+			throw new ListadoNotFoundException("Cancion already found in Playlist.");
 		}
 
-		Playlist playlist = playlistRepository.findById(playlistId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","PLAYLIST_NOT_FOUND"));
+		Playlist playlist = getPlaylistEntity(playlistId);
 
 		Cancion cancion = cancionRepository.findById(cancionId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","CANCION_NOT_FOUND"));
+				.orElseThrow(()->new CancionNotFoundException("Cancion not found."));
 
 		Listado listado = new Listado();
 		listado.setCancion(cancion);
@@ -108,10 +107,8 @@ public class PlaylistServiceImpl implements PlaylistService {
 		try {
 			listado = listadoRepository.save(listado);
 		} catch (Exception ex) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","LISTACANCION_NOT_CREATED");
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","LISTADO_NOT_CREATED");
 		}
-		//cancion.getListados().add(listado);
-		//playlist.getListados().add(listado);
 
 		playlist.setDuracion(playlist.getDuracion()+cancion.getDuracion());
 		playlist.setNumCanciones(playlist.getNumCanciones()+1);
@@ -126,7 +123,7 @@ public class PlaylistServiceImpl implements PlaylistService {
 		if (validacion.isPresent()) {
 			listadoRepository.deleteById(validacion.get().getId());
 		} else {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_IN_PLAYLIST");
+			throw new ListadoNotFoundException("Cancion not found in Playlist.");
 		}
 	}
 

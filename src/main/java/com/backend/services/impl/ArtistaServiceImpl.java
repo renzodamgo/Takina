@@ -17,7 +17,8 @@ import com.backend.dtos.SeguidorDto;
 import com.backend.entities.Seguidor;
 import com.backend.entities.Administrador;
 import com.backend.exceptions.InternalServerErrorException;
-import com.backend.exceptions.NotFoundException;
+import com.backend.exceptions.ArtistaNotFoundException;
+import com.backend.exceptions.UsuarioNotFoundException;
 import com.backend.exceptions.TakinaException;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.SeguidorRepository;
@@ -55,7 +56,7 @@ public class ArtistaServiceImpl implements ArtistaService {
 
 	private Artista getArtistaEntity(Long artistaId) throws TakinaException {
 		return artistaRepository.findById(artistaId)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","ARTISTA_NOTFOUND-404"));
+				.orElseThrow(()-> new ArtistaNotFoundException("Artista not found."));
 	}
 
 	// --------------------------------------------------------
@@ -64,8 +65,9 @@ public class ArtistaServiceImpl implements ArtistaService {
 		return modelMapper.map(getArtistaEntityNombre(nombre), ArtistaDto.class);
 	}
 
-	private Object getArtistaEntityNombre(String nombre) throws NotFoundException {
-		return artistaRepository.findByNombre(nombre).orElseThrow(()-> new NotFoundException("NOTFOUND-404","CANCION_NOTFOUND-404"));
+	private Artista getArtistaEntityNombre(String nombre) throws TakinaException {
+		return artistaRepository.findByNombre(nombre)
+				.orElseThrow(()-> new ArtistaNotFoundException("Artista not found."));
 	}
 
 	// --------------------------------------------------------
@@ -94,7 +96,7 @@ public class ArtistaServiceImpl implements ArtistaService {
 		}
 
 		Usuario usuario = usuarioRepository.findById(createArtistaDto.getUsuarioId())
-				.orElseThrow(()->new NotFoundException("NOT-401-1","RESTAURANT_NOT_FOUND"));
+				.orElseThrow(()->new UsuarioNotFoundException("Usuario not found."));
 
 		Administrador administrador = new Administrador();
 		administrador.setArtista(artista);
@@ -115,14 +117,13 @@ public class ArtistaServiceImpl implements ArtistaService {
 		Optional<Administrador> validation = administradorRepository.findByArtistaIdAndUsuarioId(artistaId, usuarioId);
 
 		if (validation.isPresent()) {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","ADMINISTRATOR_ALREADY_CREATED");
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","IS_ADMINISTRATOR_ALREADY");
 		}
 
-		Artista artista = artistaRepository.findById(artistaId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","RESTAURANT_NOT_FOUND"));
+		Artista artista = getArtistaEntity(artistaId);
 
 		Usuario usuario = usuarioRepository.findById(usuarioId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","RESTAURANT_NOT_FOUND"));
+				.orElseThrow(()->new UsuarioNotFoundException("Usuario not found."));
 
 		String nivel;
 		switch(nivelInt) {
@@ -135,7 +136,7 @@ public class ArtistaServiceImpl implements ArtistaService {
 			case 3:
 				nivel = "Publicitario"; break;
 			default:
-				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","LEVEL NOT VALID");
+				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","LEVEL_NOT_VALID");
 		  }
 
 		Administrador administrador = new Administrador();
@@ -257,10 +258,9 @@ public class ArtistaServiceImpl implements ArtistaService {
 		}
 
 		Usuario usuario = usuarioRepository.findById(usuarioId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","USUARIO_NOT_FOUND"));
+				.orElseThrow(()->new UsuarioNotFoundException("Usuario not found."));
 
-		Artista artista = artistaRepository.findById(artistaId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
+		Artista artista = getArtistaEntity(artistaId);
 
 		artista.setTotalSeguidores(artista.getTotalSeguidores()+1);
 
@@ -284,14 +284,11 @@ public class ArtistaServiceImpl implements ArtistaService {
 		if (validacion.isPresent()) {
 			seguidorRepository.deleteById(validacion.get().getId());
 
-			Artista artista = artistaRepository.findById(artistaId)
-				.orElseThrow(()->new NotFoundException("NOT-401-1","ARTISTA_NOT_FOUND"));
-			
+			Artista artista = getArtistaEntity(artistaId);
 			artista.setTotalSeguidores(artista.getTotalSeguidores()-1);
 		} else {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
 		}
 	}
-
 
 }

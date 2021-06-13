@@ -2,12 +2,9 @@ package com.backend.dtos;
 
 import java.util.List;
 import java.time.LocalDateTime;
+import lombok.Data;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
+@Data
 public class PlaylistDto {
 	private Long id;
 	private String nombre;

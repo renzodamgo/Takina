@@ -1,12 +1,10 @@
 package com.backend.dtos;
 
-import lombok.Getter;
-import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class EventoDto {
 	private Long id;
 	private String nombre;

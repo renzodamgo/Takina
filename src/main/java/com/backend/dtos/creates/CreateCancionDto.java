@@ -1,10 +1,8 @@
 package com.backend.dtos.creates;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class CreateCancionDto {
 	private String nombre;
 	private Float duracion;

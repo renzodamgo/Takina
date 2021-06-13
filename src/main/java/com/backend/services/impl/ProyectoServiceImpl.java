@@ -11,8 +11,9 @@ import com.backend.dtos.edits.EditProyectoDto;
 import com.backend.entities.Proyecto;
 import com.backend.entities.Artista;
 import com.backend.exceptions.InternalServerErrorException;
-import com.backend.exceptions.NotFoundException;
 import com.backend.exceptions.TakinaException;
+import com.backend.exceptions.ArtistaNotFoundException;
+import com.backend.exceptions.ProyectoNotFoundException;
 import com.backend.repositories.ProyectoRepository;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.services.ProyectoService;
@@ -46,9 +47,6 @@ public class ProyectoServiceImpl implements ProyectoService {
 	@Override
 	public List<ProyectoDto> getProyectosByGenero(String genero) throws TakinaException {
 		List<Proyecto> proyectoEntities = proyectoRepository.findByGeneroContainingIgnoreCase(genero);
-		if (proyectoEntities.isEmpty()) {
-			throw new NotFoundException("NOTFOUND-404", "CANCION_NOTFOUND-404");
-		}
 		return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
 	}
 
@@ -56,34 +54,32 @@ public class ProyectoServiceImpl implements ProyectoService {
 	@Override
 	public ProyectoDto getProyectoById(Long proyectoId) throws TakinaException {
 		return modelMapper.map(getProyectoEntity(proyectoId), ProyectoDto.class);
-
 	}
 
 	private Proyecto getProyectoEntity(Long proyectoId) throws TakinaException {
 		return proyectoRepository.findById(proyectoId)
-				.orElseThrow(() -> new NotFoundException("NOTFOUND-404", "PROYECTO_NOTFOUND-404"));
+				.orElseThrow(() -> new ProyectoNotFoundException("Proyecto not found."));
 	}
 	// -------------------------------------------------------
 	@Override
 	public ProyectoDto getProyectoByNombre(String nombre) throws TakinaException {
 		return modelMapper.map(getProyectoEntityNombre(nombre),ProyectoDto.class);
 	}
+
 	private Proyecto getProyectoEntityNombre(String nombre) throws TakinaException {
 		return proyectoRepository.findByNombre(nombre)
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
+				.orElseThrow(()-> new ProyectoNotFoundException("Proyecto not found."));
 	}
 	// --------------------------------------------------------
-
-
 	@Transactional
 	@Override
 	public ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException {
 		Artista artista = artistaRepository.findById(createProyectoDto.getArtistaId())
-				.orElseThrow(() -> new NotFoundException("NOT-401-1", "ARTISTA_NOT_FOUND"));
+				.orElseThrow(() -> new ArtistaNotFoundException("Artista not found."));
 
-//		if (proyectoRepository.findByNombre(createproyectoDto.getNombre())==createproyectoDto.getNombre())
-		List<ProyectoDto> proyectoEntities = getProyectosByArtistaId(createProyectoDto.getArtistaId());
-		for (ProyectoDto p : proyectoEntities) {
+		// Validación: un artista no puede tener dos proyectos del mismo nombre
+		List<ProyectoDto> proyectos = getProyectosByArtistaId(createProyectoDto.getArtistaId());
+		for (ProyectoDto p : proyectos) {
 			if (p.getNombre().equals(createProyectoDto.getNombre())) {
 				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "PROYECTO_MUST_HAVE_DIFFERENT_NAME");
 			}
@@ -109,21 +105,6 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return modelMapper.map(getProyectoEntity(proyecto.getId()),ProyectoDto.class);
 	}
 
-	public ProyectoDto replaceDescription(ProyectoDto proyectoDto)throws TakinaException {
-		Proyecto proyecto = proyectoRepository.findById(proyectoDto.getId())
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
-
-		proyecto.setDescripcion(proyectoDto.getDescripcion());
-
-		try {
-			proyecto = proyectoRepository.save(proyecto);
-		} catch (Exception ex){
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
-		}
-
-		return modelMapper.map(getProyectoEntity(proyecto.getId()),ProyectoDto.class);
-	}
-
 	@Override
 	public List<ProyectoDto> getProyectosByNombre(String nombre) throws TakinaException {
 		List<Proyecto> results = proyectoRepository.findByNombreContainingIgnoreCase(nombre);
@@ -138,8 +119,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 
 	@Override
 	public ProyectoDto editProyecto(EditProyectoDto editProyectoDto) throws TakinaException {
-		Proyecto proyecto = proyectoRepository.findById(editProyectoDto.getId())
-				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","PROYECTO_NOTFOUND-404"));
+		Proyecto proyecto = getProyectoEntity(editProyectoDto.getId());
 		
 		proyecto.setNombre(editProyectoDto.getNombre());
 		proyecto.setDescripcion(editProyectoDto.getDescripcion());

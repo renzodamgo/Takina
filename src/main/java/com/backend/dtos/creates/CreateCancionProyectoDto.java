@@ -2,11 +2,9 @@ package com.backend.dtos.creates;
 
 import java.time.LocalDateTime;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class CreateCancionProyectoDto {
 	private String nombre;
 	private Float duracion;
@@ -15,6 +13,5 @@ public class CreateCancionProyectoDto {
 	private LocalDateTime lanzamiento;
 	private String discografica;
 	private String fotoPortada;
-
 	private Long artistaId;
 }

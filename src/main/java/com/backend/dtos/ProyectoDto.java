@@ -2,12 +2,9 @@ package com.backend.dtos;
 import java.time.LocalDateTime;
 
 import java.util.List;
+import lombok.Data;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
+@Data
 public class ProyectoDto {
 	private Long id;
 	private String nombre;

@@ -1,11 +1,9 @@
 package com.backend.dtos.creates;
 import java.time.LocalDateTime;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class CreateProyectoDto {
 	private String nombre;
 	private String tipo;

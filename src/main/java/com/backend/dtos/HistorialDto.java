@@ -1,11 +1,9 @@
 package com.backend.dtos;
 
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class HistorialDto {
 	//private Long id;
 	private String apodo;

@@ -1,14 +1,10 @@
 package com.backend.dtos;
 
 import java.util.List;
-
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class CancionDto {
 	private Long id;
 	private String nombre;

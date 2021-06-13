@@ -1,10 +1,8 @@
 package com.backend.dtos.edits;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class EditArtistaDto {
     private Long id;
 	private String nombre;

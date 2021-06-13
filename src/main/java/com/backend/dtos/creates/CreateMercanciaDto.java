@@ -1,10 +1,8 @@
 package com.backend.dtos.creates;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class CreateMercanciaDto {
 	private String nombre;
 	private String descripcion;

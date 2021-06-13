@@ -1,10 +1,8 @@
 package com.backend.dtos;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class CreditoDto {
 	//private Long artistaId;
 	private String artistaNombre;

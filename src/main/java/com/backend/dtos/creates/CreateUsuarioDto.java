@@ -1,11 +1,8 @@
 package com.backend.dtos.creates;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-
+@Data
 public class CreateUsuarioDto {
 	private String apodo;
 	private String password;

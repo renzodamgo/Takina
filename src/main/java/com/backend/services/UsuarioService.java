@@ -12,14 +12,15 @@ import com.backend.exceptions.TakinaException;
 public interface UsuarioService {
 	// Obtener todos los usuarios
 	List<UsuarioDto> getUsuarios() throws TakinaException;
+	
 	// Obtener usuario por ID
 	UsuarioDto getUsuarioId(Long cancionId) throws TakinaException;
+
 	// Obtener usuario por Apodo
 	UsuarioDto getUsuarioApodo(String apodo) throws TakinaException;
+
 	// Obtener usuario por Correo
 	UsuarioDto getUsuarioCorreo(String correo) throws TakinaException;
-	// Obtener usuario por Nombre
-	UsuarioDto getUsuarioNombre(String nombre) throws TakinaException;
 
 	// US001 - Registro
 	UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws TakinaException;

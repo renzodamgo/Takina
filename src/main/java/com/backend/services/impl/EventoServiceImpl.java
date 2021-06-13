@@ -54,8 +54,6 @@ public class EventoServiceImpl implements EventoService {
 		return modelMapper.map(getEventoEntity(eventoId), EventoDto.class);
 	}
 	
-
-
 	private Evento getEventoEntity(Long eventoId) throws NotFoundException {
 		return eventoRepository.findById(eventoId)
 				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Evento_NOTFOUND-404"));

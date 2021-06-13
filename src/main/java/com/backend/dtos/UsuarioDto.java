@@ -2,11 +2,9 @@ package com.backend.dtos;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class UsuarioDto {
 	private Long id;
 	private String apodo;

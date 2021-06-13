@@ -1,11 +1,9 @@
 package com.backend.dtos;
 
 import java.time.LocalTime;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class InvitadoDto {
 	//private Long eventoId;
 	private String artistaNombre;

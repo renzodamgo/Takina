@@ -36,7 +36,7 @@ public class MercanciaServiceImpl implements MercanciaService {
 		return modelMapper.map(getMercanciaEntity(mercanciaId), MercanciaDto.class);     
 	}
 
-	private Object getMercanciaEntity(Long mercanciaId) throws NotFoundException {
+	private Mercancia getMercanciaEntity(Long mercanciaId) throws TakinaException {
 		return mercanciaRepository.findById(mercanciaId)
 				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
 	}

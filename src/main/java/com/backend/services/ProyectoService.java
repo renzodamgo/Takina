@@ -25,8 +25,6 @@ public interface ProyectoService {
     // US014 - Como usuario administrador de un perfil de artista Quiero publicar proyectos  a la plataforma Para promocionar mi música públicamente
     ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException;
 
-    ProyectoDto replaceDescription(ProyectoDto proyectoDto) throws TakinaException;
-
 	ProyectoDto editProyecto(EditProyectoDto editProyectoDto) throws TakinaException;
 
     List<ProyectoDto> getProyectosByArtistaId(Long artistaId) throws TakinaException;

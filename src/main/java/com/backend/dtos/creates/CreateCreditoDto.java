@@ -1,9 +1,7 @@
 package com.backend.dtos.creates;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class CreateCreditoDto {
 		private Long artistaId;
 		private Long cancionId;
