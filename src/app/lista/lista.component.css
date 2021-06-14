@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding-left: 0;
+}
+
+
+img{
+    width: 250px;
+    height: 200px;
+}
+
+h2{
+    font-weight: 600;
+}
+
+p{
+    padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+a{
+    font-weight: 500;
+    text-decoration: none;
+    color: #3498db;
+}

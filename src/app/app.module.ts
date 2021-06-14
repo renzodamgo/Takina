@@ -6,25 +6,23 @@ import { MatSidenavModule} from '@angular/material/sidenav'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { SongComponent } from './components/song.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavComponent } from './nav/nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { ListaComponent } from './lista/lista.component';
 import { HomeComponent } from './home/home.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { BannerComponent } from './banner/banner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SongComponent,
-    NavComponent,
-    HomeComponent
+    NavBarComponent,
+    ListaComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
@@ -32,15 +30,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSliderModule,
     MatSidenavModule,
     FormsModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

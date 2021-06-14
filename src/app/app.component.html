@@ -1,7 +1,19 @@
-<app-nav></app-nav>
+<app-nav-bar></app-nav-bar>
 
-<div class="songs-container">
-      <app-song *ngFor="let s of songs"
-      (songClicked)="clickSong($event)" 
-      [song]="s"></app-song>
+
+<div class="container">
+    <div class = "groupList" *ngFor = "let lista of listas">
+        <app-lista 
+            (listaClicked)="clickLista($event)" 
+            [lista]="lista">
+    </app-lista>
+    </div>
 </div>
+
+
+
+
+<!-- <div class="disco">
+    <img src="./assets/images/disco.png" alt="">
+</div> -->
+

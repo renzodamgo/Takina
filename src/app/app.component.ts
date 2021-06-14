@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Song } from './song.model';
+import { Lista } from './lista.model';
 
 @Component({
   selector: 'app-root',
@@ -10,26 +10,41 @@ import { Song } from './song.model';
 export class AppComponent {
   title = 'Takina';
 
-  songs: Song[] = [
+  listas: Lista[] = [
     {
       id: '1',
-      image: 'assets/images/im1.jpg',
+      image: 'assets/images/listsong1.jpg',
       title: 'Mr. Hungary',
     },
     {
       id: '2',
-      image: 'assets/images/im2.jpg',
+      image: 'assets/images/listsong7.jpg',
       title: 'Si estuviésemos Juntos',
     },
     {
       id: '3',
-      image: 'assets/images/im3.jpg',
+      image: 'assets/images/listsong3.jpg',
+      title: 'Purified',
+    },
+    {
+      id: '4',
+      image: 'assets/images/listsong5.jfif',
+      title: 'Purified',
+    },
+    {
+      id: '5',
+      image: 'assets/images/listsong4.jpg',
+      title: 'Purified',
+    },
+    {
+      id: '6',
+      image: 'assets/images/listsong6.jfif',
       title: 'Purified',
     },
   ];
 
-  clickSong(id: number) {
-    console.log('song');
+  clickLista(id: number) {
+    console.log('Lista');
     console.log(id);
   }
 }
