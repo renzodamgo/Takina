@@ -34,7 +34,6 @@ export class ProyectsComponent implements OnInit {
         
       })
     
-    
   }
 
 }
