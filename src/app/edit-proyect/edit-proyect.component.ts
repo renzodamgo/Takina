@@ -14,6 +14,7 @@ export class EditProyectComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
   }
 
   goBack(): void {
