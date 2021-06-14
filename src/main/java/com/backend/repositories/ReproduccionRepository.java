@@ -23,5 +23,5 @@ public interface ReproduccionRepository extends JpaRepository<Reproduccion,Long>
 
 	@Query(value = "SELECT count(*) FROM reproducciones WHERE artistas_id = ?1 AND fecha > ?2",
 			nativeQuery = true)
-	Integer countByArtistaIdAndGreaterThanFecha(Long artistaId, LocalDateTime fecha);
+	Long countByArtistaIdAndGreaterThanFecha(Long artistaId, LocalDateTime fecha);
 }

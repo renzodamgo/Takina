@@ -21,5 +21,5 @@ public interface SeguidorRepository extends JpaRepository<Seguidor,Long> {
 
 	@Query(value = "SELECT count(*) FROM seguidores WHERE artistas_id = ?1 AND fecha > ?2",
 			nativeQuery = true)
-	Integer countByArtistaIdAndGreaterThanFecha(Long artistaId, LocalDateTime fecha);
+	Long countByArtistaIdAndGreaterThanFecha(Long artistaId, LocalDateTime fecha);
 }

@@ -23,7 +23,6 @@ import com.backend.exceptions.TakinaException;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.SeguidorRepository;
 import com.backend.repositories.UsuarioRepository;
-import com.backend.repositories.ReproduccionRepository;
 import com.backend.repositories.AdministradorRepository;
 import com.backend.services.ArtistaService;
 import org.modelmapper.ModelMapper;
@@ -45,9 +44,6 @@ public class ArtistaServiceImpl implements ArtistaService {
 
 	@Autowired
 	private SeguidorRepository seguidorRepository;
-
-	@Autowired
-	private ReproduccionRepository reproduccionRepository;
 
 	@Override
 	public ArtistaDto getArtista(Long artistaId) throws TakinaException{
@@ -233,18 +229,6 @@ public class ArtistaServiceImpl implements ArtistaService {
 								LocalDateTime.now().minusMonths(indice).minusHours(1)));
 
 		return estadistica;
-	}
-
-	public EstadisticaDto getReproduccionesByIdAndDate(Long artistaId, Integer indice) throws TakinaException {
-		Artista artista = getArtistaEntity(artistaId);
-
-		EstadisticaDto estadistica = new EstadisticaDto();
-		estadistica.setIndice(indice);
-		estadistica.setCantidad(
-			reproduccionRepository.countByArtistaIdAndGreaterThanFecha(
-								artista.getId(),
-								LocalDateTime.now().minusMonths(indice).minusHours(1)));
-		return new EstadisticaDto();
 	}
 
 	// --------------------------------------------------------

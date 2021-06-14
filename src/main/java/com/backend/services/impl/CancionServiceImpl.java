@@ -1,11 +1,13 @@
 package com.backend.services.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import com.backend.dtos.CancionDto;
+import com.backend.dtos.EstadisticaDto;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.dtos.creates.CreateCancionProyectoDto;
@@ -270,5 +272,45 @@ public class CancionServiceImpl implements CancionService {
 
 		return canciones.stream().map(cancion -> modelMapper.map(cancion, CancionDto.class))
 			.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ReproduccionDto> getHistorial(Long usuarioId) throws TakinaException {
+		List<Reproduccion> reproducciones = reproduccionRepository.findByUsuarioIdOrderByFecha(usuarioId);
+
+		List<Reproduccion> historial = new ArrayList<>();
+		Integer cantidad = 20;
+		for(int i = 0; i < reproducciones.size(); i++){
+			if(historial.size() == cantidad) break;
+			
+			Boolean found = false;
+			for(int j = 0; j < historial.size(); j++) {
+				if(reproducciones.get(i).getUsuario().getId() == historial.get(j).getUsuario().getId() &&
+					reproducciones.get(i).getCancion().getId() == historial.get(j).getCancion().getId()) {
+					found = true;
+					break;
+				}
+			}
+
+			if(!found) historial.add(reproducciones.get(i));
+		}
+		
+		return historial.stream().map(reproduccion -> modelMapper
+						.map(reproduccion,ReproduccionDto.class))
+						.collect(Collectors.toList());
+	}
+
+	@Override
+	public EstadisticaDto getReproduccionesByArtistaIdAndDate(Long artistaId, Integer indice) throws TakinaException {
+		Artista artista = artistaRepository.findById(artistaId)
+				.orElseThrow(()->new ArtistaNotFoundException("Artista not found."));
+
+		EstadisticaDto estadistica = new EstadisticaDto();
+		estadistica.setIndice(indice);
+		estadistica.setCantidad(
+			reproduccionRepository.countByArtistaIdAndGreaterThanFecha(
+								artista.getId(),
+								LocalDateTime.now().minusMonths(indice).minusHours(1)));
+		return new EstadisticaDto();
 	}
 }

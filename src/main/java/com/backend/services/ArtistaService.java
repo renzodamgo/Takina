@@ -43,9 +43,6 @@ public interface ArtistaService {
 	// US028 - revisar los seguidores en total que tiene un artista
 	EstadisticaDto getSeguidoresByIdAndDate(Long artistaId, Integer indice) throws TakinaException;
 
-	// US029 - revisar las reproducciones en total que tiene un artista
-	EstadisticaDto getReproduccionesByIdAndDate(Long artistaId, Integer indice) throws TakinaException;
-
 	// US009 - Creacion de seguidor
 	SeguidorDto createSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
 

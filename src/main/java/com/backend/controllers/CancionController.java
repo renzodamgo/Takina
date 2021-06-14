@@ -1,6 +1,7 @@
 package com.backend.controllers;
 
 import com.backend.dtos.CancionDto;
+import com.backend.dtos.EstadisticaDto;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.dtos.creates.CreateCancionProyectoDto;
@@ -64,7 +65,6 @@ public class CancionController {
 		cancionService.deleteCancionById(cancionId);
 		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
 				"Cancion Eliminada correctamente.");
-
 	}
 
 	// Busqueda por nombre
@@ -112,6 +112,22 @@ public class CancionController {
 				cancionService.createReproduccion(usuarioId,cancionId));
 	}
 
+	// Revisar el historial de reproduccion de un usuario
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/historial/{usuarioId}")
+	public TakinaResponse<List<ReproduccionDto>> getHistorial(@PathVariable Long usuarioId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				cancionService.getHistorial(usuarioId));
+	}
 
+	//countByArtistaIdAndGreaterThanFecha
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/reproducciones/{artistaId}/fecha/{fechaIndice}")
+	public TakinaResponse<EstadisticaDto> getReproduccionesByArtistaIdAndDate(@PathVariable Long artistaId, @PathVariable Integer fechaIndice)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				cancionService.getReproduccionesByArtistaIdAndDate(artistaId,fechaIndice));
+	}
 
 }

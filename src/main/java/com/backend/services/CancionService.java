@@ -3,6 +3,7 @@ package com.backend.services;
 import java.util.List;
 
 import com.backend.dtos.CancionDto;
+import com.backend.dtos.EstadisticaDto;
 import com.backend.dtos.ReproduccionDto;
 import com.backend.dtos.creates.CreateCancionDto;
 import com.backend.dtos.creates.CreateCreditoDto;
@@ -40,4 +41,10 @@ public interface CancionService {
 
 	// Crear Reproduccion
 	ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException;
+
+	// US030 - Historial de canciones
+	List<ReproduccionDto> getHistorial(Long usuarioId) throws TakinaException;
+
+	// US029 - revisar las reproducciones en total que tiene un artista
+	EstadisticaDto getReproduccionesByArtistaIdAndDate(Long artistaId, Integer indice) throws TakinaException;
 }

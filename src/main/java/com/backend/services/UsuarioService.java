@@ -3,7 +3,6 @@ package com.backend.services;
 import java.util.List;
 
 import com.backend.dtos.UsuarioDto;
-import com.backend.dtos.HistorialDto;
 import com.backend.dtos.LoginDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
@@ -30,9 +29,6 @@ public interface UsuarioService {
 
 	// US021 - Buscar otro usuario por su nombre
 	List<UsuarioDto> getUsuariosByNombre(String nombre) throws TakinaException;
-
-	// US030 - Historial de reproducciones
-	HistorialDto getHistorial(Long usuarioId) throws TakinaException;
 
 	// US020 - Modificar foto de usuario (PUT de usuario)
 	UsuarioDto editUsuario(EditUsuarioDto editUsuarioDto) throws TakinaException;

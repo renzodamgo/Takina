@@ -100,15 +100,6 @@ public class ArtistaController {
 					artistaService.getSeguidoresByIdAndDate(artistaId,indice));
 	}
 
-	// Reproducciones de los ultimos x meses
-	@ResponseStatus(HttpStatus.OK)
-	@GetMapping("/estadistica/reproducciones/{artistaId}/{indice}")
-	public TakinaResponse<EstadisticaDto> getReproduccionesByIdAndDate(@PathVariable Long artistaId, @PathVariable Integer indice)
-			throws TakinaException {
-		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
-					artistaService.getReproduccionesByIdAndDate(artistaId,indice));
-	}
-
 	// Registrar un seguidor
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/seguidor/{usuarioId}/{artistaId}")

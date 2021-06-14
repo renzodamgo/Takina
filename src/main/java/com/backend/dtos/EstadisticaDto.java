@@ -4,5 +4,5 @@ import lombok.Data;
 @Data
 public class EstadisticaDto {
 	private Integer indice;
-	private Integer cantidad;
+	private Long cantidad;
 }
