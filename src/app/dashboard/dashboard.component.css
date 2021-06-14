@@ -1,0 +1,15 @@
+
+.avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.icon-display {
+    transform: scale(2);
+   
+ }
+ .space{
+     padding-bottom: 10%;
+ }

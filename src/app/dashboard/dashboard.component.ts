@@ -8,8 +8,8 @@ import { ArtistaService } from '../artista.service';
 })
 export class DashboardComponent implements OnInit {
 
-  data!:any[];
-  nombre!:string;
+  public Artista!:any;
+ 
 
 
   constructor(private artistaService:ArtistaService) { }
@@ -22,9 +22,9 @@ export class DashboardComponent implements OnInit {
     this.artistaService.getArtista()
       .subscribe(result=>{
         if (result){ 
-          this.data = result.data;
+          this.Artista = (result.data as any);
           console.log(result.data);
-          console.log((this.data as any).nombre)
+          
         }
         
       }, err => {
@@ -32,5 +32,6 @@ export class DashboardComponent implements OnInit {
         
       })
   }
+  
 
 }

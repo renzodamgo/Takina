@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Artista } from './dashboard/artista';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
