@@ -17,6 +17,9 @@ public interface CancionService {
 	// Mostrar todas las canciones
 	List<CancionDto> getCanciones() throws TakinaException;
 
+	// Canciones de un proyecto musical
+	List<CancionDto> getCancionesByProyectoId(Long proyectoId) throws TakinaException;
+
 	// US ??? - Añadir una cancion a un proyecto musical
 	CancionDto createCancion(CreateCancionDto createCancionDto) throws TakinaException;
 

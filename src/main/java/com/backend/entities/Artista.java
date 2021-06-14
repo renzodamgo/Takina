@@ -56,8 +56,8 @@ public class Artista {
 	@Column(
 		name = "foto_perfil",
 		nullable = false,
-		columnDefinition = "VARCHAR(50)",
-		length = 50
+		columnDefinition = "VARCHAR(150)",
+		length = 150
 	)
 	private String fotoPerfil;
 
@@ -66,8 +66,8 @@ public class Artista {
 	@Column(
 		name = "fotoPortada",
 		nullable = false,
-		columnDefinition = "VARCHAR(50)",
-		length = 50
+		columnDefinition = "VARCHAR(150)",
+		length = 150
 	)
 	private String fotoPortada;
 

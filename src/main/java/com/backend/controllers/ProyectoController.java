@@ -66,26 +66,24 @@ public class ProyectoController {
 	@GetMapping("/artista/{artistaId}")
 	public TakinaResponse<List<ProyectoDto>> getProyectosByArtistaId(@PathVariable Long artistaId)
 			throws TakinaException {
-		try {
-			return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
-					proyectoService.getProyectosByArtistaId(artistaId));
-		} catch (Exception err) {
-			return new TakinaResponse<>("Failure", String.valueOf(HttpStatus.NOT_FOUND), String.format("NO PROJECTS WHERE FOUND WITH ARTIST ID: %d", artistaId));
+		List<ProyectoDto> searchResult = proyectoService.getProyectosByArtistaId(artistaId);
+		if (searchResult.isEmpty()) {
+			return new TakinaResponse<>("Failure", String.valueOf(HttpStatus.NOT_FOUND),
+					String.format("NO PROYECTOS WERE FOUND WITH ARTISTA ID: %d", artistaId));
 		}
-
+		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK", searchResult);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/genero/{genero}")
-	public TakinaResponse<List<ProyectoDto>> getProyectoByGenero(@PathVariable String genero)
+	public TakinaResponse<List<ProyectoDto>> getProyectosByGenero(@PathVariable String genero)
 			throws TakinaException {
-		try {
-			return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
-					proyectoService.getProyectosByGenero(genero));
-		} catch (Exception err) {
-			return new TakinaResponse<>("Failure", String.valueOf(HttpStatus.NOT_FOUND), String.format("NO PROJECTS WHERE FOUND WITH GENRE: %s", genero));
+		List<ProyectoDto> searchResult = proyectoService.getProyectosByGenero(genero);
+		if (searchResult.isEmpty()) {
+			return new TakinaResponse<>("Failure", String.valueOf(HttpStatus.NOT_FOUND),
+					String.format("NO PROYECTOS WERE FOUND WITH GENERO: %s", genero));
 		}
-
+		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK", searchResult);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
@@ -95,5 +93,4 @@ public class ProyectoController {
 		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
 				proyectoService.editProyecto(editProyectoDto));
 	}
-
 }

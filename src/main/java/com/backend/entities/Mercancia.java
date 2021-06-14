@@ -56,8 +56,8 @@ public class Mercancia {
 	@Column(
 		name = "foto",
 		nullable = false,
-		columnDefinition = "VARCHAR(50)",
-		length = 50
+		columnDefinition = "VARCHAR(150)",
+		length = 150
 	)
 	private String foto;
 

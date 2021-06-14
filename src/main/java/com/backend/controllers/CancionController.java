@@ -85,6 +85,15 @@ public class CancionController {
 				cancionService.getCancionesByGeneroMusical(generoMusical));
 	}
 
+	//getCancionesByProyectoId
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/proyecto/{proyectoId}")
+	public TakinaResponse<List<CancionDto>> getCancionesByProyectoId(@PathVariable Long proyectoId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				cancionService.getCancionesByProyectoId(proyectoId));
+	}
+
 	// Añadir credito a canción
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping("/credito")
@@ -102,4 +111,7 @@ public class CancionController {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				cancionService.createReproduccion(usuarioId,cancionId));
 	}
+
+
+
 }

@@ -262,4 +262,12 @@ public class CancionServiceImpl implements CancionService {
 
 		return modelMapper.map(reproduccion,ReproduccionDto.class);
 	}
+
+	@Override
+	public List<CancionDto> getCancionesByProyectoId(Long proyectoId) throws TakinaException {
+		List<Cancion> canciones = cancionRepository.findByProyectoId(proyectoId);
+
+		return canciones.stream().map(cancion -> modelMapper.map(cancion, CancionDto.class))
+			.collect(Collectors.toList());
+	}
 }
