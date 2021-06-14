@@ -13,13 +13,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatCardModule} from '@angular/material/card'; 
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet'; 
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatButtonModule} from '@angular/material/button';
+import { BusquedaComponent } from './busqueda/busqueda.component'; 
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ProyectsComponent,
     DashboardComponent,
-    SearchComponent
+    SearchComponent,
+    BusquedaComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatCardModule,
     MatBottomSheetModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
