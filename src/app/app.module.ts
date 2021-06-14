@@ -16,6 +16,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatButtonModule} from '@angular/material/button';
 import { BusquedaComponent } from './busqueda/busqueda.component'; 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EditProyectComponent } from './edit-proyect/edit-proyect.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ProyectsComponent,
     DashboardComponent,
     SearchComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    EditProyectComponent
   ],
   imports: [
     BrowserModule,
