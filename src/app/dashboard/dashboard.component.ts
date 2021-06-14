@@ -9,6 +9,9 @@ import { ArtistaService } from '../artista.service';
 export class DashboardComponent implements OnInit {
 
   data!:any[];
+  nombre!:string;
+
+
   constructor(private artistaService:ArtistaService) { }
 
   ngOnInit(): void {
@@ -20,8 +23,8 @@ export class DashboardComponent implements OnInit {
       .subscribe(result=>{
         if (result){ 
           this.data = result.data;
-          console.log(result);
-          
+          console.log(result.data);
+          console.log((this.data as any).nombre)
         }
         
       }, err => {
