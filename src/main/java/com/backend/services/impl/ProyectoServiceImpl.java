@@ -14,6 +14,7 @@ import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.TakinaException;
 import com.backend.exceptions.ArtistaNotFoundException;
 import com.backend.exceptions.ProyectoNotFoundException;
+import com.backend.exceptions.IncorrectProyectoException;
 import com.backend.repositories.ProyectoRepository;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.services.ProyectoService;
@@ -81,7 +82,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 		List<ProyectoDto> proyectos = getProyectosByArtistaId(createProyectoDto.getArtistaId());
 		for (ProyectoDto p : proyectos) {
 			if (p.getNombre().equals(createProyectoDto.getNombre())) {
-				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "PROYECTO_MUST_HAVE_DIFFERENT_NAME");
+				throw new IncorrectProyectoException("Proyecto with same name already exists.");
 			}
 		}
 

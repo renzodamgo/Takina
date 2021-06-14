@@ -22,6 +22,7 @@ import com.backend.exceptions.UsuarioNotFoundException;
 import com.backend.exceptions.ArtistaNotFoundException;
 import com.backend.exceptions.ProyectoNotFoundException;
 import com.backend.exceptions.CancionNotFoundException;
+import com.backend.exceptions.IncorrectCancionException;
 import com.backend.repositories.CancionRepository;
 import com.backend.repositories.ProyectoRepository;
 import com.backend.repositories.ReproduccionRepository;
@@ -95,7 +96,7 @@ public class CancionServiceImpl implements CancionService {
 		List<Cancion> validacion = cancionRepository.findByProyectoId(createCancionDto.getProyectoId());
 		for (Cancion c : validacion) {
 			if (c.getNombre().equals(createCancionDto.getNombre())) {
-				throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "CANCION_MUST_HAVE_DIFFERENT_NAME");
+				throw new IncorrectCancionException("Cancion with same name already on Proyecto.");
 			}
 		}
 
