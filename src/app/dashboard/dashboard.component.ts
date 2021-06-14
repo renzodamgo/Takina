@@ -7,9 +7,8 @@ import { ArtistaService } from '../artista.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  public Artista!:any;
- 
+  
+  Artista!:any;
 
 
   constructor(private artistaService:ArtistaService) { }
@@ -31,6 +30,10 @@ export class DashboardComponent implements OnInit {
         console.log(err);
         
       })
+  }
+
+  public get ArtistaPhoto(){
+    return this.Artista.fotoPerfil
   }
   
 
