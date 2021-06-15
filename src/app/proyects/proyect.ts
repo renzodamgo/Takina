@@ -1,8 +1,8 @@
-export interface Proyect{
-    data:Data[],
+export interface Data{
+    data:Proyect[],
 }
 
-interface Data {
+export interface Proyect {
     id: 1,
     nombre: string;
     tipo: string;
