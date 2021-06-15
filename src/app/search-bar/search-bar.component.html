@@ -1,0 +1,27 @@
+<div class="search-container">
+	<form class ="search-form"
+		#form="ngForm"
+		(ngSubmit)="onSubmit(form)">
+		<span class="logo" routerLink="/"> Takina</span>
+		<input
+			class="search-input"
+			name ="search"
+			ngModel
+			placeholder="Busca canciones en la plataforma!"
+		/>
+		<button class="search-button">Buscar</button>
+		<mat-form-field class = "filters">
+			<mat-label>Categorias</mat-label>
+			<mat-select
+				panelClass="category-select"
+				[(ngModel)]="category"
+			>
+				<mat-option value="cancion">Canciones</mat-option>
+				<mat-option value="artista">Artistas</mat-option>
+				<mat-option value="genero">Género Musical</mat-option>
+				<mat-option value="departamento">Departamento</mat-option>
+				<mat-option value="eventos">Eventos</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</form>
+</div>
