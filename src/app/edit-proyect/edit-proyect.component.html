@@ -6,7 +6,7 @@
             <div class="editProject">
                 <form action="/users/register" method="POST">
                     <div class="form-group">
-                      <label for="dni">DNI<span style="color: coral;"> </span></label>
+                      <label for="dni">Genero<span style="color: coral;"> </span></label>
                       <input
                         id="dni"
                         pattern="^[0-9]{8}$" title="Debe tener 8 dígitos exactos." required
@@ -30,7 +30,7 @@
                       />
                     </div>
                     <div class="form-group">
-                      <label for="last_name">Apellido<span style="color: coral;"> </span></label>
+                      <label for="last_name">Descripción<span style="color: coral;"> </span></label>
                       <input
                         type="name"
                         id="last_name"
@@ -42,7 +42,7 @@
                       />
                     </div>
                     <div class="form-group">
-                      <label for="email">Email<span style="color: coral;"> </span></label>
+                      <label for="email">Discografia<span style="color: coral;"> </span></label>
                       <input
                         type="email"
                         id="email"
@@ -54,7 +54,7 @@
                       />
                     </div>
                     <div class="form-group">
-                      <label for="cel">Teléfono</label>
+                      <label for="cel">Foto de Portada</label>
                       <input
                         type="tel"
                         id="cel"
@@ -66,7 +66,7 @@
                       />
                     </div>
                     <div class="form-group">
-                      <label for="dir">Dirección</label>
+                      <label for="dir">Genero del proyecto</label>
                       <input
                         type="dir"
                         id="dir"
@@ -74,32 +74,6 @@
                         class="form-control"
                         placeholder="Ingresa Dirección"
                         value="<%= typeof dir != 'undefined' ? dir : '' %>"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="password">Contraseña<span style="color: coral;"> </span></label>
-                      <input
-                        type="password"
-                        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Por favor ingresa una contraseña con por lo menos una mayúscula" required
-                        id="password"
-                        name="password"
-                        class="form-control"
-                        placeholder="Crear contraseña"
-                        minlength="6"
-                        required
-                        value="<%= typeof password != 'undefined' ? password : '' %>"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="password2">Confirma Contraseña<span style="color: coral;">  </span></label>
-                      <input
-                        type="password"
-                        id="password2"
-                        name="password2"
-                        class="form-control"
-                        required
-                        placeholder="Confirma Contraseña"
-                        value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
                       />
                     </div>
                     <div class="space">
