@@ -1,22 +1,26 @@
+<div class="container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            
+            <div class="text-center">
+                <img class="img-thumbnail avatar rounded-circle width:100px" [src]=Artista.fotoPerfil alt="Foto de Perfil">
+            </div>
+            <h1 class="fw-light text-center">{{this.Artista.nombre}}</h1>
+            <p class="lead text-muted space">{{this.Artista.biografia}}</p>
 
-<div class="row py-lg-5">
-    <div class="col-lg-6 col-md-8 mx-auto">
-        
-        <div class="text-center">
-            <img class="img-thumbnail avatar rounded-circle width:100px" [src]=Artista.fotoPerfil alt="Foto de Perfil">
+            <div class="row text-center">
+                <div class="col-sm">
+                    <mat-icon class="icon-display">group</mat-icon> 
+                    <div class="col-sm"></div>Seguidores: <span> {{Artista.totalSeguidores}}</span>
+                
+                </div>
+                <div class="col-sm">
+                    <mat-icon class="icon-display">headset</mat-icon>    
+                    <div class="col-sm">Reproducciones:<span> {{Artista.totalReproducciones}}</span>
+                </div>
+            </div>
+
         </div>
-        <h1 class="fw-light text-center">{{this.Artista.nombre}}</h1>
-        <p class="lead text-muted space">{{this.Artista.biografia}}</p>
-        <div class="row text-center">
-            <div class="col">
-                <mat-icon class="icon-display">group</mat-icon> 
-            </div>
-            <div class="col">
-                <mat-icon class="icon-display">headset</mat-icon> 
-            </div>
-            <div class="w-100"></div>
-            <div class="col">Seguidores: <span> {{Artista.totalSeguidores}}</span></div>
-            <div class="col">Reproducciones:<span> {{Artista.totalReproducciones}}</span></div>
-          </div>
     </div>
+    
 </div>

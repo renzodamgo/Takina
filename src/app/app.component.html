@@ -1,11 +1,12 @@
-
-<nav mat-tab-nav-bar >
-  <div mat-card-avatar class="example-header-image"></div>
+<nav mat-tab-nav-bar background="accent">
+  <div mat-card-avatar class="example-header-image" color="primary"></div>
   <a mat-tab-link [routerLink]="['']">Takina Artistas</a> 
   <a mat-tab-link [routerLink]="['proyecto']">Projectos</a> 
   <a mat-tab-link [routerLink]="['busqueda']">Búsqueda</a> 
   
 </nav>
 
+<body class="bg">
+  <router-outlet></router-outlet>
+</body>
 
-<router-outlet></router-outlet>

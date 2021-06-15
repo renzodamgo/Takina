@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { BusquedaComponent } from './busqueda/busqueda.component'; 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EditProyectComponent } from './edit-proyect/edit-proyect.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { EditProyectComponent } from './edit-proyect/edit-proyect.component';
     MatCardModule,
     MatBottomSheetModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
