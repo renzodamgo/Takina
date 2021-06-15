@@ -1,7 +1,15 @@
 
 form{
-    max-width: 400px;
-    display:inline-block;
-    margin: 0 auto;
     width: 70%;
+    margin: auto;
 }
+
+
+
+.space{
+    padding-top: 50px;
+}
+table {
+    width: 100%;
+  }
+  

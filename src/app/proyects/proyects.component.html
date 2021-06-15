@@ -25,12 +25,12 @@
         <mat-card-actions>
           <button mat-button>Play</button>
 
-          <button mat-button>
+          <button mat-button [routerLink]="[ d.id]">
             <mat-icon
               class="editButton"
               id="editButton"
               aria-hidden="false"
-              routerLink="{{ proyecto.id }}"
+              
               >edit</mat-icon
             >
             <span></span> Edit

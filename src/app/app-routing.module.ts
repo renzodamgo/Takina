@@ -4,11 +4,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProyectsComponent } from './proyects/proyects.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { EditProyectComponent } from './edit-proyect/edit-proyect.component';
 
 const routes: Routes = [
   {path: "proyecto",component: ProyectsComponent},
   {path: "",component: DashboardComponent},
-  {path: "busqueda",component: BusquedaComponent}
+  {path: "busqueda",component: BusquedaComponent},
+  {path: "proyecto/:id",component: EditProyectComponent}
   
 ];
 

@@ -18,6 +18,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EditProyectComponent } from './edit-proyect/edit-proyect.component';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatBottomSheetModule,
     MatButtonModule,
     HttpClientModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
