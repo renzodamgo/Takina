@@ -30,11 +30,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 
 
+
 export class EditProyectComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  project!:string;
+  project!:any;
   name:string = "Bue"
   id!:number
 
@@ -58,6 +59,7 @@ export class EditProyectComponent implements OnInit {
       .subscribe((result)=>{
         this.project = (result.data as any);
           console.log(result.data);
+          console.log(this.project.discografica);
       })
   }
 

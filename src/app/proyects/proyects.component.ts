@@ -25,7 +25,8 @@ export class ProyectsComponent implements OnInit {
       .subscribe(result=>{
         if (result){ 
           this.proyecto = (result.data as any);
-          console.log(result.data);
+          
+          
           
         }
         
