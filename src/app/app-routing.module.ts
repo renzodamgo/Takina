@@ -10,7 +10,11 @@ const routes: Routes = [
   {path: "proyecto",component: ProyectsComponent},
   {path: "",component: DashboardComponent},
   {path: "busqueda",component: BusquedaComponent},
-  {path: "proyecto/:id",component: EditProyectComponent}
+  {path: "proyecto/:id",component: EditProyectComponent},
+  {
+    path: 'busqueda/:song-search',
+    component: BusquedaComponent,
+}
   
 ];
 

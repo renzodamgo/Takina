@@ -19,6 +19,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EditProyectComponent } from './edit-proyect/edit-proyect.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule }   from '@angular/forms';
+
+import { GaugeModule } from 'angular-gauge';
 
 
 @NgModule({
@@ -28,7 +33,8 @@ import {MatTableModule} from '@angular/material/table';
     DashboardComponent,
     SearchComponent,
     BusquedaComponent,
-    EditProyectComponent
+    EditProyectComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,13 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     HttpClientModule,
     MatChipsModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    GaugeModule,
+    FormsModule
+   
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
