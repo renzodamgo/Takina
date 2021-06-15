@@ -93,4 +93,13 @@ public class ProyectoController {
 		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
 				proyectoService.editProyecto(editProyectoDto));
 	}
+
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/id/{proyectoId}")
+	public TakinaResponse<String> deleteProyectoById(@PathVariable Long proyectoId)
+			throws TakinaException {
+		proyectoService.deleteProyectoById(proyectoId);
+		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
+				"Proyecto eliminado.");
+	}
 }

@@ -14,11 +14,12 @@ public interface ProyectoRepository extends JpaRepository<Proyecto, Long> {
 
 	Optional<Proyecto> findByNombre(String nombre);
 
+	void deleteById(Long id);
+
 	List<Proyecto> findByNombreContainingIgnoreCase(String nombre);
 
 	List<Proyecto> findByArtistaId(Long artista_id);
 
-	//@Query("SELECT pm FROM Proyecto pm ORDER BY pm.fecha DESC")
 	@Query(nativeQuery = true,
             value = "SELECT * FROM Proyectos ORDER BY fecha DESC LIMIT 10")
 	List<Proyecto> findTop10OrderByFecha();

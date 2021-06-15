@@ -2,6 +2,7 @@ package com.backend.services.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import com.backend.dtos.ProyectoDto;
@@ -10,6 +11,7 @@ import com.backend.dtos.creates.CreateProyectoDto;
 import com.backend.dtos.edits.EditProyectoDto;
 import com.backend.entities.Proyecto;
 import com.backend.entities.Artista;
+import com.backend.entities.Cancion;
 import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.TakinaException;
 import com.backend.exceptions.ArtistaNotFoundException;
@@ -17,6 +19,7 @@ import com.backend.exceptions.ProyectoNotFoundException;
 import com.backend.exceptions.IncorrectProyectoException;
 import com.backend.repositories.ProyectoRepository;
 import com.backend.repositories.ArtistaRepository;
+import com.backend.repositories.CancionRepository;
 import com.backend.services.ProyectoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,9 @@ public class ProyectoServiceImpl implements ProyectoService {
 
 	@Autowired
 	private ProyectoRepository proyectoRepository;
+
+	@Autowired
+	private CancionRepository cancionRepository;
 
 	// -------------------------------------------------------
 	@Override
@@ -94,7 +100,8 @@ public class ProyectoServiceImpl implements ProyectoService {
 		proyecto.setDiscografica(createProyectoDto.getDiscografica());
 		proyecto.setArtista(artista);
 		proyecto.setFotoPortada(createProyectoDto.getFotoPortada());
-		proyecto.setGenero(artista.getGenero());
+		if (createProyectoDto.getGenero().equals("")) proyecto.setGenero(artista.getGenero());
+		else proyecto.setGenero(createProyectoDto.getGenero());
 		proyecto.setFecha(LocalDateTime.now());
 
 		try {
@@ -137,4 +144,20 @@ public class ProyectoServiceImpl implements ProyectoService {
 
 		return modelMapper.map(getProyectoEntity(proyecto.getId()),ProyectoDto.class);
 	}
+
+	@Override
+	public void deleteProyectoById(Long proyectoId) throws TakinaException {
+		Optional<Proyecto> proyecto = proyectoRepository.findById(proyectoId);
+
+		if (proyecto.isPresent()) {
+			List<Cancion> canciones = cancionRepository.findByProyectoId(proyectoId);
+			for (Cancion c : canciones) {
+				cancionRepository.deleteById(c.getId());
+			}
+			proyectoRepository.deleteById(proyectoId);
+		} else {
+			throw new ProyectoNotFoundException("Proyecto not found.");
+		}
+	}
+
 }

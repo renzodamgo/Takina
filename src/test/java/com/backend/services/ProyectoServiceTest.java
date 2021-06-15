@@ -77,7 +77,7 @@ public class ProyectoServiceTest {
 	}
 
 	@Test
-	public void shouldThrowProyectoNotFoundWhenProyectoIdDoesNotExist(){
+	public void shouldThrowProyectoNotFoundWhenProyectoIdDoesNotExist() {
 		Long proyectoId = 1L;
 
 		Mockito.when(proyectoRepository.findById(anyLong())).thenReturn(Optional.empty());
@@ -87,6 +87,11 @@ public class ProyectoServiceTest {
 
 		assertEquals("Proyecto not found.", proyectoNotFoundException.getMessage());
 		Mockito.verify(proyectoRepository).findById(anyLong());
+	}
+
+	@Test
+	public void shouldThrow() {
+
 	}
 
 }

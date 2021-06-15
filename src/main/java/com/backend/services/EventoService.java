@@ -13,8 +13,10 @@ import com.backend.exceptions.TakinaException;
 public interface EventoService {
 	// Obtener Evento por ID
 	EventoDto getEventoId(Long eventoId) throws TakinaException;
+
 	// Obtener Evento por Nombre
 	EventoDto getEventoNombre(String nombre) throws TakinaException;
+	
 	// Mostrar todos los eventos
 	List<EventoDto> getEventos() throws TakinaException;
 

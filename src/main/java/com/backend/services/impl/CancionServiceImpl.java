@@ -214,7 +214,7 @@ public class CancionServiceImpl implements CancionService {
 		if (validacion.isPresent()) {
 			cancionRepository.deleteById(cancionId);
 		} else {
-			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_FOUND");
+			throw new CancionNotFoundException("Cancion not found.");
 		}
 	}
 	// --------------------------------------------------------
@@ -313,4 +313,6 @@ public class CancionServiceImpl implements CancionService {
 								LocalDateTime.now().minusMonths(indice).minusHours(1)));
 		return new EstadisticaDto();
 	}
+
+
 }
