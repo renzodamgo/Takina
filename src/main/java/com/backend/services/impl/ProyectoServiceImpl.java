@@ -131,6 +131,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 		
 		proyecto.setNombre(editProyectoDto.getNombre());
 		proyecto.setDescripcion(editProyectoDto.getDescripcion());
+		// deberias de poder editar el lanzamiento? no seria una fecha fija
 		proyecto.setLanzamiento(editProyectoDto.getLanzamiento());
 		proyecto.setDiscografica(editProyectoDto.getDiscografica());
 		proyecto.setFotoPortada(editProyectoDto.getFotoPortada());
