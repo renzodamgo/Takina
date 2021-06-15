@@ -14,8 +14,15 @@ export class ProyectoService {
     const  endpoint = `takina/proyectos/artista/${artistaId}`;
     return this.http.get<Data>(endpoint);
   }
+
   getProyectoById(proyectoId:number):Observable<Data>{
     const  endpoint = `takina/proyectos/id/${proyectoId}`;
     return this.http.get<Data>(endpoint);
+  }
+
+  updateProjectoById(){
+    
+
+
   }
 }

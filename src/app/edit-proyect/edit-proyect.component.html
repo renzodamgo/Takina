@@ -6,13 +6,13 @@
             <div class="editProject">
                 <form action="/users/register" method="POST">
                     <div class="form-group">
-                      <label for="dni">Genero<span style="color: coral;"> </span></label>
+                      <label for="genero">Genero<span style="color: coral;"> </span></label>
                       <input
-                        id="dni"
+                        id="genero"
                         pattern="^[0-9]{8}$" title="Debe tener 8 dígitos exactos." required
-                        name="dni"
+                        name="genero"
                         class="form-control"
-                        placeholder="Genero del proyecto"
+                        placeholder="{{project.genero}}"
                 
                         required
                       />
@@ -21,46 +21,46 @@
                       <label for="name">Nombre<span style="color: coral;"> </span></label>
                       <input
                         type="name"
-                        id="name"
-                        name="name"
+                        id="nombre"
+                        name="nombre"
                         class="form-control"
-                        placeholder="Nombre del proyecto"
+                        placeholder="{{project.nombre}}"
                         required
                         
                       />
                     </div>
                     <div class="form-group">
-                      <label for="last_name">Descripción<span style="color: coral;"> </span></label>
+                      <label for="descripcion">Descripción<span style="color: coral;"> </span></label>
                       <input
                         type="name"
-                        id="last_name"
-                        name="last_name"
+                        id="descripcion"
+                        name="descripcion"
                         class="form-control"
-                        placeholder="Descripción del proyecto"
+                        placeholder="{{project.descripcion}}"
                         required
                         
                       />
                     </div>
                     <div class="form-group">
-                      <label for="email">Discografia<span style="color: coral;"> </span></label>
+                      <label for="discografica">Discografia<span style="color: coral;"> </span></label>
                       <input
-                        type="email"
-                        id="email"
-                        name="email"
+                        
+                        id="discografica"
+                        name="discografica"
                         class="form-control"
-                        placeholder="Ingresa Discografica"
+                        placeholder="{{project.discografica}}"
                         required
                         
                       />
                     </div>
                     <div class="form-group">
-                      <label for="cel">Foto de Portada</label>
+                      <label for="fotoPortada">Foto de Portada</label>
                       <input
                         type="tel"
-                        id="cel"
-                        name="cel"
+                        id="fotoPortada"
+                        name="fotoPortada"
                         class="form-control"
-                        placeholder="Link de la foto de portada"
+                        placeholder="{{project.fotoPortada}}"
                         
                         
                       />

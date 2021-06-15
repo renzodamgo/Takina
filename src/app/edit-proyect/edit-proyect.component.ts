@@ -59,7 +59,7 @@ export class EditProyectComponent implements OnInit {
       .subscribe((result)=>{
         this.project = (result.data as any);
           console.log(result.data);
-          console.log(this.project.discografica);
+          console.log(this.project.nombre);
       })
   }
 
