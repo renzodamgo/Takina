@@ -2,16 +2,30 @@
     max-width: 400px;
     display:inline-block;
     margin: 0 auto;
-    width: 70%;
+    width: 80%;
+    
 
   }
   
 
 .mat-card-cvr{
-    width: 100%;
+    /* width: 100%;
     text-align:center;
+    padding: auto;
+    padding-top: 30px; */
+
+    /* height: 100vh; */
+    height: 70vh;
     padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
  }
+
+.col-sm-3{
+  padding: auto;
+}
 
 .example-header-image {
   /* background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg'); */
