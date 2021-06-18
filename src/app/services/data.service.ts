@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   artistaId: number = 1;
-  fotoPerfilUrl:string = '';
+  fotoPerfilUrl:string = 'http://brownmead.academy/wp-content/uploads/2017/01/avatar.jpg';
   constructor() { }
 }
