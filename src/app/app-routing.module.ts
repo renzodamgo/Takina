@@ -7,14 +7,19 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { EditProyectComponent } from './edit-proyect/edit-proyect.component';
 
 const routes: Routes = [
-  {path: "proyecto",component: ProyectsComponent},
-  {path: "",component: DashboardComponent},
-  {path: "busqueda",component: BusquedaComponent},
-  {path: "proyecto/:id",component: EditProyectComponent},
-  {
-    path: 'busqueda/:song-search',
-    component: BusquedaComponent,
-}
+  {path : '',
+  children :[
+    {path: "proyecto",component: ProyectsComponent},
+    {path: "dashboard",component: DashboardComponent},
+    {path: "busqueda",component: BusquedaComponent},
+    {path: "proyecto/:id",component: EditProyectComponent},
+    {path: "**",redirectTo:'dashboard'},
+    
+  ]
+  
+  }
+  
+
   
 ];
 

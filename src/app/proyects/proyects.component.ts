@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { Proyecto } from '../models/projecto';
 import { ProyectoService } from '../proyecto.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-proyects',
@@ -13,19 +14,23 @@ import { ProyectoService } from '../proyecto.service';
 export class ProyectsComponent implements OnInit {
   
   proyectos:Proyecto[] = [];
-  userUrl:string="https://upload.wikimedia.org/wikipedia/commons/1/1f/Woman_1.jpg";
+  userUrl:string = 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Woman_1.jpg';
 
-  constructor(private proyectoService: ProyectoService) { }
+  constructor(private proyectoService: ProyectoService,
+              public  dataService:DataService) { }
 
   ngOnInit(): void {
     this.getProyectos()
   }
 
   getProyectos(){
-    this.proyectoService.getProyectos(1)
+    this.userUrl = this.dataService.fotoPerfilUrl;
+    this.proyectoService.getProyectos(this.dataService.artistaId)
       .subscribe(result=>{
         this.proyectos= result;
-        console.log(this.proyectos[5].canciones)
+        console.log(this.proyectos)
+        
+        console.log(this.userUrl)
         }
         
       

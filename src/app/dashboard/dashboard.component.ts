@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistaService } from '../artista.service';
 import { Artista } from '../models/artista';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,8 @@ export class DashboardComponent implements OnInit {
   public artista!:Artista;
 
 
-  constructor(private artistaService:ArtistaService) { }
+  constructor(private artistaService:ArtistaService,
+              private dataService:DataService) { }
 
   ngOnInit(): void {
      this.getArtista()
@@ -24,7 +26,8 @@ export class DashboardComponent implements OnInit {
         // this.artista = response.data;
         console.log(artista)
         this.artista = artista;
-
+        this.dataService.artistaId = artista.id;
+        this.dataService.fotoPerfilUrl = artista.fotoPerfil;
       });
   }
 

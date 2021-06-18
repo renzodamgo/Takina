@@ -5,7 +5,8 @@
         <mat-card-header>
           <div
             mat-card-avatar
-            [style.background-image]="userUrl"
+            [ngStyle]="{'background-color':'gray',
+                        'background-image':'url(' + userUrl + ')'}"
             class="example-header-image"
           ></div>
           <mat-card-title>{{ d.nombre }}</mat-card-title>
