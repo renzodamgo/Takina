@@ -3,9 +3,16 @@
 import { Proyecto } from "./projecto";
 
 
-export interface ProjectoResponse {
+export interface ProjectosResponse {
     code:    string;
     data:    Proyecto[];
+    message: string;
+    status:  string;
+}
+
+export interface ProjectoResponse {
+    code:    string;
+    data:    Proyecto;
     message: string;
     status:  string;
 }

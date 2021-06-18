@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectoService } from '../proyecto.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { Proyecto } from '../models/projecto';
 
 export interface PeriodicElement {
   name: string;
@@ -35,7 +36,7 @@ export class EditProyectComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  project!:any;
+  project!:Proyecto;
   name:string = "Bue"
   id!:number
 
@@ -57,9 +58,8 @@ export class EditProyectComponent implements OnInit {
     this.id  = +this.route.snapshot.paramMap.get('id')!;
     this.proyectoService.getProyectoById(this.id)
       .subscribe((result)=>{
-        this.project = (result.data as any);
-          console.log(result.data);
-          console.log(this.project.nombre);
+        this.project = result;
+        console.log(result)
       })
   }
 

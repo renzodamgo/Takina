@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
 import { ArtistaResponse } from './models/artistaResponse';
-import {map, repeat} from 'rxjs/operators'
+import {map} from 'rxjs/operators'
 import { Artista } from './models/artista';
 
 
