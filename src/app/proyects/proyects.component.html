@@ -1,78 +1,77 @@
-
 <ng-template [ngIf]="proyectos">
-	
-	<div class="row">
-		<div class="col-sm-3" *ngFor="let d of proyectos">
-			<div class="mat-card-cvr">
-				<mat-card class="example-card shadow">
-					<mat-card-header>
-						<div
-							mat-card-avatar
-							[ngStyle]="{'background-color':'gray',
-													'background-image':'url(' + userUrl + ')'}"
-							class="example-header-image"
-						></div>
-						<mat-card-title>{{ d.nombre }}</mat-card-title>
-						<mat-card-subtitle>{{ d.tipo }}</mat-card-subtitle>
-					</mat-card-header>
-					<img mat-card-image [src]="d.fotoPortada" alt="<Error no photo?>" />
-					<mat-card-content>
-						<p>
-							{{ d.descripcion }}
-						</p>
-					</mat-card-content>
-					<mat-chip-list aria-label="Fish selection">
-						<mat-chip>{{ d.genero }}</mat-chip>
-						<mat-chip color="primary" selected>{{ d.discografica }}</mat-chip>
-					</mat-chip-list>
-	
-					<mat-card-actions>
+  <div class="row">
+    <div
+      class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12"
+      *ngFor="let d of proyectos"
+    >
+      <div class="mat-card-cvr">
+        <mat-card class="example-card shadow">
+          <mat-card-header>
+            <div
+              mat-card-avatar
+              [ngStyle]="{
+                'background-color': 'gray',
+                'background-image': 'url(' + userUrl + ')'
+              }"
+              class="example-header-image"
+            ></div>
+            <mat-card-title>{{ d.nombre }}</mat-card-title>
+            <mat-card-subtitle>{{ d.tipo }}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="d.fotoPortada" alt="<Error no photo?>" />
+          <mat-card-content>
+						
+            <p>
+              {{ d.descripcion }}
+            </p>
+          </mat-card-content>
+
+					<div text-center>
+						<mat-chip-list aria-label="Generos">
+							<mat-chip>{{ d.genero }}</mat-chip>
+							<mat-chip color="primary" selected>{{ d.discografica }}</mat-chip>
+						</mat-chip-list>
+
+					</div>
+          
+
+          <div class="text-center space">
+
+
 						<button mat-button>
-							<mat-icon
-								class="editButton"
-								id="editButton"
-								aria-hidden="false"
-								
+							<mat-icon class="editButton" id="editButton" aria-hidden="false"
 								>play_arrow</mat-icon
 							>
-							<span></span>Play</button>
+							<span></span>Play
+						</button>
 	
 						<button mat-button [routerLink]="[d.id]">
-							<mat-icon
-								class="editButton"
-								id="editButton"
-								aria-hidden="false"
-								
+							<mat-icon class="editButton" id="editButton" aria-hidden="false"
 								>edit</mat-icon
 							>
 							<span></span> Edit
 						</button>
 	
 						<button mat-button color="warn" [routerLink]="[d.id]">
-							<mat-icon
-								class="editButton"
-								id="editButton"
-								aria-hidden="false"
-								
+							<mat-icon class="editButton" id="editButton" aria-hidden="false"
 								>delete</mat-icon
 							>
 							<span></span> Delete
 						</button>
-					</mat-card-actions>
-				</mat-card>
-			</div>
-		</div>
-		
-	</div>
-	<div class="fixed-bottom-right">
-		<button
-			mat-fab
-			color="primary"
-			aria-label="Example icon button with a delete icon"
-		>
-		
-			<mat-icon>add</mat-icon>
-		</button>
-	</div>
-</ng-template>
+					</div>
 
+          
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="fixed-bottom-right">
+    <button
+      mat-fab
+      color="primary"
+      aria-label="Example icon button with a delete icon"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</ng-template>

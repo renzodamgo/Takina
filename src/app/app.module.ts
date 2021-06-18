@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProyectsComponent } from './proyects/proyects.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SearchComponent } from './search/search.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -31,7 +31,7 @@ import { GaugeModule } from 'angular-gauge';
     AppComponent,
     ProyectsComponent,
     DashboardComponent,
-    SearchComponent,
+    
     BusquedaComponent,
     EditProyectComponent,
     

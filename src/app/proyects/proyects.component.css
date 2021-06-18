@@ -8,6 +8,14 @@
   }
   
 
+.mat-card-actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+}
+
 .mat-card-cvr{
     /* width: 100%;
     text-align:center;
@@ -21,6 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
  }
 
 .col-sm-3{
@@ -36,4 +45,8 @@
   position:fixed;
   bottom:20px;
   right: 20px;
+}
+
+.space{
+  padding-top: 2vh;
 }
