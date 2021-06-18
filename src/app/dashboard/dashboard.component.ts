@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistaService } from '../artista.service';
+import { Artista } from '../models/artista';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,7 @@ import { ArtistaService } from '../artista.service';
 })
 export class DashboardComponent implements OnInit {
   
-  Artista!:any;
+  public artista!:Artista;
 
 
   constructor(private artistaService:ArtistaService) { }
@@ -19,17 +20,12 @@ export class DashboardComponent implements OnInit {
 
   getArtista(){
     this.artistaService.getArtista()
-      .subscribe(result=>{
-        if (result){ 
-          this.Artista = (result.data as any);
-          console.log(result.data);
-          
-        }
-        
-      }, err => {
-        console.log(err);
-        
-      })
+      .subscribe(artista =>{
+        // this.artista = response.data;
+        console.log(artista)
+        this.artista = artista;
+
+      });
   }
 
  

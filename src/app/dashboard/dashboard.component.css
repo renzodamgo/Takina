@@ -12,6 +12,12 @@
     padding-bottom: 50px;
    
  }
- .space{
-     padding-bottom: 10%;
- }
+.space{
+    padding-bottom: 10%;
+}
+
+mat-chip-list{
+    display: flex;
+    justify-content: center;
+}
+ 
