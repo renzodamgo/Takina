@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Data  } from './proyects/proyect';
+import { Projecto  } from './proyects/proyect';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,14 @@ export class ProyectoService {
 
   constructor(private http:HttpClient) { }
 
-  getProyectos(artistaId:number):Observable<Data>{
+  getProyectos(artistaId:number):Observable<Projecto>{
     const  endpoint = `takina/proyectos/artista/${artistaId}`;
-    return this.http.get<Data>(endpoint);
+    return this.http.get<Projecto>(endpoint);
   }
 
-  getProyectoById(proyectoId:number):Observable<Data>{
+  getProyectoById(proyectoId:number):Observable<Projecto>{
     const  endpoint = `takina/proyectos/id/${proyectoId}`;
-    return this.http.get<Data>(endpoint);
+    return this.http.get<Projecto>(endpoint);
   }
 
   updateProjectoById(){

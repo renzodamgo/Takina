@@ -32,9 +32,7 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-  public get ArtistaPhoto(){
-    return this.Artista.fotoPerfil
-  }
+ 
   
 
 }
