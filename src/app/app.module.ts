@@ -23,6 +23,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule }   from '@angular/forms';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 import { GaugeModule } from 'angular-gauge';
 
 
@@ -53,7 +55,8 @@ import { GaugeModule } from 'angular-gauge';
     MatSelectModule,
     MatFormFieldModule,
     GaugeModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
    
     
   ],
