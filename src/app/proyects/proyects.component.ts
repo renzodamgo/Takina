@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { Proyecto } from '../models/projecto';
 import { ProyectoService } from '../proyecto.service';
 
 @Component({
@@ -10,8 +11,8 @@ import { ProyectoService } from '../proyecto.service';
  
 })
 export class ProyectsComponent implements OnInit {
-
-  proyecto!:any;
+  
+  proyectos:Proyecto[] = [];
   userUrl:string="https://upload.wikimedia.org/wikipedia/commons/1/1f/Woman_1.jpg";
 
   constructor(private proyectoService: ProyectoService) { }
@@ -23,17 +24,12 @@ export class ProyectsComponent implements OnInit {
   getProyectos(){
     this.proyectoService.getProyectos(1)
       .subscribe(result=>{
-        if (result){ 
-          this.proyecto = (result.data as any);
-          
-          
-          
+        this.proyectos= result;
+        console.log(this.proyectos[5].canciones)
         }
         
-      }, err => {
-        console.log(err);
-        
-      })
+      
+      )
     
   }
 

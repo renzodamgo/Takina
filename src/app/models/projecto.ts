@@ -1,6 +1,8 @@
+import { Projecto } from "./proyectResponse";
+
 export class Proyecto{
     
-    static proyectoFromJson( obj: Object){
+    static proyectoFromJson( obj: Projecto){
         return new Proyecto(
             obj['artistaId'],
             obj['canciones'],
@@ -19,19 +21,19 @@ export class Proyecto{
     }
 
     constructor(
-        public artistaId:    number,
-        public canciones:    Canciones[],
-        public descripcion:  string,
-        public discografica: string,
-        public duracion:     number,
-        public fecha:        string,
-        public fotoPortada:  string,
-        public genero:       string,
-        public id:           number,
-        public lanzamiento:  string,
-        public nombre:       string,
-        public numCanciones: number,
-        public tipo:         string,
+        public artistaId:number,
+        public canciones:Canciones[],
+        public descripcion:string,
+        public discografica:string,
+        public duracion:number,
+        public fecha:string,
+        public fotoPortada:string,
+        public genero:string,
+        public id:number,
+        public lanzamiento:string,
+        public nombre: string,
+        public numCanciones:number,
+        public tipo:string,
     ){}
 }
 
