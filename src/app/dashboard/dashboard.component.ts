@@ -11,6 +11,7 @@ import { DataService } from '../services/data.service';
 export class DashboardComponent implements OnInit {
   
   public artista!:Artista;
+  public fotoPerfil:string = 'http://brownmead.academy/wp-content/uploads/2017/01/avatar.jpg'
 
 
   constructor(private artistaService:ArtistaService,
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
         this.artista = artista;
         this.dataService.artistaId = artista.id;
         this.dataService.fotoPerfilUrl = artista.fotoPerfil;
+        this.fotoPerfil = artista.fotoPerfil;
       });
   }
 

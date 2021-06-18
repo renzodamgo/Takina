@@ -1,34 +1,39 @@
-<div class="container">
-    <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
+<ng-template [ngIf]="artista"> 
 
+    <div class="container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
             <div class="text-center">
-                <img class="img-thumbnail avatar rounded-circle width:100px" [src]=artista.fotoPerfil alt="Foto de Perfil">
+              <img
+                class="img-thumbnail avatar rounded-circle width:100px"
+                [src]="fotoPerfil"
+                alt="Foto de Perfil"
+              />
             </div>
-            <h1 class="fw-light text-center">{{this.artista.nombre}}</h1>
-            <div class="text-center" >
-                <mat-chip-list aria-label="Fish selection">
-                    <mat-chip>{{ artista.genero }}</mat-chip>
-                    
-                </mat-chip-list>
+            <h1 class="fw-light text-center">{{ this.artista.nombre }}</h1>
+            <div class="text-center">
+              <mat-chip-list aria-label="Fish selection">
+                <mat-chip>{{ artista.genero }}</mat-chip>
+              </mat-chip-list>
             </div>
-            
-            <p class="lead text-muted space">{{this.artista.biografia}}</p>
-
-
+      
+            <p class="lead text-muted space">{{ this.artista.biografia }}</p>
+      
             <div class="row text-center">
+              <div class="col-sm">
+                <mat-icon class="icon-display">group</mat-icon>
+                <div class="col-sm"></div>
+                Seguidores: <span> {{ artista.totalSeguidores }}</span>
+              </div>
+              <div class="col-sm">
+                <mat-icon class="icon-display">headset</mat-icon>
                 <div class="col-sm">
-                    <mat-icon class="icon-display">group</mat-icon> 
-                    <div class="col-sm"></div>Seguidores: <span> {{artista.totalSeguidores}}</span>
-                
+                  Reproducciones:<span> {{ artista.totalReproducciones }}</span>
                 </div>
-                <div class="col-sm">
-                    <mat-icon class="icon-display">headset</mat-icon>    
-                    <div class="col-sm">Reproducciones:<span> {{artista.totalReproducciones}}</span>
-                </div>
-            </div> 
-
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-    
-</div>
+      </div>
+</ng-template>
+
