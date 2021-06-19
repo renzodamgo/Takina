@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Proyecto } from './models/projecto';
 
-import { ProjectoResponse, ProjectosResponse  } from './models/proyectResponse';
+import { Projecto, ProjectoResponse, ProjectosResponse  } from './models/proyectResponse';
 
 
 @Injectable({
@@ -39,9 +39,10 @@ export class ProyectoService {
       );
   }
 
-  updateProjectoById(){
-    
+  updateProjectoById( project:Proyecto){
 
+    const  endpoint = `takina/proyectos`;
+    return this.http.put<Projecto>(endpoint,project);
 
   }
 }

@@ -1,123 +1,95 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 margin-auto space">
+      <mat-card>
+        <form >
 
-<div class="container  ">
-    <div class="row ">
-        <div class="col-md-6 margin-auto space">
-            <h1>Editar Proyecto: {{this.project.nombre}}</h1>
-            <div class="editProject">
-                <form action="/users/register" method="POST">
-                    <div class="form-group">
-                      <label for="genero">Genero<span style="color: coral;"> </span></label>
-                      <input
-                        id="genero"
-                        pattern="^[0-9]{8}$" title="Debe tener 8 dígitos exactos." required
-                        name="genero"
-                        class="form-control"
-                        placeholder="{{project.genero}}"
-                
-                        required
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="name">Nombre<span style="color: coral;"> </span></label>
-                      <input
-                        type="name"
-                        id="nombre"
-                        name="nombre"
-                        class="form-control"
-                        placeholder="{{project.nombre}}"
-                        required
-                        
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="descripcion">Descripción<span style="color: coral;"> </span></label>
-                      <input
-                        type="name"
-                        id="descripcion"
-                        name="descripcion"
-                        class="form-control"
-                        placeholder="{{project.descripcion}}"
-                        required
-                        
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="discografica">Discografia<span style="color: coral;"> </span></label>
-                      <input
-                        
-                        id="discografica"
-                        name="discografica"
-                        class="form-control"
-                        placeholder="{{project.discografica}}"
-                        required
-                        
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="fotoPortada">Foto de Portada</label>
-                      <input
-                        type="tel"
-                        id="fotoPortada"
-                        name="fotoPortada"
-                        class="form-control"
-                        placeholder="{{project.fotoPortada}}"
-                        
-                        
-                      />
-                    </div>
-                    <div class="space">
-                        <button type="submit" class="btn btn-primary btn-block ">
-                            Editar
-                        </button>
-                        
-                        <button goBack type="submit" class="btn btn-primary btn-block">
-                            Regresar
-                        </button>
-                        
-
-                    </div>
-                    
-                  </form>
-            
-            </div>
+        
+        <h1>Editar Proyecto: {{ this.nombre }}</h1>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput name="nombre" [(ngModel)]="project.nombre" placeholder="project.nombre"/>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción</mat-label>
+          <input matInput name="descripcion" [(ngModel)]="project.descripcion" placeholder="project.descripcion"/>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Género</mat-label>
+          <input matInput name="genero" [(ngModel)]="project.genero" placeholder="project.genero"/>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Discográfica</mat-label>
+          <input matInput name="discografica" [(ngModel)]="project.discografica" placeholder="project.discografica" />
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Link de Foto Portada</mat-label>
+          <input matInput name="fotoPortada" [(ngModel)]="project.fotoPortada" placeholder="project.fotoPortada"/>
+        </mat-form-field>
+        <div class="img-container">
+          <img class='img shadow' [src] = project.fotoPortada>
         </div>
-        <div class="col-md-6 margin-auto space">
-            <h1>Canciones</h1>
-            <table mat-table [dataSource]="canciones" class="mat-elevation-z8">
+        
+        <button mat-raised-button color="accent" (click)="editProyecto()">Editar</button>
 
-                <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
-              
-                <!-- Position Column -->
-                <ng-container matColumnDef="track">
-                  <th mat-header-cell *matHeaderCellDef> No. </th>
-                  <td mat-cell *matCellDef="let cancion"> {{cancion.track}} </td>
-                </ng-container>
-              
-                <!-- Name Column -->
-                <ng-container matColumnDef="nombre">
-                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                  <td mat-cell *matCellDef="let cancion"> {{cancion.nombre}} </td>
-                </ng-container>
-              
-                <!-- Weight Column -->
-                <ng-container matColumnDef="duracion">
-                  <th mat-header-cell *matHeaderCellDef> Duración </th>
-                  <td mat-cell *matCellDef="let cancion"> {{cancion.duracion}} </td>
-                </ng-container>
-              
-                
-              
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
-              
-              
-        </div>
-
+        <button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyecto']">
+          Regresar
+        </button>
+      </form>
+      </mat-card>
     </div>
-    
-    
+    <div class="col-md-6 margin-auto space">
+      <mat-card>
+        <ng-template [ngIf]="canciones.length !== 0">
+          <h1>Canciones</h1>
+          <table mat-table class="bottom" [dataSource]="canciones">
+            <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="track">
+              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <td mat-cell *matCellDef="let cancion">{{ cancion.track }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let cancion">{{ cancion.nombre }}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="duracion">
+              <th mat-header-cell *matHeaderCellDef>Duración</th>
+              <td mat-cell *matCellDef="let cancion">{{ cancion.duracion }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </ng-template>
+        <!-- Agregar Cancion -->
+        <div >
+          <h1>Agregar Cancion</h1>
+
+          <h3>Nombre</h3>
+          <mat-form-field appearance="fill">
+            <mat-label> Electrocumbias 3000</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <h3>Duracion</h3>
+          <mat-form-field appearance="fill">
+            <mat-label>{{ 3 }}</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <button mat-raised-button color="accent">Agregar</button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
 </div>
-
-
