@@ -32,7 +32,6 @@ export class EditProyectComponent implements OnInit {
     this.getProject()
   }
 
-  @HostListener('click')
   goBack() {
     this.location.back();
   }
