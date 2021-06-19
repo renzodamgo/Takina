@@ -46,16 +46,21 @@ export class EditProyectComponent implements OnInit {
         this.project = result;
         this.canciones = result.canciones;
         this.nombre = result.nombre;
-        console.log(this.project)
-        console.log(this.canciones)
+        console.log(this.project);
+        console.log(this.canciones);
       })
 
     
   }
   editProyecto(){
   
-    console.log(this.project.nombre)
-    this.getProject()
+    console.log(this.project.nombre);
+    this.proyectoService.updateProjectoById(this.project)
+      .subscribe(data => {
+        console.log(data);
+        this.getProject();
+      });
+    
   }
 
 }
