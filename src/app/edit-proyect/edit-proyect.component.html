@@ -2,37 +2,45 @@
   <div class="row">
     <div class="col-md-6 margin-auto space">
       <mat-card>
-        <h1>Editar Proyecto: {{ this.project.nombre }}</h1>
-        <h3>Nombre</h3>
-        <mat-form-field appearance="fill">
-          <mat-label>{{ project.nombre }}</mat-label>
-          <input matInput />
-        </mat-form-field>
-        <h3>Descripción</h3>
-        <mat-form-field appearance="fill">
-          <mat-label>{{ project.descripcion }}</mat-label>
-          <input matInput />
-        </mat-form-field>
-        <h3>Genero</h3>
-        <mat-form-field appearance="fill">
-          <mat-label>{{ project.genero }}</mat-label>
-          <input matInput />
-        </mat-form-field>
-        <h3>Discografia</h3>
-        <mat-form-field appearance="fill">
-          <mat-label>{{ project.discografica }}</mat-label>
-          <input matInput />
-        </mat-form-field>
-        <h3>Link de Foto de Portada</h3>
-        <mat-form-field appearance="fill">
-          <mat-label>{{ project.fotoPortada }}</mat-label>
-          <input matInput />
-        </mat-form-field>
-        <button mat-raised-button color="accent">Editar</button>
+        <form >
 
-        <button mat-raised-button class="pad-left" color="primary">
+        
+        <h1>Editar Proyecto: {{ this.nombre }}</h1>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput name="nombre" [(ngModel)]="project.nombre" placeholder="project.nombre"/>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción</mat-label>
+          <input matInput name="descripcion" [(ngModel)]="project.descripcion" placeholder="project.descripcion"/>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Género</mat-label>
+          <input matInput name="genero" [(ngModel)]="project.genero" placeholder="project.genero"/>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Discográfica</mat-label>
+          <input matInput name="discografica" [(ngModel)]="project.discografica" placeholder="project.discografica" />
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Link de Foto Portada</mat-label>
+          <input matInput name="fotoPortada" [(ngModel)]="project.fotoPortada" placeholder="project.fotoPortada"/>
+        </mat-form-field>
+        <div class="img-container">
+          <img class='img shadow' [src] = project.fotoPortada>
+        </div>
+        
+        <button mat-raised-button color="accent" (click)="editProyecto()">Editar</button>
+
+        <button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyecto']">
           Regresar
         </button>
+      </form>
       </mat-card>
     </div>
     <div class="col-md-6 margin-auto space">
@@ -71,12 +79,12 @@
 
           <h3>Nombre</h3>
           <mat-form-field appearance="fill">
-            <mat-label>{{ project.discografica }}</mat-label>
+            <mat-label> Electrocumbias 3000</mat-label>
             <input matInput />
           </mat-form-field>
           <h3>Duracion</h3>
           <mat-form-field appearance="fill">
-            <mat-label>{{ project.fotoPortada }}</mat-label>
+            <mat-label>{{ 3 }}</mat-label>
             <input matInput />
           </mat-form-field>
           <button mat-raised-button color="accent">Agregar</button>
