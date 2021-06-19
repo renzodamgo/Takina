@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ProyectoService } from '../proyecto.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -10,9 +10,6 @@ import { Canciones, Proyecto } from '../models/projecto';
   templateUrl: './edit-proyect.component.html',
   styleUrls: ['./edit-proyect.component.css']
 })
-
-
-
 
 export class EditProyectComponent implements OnInit {
 
@@ -33,7 +30,8 @@ export class EditProyectComponent implements OnInit {
     this.getProject()
   }
 
-  goBack(): void {
+  @HostListener('click')
+  goBack() {
     this.location.back();
   }
 
