@@ -29,6 +29,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { GaugeModule } from 'angular-gauge';
+import { CreateProyectComponent } from './create-proyect/create-proyect.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { GaugeModule } from 'angular-gauge';
     
     BusquedaComponent,
     EditProyectComponent,
+    CreateProyectComponent,
     
   ],
   imports: [
