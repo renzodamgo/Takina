@@ -22,6 +22,9 @@ import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule }   from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
@@ -56,7 +59,12 @@ import { GaugeModule } from 'angular-gauge';
     MatFormFieldModule,
     GaugeModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule
+
    
     
   ],

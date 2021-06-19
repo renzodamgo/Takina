@@ -4,7 +4,9 @@ form{
     margin: auto;
 }
 
-
+.mat-form-field{
+    width: 100%;
+}
 
 .space{
     padding-top: 50px;
@@ -12,4 +14,11 @@ form{
 table {
     width: 100%;
   }
+.pad-left{
+    margin-left: 2vh;
+    
+}
+.bottom{
+    margin-bottom: 4vh;
+}
   
