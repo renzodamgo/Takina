@@ -52,7 +52,7 @@
 							<span></span> Edit
 						</button>
 	
-						<button mat-button color="warn" [routerLink]="[d.id]">
+						<button *ngIf="d.id" mat-button color="warn" (click) = "deleteProyecto(d.id)">
 							<mat-icon class="editButton" id="editButton" aria-hidden="false"
 								>delete</mat-icon
 							>

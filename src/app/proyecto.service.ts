@@ -39,10 +39,19 @@ export class ProyectoService {
       );
   }
 
-  updateProjectoById( project:Proyecto){
+  deleteProyectoById(proyectoId:number): Observable<any> {
+    const  endpoint = `takina/proyectos/id/${proyectoId}`;
+    return this.http.delete<any>(endpoint);
+  }
 
+  updateProjectoById( project:Proyecto){
     const  endpoint = `takina/proyectos`;
     return this.http.put<Projecto>(endpoint,project);
 
+  }
+
+  addProjecto(project: Proyecto): Observable<Projecto> {
+    const  endpoint = `takina/proyectos`;
+    return this.http.post<Projecto>(endpoint, project);
   }
 }

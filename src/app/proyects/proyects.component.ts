@@ -3,6 +3,8 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { Proyecto } from '../models/projecto';
 import { ProyectoService } from '../proyecto.service';
 import { DataService } from '../services/data.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-proyects',
@@ -17,10 +19,11 @@ export class ProyectsComponent implements OnInit {
   userUrl:string = 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Woman_1.jpg';
 
   constructor(private proyectoService: ProyectoService,
-              public  dataService:DataService) { }
+              public  dataService:DataService,
+              private router: Router,) { }
 
   ngOnInit(): void {
-    this.getProyectos()
+    this.getProyectos();
   }
 
   getProyectos(){
@@ -32,10 +35,16 @@ export class ProyectsComponent implements OnInit {
         
         console.log(this.userUrl)
         }
-        
       
       )
     
+  }
+
+  deleteProyecto(id: number) {
+    this.proyectoService.deleteProyectoById(id)
+    .subscribe( result => {
+      this.router.navigate(['/proyectos']);
+    });
   }
 
 }
