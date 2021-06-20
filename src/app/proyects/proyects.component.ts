@@ -43,7 +43,12 @@ export class ProyectsComponent implements OnInit {
   deleteProyecto(id: number) {
     this.proyectoService.deleteProyectoById(id)
     .subscribe( result => {
-      this.router.navigate(['/proyectos']);
+      // No es necesario usar navigate, usa un get para que se actualizen los datos y angular lo renderize
+      // Si quisieras usar el navigate sería (['/']) porque ya estas dentro de (/proyecto) 
+      // this.router.navigate(['/proyectos']); aqui estarías entrando a /proyecto/proyectos
+      // y yo puse en el routing que cuando entras a un route q no existe te manda al dashboard de artista con el ['**']
+      console.log(result)
+      this.getProyectos();
     });
   }
 
