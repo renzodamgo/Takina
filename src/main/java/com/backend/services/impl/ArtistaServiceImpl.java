@@ -1,30 +1,33 @@
 package com.backend.services.impl;
 
-import java.time.LocalDateTime;
 import java.text.Normalizer;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
+
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.EstadisticaDto;
+import com.backend.dtos.SeguidorDto;
 import com.backend.dtos.creates.CreateArtistaDto;
 import com.backend.dtos.edits.EditArtistaDto;
-import com.backend.entities.Artista;
-import com.backend.entities.Usuario;
-import com.backend.dtos.SeguidorDto;
-import com.backend.entities.Seguidor;
 import com.backend.entities.Administrador;
-import com.backend.exceptions.InternalServerErrorException;
+import com.backend.entities.Artista;
+import com.backend.entities.Seguidor;
+import com.backend.entities.Usuario;
 import com.backend.exceptions.ArtistaNotFoundException;
-import com.backend.exceptions.UsuarioNotFoundException;
+import com.backend.exceptions.InternalServerErrorException;
 import com.backend.exceptions.TakinaException;
+import com.backend.exceptions.UsuarioNotFoundException;
+import com.backend.repositories.AdministradorRepository;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.SeguidorRepository;
 import com.backend.repositories.UsuarioRepository;
-import com.backend.repositories.AdministradorRepository;
 import com.backend.services.ArtistaService;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

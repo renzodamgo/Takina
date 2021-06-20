@@ -3,7 +3,20 @@ package com.backend.entities;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +39,6 @@ public class Playlist {
 	)
 	private Long id;
 
-	// ---------------------
 	@Column(
 		name = "nombre",
 		nullable = false,
@@ -35,7 +47,6 @@ public class Playlist {
 	)
 	private String nombre;
 
-	// ---------------------
 	@Column(
 		name = "descripcion",
 		columnDefinition = "VARCHAR(140)",
@@ -43,7 +54,6 @@ public class Playlist {
 	)
 	private String descripcion;
 
-	// ---------------------
 	@Column(
 		name="creacion",
 		nullable = false,
@@ -51,22 +61,18 @@ public class Playlist {
 	)
 	private LocalDateTime creacion;
 
-	// ---------------------
 	@Column(
 		name="duracion",
 		nullable = false
 	)
 	private Float duracion = 0F;
 
-	// ---------------------
 	@Column(
 		name="num_canciones",
 		nullable = false
 	)
 	private Integer numCanciones = 0;
 
-	// ---------------------
-	// Relaciones con las tablas de base de datos 
 	@ManyToOne
 	@JoinColumn(
 		name = "usuarios_id",

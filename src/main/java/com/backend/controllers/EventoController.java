@@ -13,6 +13,8 @@ import com.backend.responses.TakinaResponse;
 import com.backend.services.EventoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,15 +23,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.HttpStatus;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/takina"+"/eventos")
 public class EventoController {
 	@Autowired
 	private EventoService eventoService;
 
-	// Mostrar todos los eventos
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping
 	public TakinaResponse<List<EventoDto>> getEventos()
@@ -38,7 +39,6 @@ public class EventoController {
 				eventoService.getEventos());
 	}
 
-	// Crear evento
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping
 	public TakinaResponse<EventoDto> createEvento(@RequestBody CreateEventoDto createEventoDto)
@@ -47,7 +47,6 @@ public class EventoController {
 				eventoService.createEvento(createEventoDto));
 	}
 
-	// Obtener evento por ID
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/id/{eventoId}")
 	public TakinaResponse<EventoDto> getEventoId(@PathVariable Long eventoId)
@@ -56,7 +55,6 @@ public class EventoController {
 				eventoService.getEventoId(eventoId));
 	}
 
-	// Busqueda por nombre
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/nombre/{eventoNombre}")
 	public  TakinaResponse<List<EventoDto>> getEventosByNombre(@PathVariable String eventoNombre)
@@ -65,7 +63,6 @@ public class EventoController {
 				eventoService.getEventosByNombre(eventoNombre));
 	}
 
-	// Busqueda por departamento
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/departamento/{eventoDepartamento}")
 	public  TakinaResponse<List<EventoDto>> getEventosByDepartamento(@PathVariable String eventoDepartamento)
@@ -74,7 +71,6 @@ public class EventoController {
 				eventoService.getEventosByDepartamento(eventoDepartamento));
 	}
 
-	// Creacion de invitado
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping("/invitados")
 	public  TakinaResponse<InvitadoDto> createInvitado(@RequestBody CreateInvitadoDto createInvitadoDto)
@@ -83,7 +79,6 @@ public class EventoController {
 				eventoService.createInvitado(createInvitadoDto));
 	}
 
-	// Get invitados por eventoId ordenado cronologicamente
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/invitados/{eventoId}")
 	public  TakinaResponse<InvitadosDto> getInvitadosByEventoId(@PathVariable Long eventoId)
@@ -92,8 +87,6 @@ public class EventoController {
 				eventoService.getInvitadosByEventoId(eventoId));
 	}
 	
-
-	// Eliminar invitado
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("/invitados/{eventoId}/{artistaId}")
 	public  TakinaResponse<String> deleteInvitado(@PathVariable Long eventoId, @PathVariable Long artistaId)
@@ -103,7 +96,6 @@ public class EventoController {
 				"Invitado eliminado satisfactoriamente.");
 	}
 
-	// Registrar un asistente
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/asistente/{usuarioId}/{eventoId}")
 	public TakinaResponse<AsistenteDto> createAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
@@ -112,13 +104,11 @@ public class EventoController {
 				eventoService.createAsistente(usuarioId, eventoId));
 	}
 
-	// Eliminar un asistente
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("/asistente/{usuarioId}/{eventoId}")
 	public TakinaResponse<String> deleteAsistente(@PathVariable Long usuarioId, @PathVariable Long eventoId)
 			throws TakinaException {
 		eventoService.deleteAsistente(usuarioId, eventoId);
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
-	}
-	
+	}	
 }

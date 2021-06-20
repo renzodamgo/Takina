@@ -1,5 +1,7 @@
 package com.backend.controllers;
 
+import java.util.List;
+
 import com.backend.dtos.ArtistaDto;
 import com.backend.dtos.EstadisticaDto;
 import com.backend.dtos.SeguidorDto;
@@ -8,20 +10,27 @@ import com.backend.dtos.edits.EditArtistaDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
 import com.backend.services.ArtistaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/takina"+"/artistas")
 public class ArtistaController {
 	@Autowired
 	private ArtistaService artistaService;
 
-	// Crear Artista
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping
 	public TakinaResponse<ArtistaDto> createArtista(@RequestBody CreateArtistaDto createArtistaDto)
@@ -30,14 +39,12 @@ public class ArtistaController {
 					artistaService.createArtista(createArtistaDto));
 	}
 
-	// editar artista
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping
 	public TakinaResponse<ArtistaDto> editArtista(@RequestBody EditArtistaDto editArtistaDto) throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK), "OK", artistaService.editArtista(editArtistaDto));
 	}
 
-	// Mostrar todos los artistas
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping
 	public TakinaResponse<List<ArtistaDto>> getArtistas()
@@ -46,7 +53,6 @@ public class ArtistaController {
 					artistaService.getArtistas());
 	}
 
-	// Getters
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/id/{artistaId}")
 	public TakinaResponse<ArtistaDto> getArtistaById(@PathVariable Long artistaId)
@@ -55,7 +61,6 @@ public class ArtistaController {
 					artistaService.getArtista(artistaId));
 	}
 
-	// Busqueda por genero
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/genero/{artistaGenero}")
 	public TakinaResponse<List<ArtistaDto>> getArtistasByGenero(@PathVariable String artistaGenero)
@@ -64,7 +69,6 @@ public class ArtistaController {
 					artistaService.getArtistasByGenero(artistaGenero));
 	}
 
-	// Busqueda por departamento
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/departamento/{artistaDepartamento}")
 	public TakinaResponse<List<ArtistaDto>> getArtistasByDepartamento(@PathVariable String artistaDepartamento)
@@ -73,7 +77,6 @@ public class ArtistaController {
 					artistaService.getArtistasByDepartamento(artistaDepartamento));
 	}
 
-	// Busqueda por nombre
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/nombre/{artistaNombre}")
 	public TakinaResponse<List<ArtistaDto>> searchArtistasByNombre(@PathVariable String artistaNombre)
@@ -82,7 +85,6 @@ public class ArtistaController {
 					artistaService.searchArtistasByNombre(artistaNombre));
 	}
 
-	// Otorgar permisos administrativos a otro usuario
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/administracion/{artistaId}/{usuarioId}/{nivel}")
 	public TakinaResponse<ArtistaDto> giveAdministrador(@PathVariable Long artistaId, @PathVariable Long usuarioId, @PathVariable Integer nivel)
@@ -91,7 +93,6 @@ public class ArtistaController {
 					artistaService.giveAdministrador(artistaId,usuarioId,nivel));
 	}
 
-	// Seguidores de los ultimos x meses
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/estadistica/seguidores/{artistaId}/{indice}")
 	public TakinaResponse<EstadisticaDto> getSeguidoresByIdAndDate(@PathVariable Long artistaId, @PathVariable Integer indice)
@@ -100,7 +101,6 @@ public class ArtistaController {
 					artistaService.getSeguidoresByIdAndDate(artistaId,indice));
 	}
 
-	// Registrar un seguidor
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/seguidor/{usuarioId}/{artistaId}")
 	public TakinaResponse<SeguidorDto> createSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
@@ -108,7 +108,7 @@ public class ArtistaController {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				artistaService.createSeguidor(usuarioId, artistaId));
 	}
-		// Eliminar un seguidor
+
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("/seguidor/{usuarioId}/{artistaId}")
 	public TakinaResponse<String> deleteSeguidor(@PathVariable Long usuarioId, @PathVariable Long artistaId)
@@ -116,7 +116,4 @@ public class ArtistaController {
 		artistaService.deleteSeguidor(usuarioId, artistaId);
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
 	}
-
-
-
 }

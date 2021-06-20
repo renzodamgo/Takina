@@ -1,28 +1,29 @@
 package com.backend.services;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyLong;
 
 import java.util.Optional;
 
 import com.backend.dtos.creates.CreateProyectoDto;
 import com.backend.entities.Artista;
 import com.backend.entities.Proyecto;
+import com.backend.exceptions.ArtistaNotFoundException;
+import com.backend.exceptions.IncorrectProyectoException;
+import com.backend.exceptions.ProyectoNotFoundException;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.ProyectoRepository;
 import com.backend.services.impl.ProyectoServiceImpl;
 import com.backend.util.ProyectoServiceDataTestUtils;
-import com.backend.exceptions.ArtistaNotFoundException;
-import com.backend.exceptions.IncorrectProyectoException;
-import com.backend.exceptions.ProyectoNotFoundException;
 
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 public class ProyectoServiceTest {

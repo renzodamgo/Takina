@@ -1,9 +1,12 @@
 package com.backend.util;
 
-import com.backend.dtos.creates.*;
-import com.backend.entities.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import com.backend.dtos.creates.CreateProyectoDto;
+import com.backend.entities.Artista;
+import com.backend.entities.Proyecto;
+import com.backend.entities.Usuario;
 
 public class ProyectoServiceDataTestUtils {
 	public static Usuario getMockUsuario() {

@@ -3,11 +3,14 @@ package com.backend.controllers;
 import java.util.List;
 
 import com.backend.dtos.PlaylistDto;
-import com.backend.services.PlaylistService;
 import com.backend.dtos.creates.CreatePlaylistDto;
 import com.backend.exceptions.TakinaException;
 import com.backend.responses.TakinaResponse;
+import com.backend.services.PlaylistService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,15 +19,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.HttpStatus;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/takina"+"/playlists")
 public class PlaylistController {
 	@Autowired
 	private PlaylistService playlistService;
 
-	// Mostrar todas las playlists
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping
 	public TakinaResponse<List<PlaylistDto>> getPlaylists()
@@ -33,7 +35,6 @@ public class PlaylistController {
 				playlistService.getPlaylists());
 	}
 
-	// Crear playlist
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping
 	public TakinaResponse<PlaylistDto> createPlaylist(@RequestBody CreatePlaylistDto createPlaylistDto)
@@ -42,7 +43,6 @@ public class PlaylistController {
 				playlistService.createPlaylist(createPlaylistDto));
 	}
 
-	// Obtener por ID
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/id/{playlistId}")
 	public TakinaResponse<PlaylistDto> getPlaylistById(@PathVariable Long playlistId)
@@ -51,7 +51,6 @@ public class PlaylistController {
 				playlistService.getPlaylistById(playlistId));
 	}
 
-	// Añadir cancion a playlist
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/{playlistId}/cancion/{cancionId}")
 	public TakinaResponse<PlaylistDto> addToPlaylist(@PathVariable Long playlistId, @PathVariable Long cancionId)
@@ -60,7 +59,6 @@ public class PlaylistController {
 				playlistService.addToPlaylist(playlistId, cancionId));
 	}
 
-	// Eliminar cancion de playlist
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("/{playlistId}/cancion/{cancionId}")
 	public TakinaResponse<String> deleteFromPlaylist(@PathVariable Long playlistId, @PathVariable Long cancionId)
@@ -69,5 +67,4 @@ public class PlaylistController {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				"Cancion eliminada del playlist correctamente.");
 	}
-
 }

@@ -2,7 +2,18 @@ package com.backend.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +29,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Artista {
-
-	// ---------------------
-
 	@Id
 	@GeneratedValue(
 		strategy = GenerationType.IDENTITY
@@ -31,8 +39,6 @@ public class Artista {
 	)
 	private Long id;
 
-	// ---------------------
-	
 	@Column(
 		name = "nombre",
 		nullable = false,
@@ -40,8 +46,6 @@ public class Artista {
 		length = 50
 	)
 	private String nombre;
-
-	// ---------------------
 
 	@Column(
 		name = "biografia",
@@ -51,8 +55,6 @@ public class Artista {
 	)
 	private String biografia;
 
-	// ---------------------
-	
 	@Column(
 		name = "foto_perfil",
 		nullable = false,
@@ -60,8 +62,6 @@ public class Artista {
 		length = 150
 	)
 	private String fotoPerfil;
-
-	// ---------------------
 
 	@Column(
 		name = "fotoPortada",
@@ -71,8 +71,6 @@ public class Artista {
 	)
 	private String fotoPortada;
 
-	// --------------------
-
 	@Column(
 		name = "departamento",
 		nullable = false,
@@ -81,9 +79,7 @@ public class Artista {
 	)
 	private String departamento;
 
-	 // --------------------
-
-	 @Column(
+	@Column(
 		name = "genero",
 		nullable = false,
 		columnDefinition = "VARCHAR(20)",
@@ -91,25 +87,16 @@ public class Artista {
 	)
 	private String genero;
 
-	// ---------------------
-
 	@Column(
 		name = "total_seguidores"
 	)
 	private Long totalSeguidores = 0L;
-	
-	// ---------------------
 	
 	@Column(
 		name = "reproducciones_total"
 	)
 	private Long totalReproducciones = 0L;
 
-	// --------------------
-	// Relaciones con las tablas de base de datos 
-
-	// --------------------
-	// Administradores (One Usuario - Many Administrador - One Artista)
 	@OneToMany(
 		mappedBy = "artista",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
@@ -151,5 +138,4 @@ public class Artista {
 		fetch = FetchType.LAZY
 	)
 	private List<Invitado> invitados = new ArrayList<>();
-
 }

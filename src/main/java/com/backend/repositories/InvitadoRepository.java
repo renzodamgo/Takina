@@ -1,11 +1,13 @@
 package com.backend.repositories;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.backend.entities.Invitado;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import java.util.Optional;
-import java.util.List;
 
 @Repository
 public interface InvitadoRepository extends JpaRepository<Invitado,Long> {

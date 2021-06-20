@@ -3,7 +3,18 @@ package com.backend.entities;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,8 +41,6 @@ public class Usuario {
 	)
 	private Long id;
 
-	// ---------------------
-
 	@Column(
 		name = "apodo",
 		nullable = false,
@@ -39,8 +48,6 @@ public class Usuario {
 		length = 20
 	)
 	private String apodo;
-
-	// ---------------------
 
 	@Column(
 		name = "password",
@@ -50,8 +57,6 @@ public class Usuario {
 	)
 	private String password;
 
-	// ----------------------
-
 	@Column(
 		name = "nombre",
 		nullable = false,
@@ -59,8 +64,6 @@ public class Usuario {
 		length = 50
 	)
 	private String nombre;
-
-	// ----------------------
 
 	@Column(
 		name = "correo",
@@ -70,16 +73,12 @@ public class Usuario {
 	)
 	private String correo;
 
-	// ----------------------
-
 	@Column(
 		name="ultimo_ingreso",
 		nullable = false,
 		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
 	)
 	private LocalDateTime ultimoIngreso;
-
-	// ---------------------
 
 	@Column(
 		name = "foto_perfil",
@@ -89,15 +88,12 @@ public class Usuario {
 	)
 	private String fotoPerfil;
 
-	// ---------------------
-
 	@Column(
 		name = "premium",
 		nullable = false
 	)
 	private Boolean premium = false;
 
-	//Relations many to many
 	@OneToMany(
 		mappedBy = "usuario",
 		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},

@@ -3,23 +3,33 @@ package com.backend.entities;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
-		name="eventos",
-		uniqueConstraints = {
-			@UniqueConstraint(name="eventos_name_unique", columnNames = "nombre")
-		}
+	name="eventos",
+	uniqueConstraints = {
+		@UniqueConstraint(name="eventos_name_unique", columnNames = "nombre")
+	}
 )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Evento {
-
 	@Id
 	@GeneratedValue(
 			strategy = GenerationType.IDENTITY
@@ -30,8 +40,6 @@ public class Evento {
 	)
 	private Long id;
 
-	// ---------------------
-
 	@Column(
 		name = "nombre",
 		nullable = false,
@@ -39,8 +47,6 @@ public class Evento {
 		length = 30
 	)
 	private String nombre;
-
-	// ---------------------
 
 	@Column(
 		name = "descripcion",
@@ -50,8 +56,6 @@ public class Evento {
 	)
 	private String descripcion;
 
-	// ----------------------
-	// venue = lugar de eventos
 	@Column(
 		name = "lugar",
 		nullable = false,
@@ -59,8 +63,6 @@ public class Evento {
 		length = 30
 	)
 	private String lugar;
-
-	// ----------------------
 
 	@Column(
 		name = "direccion",
@@ -70,8 +72,6 @@ public class Evento {
 	)
 	private String direccion;
 
-	// ----------------------
-
 	@Column(
 		name = "departamento",
 		nullable = false,
@@ -80,8 +80,6 @@ public class Evento {
 	)
 	private String departamento;
 
-	// ----------------------
-
 	@Column(
 			name="fecha",
 			nullable = false,
@@ -89,15 +87,11 @@ public class Evento {
 	)
 	private LocalDateTime fecha;
 
-	// ----------------------
-	
 	@Column(
 		name = "precio",
 		nullable = false
 	)
 	private Float precio;
-
-	// ----------------------
 
 	@Column(
 		name = "fotoPortada",
@@ -106,8 +100,6 @@ public class Evento {
 		length = 150
 	)
 	private String fotoPortada;
-
-	// ----------------------
 
 	@Column(
 		name = "interesados",
@@ -128,5 +120,4 @@ public class Evento {
 		fetch = FetchType.LAZY
 	)
 	private List<Asistente> asistentes = new ArrayList<>();
-
 }

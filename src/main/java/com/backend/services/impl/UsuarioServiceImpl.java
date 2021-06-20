@@ -2,10 +2,13 @@ package com.backend.services.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
-import com.backend.dtos.UsuarioDto;
+
 import com.backend.dtos.LoginDto;
+import com.backend.dtos.UsuarioDto;
 import com.backend.dtos.creates.CreateUsuarioDto;
 import com.backend.dtos.edits.EditUsuarioDto;
 import com.backend.entities.Usuario;
@@ -14,10 +17,10 @@ import com.backend.exceptions.TakinaException;
 import com.backend.exceptions.UsuarioNotFoundException;
 import com.backend.repositories.UsuarioRepository;
 import com.backend.services.UsuarioService;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {

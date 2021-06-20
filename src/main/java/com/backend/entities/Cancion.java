@@ -3,7 +3,20 @@ package com.backend.entities;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +29,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cancion {
-
 	@Id
 	@GeneratedValue(
 		strategy = GenerationType.IDENTITY
@@ -27,15 +39,11 @@ public class Cancion {
 	)
 	private Long id;
 
-	// ---------------------
-
 	@Column(
 		name = "track",
 		nullable = false
 	)
 	private Integer track = 1;
-
-	// ---------------------
 
 	@Column(
 		name = "nombre",
@@ -45,17 +53,12 @@ public class Cancion {
 	)
 	private String nombre;
 
-	// ----------------------
-	
 	@Column(
 		name = "duracion",
 		nullable = false
 	)
 	private Float duracion;
-	// EJM: 3.4 => 3 minutos 24 segundos
-	// int(duracion) minutos - int(duracion%1 * 60) segundos
 
-	// ---------------------
 	@Column(
 		name = "audio",
 		nullable = false,
@@ -63,8 +66,6 @@ public class Cancion {
 		length = 50
 	)
 	private String audio;
-
-	// ---------------------
 
 	@Column(
 		name = "foto_portada",
@@ -74,16 +75,12 @@ public class Cancion {
 	)
 	private String FotoPortada;
 
-	// ----------------------
-
 	@Column(
 		name="lanzamiento",
 		nullable = false,
 		columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
 	)
 	private LocalDateTime lanzamiento;
-
-	// ---------------------
 
 	@Column(
 		name = "genero",
@@ -93,8 +90,6 @@ public class Cancion {
 	)
 	private String genero;
 	
-	// --------------------
-	// Relaciones con las tablas de base de datos 
 	@ManyToOne
 	@JoinColumn(
 		name = "proyectos_musicales_id",
@@ -127,10 +122,4 @@ public class Cancion {
 		fetch = FetchType.LAZY
 	)
 	private List<Reproduccion> reproducciones = new ArrayList<>();
-
-	/*
-
-	@ManyToMany(mappedBy = "playlistCanciones")
-	List<ListaReproduccion> playlistCanciones;
-	*/
 }
