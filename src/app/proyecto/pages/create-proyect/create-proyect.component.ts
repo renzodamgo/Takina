@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ProyectoService } from '../../../proyecto.service';
 import { Canciones, Proyecto } from '../../../models/projecto';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class CreateProyectComponent implements OnInit {
   constructor(
     private proyectoService:ProyectoService,
     private route:ActivatedRoute,
+    private dataService:DataService
     
   ) { }
 
@@ -44,7 +46,7 @@ export class CreateProyectComponent implements OnInit {
   }
 
   createProyecto(){
-    
+    this.project.artistaId = this.dataService.artistaId ;
     if (this.project.id) {
       // Actualizamos en vez de crear
       this.proyectoService.updateProjectoById(this.project)
