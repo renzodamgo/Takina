@@ -1,8 +1,0 @@
-{
-    "/takina/*":{
-    "target":"https://takina.herokuapp.com",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-    }
-}

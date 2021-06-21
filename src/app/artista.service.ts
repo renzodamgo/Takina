@@ -14,7 +14,7 @@ export class ArtistaService {
 	constructor(private http:HttpClient) { }
 
 	getArtista(){
-		const  endpoint = 'takina/artistas/id/1';
+		const  endpoint = 'https://takina.herokuapp.com/takina/artistas/id/1';
 		return this.http.get<ArtistaResponse>(endpoint)
 			.pipe(
 				map( resp=>{
