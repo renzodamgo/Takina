@@ -28,7 +28,7 @@ export class CreateProyectComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('hila')
+    console.log('hi')
   }
 
   getProject(){
