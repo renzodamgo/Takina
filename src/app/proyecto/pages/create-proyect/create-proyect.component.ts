@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-
+import { ProyectoService } from '../../../proyecto.service';
 import { Canciones, Proyecto } from '../../../models/projecto';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -21,17 +22,45 @@ export class CreateProyectComponent implements OnInit {
   id!:number
 
   constructor(
- 
+    private proyectoService:ProyectoService,
+    private route:ActivatedRoute,
     
   ) { }
 
   ngOnInit(): void {
     console.log('hila')
   }
-  createProyecto(){
-    console.log(this.project.nombre)
+
+  getProject(){
+    this.id  = +this.route.snapshot.paramMap.get('id')!;
+    this.proyectoService.getProyectoById(this.id)
+      .subscribe((result)=>{
+        this.project = result;
+        this.canciones = result.canciones;
+        this.nombre = result.nombre;
+        console.log(this.project);
+        console.log(this.canciones);
+      })
   }
 
-
+  createProyecto(){
+    
+    if (this.project.id) {
+      // Actualizamos en vez de crear
+      this.proyectoService.updateProjectoById(this.project)
+      .subscribe(data => {
+        console.log(data);
+        this.getProject();
+      }
+      )
+    } else {
+      // crear
+      this.proyectoService.addProjecto(this.project)
+      .subscribe( proyecto => {
+        console.log(proyecto);
+        this.getProject();
+      })
+    }
+  }
 
 }

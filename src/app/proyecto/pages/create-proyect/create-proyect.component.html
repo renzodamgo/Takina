@@ -30,14 +30,21 @@
           
           <!-- Para hacerle display de el tipo de proyecto "single" o "album "-->
           <!-- <mat-form-field>
-            <mat-label>Creador</mat-label>
-            <mat-select [(ngModel)]="project.tipo"
-                        required>
-                <mat-option *ngFor="let project of proyect" [value]="project.tipo">
-                    {{ project.tipo }} 
-                </mat-option>
+            <mat-label>Tipo de Proyecto</mat-label>
+            <mat-select [(ngModel)]="project.tipo">
+                <mat-option *ngFor="let d of project" [value]="d"> </mat-option>
             </mat-select>
           </mat-form-field> -->
+
+          <mat-form-field appearance="fill">
+            <mat-label>Tipo de Proyecto</mat-label>
+            <input matInput name="tipo" [(ngModel)]="project.tipo" placeholder="" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha de lanzamiento </mat-label>
+            <input matInput name="lanzamiento" [(ngModel)]="project.lanzamiento" placeholder="" />
+          </mat-form-field>
           
           <mat-form-field appearance="fill">
             <mat-label>Link de Foto Portada</mat-label>
@@ -49,7 +56,7 @@
           
           <button mat-raised-button color="accent" (click)="createProyecto()">Crear</button>
   
-          <button mat-raised-button class="pad-left" color="primary" [routerLink] = "['proyectos']" > 
+          <button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyectos']" > 
             Regresar
           </button>
         </form>
