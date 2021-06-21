@@ -1,9 +1,9 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { ProyectoService } from '../proyecto.service';
+import { Component, OnInit } from '@angular/core';
+import { ProyectoService } from '../../../proyecto.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Canciones, Proyecto } from '../models/projecto';
-import { FormBuilder } from '@angular/forms';
+import { Canciones, Proyecto } from '../../../models/projecto';
+
 
 
 @Component({

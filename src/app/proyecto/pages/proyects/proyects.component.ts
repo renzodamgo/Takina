@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { Proyecto } from '../models/projecto';
-import { ProyectoService } from '../proyecto.service';
-import { DataService } from '../services/data.service';
+import { DashboardComponent } from '../../../dashboard/dashboard.component';
+import { Proyecto } from '../../../models/projecto';
+import { ProyectoService } from '../../../proyecto.service';
+import { DataService } from '../../../services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
