@@ -3,6 +3,7 @@ import { ProyectoService } from '../../../proyecto.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Canciones, Proyecto } from '../../../models/projecto';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -25,6 +26,7 @@ export class EditProyectComponent implements OnInit {
     private location: Location,
     private proyectoService:ProyectoService,
     private route:ActivatedRoute,
+    private _snackBar: MatSnackBar
     
   ) { }
 
@@ -34,6 +36,9 @@ export class EditProyectComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+  editSnackBar() {
+    this._snackBar.open("El proyecto ha sido editado", "OK" );
   }
 
   getProject(){
@@ -50,12 +55,13 @@ export class EditProyectComponent implements OnInit {
     
   }
   editProyecto(){
-  
+    
     console.log(this.project.nombre);
     this.proyectoService.updateProjectoById(this.project)
       .subscribe(data => {
         console.log(data);
         this.getProject();
+        this.editSnackBar()
       });
     
   }

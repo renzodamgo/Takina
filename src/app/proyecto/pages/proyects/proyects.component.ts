@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardComponent } from '../../../dashboard/dashboard.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { Proyecto } from '../../../models/projecto';
 import { ProyectoService } from '../../../proyecto.service';
 import { DataService } from '../../../services/data.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-proyects',
@@ -20,10 +19,15 @@ export class ProyectsComponent implements OnInit {
 
   constructor(private proyectoService: ProyectoService,
               public  dataService:DataService,
-              private router: Router,) { }
+              private _snackBar:MatSnackBar
+              ) { }
 
   ngOnInit(): void {
     this.getProyectos();
+  }
+
+  deleteSnackBar() {
+    this._snackBar.open("El proyecto ha sido eliminado", "OK" );
   }
 
   getProyectos(){
@@ -49,6 +53,7 @@ export class ProyectsComponent implements OnInit {
       // y yo puse en el routing que cuando entras a un route q no existe te manda al dashboard de artista con el ['**']
       console.log(result)
       this.getProyectos();
+      this.deleteSnackBar()
     });
   }
 

@@ -18,7 +18,7 @@ import { FormsModule }   from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
@@ -54,7 +54,8 @@ import { ProyectoRoutingModule } from './proyecto-routing.module';
     MatPaginatorModule,
     MatSortModule,
     RouterModule,
-    ProyectoRoutingModule    
+    ProyectoRoutingModule,
+    MatSnackBarModule
     
     
     

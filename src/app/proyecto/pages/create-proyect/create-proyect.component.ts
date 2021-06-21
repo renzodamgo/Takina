@@ -3,6 +3,7 @@ import { ProyectoService } from '../../../proyecto.service';
 import { Canciones, Proyecto } from '../../../models/projecto';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -25,12 +26,17 @@ export class CreateProyectComponent implements OnInit {
   constructor(
     private proyectoService:ProyectoService,
     private route:ActivatedRoute,
-    private dataService:DataService
+    private dataService:DataService,
+    private _snackBar:MatSnackBar
     
   ) { }
 
   ngOnInit(): void {
     console.log('hi')
+  }
+
+  createSnackBar() {
+    this._snackBar.open("El proyecto ha sido creado", "OK" );
   }
 
   getProject(){
@@ -61,6 +67,7 @@ export class CreateProyectComponent implements OnInit {
       .subscribe( proyecto => {
         console.log(proyecto);
         this.getProject();
+        this.createSnackBar()
       })
     }
   }
