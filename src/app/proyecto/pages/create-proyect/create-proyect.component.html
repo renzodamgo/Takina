@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row">
       <div class="col-md-6 margin-auto space">
@@ -9,22 +10,22 @@
           
           <mat-form-field appearance="fill">
             <mat-label>Nombre</mat-label>
-            <input matInput name="nombre" [(ngModel)]="project.nombre" placeholder="project.nombre"/>
+            <input matInput name="nombre" [(ngModel)]="this.project.nombre" placeholder=""/>
           </mat-form-field>
           
           <mat-form-field appearance="fill">
             <mat-label>Descripción</mat-label>
-            <input matInput name="descripcion" [(ngModel)]="project.descripcion" placeholder="project.descripcion"/>
+            <input matInput name="descripcion" [(ngModel)]="project.descripcion" placeholder=""/>
           </mat-form-field>
           
           <mat-form-field appearance="fill">
             <mat-label>Género</mat-label>
-            <input matInput name="genero" [(ngModel)]="project.genero" placeholder="project.genero"/>
+            <input matInput name="genero" [(ngModel)]="project.genero" placeholder=""/>
           </mat-form-field>
           
           <mat-form-field appearance="fill">
             <mat-label>Discográfica</mat-label>
-            <input matInput name="discografica" [(ngModel)]="project.discografica" placeholder="project.discografica" />
+            <input matInput name="discografica" [(ngModel)]="project.discografica" placeholder="" />
           </mat-form-field>
           
           <!-- Para hacerle display de el tipo de proyecto "single" o "album "-->
@@ -40,7 +41,7 @@
           
           <mat-form-field appearance="fill">
             <mat-label>Link de Foto Portada</mat-label>
-            <input matInput name="fotoPortada" [(ngModel)]="project.fotoPortada" placeholder="project.fotoPortada"/>
+            <input matInput name="fotoPortada" [(ngModel)]="project.fotoPortada" placeholder=""/>
           </mat-form-field>
           <div class="img-container">
             <img class='img shadow' [src] = project.fotoPortada>
@@ -48,7 +49,7 @@
           
           <button mat-raised-button color="accent" (click)="createProyecto()">Crear</button>
   
-          <button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyecto']" > 
+          <button mat-raised-button class="pad-left" color="primary" [routerLink] = "['proyectos']" > 
             Regresar
           </button>
         </form>

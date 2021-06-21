@@ -10,9 +10,9 @@ const routes: Routes = [
     path: '',
     children:[
       {path: '', component: ProyectsComponent},
-      {path: ':id', component: EditProyectComponent},
+      {path: 'edit/:id', component: EditProyectComponent},
       {path: 'create', component: CreateProyectComponent},
-      // {path: '**', redirectTo:'mostrar'}
+      
       
     ]
   }
