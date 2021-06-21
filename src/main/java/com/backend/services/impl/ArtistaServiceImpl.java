@@ -1,8 +1,6 @@
 package com.backend.services.impl;
 
-import java.text.Normalizer;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,8 +56,6 @@ public class ArtistaServiceImpl implements ArtistaService {
 				.orElseThrow(()-> new ArtistaNotFoundException("Artista not found."));
 	}
 
-	// --------------------------------------------------------
-
 	public ArtistaDto getArtistaNombre(String nombre) throws TakinaException {
 		return modelMapper.map(getArtistaEntityNombre(nombre), ArtistaDto.class);
 	}
@@ -69,14 +65,12 @@ public class ArtistaServiceImpl implements ArtistaService {
 				.orElseThrow(()-> new ArtistaNotFoundException("Artista not found."));
 	}
 
-	// --------------------------------------------------------
 	@Override
 	public List<ArtistaDto> getArtistas() throws TakinaException {
 		List<Artista> artistaEntity = artistaRepository.findAll();
 		return artistaEntity.stream().map(artista -> modelMapper.map(artista, ArtistaDto.class)).collect(Collectors.toList());
 	}
 
-	// --------------------------------------------------------
 	@Transactional
 	@Override
 	public ArtistaDto createArtista(CreateArtistaDto createArtistaDto) throws TakinaException {
@@ -155,7 +149,6 @@ public class ArtistaServiceImpl implements ArtistaService {
 		return modelMapper.map(getArtistaEntity(artista.getId()),ArtistaDto.class);
 	}
 	
-	// Artista - Busquedas
 	@Override
 	public List<ArtistaDto> getArtistasByNombre(String nombre) throws TakinaException {
 		List<Artista> results = artistaRepository.findByNombreContainingIgnoreCase(nombre);
@@ -174,32 +167,6 @@ public class ArtistaServiceImpl implements ArtistaService {
 		return results.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
 	}
 
-	// Busqueda Test
-	@Override
-	public List<ArtistaDto> searchArtistasByNombre(String nombre) throws TakinaException {
-		List<Artista> artistas = artistaRepository.findAll();
-		List<Artista> resultados = new ArrayList<Artista>();
-
-		String busqueda = Normalizer.normalize(nombre, Normalizer.Form.NFD)
-									.replaceAll("[^\\p{ASCII}]", "")
-									.toLowerCase();
-
-		for (int i = 0; i < artistas.size(); i++) {
-			String nombre_i = artistas.get(i).getNombre();
-
-			nombre_i = Normalizer.normalize(nombre_i, Normalizer.Form.NFD)
-								.replaceAll("[^\\p{ASCII}]", "")
-								.toLowerCase();
-
-			if (nombre_i.indexOf(busqueda) != -1) {
-				resultados.add(artistas.get(i));
-			}
-		}
-
-		return resultados.stream().map(artista -> modelMapper.map(artista,ArtistaDto.class)).collect(Collectors.toList());
-	}
-
-	// ------------- edit artista ----------------
 	@Override
 	public ArtistaDto editArtista(EditArtistaDto editArtistaDto) throws TakinaException {
 		Artista artista = getArtistaEntity(editArtistaDto.getId());
@@ -220,7 +187,7 @@ public class ArtistaServiceImpl implements ArtistaService {
 		return modelMapper.map(artista, ArtistaDto.class);
 	}
 
-	
+	@Override
 	public EstadisticaDto getSeguidoresByIdAndDate(Long artistaId, Integer indice) throws TakinaException {
 		Artista artista = getArtistaEntity(artistaId);
 
@@ -234,7 +201,6 @@ public class ArtistaServiceImpl implements ArtistaService {
 		return estadistica;
 	}
 
-	// --------------------------------------------------------
 	@Transactional
 	@Override
 	public SeguidorDto createSeguidor(Long usuarioId, Long artistaId) throws TakinaException {
@@ -264,7 +230,7 @@ public class ArtistaServiceImpl implements ArtistaService {
 
 		return modelMapper.map(seguidor,SeguidorDto.class);
 	}
-	// --------------------------------------------------------
+
 	@Override
 	public void deleteSeguidor(Long usuarioId, Long artistaId) throws TakinaException {
 		Optional<Seguidor> validacion = seguidorRepository.findByUsuarioIdAndArtistaId(usuarioId, artistaId);
@@ -277,5 +243,4 @@ public class ArtistaServiceImpl implements ArtistaService {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
 		}
 	}
-
 }

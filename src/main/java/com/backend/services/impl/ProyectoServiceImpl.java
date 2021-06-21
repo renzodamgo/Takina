@@ -41,7 +41,6 @@ public class ProyectoServiceImpl implements ProyectoService {
 	@Autowired
 	private CancionRepository cancionRepository;
 
-	// -------------------------------------------------------
 	@Override
 	public List<ProyectoDto> getProyectos() throws TakinaException {
 		List<Proyecto> proyectoEntity = proyectoRepository.findAll();
@@ -60,7 +59,6 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return proyectoEntities.stream().map(proyecto -> modelMapper.map(proyecto, ProyectoDto.class)).collect(Collectors.toList());
 	}
 
-	// -------------------------------------------------------
 	@Override
 	public ProyectoDto getProyectoById(Long proyectoId) throws TakinaException {
 		return modelMapper.map(getProyectoEntity(proyectoId), ProyectoDto.class);
@@ -70,7 +68,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return proyectoRepository.findById(proyectoId)
 				.orElseThrow(() -> new ProyectoNotFoundException("Proyecto not found."));
 	}
-	// -------------------------------------------------------
+	
 	@Override
 	public ProyectoDto getProyectoByNombre(String nombre) throws TakinaException {
 		return modelMapper.map(getProyectoEntityNombre(nombre),ProyectoDto.class);
@@ -80,14 +78,13 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return proyectoRepository.findByNombre(nombre)
 				.orElseThrow(()-> new ProyectoNotFoundException("Proyecto not found."));
 	}
-	// --------------------------------------------------------
+
 	@Transactional
 	@Override
 	public ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException {
 		Artista artista = artistaRepository.findById(createProyectoDto.getArtistaId())
 				.orElseThrow(() -> new ArtistaNotFoundException("Artista not found."));
 
-		// Validación: un artista no puede tener dos proyectos del mismo nombre
 		List<ProyectoDto> proyectos = getProyectosByArtistaId(createProyectoDto.getArtistaId());
 		for (ProyectoDto p : proyectos) {
 			if (p.getNombre().equals(createProyectoDto.getNombre())) {
@@ -134,7 +131,6 @@ public class ProyectoServiceImpl implements ProyectoService {
 		
 		proyecto.setNombre(editProyectoDto.getNombre());
 		proyecto.setDescripcion(editProyectoDto.getDescripcion());
-		// deberias de poder editar el lanzamiento? no seria una fecha fija
 		proyecto.setLanzamiento(editProyectoDto.getLanzamiento());
 		proyecto.setDiscografica(editProyectoDto.getDiscografica());
 		proyecto.setFotoPortada(editProyectoDto.getFotoPortada());
@@ -163,5 +159,4 @@ public class ProyectoServiceImpl implements ProyectoService {
 			throw new ProyectoNotFoundException("Proyecto not found.");
 		}
 	}
-
 }

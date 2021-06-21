@@ -41,14 +41,12 @@ public class MercanciaServiceImpl implements MercanciaService {
 				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Usuario_NOTFOUND-404"));
 	}
 
-	// ----------------------------------------------------------------
 	@Override
 	public List<MercanciaDto> getMercancias() throws TakinaException {
 		List<Mercancia> mercanciaEntity = mercanciaRepository.findAll();
 		return mercanciaEntity.stream().map(mercancia -> modelMapper.map(mercancia, MercanciaDto.class)).collect(Collectors.toList());
 	}
 
-	// ----------------------------------------------------------------
 	@Transactional
 	@Override
 	public MercanciaDto createMercancia(CreateMercanciaDto createMercanciaDto) throws TakinaException {
@@ -68,7 +66,5 @@ public class MercanciaServiceImpl implements MercanciaService {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","CANCION_NOT_CREATED");
 		}
 		return modelMapper.map(getMercanciaEntity(mercancia.getId()),MercanciaDto.class);
-		
 	}
-	
 }

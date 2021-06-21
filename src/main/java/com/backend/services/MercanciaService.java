@@ -7,11 +7,7 @@ import com.backend.dtos.creates.CreateMercanciaDto;
 import com.backend.exceptions.TakinaException;
 
 public interface MercanciaService {
-
-	MercanciaDto getMercanciaId(Long mercanciaId) throws TakinaException;
-
 	List<MercanciaDto> getMercancias() throws TakinaException;
-	
 	MercanciaDto createMercancia(CreateMercanciaDto createMercanciaDto) throws TakinaException;
-
+	MercanciaDto getMercanciaId(Long mercanciaId) throws TakinaException;
 }

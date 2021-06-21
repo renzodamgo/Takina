@@ -61,7 +61,6 @@ public class CancionServiceImpl implements CancionService {
 
 	private static final ModelMapper modelMapper = new ModelMapper();
 
-	// -------------------------------------------------------
 	@Override
 	public CancionDto getCancionId(Long cancionId) throws TakinaException {
 		return modelMapper.map(getCancionEntity(cancionId),CancionDto.class);
@@ -73,14 +72,12 @@ public class CancionServiceImpl implements CancionService {
 				.orElseThrow(()-> new CancionNotFoundException("Cancion not found."));
 	}
 
-	// -------------------------------------------------------
 	@Override
 	public List<CancionDto> getCanciones() throws TakinaException {
 		List<Cancion> cancionesEntity = cancionRepository.findAll();
 		return cancionesEntity.stream().map(cancion -> modelMapper.map(cancion, CancionDto.class)).collect(Collectors.toList());
 	}
 
-	// -------------------------------------------------------
 	@Override
 	public CancionDto getCancionNombre(String nombre) throws TakinaException {
 		return modelMapper.map(getCancionEntityNombre(nombre),CancionDto.class);
@@ -91,7 +88,6 @@ public class CancionServiceImpl implements CancionService {
 				.orElseThrow(()-> new CancionNotFoundException("Cancion not found."));
 	}
 
-	// --------------------------------------------------------
 	@Transactional
 	@Override
 	public CancionDto createCancion(CreateCancionDto createCancionDto) throws TakinaException {
@@ -114,7 +110,6 @@ public class CancionServiceImpl implements CancionService {
 		cancion.setLanzamiento(proyecto.getLanzamiento());
 		cancion.setGenero(proyecto.getGenero());
 		cancion.setProyecto(proyecto);
-
 		cancion.setTrack(proyecto.getNumCanciones()+1);
 
 		try {
@@ -138,7 +133,7 @@ public class CancionServiceImpl implements CancionService {
 		
 		return modelMapper.map(getCancionEntity(cancion.getId()),CancionDto.class);
 	}
-	// --------------------------------------------------------
+
 	@Transactional
 	@Override
 	public CancionDto createCancionProyecto(CreateCancionProyectoDto createCancionProyectoDto) throws TakinaException {
@@ -160,7 +155,6 @@ public class CancionServiceImpl implements CancionService {
 
 		try {
 			proyecto = proyectoRepository.save(proyecto);
-			//artista.getProyectos().add(proyecto);
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PROYECTO_NOT_CREATED");
 		}
@@ -194,33 +188,42 @@ public class CancionServiceImpl implements CancionService {
 		return modelMapper.map(getCancionEntity(credito.getCancion().getId()),CancionDto.class);
 	}
 	
-	// --------------------------------------------------------
-	// Buscar por nombre
 	@Override
 	public List<CancionDto> getCancionesByNombre(String nombre) throws TakinaException {
 		List<Cancion> results = cancionRepository.findByNombreContainingIgnoreCase(nombre);
 		return results.stream().map(cancion -> modelMapper.map(cancion,CancionDto.class)).collect(Collectors.toList());
 	}
-	// --------------------------------------------------------
-	// Buscar por genero musical
+
 	@Override
 	public List<CancionDto> getCancionesByGeneroMusical(String generoMusical) throws TakinaException {
 		List<Cancion> results = cancionRepository.findByGeneroContainingIgnoreCase(generoMusical);
 		return results.stream().map(cancion -> modelMapper.map(cancion,CancionDto.class)).collect(Collectors.toList());
 	}
-	// --------------------------------------------------------
-	// Eliminar por ID
+
+	@Transactional
 	@Override
 	public void deleteCancionById(Long cancionId) throws TakinaException {
-		Optional<Cancion> validacion = cancionRepository.findById(cancionId);
+		Optional<Cancion> cancion = cancionRepository.findById(cancionId);
 
-		if (validacion.isPresent()) {
+		if (cancion.isPresent()) {
+			Proyecto proyecto = cancion.get().getProyecto();
+			proyecto.setNumCanciones(proyecto.getNumCanciones()-1);
+			proyecto.setDuracion(proyecto.getDuracion()-cancion.get().getDuracion());
+			proyecto = proyectoRepository.save(proyecto);
+
 			cancionRepository.deleteById(cancionId);
+
+			List<Cancion> canciones = cancionRepository.findByProyectoId(proyecto.getId());
+			for(int i = 0; i < canciones.size(); i++) {
+				Cancion can = canciones.get(i);
+				can.setTrack(i+1);
+				can = cancionRepository.save(can);
+			}
 		} else {
 			throw new CancionNotFoundException("Cancion not found.");
 		}
 	}
-	// --------------------------------------------------------
+
 	@Override
 	public CancionDto createCredito(CreateCreditoDto createCreditoDto) throws TakinaException {
 		Artista artista = artistaRepository.findById(createCreditoDto.getArtistaId())
@@ -242,7 +245,6 @@ public class CancionServiceImpl implements CancionService {
 		return modelMapper.map(getCancionEntity(credito.getCancion().getId()),CancionDto.class);
 	}
 
-	// --------------------------------------------------------
 	@Transactional
 	@Override
 	public ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException {
@@ -262,9 +264,9 @@ public class CancionServiceImpl implements CancionService {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","REPRODUCCION_NOT_CREATED");
 		}
 
-		cancion.getProyecto().getArtista().setTotalReproducciones(
-			cancion.getProyecto().getArtista().getTotalReproducciones()+1
-		);
+		Artista artista = cancion.getProyecto().getArtista();
+		artista.setTotalReproducciones(artista.getTotalReproducciones()+1);
+		artista = artistaRepository.save(artista);
 
 		return modelMapper.map(reproduccion,ReproduccionDto.class);
 	}
@@ -316,6 +318,4 @@ public class CancionServiceImpl implements CancionService {
 								LocalDateTime.now().minusMonths(indice).minusHours(1)));
 		return new EstadisticaDto();
 	}
-
-
 }

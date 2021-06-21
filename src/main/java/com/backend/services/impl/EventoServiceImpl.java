@@ -61,15 +61,12 @@ public class EventoServiceImpl implements EventoService {
 				.orElseThrow(()-> new NotFoundException("NOTFOUND-404","Evento_NOTFOUND-404"));
 	}
 
-
-	// -------------------------------------------------------
 	@Override
 	public List<EventoDto> getEventos() throws TakinaException {
 		List<Evento> eventoEntity = eventoRepository.findAll();
 		return eventoEntity.stream().map(evento -> modelMapper.map(evento, EventoDto.class)).collect(Collectors.toList());
 	}
 
-	// -------------------------------------------------------
 	@Override
 	public EventoDto getEventoNombre(String nombre) throws TakinaException {
 		return modelMapper.map(getEventoEntityNombre(nombre), EventoDto.class);
@@ -79,8 +76,6 @@ public class EventoServiceImpl implements EventoService {
 		return eventoRepository.findByNombre(nombre).orElseThrow(()-> new NotFoundException("NOTFOUND-404","CANCION_NOTFOUND-404"));
 	}
 
-
-	// -------------------------------------------------------
 	@Override
 	public EventoDto createEvento(CreateEventoDto createEventoDto) throws TakinaException {
 		Evento evento = new Evento();
@@ -160,21 +155,6 @@ public class EventoServiceImpl implements EventoService {
 		Evento evento = getEventoEntity(eventoId);
 		List<Invitado> resultado = invitadoRepository.findByEventoIdOrderByHoraInicio(eventoId);
 
-		//List<Invitado> resultado = evento.getInvitados();
-		// 1.
-		//resultado = resultado.stream()
-		//					.sorted(Comparator.comparing(Invitado::getHoraInicio)/*.reversed()//DESC*/)
-		//					.collect(Collectors.toList());
-		// 2.
-		//resultado = resultado.stream()
-		//						.sorted(new Comparator<Invitado>(){
-		//							@Override
-		//							public int compare(Invitado i1, Invitado i2) {
-		//								return i1.getHoraInicio().compareTo(i2.getHoraInicio()); // ASC
-		//								//return i2.getHoraInicio().compareTo(i1.getHoraInicio()); // DESC					
-		//						}})	
-		//						.collect(Collectors.toList());
-
 		InvitadosDto invitados = new InvitadosDto();
 		invitados.setNombre(evento.getNombre());
 		invitados.setInvitados(resultado.stream()
@@ -184,7 +164,6 @@ public class EventoServiceImpl implements EventoService {
 		return invitados;
 	}	
 
-	// --------------------------------------------------------
 	@Transactional
 	@Override
 	public AsistenteDto createAsistente(Long usuarioId, Long eventoId) throws TakinaException {
@@ -214,7 +193,7 @@ public class EventoServiceImpl implements EventoService {
 
 		return modelMapper.map(asistente,AsistenteDto.class);
 	}
-	// --------------------------------------------------------
+
 	@Override
 	public void deleteAsistente(Long usuarioId, Long eventoId) throws TakinaException {
 		Optional<Asistente> validacion = asistenteRepository.findByUsuarioIdAndEventoId(usuarioId, eventoId);
@@ -229,5 +208,4 @@ public class EventoServiceImpl implements EventoService {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
 		}
 	}
-
 }

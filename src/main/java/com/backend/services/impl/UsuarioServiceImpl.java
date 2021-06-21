@@ -29,7 +29,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	// -------------------------------------------------------
 	@Override
 	public UsuarioDto getUsuarioId(Long UsuarioId) throws TakinaException {
 		return modelMapper.map(getUsuarioEntity(UsuarioId),UsuarioDto.class);
@@ -41,14 +40,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 				.orElseThrow(()-> new UsuarioNotFoundException("Usuario not found."));
 	}
 
-	// -------------------------------------------------------
 	@Override
 	public List<UsuarioDto> getUsuarios() throws TakinaException {
 		List<Usuario> usuariosEntity = usuarioRepository.findAll();
 		return usuariosEntity.stream().map(Usuario -> modelMapper.map(Usuario, UsuarioDto.class)).collect(Collectors.toList());
 	}
 
-	// -------------------------------------------------------
 	@Override
 	public UsuarioDto getUsuarioApodo(String apodo) throws TakinaException {
 	 return modelMapper.map(getUsuarioEntityApodo(apodo),UsuarioDto.class);
@@ -59,7 +56,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 			   .orElseThrow(()-> new UsuarioNotFoundException("Usuario not found."));
 	}
 
-	// -------------------------------------------------------
 	@Override
 	public UsuarioDto getUsuarioCorreo(String correo) throws TakinaException {
 	 return modelMapper.map(getUsuarioEntityCorreo(correo),UsuarioDto.class);
@@ -70,7 +66,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 				.orElseThrow(()-> new UsuarioNotFoundException("Usuario not found."));
 	}
 
-	// --------------------------------------------------------
 	@Transactional
 	@Override
 	public UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws TakinaException {
@@ -90,14 +85,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return modelMapper.map(getUsuarioEntity(Usuario.getId()),UsuarioDto.class);
 	}
 
-	// --------------------------------------------------------
 	@Override
 	public List<UsuarioDto> getUsuariosByNombre(String nombre) throws TakinaException{
 		List<Usuario> results = usuarioRepository.findByNombreContainingIgnoreCase(nombre);
 		return results.stream().map(usuario -> modelMapper.map(usuario,UsuarioDto.class)).collect(Collectors.toList());
 	}
 
-	// --------------------------------------------------------
 	@Override
 	public UsuarioDto loginUsuarioByApodoOrCorreoUsingPassword(LoginDto loginDto) throws TakinaException {
 		Usuario Usuario = getUsuarioByApodoOrCorreo(loginDto.getLogin());
@@ -115,7 +108,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 				.orElseThrow(()-> new UsuarioNotFoundException("Usuario not found."));
 	}
 
-	// --------------------------------------------------------
 	@Override
 	public UsuarioDto editUsuario(EditUsuarioDto editUsuarioDto) throws TakinaException {
 		Usuario usuario = getUsuarioEntity(editUsuarioDto.getId());
@@ -133,7 +125,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 		return modelMapper.map(usuario,UsuarioDto.class);
 	}
-	// --------------------------------------------------------
+
 	@Override
 	public UsuarioDto togglePremium(Long usuarioId) throws TakinaException {
 		Usuario usuario = getUsuarioEntity(usuarioId);
@@ -164,6 +156,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 			//	if(count.equals(0)) artistasId.add(a.getArtista().getId());
 			//}
 			//for(Long id : artistasId) artistaRepository.deleteById(id);
+
+			// Eliminar playlists - listados
 			
 			usuarioRepository.deleteById(usuarioId);
 		} else {

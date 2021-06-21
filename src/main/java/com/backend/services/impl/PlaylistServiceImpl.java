@@ -46,7 +46,6 @@ public class PlaylistServiceImpl implements PlaylistService {
 	@Autowired
 	private CancionRepository cancionRepository;
 
-	// ----------------------------------------------------------------
 	@Override
 	public PlaylistDto getPlaylistById(Long playlistId) throws TakinaException {
 		return modelMapper.map(getPlaylistEntity(playlistId), PlaylistDto.class);  
@@ -56,14 +55,12 @@ public class PlaylistServiceImpl implements PlaylistService {
 				.orElseThrow(()-> new PlaylistNotFoundException("Playlist not found."));
 	}
 
-	// ----------------------------------------------------------------
 	@Override
 	public List<PlaylistDto> getPlaylists() throws TakinaException {
 		List<Playlist> playlists = playlistRepository.findAll();
 		return playlists.stream().map(playlist -> modelMapper.map(playlist, PlaylistDto.class)).collect(Collectors.toList());
 	}
 
-	// ----------------------------------------------------------------
 	@Transactional
 	@Override
 	public PlaylistDto createPlaylist(CreatePlaylistDto createPlaylistDto) throws TakinaException {
@@ -81,11 +78,10 @@ public class PlaylistServiceImpl implements PlaylistService {
 		} catch (Exception ex) {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PLAYLIST_NOT_CREATED");
 		}
-		//usuario.getPlaylists().add(playlist);
 
 		return modelMapper.map(getPlaylistEntity(playlist.getId()),PlaylistDto.class);
 	}
-	// ----------------------------------------------------------------
+
 	@Transactional
 	@Override
 	public PlaylistDto addToPlaylist(Long playlistId, Long cancionId) throws TakinaException {
@@ -113,6 +109,7 @@ public class PlaylistServiceImpl implements PlaylistService {
 
 		playlist.setDuracion(playlist.getDuracion()+cancion.getDuracion());
 		playlist.setNumCanciones(playlist.getNumCanciones()+1);
+		playlist = playlistRepository.save(playlist);
 		
 		return modelMapper.map(getPlaylistEntity(playlist.getId()),PlaylistDto.class);
 	}
@@ -122,12 +119,15 @@ public class PlaylistServiceImpl implements PlaylistService {
 		Optional<Listado> validacion = listadoRepository.findByPlaylistIdAndCancionId(playlistId,cancionId);
 
 		if (validacion.isPresent()) {
+			Cancion cancion = validacion.get().getCancion();
+			Playlist playlist = validacion.get().getPlaylist();
+			playlist.setDuracion(playlist.getDuracion()-cancion.getDuracion());
+			playlist.setNumCanciones(playlist.getNumCanciones()-1);
+			playlist = playlistRepository.save(playlist);
+
 			listadoRepository.deleteById(validacion.get().getId());
 		} else {
 			throw new ListadoNotFoundException("Cancion not found in Playlist.");
 		}
 	}
-
-	
-
 }

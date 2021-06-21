@@ -10,25 +10,14 @@ import com.backend.dtos.edits.EditProyectoDto;
 import com.backend.exceptions.TakinaException;
 
 public interface ProyectoService {
-
-	ProyectoDto getProyectoById(Long cancionId) throws TakinaException;
-
-	ProyectoDto getProyectoByNombre(String nombre) throws TakinaException;
-
 	List<ProyectoDto> getProyectos() throws TakinaException;
-
-    List<ProyectoDto> getProyectosByNombre(String nombre) throws TakinaException;
-
-    ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException;
-
-	ProyectoDto editProyecto(EditProyectoDto editProyectoDto) throws TakinaException;
-
-    List<ProyectoDto> getProyectosByArtistaId(Long artistaId) throws TakinaException;
-
-    List<ProyectoDto> getProyectosByGenero(String genero) throws TakinaException;
-
+	List<ProyectoDto> getProyectosByArtistaId(Long artistaId) throws TakinaException;
+	List<ProyectoDto> getProyectosByGenero(String genero) throws TakinaException;
+	List<ProyectoDto> getProyectosByNombre(String nombre) throws TakinaException;
 	List<ProyectoMiniDto> getUltimos10ProyectosSubidos() throws TakinaException;
-
+	ProyectoDto createProyecto(CreateProyectoDto createProyectoDto) throws TakinaException;
+	ProyectoDto editProyecto(EditProyectoDto editProyectoDto) throws TakinaException;
+	ProyectoDto getProyectoById(Long cancionId) throws TakinaException;
+	ProyectoDto getProyectoByNombre(String nombre) throws TakinaException;
 	void deleteProyectoById(Long protectoId) throws TakinaException;
-
 }
