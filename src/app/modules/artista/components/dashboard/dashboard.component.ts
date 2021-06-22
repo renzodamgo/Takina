@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ArtistaService } from '../artista.service';
-import { Artista } from '../models/artista';
-import { DataService } from '../services/data.service';
+import { ArtistaService } from '../../../../core/services/artista.service';
+import { Artista } from '../../../../models/artista';
+import { DataService } from '../../../../core/services/data.service';
 
 @Component({
   selector: 'app-dashboard',

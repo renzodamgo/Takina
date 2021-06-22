@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Proyecto } from './models/projecto';
+import { Proyecto } from '../../models/projecto';
 
-import { Projecto, ProjectoResponse, ProjectosResponse  } from './models/proyectResponse';
+import { Projecto, ProjectoResponse, ProjectosResponse  } from '../../models/proyectResponse';
 
 
 @Injectable({

@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { ProyectoService } from '../../../proyecto.service';
-import { Canciones, Proyecto } from '../../../models/projecto';
+import { ProyectoService } from '../../../../../core/services/proyecto.service';
+import { Canciones, Proyecto } from '../../../../../models/projecto';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/core/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 

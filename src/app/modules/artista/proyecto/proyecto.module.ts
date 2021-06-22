@@ -21,8 +21,9 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from '../app-routing.module';
+import { AppRoutingModule } from '../../../app-routing.module';
 import { ProyectoRoutingModule } from './proyecto-routing.module';
+import { AddSongComponent } from './pages/add-song/add-song.component';
 
 
 
@@ -32,6 +33,7 @@ import { ProyectoRoutingModule } from './proyecto-routing.module';
     ProyectsComponent,
     EditProyectComponent,
     CreateProyectComponent,
+    AddSongComponent,
       
   ],
   imports: [

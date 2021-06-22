@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { Proyecto } from '../../../models/projecto';
-import { ProyectoService } from '../../../proyecto.service';
-import { DataService } from '../../../services/data.service';
+import { Proyecto } from '../../../../../models/projecto';
+import { ProyectoService } from '../../../../../core/services/proyecto.service';
+import { DataService } from '../../../../../core/services/data.service';
 
 @Component({
   selector: 'app-proyects',

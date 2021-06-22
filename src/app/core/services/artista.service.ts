@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ArtistaResponse } from './models/artistaResponse';
+import { ArtistaResponse } from '../../models/artistaResponse';
 import {map} from 'rxjs/operators'
-import { Artista } from './models/artista';
+import { Artista } from '../../models/artista';
 
 
 @Injectable({
