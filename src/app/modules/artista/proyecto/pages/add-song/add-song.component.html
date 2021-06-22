@@ -1,1 +1,61 @@
-<p>add-song works!</p>
+<div class="container space">
+    
+    <mat-card>
+    	<div class="">
+        <ng-template [ngIf]="canciones.length !== 0">
+					<h1>Canciones</h1>
+					<table mat-table class="bottom width" [dataSource]="canciones">
+						<!--- Note that these columns can be defined in any order.
+											The actual rendered columns are set as a property on the row definition" -->
+	
+						<!-- Position Column -->
+						<ng-container matColumnDef="track">
+							<th mat-header-cell *matHeaderCellDef>No.</th>
+							<td mat-cell *matCellDef="let cancion">{{ cancion.track }}</td>
+						</ng-container>
+	
+						<!-- Name Column -->
+						<ng-container matColumnDef="nombre">
+							<th mat-header-cell *matHeaderCellDef>Nombre</th>
+							<td mat-cell *matCellDef="let cancion">{{ cancion.nombre }}</td>
+						</ng-container>
+	
+						<!-- Weight Column -->
+						<ng-container matColumnDef="duracion">
+							<th mat-header-cell *matHeaderCellDef>Duración</th>
+							<td mat-cell *matCellDef="let cancion">{{ cancion.duracion }}</td>
+						</ng-container>
+	
+						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+						<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+					</table>
+				</ng-template>
+				<!-- Agregar Cancion -->
+				<div class="space" >
+					<h1>Agregar Cancion</h1>
+	
+					
+					<mat-form-field appearance="fill">
+						<mat-label> Nombre</mat-label>
+						<input matInput />
+					</mat-form-field>
+					
+					<mat-form-field appearance="fill">
+						<mat-label>Duración</mat-label>
+						<input matInput />
+					</mat-form-field>
+				 
+					<mat-form-field appearance="fill">
+						<mat-label>Archivo</mat-label>
+						<input matInput />
+					</mat-form-field>
+					<button mat-raised-button color="accent">Agregar</button>
+
+					<button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyectos']" > 
+						Regresar
+					</button>
+				</div>
+      </div>
+      
+    </mat-card>
+  </div>
