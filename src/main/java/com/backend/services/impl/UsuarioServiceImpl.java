@@ -145,20 +145,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 		Optional<Usuario> usuario = usuarioRepository.findById(usuarioId);
 
 		if (usuario.isPresent()) {
-			// Eliminar artistas que no tengan otro administrador nivel Administrador (No funciona)
-			//List<Long> artistasId = new ArrayList<>();
-			//for(Administrador a : administradorRepository.findByUsuarioIdAndNivel(usuarioId,"Administrador")) {
-			//	Integer count = 0;
-			//	for(Administrador adm : a.getArtista().getAdministradores()) {
-			//		if (adm.getUsuario().getId().equals(usuarioId)) continue;
-			//		if (adm.getNivel().equals("Administrador")) count++;
-			//	}
-			//	if(count.equals(0)) artistasId.add(a.getArtista().getId());
-			//}
-			//for(Long id : artistasId) artistaRepository.deleteById(id);
-
+			// Eliminar artistas que no tengan otro administrador nivel Administrador
 			// Eliminar playlists - listados
-			
 			usuarioRepository.deleteById(usuarioId);
 		} else {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","USUARIO_NOT_FOUND");
