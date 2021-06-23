@@ -26,7 +26,6 @@ export class CreateProyectComponent implements OnInit {
 
   constructor(
     private proyectoService:ProyectoService,
-    private route:ActivatedRoute,
     private dataService:DataService,
     private _snackBar:MatSnackBar,
     private router:Router,
@@ -42,7 +41,7 @@ export class CreateProyectComponent implements OnInit {
   }
 
   errorSnackBar() {
-    this._snackBar.open("No se pudo crear el proyecto", ":(" );
+    this._snackBar.open("Ingrese todos los datos", ":(" );
   }
 
 
