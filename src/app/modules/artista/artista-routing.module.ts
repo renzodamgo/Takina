@@ -12,7 +12,7 @@ const routes: Routes = [
         loadChildren:()=> import('./proyecto/proyecto.module').then(m => m.ProyectoModule)},
       {path: "dashboard",component: DashboardComponent},
       {path: "busqueda",component: BusquedaComponent},
-      {path: "**", redirectTo: "dashboard"}
+      // {path: "**", redirectTo: "dashboard"}
     ]
   }
   

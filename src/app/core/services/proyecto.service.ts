@@ -51,9 +51,9 @@ export class ProyectoService {
 
   }
 
-  addProjecto(project: Proyecto): Observable<Projecto> {
+  addProjecto(project: Proyecto) {
     const  endpoint = `https://takina.herokuapp.com/takina/proyectos`;
-    return this.http.post<Projecto>(endpoint, project);
+    return this.http.post<ProjectoResponse>(endpoint, project);
   }
 
   addCancionByProjectoId(cancion: Cancion):Observable<Cancion>{

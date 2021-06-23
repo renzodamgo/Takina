@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ProyectoService } from '../../../../../core/services/proyecto.service';
 import { Canciones, Proyecto } from '../../../../../models/projecto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -27,49 +27,42 @@ export class CreateProyectComponent implements OnInit {
     private proyectoService:ProyectoService,
     private route:ActivatedRoute,
     private dataService:DataService,
-    private _snackBar:MatSnackBar
+    private _snackBar:MatSnackBar,
+    private router:Router,
     
   ) { }
 
   ngOnInit(): void {
-    console.log('hi')
+    
   }
 
   createSnackBar() {
     this._snackBar.open("El proyecto ha sido creado", "OK" );
   }
 
-  getProject(){
-    this.id  = +this.route.snapshot.paramMap.get('id')!;
-    this.proyectoService.getProyectoById(this.id)
-      .subscribe((result)=>{
-        this.project = result;
-        this.canciones = result.canciones;
-        this.nombre = result.nombre;
-        console.log(this.project);
-        console.log(this.canciones);
-      })
-  }
+
 
   createProyecto(){
     this.project.artistaId = this.dataService.artistaId ;
-    if (this.project.id) {
-      // Actualizamos en vez de crear
-      this.proyectoService.updateProjectoById(this.project)
-      .subscribe(data => {
-        console.log(data);
-        this.getProject();
-      }
-      )
-    } else {
+    
+    
       // crear
-      this.proyectoService.addProjecto(this.project)
-      .subscribe( proyecto => {
-        console.log(proyecto);
-        this.getProject();
-        this.createSnackBar()
-      })
-    }
+    this.proyectoService.addProjecto(this.project)
+    .subscribe( proyecto => {
+      console.log(proyecto);
+      
+      this.id = (proyecto.data.id as number);
+
+      console.log(`projectoId: ${this.id}`);
+
+      this.addSong();
+      //this.createSnackBar()
+    })
+    
+  }
+
+  addSong(){
+    this.router.navigate(['/proyectos/edit', this.id , 'add']);
   }
 
 }
