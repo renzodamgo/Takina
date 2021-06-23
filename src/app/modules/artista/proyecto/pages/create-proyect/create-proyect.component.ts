@@ -62,7 +62,7 @@ export class CreateProyectComponent implements OnInit {
   }
 
   addSong(){
-    this.router.navigate(['/proyectos/edit', this.id , 'add']);
+    this.router.navigate(['/proyectos/edit', this.id]);
   }
 
 }

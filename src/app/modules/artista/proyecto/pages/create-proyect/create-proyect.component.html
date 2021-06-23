@@ -1,69 +1,59 @@
-
 <div class="container">
-    <div class="row">
-      <div class="col-md-6 margin-auto space">
-        <mat-card>
-          <form >
-  
-          
-          <h1>Crear Proyecto: </h1>
-          
-          <mat-form-field appearance="fill">
-            <mat-label>Nombre</mat-label>
-            <input matInput name="nombre" [(ngModel)]="this.project.nombre" placeholder=""/>
-          </mat-form-field>
-          
-          <mat-form-field appearance="fill">
-            <mat-label>Descripción</mat-label>
-            <input matInput name="descripcion" [(ngModel)]="project.descripcion" placeholder=""/>
-          </mat-form-field>
-          
-          <mat-form-field appearance="fill">
-            <mat-label>Género</mat-label>
-            <input matInput name="genero" [(ngModel)]="project.genero" placeholder=""/>
-          </mat-form-field>
-          
-          <mat-form-field appearance="fill">
-            <mat-label>Discográfica</mat-label>
-            <input matInput name="discografica" [(ngModel)]="project.discografica" placeholder="" />
-          </mat-form-field>
-          
-          <!-- Para hacerle display de el tipo de proyecto "single" o "album "-->
-          <!-- <mat-form-field>
-            <mat-label>Tipo de Proyecto</mat-label>
-            <mat-select [(ngModel)]="project.tipo">
-                <mat-option *ngFor="let d of project" [value]="d"> </mat-option>
-            </mat-select>
-          </mat-form-field> -->
+  <div class="row">
+	<div class="container space">
+	  <mat-card>
+		<div class="row">
+		  <div class="col-md-6 margin-auto ">
+			<form >
+			  <h1>Crear Proyecto:</h1>
+				<mat-form-field appearance="fill">
+					<mat-label>Nombre</mat-label>
+					<input matInput name="nombre" [(ngModel)]="this.project.nombre" placeholder=""/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+					<mat-label>Descripción</mat-label>
+					<input matInput name="descripcion" [(ngModel)]="project.descripcion" placeholder=""/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+					<mat-label>Género</mat-label>
+					<input matInput name="genero" [(ngModel)]="project.genero" placeholder=""/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+					<mat-label>Discográfica</mat-label>
+					<input matInput name="discografica" [(ngModel)]="project.discografica" placeholder="" />
+				</mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Tipo de Proyecto</mat-label>
-            <input matInput name="tipo" [(ngModel)]="project.tipo" placeholder="" />
-          </mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Tipo de Proyecto</mat-label>
+					<input matInput name="tipo" [(ngModel)]="project.tipo" placeholder="" />
+				</mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Fecha de lanzamiento </mat-label>
-            <input matInput name="lanzamiento" [(ngModel)]="project.lanzamiento" placeholder="" />
-          </mat-form-field>
-          
-          <mat-form-field appearance="fill">
-            <mat-label>Link de Foto Portada</mat-label>
-            <input matInput name="fotoPortada" [(ngModel)]="project.fotoPortada" placeholder=""/>
-          </mat-form-field>
-          <div class="img-container">
-            <img class='img shadow' [src] = project.fotoPortada>
-          </div>
-          
-          <button mat-raised-button color="accent" (click)="createProyecto()">Crear</button>
-  
-          <button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyectos']" > 
-            Regresar
-          </button>
-        </form>
-        </mat-card>
-      </div>
-      <div class="col-md-6 margin-auto space">
-      </div>
-    </div>
+				<mat-form-field appearance="fill">
+					<mat-label>Fecha de lanzamiento </mat-label>
+					<input matInput name="lanzamiento" [(ngModel)]="project.lanzamiento" placeholder="" />
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+					<mat-label>Link de Foto Portada</mat-label>
+					<input matInput name="fotoPortada" [(ngModel)]="project.fotoPortada" placeholder=""/>
+				</mat-form-field>
+			</form>
+		</div>
+		<div class="col-md-6 margin-auto space">
+			<div class="img-container">
+				<img class='img shadow' [src] = project.fotoPortada>
+			</div>
+	   	</div>
+	</div>
+
+		<button mat-raised-button color="accent" (click)="createProyecto()">Crear</button>
+		<button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyectos']" > 
+			Regresar
+		</button>
+	  </mat-card>
+	</div>
   </div>
-  
+</div>

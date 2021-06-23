@@ -1,6 +1,6 @@
 
 form{
-    width: 70%;
+    width: 100%;
     margin: auto;
 }
 
@@ -20,7 +20,8 @@ table {
 }
 .img-container {
     
-    display: inline-block;
+	display: flex;
+	justify-content: center;
     
     padding: auto;
     align-items: center;
@@ -29,9 +30,12 @@ table {
 }
 img{
     
-    width: 60%;
+	min-width: 350px;
+	min-height: 350px;
+    max-height: 350px;
+    max-width: 350px;
     margin-top: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     
 }
     
