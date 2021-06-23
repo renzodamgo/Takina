@@ -5,12 +5,9 @@ Landing Page: https://frany-oss.github.io/Takina/
 Swagger: https://takina.herokuapp.com/swagger-ui.html
 
 ## To Do:
-- [ ] como implementamos un album de fotos para cada artista - US019
-- [ ] descarga de contenido - US012
 - [ ] eliminar credito
 - [ ] añadir el credito de otro artista a mi cancion
-- [ ] mostrar asistentes al evento
-- [ ] mostrar los eventos a los que le he dado asistir
+- [ ] guardar total de reproducciones de una cancion?
 
 ## Acceptance criteria:
 - [X] (proyecto) validacion de creacion artista no puede tener 2 proyectos del mismo nombre

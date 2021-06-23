@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.EventoDto;
 import com.backend.dtos.InvitadoDto;
-import com.backend.dtos.InvitadosDto;
 import com.backend.dtos.creates.CreateEventoDto;
 import com.backend.dtos.creates.CreateInvitadoDto;
 import com.backend.entities.Artista;
@@ -151,15 +150,12 @@ public class EventoServiceImpl implements EventoService {
 	}
 
 	@Override
-	public InvitadosDto getInvitadosByEventoId(Long eventoId) throws TakinaException {
-		Evento evento = getEventoEntity(eventoId);
+	public List<InvitadoDto> getInvitadosByEventoId(Long eventoId) throws TakinaException {
 		List<Invitado> resultado = invitadoRepository.findByEventoIdOrderByHoraInicio(eventoId);
 
-		InvitadosDto invitados = new InvitadosDto();
-		invitados.setNombre(evento.getNombre());
-		invitados.setInvitados(resultado.stream()
+		List<InvitadoDto> invitados = resultado.stream()
 										.map(invitado -> modelMapper.map(invitado,InvitadoDto.class))
-										.collect(Collectors.toList()));
+										.collect(Collectors.toList());
 
 		return invitados;
 	}	

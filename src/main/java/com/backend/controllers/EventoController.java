@@ -5,7 +5,6 @@ import java.util.List;
 import com.backend.dtos.AsistenteDto;
 import com.backend.dtos.EventoDto;
 import com.backend.dtos.InvitadoDto;
-import com.backend.dtos.InvitadosDto;
 import com.backend.dtos.creates.CreateEventoDto;
 import com.backend.dtos.creates.CreateInvitadoDto;
 import com.backend.exceptions.TakinaException;
@@ -81,7 +80,7 @@ public class EventoController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/invitados/{eventoId}")
-	public  TakinaResponse<InvitadosDto> getInvitadosByEventoId(@PathVariable Long eventoId)
+	public  TakinaResponse<List<InvitadoDto>> getInvitadosByEventoId(@PathVariable Long eventoId)
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				eventoService.getInvitadosByEventoId(eventoId));

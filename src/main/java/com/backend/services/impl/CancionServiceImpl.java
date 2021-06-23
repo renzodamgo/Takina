@@ -17,6 +17,7 @@ import com.backend.dtos.creates.CreateCreditoDto;
 import com.backend.entities.Artista;
 import com.backend.entities.Cancion;
 import com.backend.entities.Credito;
+import com.backend.entities.Listado;
 import com.backend.entities.Proyecto;
 import com.backend.entities.Reproduccion;
 import com.backend.entities.Usuario;
@@ -30,6 +31,7 @@ import com.backend.exceptions.UsuarioNotFoundException;
 import com.backend.repositories.ArtistaRepository;
 import com.backend.repositories.CancionRepository;
 import com.backend.repositories.CreditoRepository;
+import com.backend.repositories.ListadoRepository;
 import com.backend.repositories.ProyectoRepository;
 import com.backend.repositories.ReproduccionRepository;
 import com.backend.repositories.UsuarioRepository;
@@ -58,6 +60,9 @@ public class CancionServiceImpl implements CancionService {
 
 	@Autowired
 	private ReproduccionRepository reproduccionRepository;
+
+	@Autowired
+	private ListadoRepository listadoRepository;
 
 	private static final ModelMapper modelMapper = new ModelMapper();
 
@@ -277,6 +282,19 @@ public class CancionServiceImpl implements CancionService {
 
 		return canciones.stream().map(cancion -> modelMapper.map(cancion, CancionDto.class))
 			.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<CancionDto> getCancionesByPlaylistId(Long playlistId) throws TakinaException {
+		List<Listado> listados = listadoRepository.findByPlaylistId(playlistId);
+		
+		List<Cancion> canciones = new ArrayList<>();
+		for (Listado lis : listados) {
+			canciones.add(lis.getCancion());
+		}
+
+		return canciones.stream().map(cancion -> modelMapper.map(cancion, CancionDto.class))
+						.collect(Collectors.toList());
 	}
 
 	@Override

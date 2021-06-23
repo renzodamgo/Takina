@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 public class AdministradorDto {
-	//private Long usuarioId;
-	private String usuarioNombre;
-	private String nivel;
 	private LocalDateTime fechaRegistro;
+	private Long artistaId;
+	private Long usuarioId;
+	private String nivel;
 }

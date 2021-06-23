@@ -1,6 +1,7 @@
 package com.backend.services.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -242,5 +243,18 @@ public class ArtistaServiceImpl implements ArtistaService {
 		} else {
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","SEGUIDOR_NOT_FOUND");
 		}
+	}
+
+	@Override
+	public List<ArtistaDto> getArtistasByAdministradorUsuarioId(Long usuarioId) {
+		List<Administrador> administradores = administradorRepository.findByUsuarioId(usuarioId);
+		List<Artista> artistas = new ArrayList<>();
+		for (Administrador adm: administradores) {
+			artistas.add(adm.getArtista());
+		}
+
+		return artistas.stream().map(artista -> modelMapper
+					.map(artista,ArtistaDto.class))
+					.collect(Collectors.toList());
 	}
 }

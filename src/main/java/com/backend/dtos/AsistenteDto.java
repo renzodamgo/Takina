@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class AsistenteDto {
-	//private Long usuarioId;
-	private String usuarioApodo;
+	private Long usuarioId;
+	private Long eventoId;
 	private LocalDateTime fecha;
 }

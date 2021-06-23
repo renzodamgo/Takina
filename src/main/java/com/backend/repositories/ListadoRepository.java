@@ -19,4 +19,7 @@ public interface ListadoRepository extends JpaRepository<Listado,Long> {
 
 	@Query("SELECT lis FROM Listado lis WHERE lis.playlist.id = ?1 AND lis.cancion.id = ?2")
 	Optional<Listado> findByPlaylistIdAndCancionId(Long playlistId, Long cancionId);
+
+	@Query("SELECT lis FROM Listado lis WHERE lis.playlist.id = ?1")
+	List<Listado> findByPlaylistId(Long playlistId);
 }

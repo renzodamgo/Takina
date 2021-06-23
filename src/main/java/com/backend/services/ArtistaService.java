@@ -22,4 +22,5 @@ public interface ArtistaService {
 	List<ArtistaDto> getArtistasByNombre(String nombre) throws TakinaException;
 	SeguidorDto createSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
 	void deleteSeguidor(Long usuarioId, Long artistaId) throws TakinaException;
+	List<ArtistaDto> getArtistasByAdministradorUsuarioId(Long usuarioId);
 }

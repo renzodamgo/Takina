@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class SeguidorDto {
-	private String usuarioApodo;
+	private Long usuarioId;
+	private Long artistaId;
 	private LocalDateTime fecha;
 }

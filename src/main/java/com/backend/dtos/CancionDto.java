@@ -1,18 +1,17 @@
 package com.backend.dtos;
 
-import java.util.List;
 import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
 public class CancionDto {
+	private Float duracion;
+	private Integer track;
+	private LocalDateTime lanzamiento;
 	private Long id;
-	private String nombre;
+	private Long proyectoId;
 	private String audio;
 	private String fotoPortada;
-	private LocalDateTime lanzamiento;
 	private String genero;
-	private Float duracion;
-	private Long proyectoId;
-	private List<CreditoDto> creditos;
+	private String nombre;
 }

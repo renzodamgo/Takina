@@ -95,6 +95,14 @@ public class CancionController {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 				cancionService.getCancionesByProyectoId(proyectoId));
 	}
+	
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/playlist/{playlistId}")
+	public TakinaResponse<List<CancionDto>> getCancionesByPlaylistId(@PathVariable Long playlistId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				cancionService.getCancionesByPlaylistId(playlistId));
+	}
 
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping("/credito")

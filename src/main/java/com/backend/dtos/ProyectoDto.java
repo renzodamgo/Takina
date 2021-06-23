@@ -1,7 +1,7 @@
 package com.backend.dtos;
 import java.time.LocalDateTime;
-
 import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -18,5 +18,5 @@ public class ProyectoDto {
 	private String fotoPortada;
 	private String genero;
 	private Long artistaId;
-	private List<CancionMiniDto> canciones;
+	private List<CancionDto> canciones;
 }

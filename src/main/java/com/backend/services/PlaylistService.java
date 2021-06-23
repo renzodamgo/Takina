@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.backend.dtos.PlaylistDto;
 import com.backend.dtos.creates.CreatePlaylistDto;
+import com.backend.dtos.edits.EditPlaylistDto;
 import com.backend.exceptions.TakinaException;
 
 public interface PlaylistService {
@@ -12,4 +13,5 @@ public interface PlaylistService {
 	PlaylistDto createPlaylist(CreatePlaylistDto createPlaylistDto) throws TakinaException;
 	PlaylistDto getPlaylistById(Long playlistId) throws TakinaException;
 	void deleteFromPlaylist(Long playlistId, Long cancionId) throws TakinaException;
+	PlaylistDto editPlaylist(EditPlaylistDto editPlaylistDto) throws TakinaException;
 }

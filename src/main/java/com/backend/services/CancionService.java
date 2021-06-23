@@ -21,6 +21,7 @@ public interface CancionService {
 	List<CancionDto> getCancionesByGeneroMusical(String nombre) throws TakinaException;
 	List<CancionDto> getCancionesByNombre(String nombre) throws TakinaException;
 	List<CancionDto> getCancionesByProyectoId(Long proyectoId) throws TakinaException;
+	List<CancionDto> getCancionesByPlaylistId(Long playlistId) throws TakinaException;
 	List<ReproduccionDto> getHistorial(Long usuarioId) throws TakinaException;
 	ReproduccionDto createReproduccion(Long usuarioId, Long cancionId) throws TakinaException;
 	void deleteCancionById(Long cancionId) throws TakinaException;

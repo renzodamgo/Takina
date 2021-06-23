@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class MercanciaDto {
-	private Long id;
-	private String nombre;
 	private Float precio;
-	private String foto;
-	private String descripcion;
 	private Long artistaId;
+	private Long id;
+	private String descripcion;
+	private String foto;
+	private String nombre;
 }

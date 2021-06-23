@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import com.backend.dtos.PlaylistDto;
 import com.backend.dtos.creates.CreatePlaylistDto;
+import com.backend.dtos.edits.EditPlaylistDto;
 import com.backend.entities.Cancion;
 import com.backend.entities.Listado;
 import com.backend.entities.Playlist;
@@ -129,5 +130,20 @@ public class PlaylistServiceImpl implements PlaylistService {
 		} else {
 			throw new ListadoNotFoundException("Cancion not found in Playlist.");
 		}
+	}
+
+	@Override
+	public PlaylistDto editPlaylist(EditPlaylistDto editPlaylistDto) throws TakinaException {
+		Playlist playlist = getPlaylistEntity(editPlaylistDto.getId());
+		playlist.setNombre(editPlaylistDto.getNombre());
+		playlist.setDescripcion(editPlaylistDto.getDescripcion());
+		
+		try {
+			playlist = playlistRepository.save(playlist);
+		} catch (Exception ex) {
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","PLAYLIST_NOT_EDITED");
+		}
+
+		return modelMapper.map(playlist,PlaylistDto.class);
 	}
 }

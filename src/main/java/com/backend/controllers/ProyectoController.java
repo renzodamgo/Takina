@@ -3,7 +3,6 @@ package com.backend.controllers;
 import java.util.List;
 
 import com.backend.dtos.ProyectoDto;
-import com.backend.dtos.ProyectoMiniDto;
 import com.backend.dtos.creates.CreateProyectoDto;
 import com.backend.dtos.edits.EditProyectoDto;
 import com.backend.exceptions.TakinaException;
@@ -55,7 +54,7 @@ public class ProyectoController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/ultimos")
-	public TakinaResponse<List<ProyectoMiniDto>> getUltimos10ProyectosSubidos()
+	public TakinaResponse<List<ProyectoDto>> getUltimos10ProyectosSubidos()
 			throws TakinaException {
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
 			proyectoService.getUltimos10ProyectosSubidos());

@@ -116,4 +116,12 @@ public class ArtistaController {
 		artistaService.deleteSeguidor(usuarioId, artistaId);
 		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK","Seguidor eliminado.");
 	}
+
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/administrador/{usuarioId}")
+	public TakinaResponse<List<ArtistaDto>> getArtistasByAdministradorUsuarioId(@PathVariable Long usuarioId)
+			throws TakinaException {
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+					artistaService.getArtistasByAdministradorUsuarioId(usuarioId));
+	}
 }

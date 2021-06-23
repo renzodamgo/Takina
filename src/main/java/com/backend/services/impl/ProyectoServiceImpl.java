@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import com.backend.dtos.ProyectoDto;
-import com.backend.dtos.ProyectoMiniDto;
 import com.backend.dtos.creates.CreateProyectoDto;
 import com.backend.dtos.edits.EditProyectoDto;
 import com.backend.entities.Artista;
@@ -120,12 +119,12 @@ public class ProyectoServiceImpl implements ProyectoService {
 	}
 
 	@Override
-	public List<ProyectoMiniDto> getUltimos10ProyectosSubidos() throws TakinaException {
+	public List<ProyectoDto> getUltimos10ProyectosSubidos() throws TakinaException {
 		List<Proyecto> top10 = proyectoRepository.findTop10OrderByFecha();
-		return top10.stream().map(proyecto -> modelMapper.map(proyecto,ProyectoMiniDto.class)).collect(Collectors.toList());
+		return top10.stream().map(proyecto -> modelMapper.map(proyecto,ProyectoDto.class)).collect(Collectors.toList());
 	}
 
-	@Override
+	@Override 
 	public ProyectoDto editProyecto(EditProyectoDto editProyectoDto) throws TakinaException {
 		Proyecto proyecto = getProyectoEntity(editProyectoDto.getId());
 		
