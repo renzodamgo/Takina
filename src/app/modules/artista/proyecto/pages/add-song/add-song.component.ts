@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectoService } from 'src/app/core/services/proyecto.service';
 import { Canciones, Proyecto } from 'src/app/models/projecto';
 import { ActivatedRoute } from '@angular/router';
+import { Cancion } from 'src/app/models/cancion';
+
 
 @Component({
   selector: 'app-add-song',
   templateUrl: './add-song.component.html',
   styleUrls: ['./add-song.component.css']
 })
+
+
 export class AddSongComponent implements OnInit {
 
   displayedColumns: string[] = ['track', 'nombre', 'duracion'];
@@ -15,7 +19,15 @@ export class AddSongComponent implements OnInit {
   project!:Proyecto;
   canciones:Canciones[] = [];
   nombre:string = "";
-  id!:number
+  id!:number;
+  cancion:Cancion ={
+    audio: "",
+    duracion: 0,
+    nombre:"",
+    proyectoId: this.id 
+  };
+
+
   constructor(
     private proyectoService:ProyectoService,
     private route:ActivatedRoute,
@@ -34,8 +46,27 @@ export class AddSongComponent implements OnInit {
         this.nombre = result.nombre;
         console.log(this.project);
         console.log(this.canciones);
+        console.log(this.id);
+        this.cancion.proyectoId = this.id;
+
+
       })
 
     
+  }
+  getCancionesByProyectoId(){
+    
+  }
+
+  AddSong(){
+    console.log(this.cancion);
+    this.proyectoService.addCancionByProjectoId(this.cancion)
+      .subscribe(data => {
+        console.log(this.cancion);
+        console.log(data);
+        this.getProject()
+      }
+      );
+
   }
 }

@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Proyecto } from '../../models/projecto';
+import { Cancion } from 'src/app/models/cancion';
+import { Canciones, Proyecto } from '../../models/projecto';
 
 import { Projecto, ProjectoResponse, ProjectosResponse  } from '../../models/proyectResponse';
 
@@ -53,5 +54,10 @@ export class ProyectoService {
   addProjecto(project: Proyecto): Observable<Projecto> {
     const  endpoint = `https://takina.herokuapp.com/takina/proyectos`;
     return this.http.post<Projecto>(endpoint, project);
+  }
+
+  addCancionByProjectoId(cancion: Cancion):Observable<Cancion>{
+    const  endpoint = `https://takina.herokuapp.com/takina/canciones`;
+    return this.http.post<Cancion>(endpoint,cancion);
   }
 }

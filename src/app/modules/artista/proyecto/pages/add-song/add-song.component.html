@@ -37,19 +37,19 @@
 					
 					<mat-form-field appearance="fill">
 						<mat-label> Nombre</mat-label>
-						<input matInput />
+						<input matInput [(ngModel)]="cancion.nombre"/>
 					</mat-form-field>
 					
 					<mat-form-field appearance="fill">
 						<mat-label>Duración</mat-label>
-						<input matInput />
+						<input matInput [(ngModel)]="cancion.duracion"/>
 					</mat-form-field>
 				 
 					<mat-form-field appearance="fill">
-						<mat-label>Archivo</mat-label>
-						<input matInput />
+						<mat-label>Archivo de Audio</mat-label>
+						<input matInput [(ngModel)]="cancion.audio"/>
 					</mat-form-field>
-					<button mat-raised-button color="accent">Agregar</button>
+					<button mat-raised-button (click)="AddSong()" color="accent">Agregar</button>
 
 					<button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyectos']" > 
 						Regresar
