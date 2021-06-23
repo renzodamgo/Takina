@@ -21,7 +21,8 @@ export class CreateProyectComponent implements OnInit {
   
   canciones:Canciones[] = [];
   nombre:string = "";
-  id!:number
+  id!:number;
+  error:boolean = false;
 
   constructor(
     private proyectoService:ProyectoService,
@@ -36,8 +37,12 @@ export class CreateProyectComponent implements OnInit {
     
   }
 
-  createSnackBar() {
+  successSnackBar() {
     this._snackBar.open("El proyecto ha sido creado", "OK" );
+  }
+
+  errorSnackBar() {
+    this._snackBar.open("No se pudo crear el proyecto", ":(" );
   }
 
 
@@ -56,8 +61,13 @@ export class CreateProyectComponent implements OnInit {
       console.log(`projectoId: ${this.id}`);
 
       this.addSong();
-      //this.createSnackBar()
-    })
+      this.successSnackBar()
+    } ,(errorServicio)=>{
+      this.errorSnackBar();
+      console.log(errorServicio.error)
+      console.log(errorServicio.error.error)
+    }
+    )
     
   }
 
