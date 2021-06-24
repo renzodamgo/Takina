@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-create-proyect',
   templateUrl: './create-proyect.component.html',
@@ -29,7 +28,6 @@ export class CreateProyectComponent implements OnInit {
     private dataService:DataService,
     private _snackBar:MatSnackBar,
     private router:Router,
-    
   ) { }
 
   ngOnInit(): void {

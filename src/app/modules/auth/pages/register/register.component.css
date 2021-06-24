@@ -12,4 +12,26 @@ form{
     padding-top: 50px;
 }
 
+.img-container {
+    
+	display: flex;
+	justify-content: center;
+    
+    padding: auto;
+    align-items: center;
+    text-align: center;
+
+}
+img{
+	min-width: 350px;
+	min-height: 350px;
+    max-height: 350px;
+    max-width: 350px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    
+}
   
+.pad-left{
+    margin-left: 2vh;  
+}
