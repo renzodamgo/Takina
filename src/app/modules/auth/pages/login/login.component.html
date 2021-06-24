@@ -1,26 +1,38 @@
 <div class="container">
+	<div class="logo">
+		<img src="https://i.imgur.com/lhqhLwW.png">
+	</div>
+
     <mat-card>
+
       <div class="row">
 
-        <div class="col-md-6 margin-auto ">
-          <form >
+        <form>
             <h1>Inicia Sesión</h1>
             
             <mat-form-field appearance="fill">
-              <mat-label>Usuario</mat-label>
-              <input matInput name="usuario"  placeholder="usuario"/>
+              <mat-label>Login</mat-label>
+              <input matInput name="usuario"  placeholder="Usuario/Correo"/>
             </mat-form-field>
             
             <mat-form-field appearance="fill">
               <mat-label>Contraseña</mat-label>
-              <input matInput name="contraseña"  placeholder="contraseña"/>
+              <input matInput name="contraseña"  placeholder="Contraseña"/>
             </mat-form-field>
             
           </form>
-        </div> 
       </div>
-      <button mat-raised-button color = "accent" >Inicia Sesión</button>
-      
+
+	<div class="buttons">
+		<button mat-raised-button color = "accent" >
+			Registrarse
+		</button>
+
+		<button mat-raised-button class="pad-left" color = "primary" >
+			Inicia Sesión
+		</button>
+	</div>
+
     </mat-card>
 
 </div>

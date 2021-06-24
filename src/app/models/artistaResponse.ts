@@ -9,6 +9,13 @@ export interface ArtistaResponse {
     status:  string;
 }
 
+export interface ArtistasResponse {
+    code:    string;
+    data:    Artista[];
+    message: string;
+    status:  string;
+}
+
 export interface ReqArtista {
     
     biografia:           string;
