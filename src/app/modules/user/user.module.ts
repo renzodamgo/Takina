@@ -7,19 +7,22 @@ import { ProjectDetailsComponent } from './pages/project-details/project-details
 import { UserComponent } from './user.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 
-import {MatIconModule} from '@angular/material/icon'; 
-import {MatChipsModule} from '@angular/material/chips';
-import {MatSelectModule} from '@angular/material/select';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatIconModule} from '@angular/material/icon'; 
+import { MatChipsModule} from '@angular/material/chips';
+import { MatSelectModule} from '@angular/material/select';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule }   from '@angular/forms';
+import { SearchBarComponent } from './pages/search-bar/search-bar.component';
+
 
 @NgModule({
   declarations: [
     ShowProjectsComponent,
     ProjectDetailsComponent,
     UserComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+	SearchBarComponent
   ],
   imports: [
     CommonModule,

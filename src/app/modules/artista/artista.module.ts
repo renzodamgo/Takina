@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ArtistaRoutingModule } from './artista-routing.module';
 import { ArtistaComponent } from './artista.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { BusquedaComponent } from './components/busqueda/busqueda.component';
 
 
 import {MatIconModule} from '@angular/material/icon'; 
@@ -19,7 +18,6 @@ import { FormsModule }   from '@angular/forms';
   declarations: [
     ArtistaComponent,
     DashboardComponent,
-    BusquedaComponent
   
   ],
   imports: [
@@ -30,9 +28,8 @@ import { FormsModule }   from '@angular/forms';
     MatProgressSpinnerModule,
     MatSelectModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
 
-    
   ],
 
   exports:[

@@ -74,3 +74,10 @@ export class EditUsuario {
 		public password: string
 	){}
 }
+
+export class LoginUsuario {
+	constructor(
+		public login: string,
+		public password: string,
+	) {}
+}

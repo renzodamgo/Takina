@@ -12,23 +12,23 @@
             
             <mat-form-field appearance="fill">
               <mat-label>Login</mat-label>
-              <input matInput name="usuario" placeholder="Usuario/Correo"/>
+              <input matInput name="usuario" [(ngModel)]="this.loginUsuario.login" placeholder="Usuario/Correo"/>
             </mat-form-field>
             
             <mat-form-field appearance="fill">
               <mat-label>Contraseña</mat-label>
-              <input matInput name="contraseña" placeholder="Contraseña"/>
+              <input matInput name="contraseña" [(ngModel)]="this.loginUsuario.password" placeholder="Contraseña"/>
             </mat-form-field>
             
           </form>
       </div>
 
 	<div class="buttons">
-		<button mat-raised-button color = "accent" (click)="goToRegister()">
+		<button mat-raised-button color = "accent" [routerLink] = "['/auth/register']">
 			Registro
 		</button>
 
-		<button mat-raised-button class="pad-left" color = "primary" >
+		<button mat-raised-button class="pad-left" color = "primary" (click)="loginUser()">
 			Inicia Sesión
 		</button>
 	</div>

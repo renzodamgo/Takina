@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
 import { ShowProjectsComponent } from './pages/show-projects/show-projects.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { SearchBarComponent } from './pages/search-bar/search-bar.component';
 import { UserComponent } from './user.component';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
     {path:"proyectos", component:ShowProjectsComponent},
     {path:"proyectos/details/:id", component: ProjectDetailsComponent},
     {path:"dashboard",component:UserDashboardComponent},
+	{path:"busqueda",component:SearchBarComponent},
     {path:"", redirectTo:"dashboard"}
   ]
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateUsuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/core/services/data.service';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -18,8 +17,8 @@ export class RegisterComponent implements OnInit {
 
  	constructor(
 		private usuarioService:UsuarioService,
-		private dataService:DataService,
 		private router:Router,
+		private _snackBar:MatSnackBar
  	) { }
 
 
@@ -27,14 +26,24 @@ export class RegisterComponent implements OnInit {
  	}
 
 	registerUsuario() {
+
+		if (this.createUsuario.apodo == "" ||
+			this.createUsuario.correo == "" ||
+			this.createUsuario.password == "" ||
+			this.createUsuario.nombre == "" ||
+			this.createUsuario.fotoPerfil == ""){
+				this._snackBar.open("Llene todos los campos por favor", "OK" );
+				return
+			}
+
 		this.usuarioService.createUsuario(this.createUsuario)
-		.subscribe( usuario => {
-			console.log(usuario);
-			this.regresar();
-		}, (errorServicio)=> {
-			console.log(errorServicio.error);
-			console.log(errorServicio.error.error);
-		}
+			.subscribe( usuario => {
+				this._snackBar.open(`Usuario ${usuario.apodo} creado correctamente`, "OK" );
+				this.regresar();
+			}, (errorServicio)=> {
+				this._snackBar.open("Usuario no ha podido ser registrado", "OK" );
+				console.log(errorServicio.error.error);
+			}
 		);
 
 	}
