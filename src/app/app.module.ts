@@ -12,7 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet'; 
 import {MatButtonModule} from '@angular/material/button';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { BusquedaComponent } from './modules/artista/components/busqueda/busqueda.component'; 
 import {  HttpClientModule } from '@angular/common/http';
@@ -66,6 +66,7 @@ import { ArtistaModule } from './modules/artista/artista.module';
     ArtistaModule
     
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
