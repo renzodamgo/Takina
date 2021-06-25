@@ -5,8 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Canciones, Proyecto } from '../../../../../models/projecto';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
-
 @Component({
   selector: 'app-edit-proyect',
   templateUrl: './edit-proyect.component.html',

@@ -23,7 +23,7 @@
 						<!-- Weight Column -->
 						<ng-container matColumnDef="duracion">
 							<th mat-header-cell *matHeaderCellDef>Duración</th>
-							<td mat-cell *matCellDef="let cancion">{{ cancion.duracion }}</td>
+							<td mat-cell *matCellDef="let cancion">{{ getDuration(cancion.duracion) }}</td>
 						</ng-container>
 	
 						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -51,7 +51,7 @@
 					</mat-form-field>
 					<button mat-raised-button (click)="AddSong()" color="accent">Agregar</button>
 
-					<button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyectos']" > 
+					<button mat-raised-button class="pad-left" color="primary" (click)="goBack()" > 
 						Regresar
 					</button>
 				</div>
