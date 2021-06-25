@@ -12,12 +12,13 @@ import { ShowArtistasComponent } from './pages/show-artistas/show-artistas.compo
 import { ShowProjectsComponent } from './pages/show-projects/show-projects.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { UserRoutingModule } from './user-routing.module';
+import { MatButtonModule } from '@angular/material/button';
+import { EditUsuarioComponent } from './pages/edit-usuario/edit-usuario.component';
 import { UserComponent } from './user.component';
 import { MatCardModule } from '@angular/material/card'; 
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet'; 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatBottomSheetModule } from '@angular/material/bottom-sheet'; 
-import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -28,25 +29,27 @@ import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  declarations: [
-    ShowProjectsComponent,
-    ProjectDetailsComponent,
-    UserComponent,
-    UserDashboardComponent,
-	SearchBarComponent,
-	ShowArtistasComponent
-  ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    MatIconModule,
-    MatChipsModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
-    FormsModule,
-    MatTabsModule,
-	MatCardModule,
-	MatButtonModule
-  ]
+	declarations: [
+		ShowProjectsComponent,
+		ProjectDetailsComponent,
+		UserComponent,
+		UserDashboardComponent,
+		SearchBarComponent,
+		ShowArtistasComponent,
+		EditUsuarioComponent
+	],
+	imports: [
+		CommonModule,
+		UserRoutingModule,
+		MatIconModule,
+		MatChipsModule,
+		MatProgressSpinnerModule,
+		MatSelectModule,
+		FormsModule,
+		MatTabsModule,
+		MatCardModule,
+		MatButtonModule,
+		MatSnackBarModule
+	]
 })
 export class UserModule { }

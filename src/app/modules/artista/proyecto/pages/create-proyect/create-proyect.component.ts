@@ -61,8 +61,8 @@ export class CreateProyectComponent implements OnInit {
       this.successSnackBar()
     } ,(errorServicio)=>{
       this.errorSnackBar();
-      console.log(errorServicio.error)
-      console.log(errorServicio.error.error)
+      console.log(errorServicio.error);
+      console.log(errorServicio.error.error);
     }
     )
     

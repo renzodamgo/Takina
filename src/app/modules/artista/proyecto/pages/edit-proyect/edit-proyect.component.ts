@@ -27,7 +27,6 @@ export class EditProyectComponent implements OnInit {
     private proyectoService:ProyectoService,
     private route:ActivatedRoute,
     private _snackBar: MatSnackBar
-    
   ) { }
 
   ngOnInit(): void {

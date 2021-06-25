@@ -14,17 +14,12 @@ const routes: Routes = [
       {path: 'edit/:id', component: EditProyectComponent},
       {path: 'edit/:id/add', component: AddSongComponent},
       {path: 'create', component: CreateProyectComponent},
-      
     ]
   }
 ]
 
 @NgModule({
-  declarations: [],
-  imports: [
-    RouterModule,
-    CommonModule,
-    RouterModule.forChild(routes)
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class ProyectoRoutingModule { }

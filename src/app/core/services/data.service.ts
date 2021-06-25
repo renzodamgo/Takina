@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
-  artistaId: number = 1;
-  usuarioId: number = 1;
+  artistaId!: number;
+  usuarioId!: number;
   defaultFotoPerfil:string = 'http://brownmead.academy/wp-content/uploads/2017/01/avatar.jpg';
   constructor() { }
   

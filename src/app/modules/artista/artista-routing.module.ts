@@ -8,10 +8,9 @@ const routes: Routes = [
 	{
 		path: '', component:ArtistaComponent,
 		children:[
-			{path: "proyectos", loadChildren:()=> import('./proyecto/proyecto.module').then(m => m.ProyectoModule)},
-			{path: "dashboard", component: DashboardComponent},
-			//{path: "usuario", component: ????????},
-			{path: "**", redirectTo: "dashboard"}
+			{path: 'proyectos', loadChildren:()=> import('./proyecto/proyecto.module').then(m => m.ProyectoModule)},
+			{path: 'dashboard', component: DashboardComponent},
+			{path: '**', redirectTo: 'dashboard'}
 		]
 	}
 ];

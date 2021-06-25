@@ -32,13 +32,18 @@ export class ShowArtistasComponent implements OnInit {
 		this.usuarioService.getUsuarioById(this.dataService.usuarioId)
 			.subscribe(usuario =>{
 				this.usuario = usuario;
-				console.log(this.usuario.nombre);
-		});
+				console.log("BASSURA",this.usuario.id);
+				//this.goToAuth();
+			},(errorServicio)=>{
+				console.log(errorServicio.error)
+				this.router.navigate(['../auth/login']);
+			  }
+			);
 	}
 
 	getArtistas(){
 		this.artistaService.getArtistasByUserId(this.dataService.usuarioId)
-			.subscribe(result =>{
+			.subscribe(result => {
 				this.artistas = result;
 				console.log(this.artistas)
 		});
@@ -46,7 +51,7 @@ export class ShowArtistasComponent implements OnInit {
 
 	administrateArtista(artistaId: number){
 		this.dataService.artistaId = artistaId;
-		this.router.navigate(['../artista']);
+		this.router.navigate(['../artista/dashboard']);
 	}
 
 }

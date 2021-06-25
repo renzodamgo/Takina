@@ -8,14 +8,14 @@ import { UserComponent } from './user.component';
 import { ShowArtistasComponent } from './pages/show-artistas/show-artistas.component';
 
 const routes: Routes = [
-	{path:"", component: UserComponent,
+	{path:'', component: UserComponent,
 	children:[
-		{path:"proyectos", component:ShowProjectsComponent},
-		{path:"proyectos/details/:id", component: ProjectDetailsComponent},
-		{path:"administracion", component: ShowArtistasComponent},
-		{path:"dashboard",component:UserDashboardComponent},
-		{path:"busqueda",component:SearchBarComponent},
-		{path:"", redirectTo:"dashboard"}
+		{path:'proyectos', component:ShowProjectsComponent},
+		{path:'proyectos/details/:id', component: ProjectDetailsComponent},
+		{path:'administracion', component: ShowArtistasComponent},
+		{path:'dashboard',component:UserDashboardComponent},
+		{path:'busqueda',component:SearchBarComponent},
+		{path:'**', redirectTo:'dashboard'}
 	]
 }
 ];

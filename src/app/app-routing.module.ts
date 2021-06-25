@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
-
 const routes: Routes = [
+
+	{path: 'usuario',
+	loadChildren:()=> import('./modules/user/user.module').then(m=> m.UserModule)},
  
-  {path: "artista",
-  loadChildren:()=> import('./modules/artista/artista.module').then(m => m.ArtistaModule)},
+	{path: 'artista',
+	loadChildren:()=> import('./modules/artista/artista.module').then(m => m.ArtistaModule)},
 
-  {path: "auth",
-  loadChildren:()=> import('./modules/auth/auth.module').then(m=> m.AuthModule)},
-  
-  {path: "usuario",
-  loadChildren:()=> import('./modules/user/user.module').then(m=> m.UserModule)},
+	{path: 'auth',
+	loadChildren:()=> import('./modules/auth/auth.module').then(m=> m.AuthModule)},
 
-  {path: "**",redirectTo: "auth"}
+	//{path: '',},
+	{path: '**', redirectTo: 'auth'}
   
 ];
 
