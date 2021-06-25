@@ -28,13 +28,11 @@ export class UserDashboardComponent implements OnInit {
 		this.usuarioService.getUsuarioById(this.dataService.usuarioId)
 			.subscribe(usuario =>{
 				this.usuario = usuario;
-				console.log("BASSURA",this.usuario.id);
-				//this.goToAuth();
 			},(errorServicio)=>{
 				console.log(errorServicio.error)
 				this.router.navigate(['../auth/login']);
-			  }
-			);
+			}
+		);
 	}
 
 }

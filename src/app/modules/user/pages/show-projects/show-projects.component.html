@@ -1,6 +1,40 @@
-<button mat-button [routerLink]="'details/'+1">
-    <mat-icon class="editButton" id="editButton" aria-hidden="false"
-        >edit</mat-icon
-    >
-    <span></span> Edit
-</button>
+<ng-template [ngIf]="proyectos">
+	<div class="row">
+		<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12"
+			*ngFor="let d of proyectos">
+			<div class="mat-card-cvr">
+		  		<mat-card class="example-card shadow">
+					<mat-card-header>
+						<div mat-card-avatar
+							[ngStyle]="{
+								'background-color': 'gray',
+								'background-image': 'url('+getArtistaAvatar(d.artistaId)+')'
+							}"
+							class="example-header-image"></div>
+						<mat-card-title>{{ d.nombre }}</mat-card-title>
+						<mat-card-subtitle>{{getArtistaName(d.artistaId)}}</mat-card-subtitle>
+					</mat-card-header>
+					<img mat-card-image [src]="d.fotoPortada" alt="<Error no photo?>" />
+					<mat-card-content>
+						<p>{{ d.descripcion }}</p>
+					</mat-card-content>
+					<div text-center>
+						<mat-chip-list aria-label="Generos">
+							<mat-chip>{{ d.genero }}</mat-chip>
+							<mat-chip color="primary" selected>{{ d.discografica }}</mat-chip>
+						</mat-chip-list>
+					</div>
+					<div class="text-center space">
+						<button mat-button [routerLink]="'../proyectos/details/'+[d.id]">
+							<mat-icon class="viewButton" id="viewButton" aria-hidden="false">
+								visibility
+							</mat-icon>
+							<span></span> Ver
+						</button>
+					</div>
+		  		</mat-card>
+			</div>
+	  	</div>
+	</div>
+</ng-template>
+  

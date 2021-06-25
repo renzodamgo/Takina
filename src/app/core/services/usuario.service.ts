@@ -32,7 +32,7 @@ export class UsuarioService {
 
 	editUsuario(editUsuario: EditUsuario) {
 		const endpoint = `https://takina.herokuapp.com/takina/usuarios`;
-    	return this.http.post<UsuarioResponse>(endpoint, editUsuario).pipe(
+    	return this.http.put<UsuarioResponse>(endpoint, editUsuario).pipe(
 			map(resp=>{
 				return Usuario.usuarioFromJson(resp.data);
 			})

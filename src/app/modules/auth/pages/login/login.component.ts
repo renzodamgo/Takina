@@ -4,6 +4,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { Usuario, LoginUsuario } from 'src/app/models/usuario';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
 	selector: 'app-login',
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
 		this.usuarioService.loginUsuario(this.loginUsuario)
 		.subscribe( usuario => {
 			this.dataService.usuarioId = usuario.id;
-			this._snackBar.open(`Bienvenid@ de vuelta, ${usuario.nombre}!`, "OK" );
+			let nombreUsuario: string = usuario.nombre.split(" ")[0];
+			this._snackBar.open(`Bienvenid@ de vuelta, ${nombreUsuario}!`, "OK" );
 			this.router.navigate(['../usuario/dashboard']);
 		}, (errorServicio)=> {
 			console.log(errorServicio.error.error);
@@ -44,5 +46,4 @@ export class LoginComponent implements OnInit {
 		}
 	);
   }
-
 }

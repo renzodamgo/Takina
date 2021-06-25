@@ -1,13 +1,61 @@
-<p>edit-usuario works!</p>
-
-
-<p>edit-usuario works!</p>
-
-<p>edit-usuario works!</p>
-
-<p>edit-usuario works!</p>
-
-<p>edit-usuario works!</p>
-
-<p>edit-usuario works!</p>
-
+<div class="container">
+	<div class="row">
+	  <div class="container space">
+		<mat-card>
+		  <div class="row">
+  
+			<div class="col-md-6 margin-auto ">
+			  <form >
+				<h1>Editar usuario: {{ this.usuario.nombre }}</h1>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Nombre</mat-label>
+				  <input matInput name="Nombre" [(ngModel)]="this.editUsuario.nombre" placeholder="editUsuario.nombre"/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Apodo</mat-label>
+				  <input matInput name="Apodo" [(ngModel)]="this.editUsuario.apodo" placeholder="editUsuario.apodo"/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Correo</mat-label>
+				  <input matInput name="Correo" [(ngModel)]="this.editUsuario.correo" placeholder="editUsuario.correo"/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Contraseña</mat-label>
+				  <input matInput name="Contraseña" [(ngModel)]="this.editUsuario.password" placeholder="editUsuario.password" type='password'/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Foto de perfil</mat-label>
+				  <input matInput name="Foto de perfil" [(ngModel)]="this.editUsuario.fotoPerfil" placeholder="editUsuario.fotoPerfil"/>
+				</mat-form-field>
+				
+			  </form>
+			  
+  
+			</div>
+			<div class="col-md-6 margin-auto space">
+			  <div class="img-container">
+				<img class='img shadow' [src] = editUsuario.fotoPerfil>
+			  </div>
+			</div>
+			
+		  </div>
+  
+		  	<button mat-raised-button color="accent" (click)="editarUsuario()">
+				Editar
+			</button>
+  
+		  	<button mat-raised-button class="pad-left" color="primary" (click)="regresar()"> 
+				Regresar
+		  	</button>
+		  
+		</mat-card>
+	  </div>
+	  
+	</div>
+  </div>
+  

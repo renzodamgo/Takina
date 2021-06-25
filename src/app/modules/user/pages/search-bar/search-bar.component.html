@@ -10,7 +10,7 @@
 		<mat-form-field class = "filters">
 			<mat-label>Categorias</mat-label>
 			<mat-select panelClass="category-select"
-				[(ngModel)]="category">
+				[(ngModel)]="category" [ngModelOptions]="{standalone: true}">
 				<mat-option value="cancion">Canciones</mat-option>
 				<mat-option value="genero">Género Musical</mat-option>
 				<mat-option value="artista">Artistas</mat-option>
@@ -18,4 +18,8 @@
 			</mat-select>
 		</mat-form-field>
 	</form>
+</div>
+
+<div class="search-results">
+	<app-show-projects></app-show-projects>
 </div>

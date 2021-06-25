@@ -2,7 +2,7 @@
 	<div class="row py-lg-5">
 		<div class="col-lg-6 col-md-8 mx-auto">
 			<div class="text-center">
-				<img class="avatar"
+				<img class="img-thumbnail avatar rounded-circle width:100px"
 					[src]="this.usuario.fotoPerfil"
 					alt="Foto de Perfil"/>
 			</div>
@@ -12,7 +12,7 @@
   
 			<div class="buttons row">
 				<div class="col-sm">
-					<button mat-button [routerLink]="'editar'">
+					<button mat-button [routerLink]="'../editar'">
 						<mat-icon class="icon-display">edit</mat-icon>
 						<div class="col-sm">Editar perfil</div>
 					</button>
@@ -24,7 +24,7 @@
 					</button>
 				</div>
 				<div class="col-sm">
-					<button mat-button [routerLink]="'../auth'">
+					<button mat-button [routerLink]="'../../auth/login'">
 						<mat-icon class="icon-display">transit_enterexit</mat-icon>
 						<div class="col-sm">Salir</div>
 					</button>
