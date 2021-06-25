@@ -11,29 +11,24 @@ import { DataService } from '../../../../core/services/data.service';
 export class DashboardComponent implements OnInit {
   
   public artista!:Artista;
-  public fotoPerfil:string = 'http://brownmead.academy/wp-content/uploads/2017/01/avatar.jpg'
-
+  public fotoPerfil!:string;
 
   constructor(private artistaService:ArtistaService,
               private dataService:DataService) { }
 
   ngOnInit(): void {
-     this.getArtista()
+    this.getArtista();
+	if (this.artista.fotoPerfil == '') {
+		this.fotoPerfil = this.dataService.defaultFotoPerfil;
+	}
   }
 
   getArtista(){
-    this.artistaService.getArtista()
+    this.artistaService.getArtistaById(this.dataService.artistaId)
       .subscribe(artista =>{
-        // this.artista = response.data;
-        console.log(artista)
         this.artista = artista;
-        this.dataService.artistaId = artista.id;
-        this.dataService.fotoPerfilUrl = artista.fotoPerfil;
         this.fotoPerfil = artista.fotoPerfil;
       });
   }
-
- 
-  
 
 }

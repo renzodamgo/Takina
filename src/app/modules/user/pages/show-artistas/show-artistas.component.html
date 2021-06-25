@@ -1,0 +1,35 @@
+<ng-template [ngIf]="artistas">
+	<div class="row">
+		<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12"
+    		*ngFor="let ar of artistas; let i = index">
+			<div class="mat-card-cvr">
+				<mat-card class="example-card shadow">
+					<mat-card-header>
+						<div mat-card-avatar [ngStyle]="{
+							'background-color': 'gray',
+							'background-image': 'url('+this.usuario.fotoPerfil+')'}"
+							class="example-header-image">	
+						</div>
+						<mat-card-title>{{ar.departamento}}</mat-card-title>
+						<mat-card-subtitle>{{ar.nombre}}</mat-card-subtitle>
+					</mat-card-header>
+					<img mat-card-image [src]="ar.fotoPerfil" alt="<Error no photo?>" />
+					<mat-card-content>
+						<p>{{ar.biografia}}</p>
+					</mat-card-content>
+
+					<div class="text-center space">
+						<button mat-button (click)="administrateArtista(ar.id)">
+							<mat-icon class="editButton" id="editButton" aria-hidden="false">
+								edit
+							</mat-icon>
+							<span>Edit</span>
+						</button>
+					</div>
+
+
+				</mat-card>
+			</div>
+		</div>
+	</div>
+</ng-template>

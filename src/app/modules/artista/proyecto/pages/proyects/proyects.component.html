@@ -11,7 +11,7 @@
               mat-card-avatar
               [ngStyle]="{
                 'background-color': 'gray',
-                'background-image': 'url(' + userUrl + ')'
+                'background-image': 'url(' + this.fotoPerfil + ')'
               }"
               class="example-header-image"
             ></div>
@@ -34,7 +34,7 @@
 
 					</div>
           
-          <div class="text-center space">
+        	<div class="text-center space">
 						<button mat-button [routerLink]="'edit/'+[d.id]">
 							<mat-icon class="editButton" id="editButton" aria-hidden="false"
 								>edit</mat-icon
@@ -47,8 +47,8 @@
 								>delete</mat-icon
 							>
 							<span></span> Delete
-						</button>
-					</div>
+						</button>		
+			</div>
 
           
         </mat-card>

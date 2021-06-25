@@ -1,1 +1,36 @@
-<p>user-dashboard works!</p>
+
+<div class="container">
+	<div class="row py-lg-5">
+		<div class="col-lg-6 col-md-8 mx-auto">
+			<div class="text-center">
+				<img class="avatar"
+					[src]="this.usuario.fotoPerfil"
+					alt="Foto de Perfil"/>
+			</div>
+			<h1 class="fw-light text-center">{{ this.usuario.nombre }}</h1>
+
+			<p class="lead text-muted space text-center">Bienvenid@ de vuelta a Takina!</p>
+  
+			<div class="buttons row">
+				<div class="col-sm">
+					<button mat-button>
+						<mat-icon class="icon-display">edit</mat-icon>
+						<div class="col-sm">Editar perfil</div>
+					</button>
+				</div>
+				<div class="col-sm">
+					<button mat-button [routerLink]="'../administracion'">
+						<mat-icon class="icon-display">music_note</mat-icon>
+						<div class="col-sm">Administración</div>
+					</button>
+				</div>
+				<div class="col-sm">
+					<button mat-button [routerLink]="'../auth'">
+						<mat-icon class="icon-display">transit_enterexit</mat-icon>
+						<div class="col-sm">Salir</div>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

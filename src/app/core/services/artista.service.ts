@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { ArtistaResponse, ArtistasResponse } from '../../models/artistaResponse';
-import {map} from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { Artista } from '../../models/artista';
-
 
 @Injectable({
 	providedIn: 'root'
@@ -45,5 +43,4 @@ export class ArtistaService {
 			)
 		);
 	}
-
 }

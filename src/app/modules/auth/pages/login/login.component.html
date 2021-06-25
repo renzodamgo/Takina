@@ -1,34 +1,32 @@
-<div class="container">
+<div class="container vertical-center">
 	<div class="logo">
 		<img src="https://i.imgur.com/lhqhLwW.png">
 	</div>
 
     <mat-card>
+		<div class="row">
+			<form>
+				<h1>Inicia Sesión</h1>
 
-      <div class="row">
-
-        <form>
-            <h1>Inicia Sesión</h1>
-            
-            <mat-form-field appearance="fill">
-              <mat-label>Login</mat-label>
-              <input matInput name="usuario" [(ngModel)]="this.loginUsuario.login" placeholder="Usuario/Correo"/>
-            </mat-form-field>
-            
-            <mat-form-field appearance="fill">
-              <mat-label>Contraseña</mat-label>
-              <input matInput type="password" name="contraseña" [(ngModel)]="this.loginUsuario.password" placeholder="Contraseña"/>
-            </mat-form-field>
-            
-          </form>
-      </div>
+				<mat-form-field appearance="fill">
+				<mat-label>Login</mat-label>
+				<input matInput name="usuario" [(ngModel)]="this.loginUsuario.login" placeholder="Usuario/Correo"/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+				<mat-label>Contraseña</mat-label>
+				<input matInput type="password" name="contraseña" [(ngModel)]="this.loginUsuario.password" placeholder="Contraseña"/>
+				</mat-form-field>
+				
+			</form>
+		</div>
 
 	<div class="buttons">
-		<button mat-raised-button color = "accent" [routerLink] = "['/auth/register']">
+		<button mat-raised-button color="accent" [routerLink]="['/auth/register']">
 			Registro
 		</button>
 
-		<button mat-raised-button class="pad-left" color = "primary" (click)="loginUser()">
+		<button mat-raised-button class="pad-left" color="primary" (click)="loginUser()">
 			Inicia Sesión
 		</button>
 	</div>

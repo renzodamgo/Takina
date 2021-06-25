@@ -1,0 +1,44 @@
+.example-card {
+    max-width: 400px;
+    display:inline-block;
+    margin: 0 auto;
+    width: 80%;
+  }
+  
+
+.mat-card-actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.mat-card-cvr{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .mat-card-image {
+	display: block;
+ }
+
+.col-sm-3{
+  padding: auto;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.fixed-bottom-right{
+  position:fixed;
+  bottom:20px;
+  right: 20px;
+}
+
+.space{
+  padding-top: 2vh;
+}

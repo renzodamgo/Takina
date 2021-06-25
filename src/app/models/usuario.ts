@@ -58,6 +58,7 @@ export class EditUsuario {
 
 	static editUsuarioFromUsuario(obj: Usuario){
 		return new EditUsuario(
+			obj.apodo,
 			obj.correo,
 			obj.fotoPerfil,
 			obj.id,
@@ -67,6 +68,7 @@ export class EditUsuario {
 	}
 
 	constructor(
+		public apodo: string,
 		public correo: string,
 		public fotoPerfil: string,
 		public id: number,

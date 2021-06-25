@@ -1,19 +1,30 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { UserRoutingModule } from './user-routing.module';
-import { ShowProjectsComponent } from './pages/show-projects/show-projects.component';
-import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
-import { UserComponent } from './user.component';
-import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
-
-import { MatIconModule} from '@angular/material/icon'; 
-import { MatChipsModule} from '@angular/material/chips';
-import { MatSelectModule} from '@angular/material/select';
-import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
-import { FormsModule }   from '@angular/forms';
+import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
 import { SearchBarComponent } from './pages/search-bar/search-bar.component';
+import { ShowArtistasComponent } from './pages/show-artistas/show-artistas.component';
+import { ShowProjectsComponent } from './pages/show-projects/show-projects.component';
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { UserRoutingModule } from './user-routing.module';
+import { UserComponent } from './user.component';
+import { MatCardModule } from '@angular/material/card'; 
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet'; 
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -22,7 +33,8 @@ import { SearchBarComponent } from './pages/search-bar/search-bar.component';
     ProjectDetailsComponent,
     UserComponent,
     UserDashboardComponent,
-	SearchBarComponent
+	SearchBarComponent,
+	ShowArtistasComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +44,9 @@ import { SearchBarComponent } from './pages/search-bar/search-bar.component';
     MatProgressSpinnerModule,
     MatSelectModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+	MatCardModule,
+	MatButtonModule
   ]
 })
 export class UserModule { }

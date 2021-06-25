@@ -11,10 +11,10 @@ const routes: Routes = [
   {path: "auth",
   loadChildren:()=> import('./modules/auth/auth.module').then(m=> m.AuthModule)},
   
-  {path: "user",
+  {path: "usuario",
   loadChildren:()=> import('./modules/user/user.module').then(m=> m.UserModule)},
 
-  // {path: "**",redirectTo: "auth"}
+  {path: "**",redirectTo: "auth"}
   
 ];
 
