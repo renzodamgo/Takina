@@ -111,7 +111,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public UsuarioDto editUsuario(EditUsuarioDto editUsuarioDto) throws TakinaException {
 		Usuario usuario = getUsuarioEntity(editUsuarioDto.getId());
-
+		usuario.setApodo(editUsuarioDto.getApodo());
 		usuario.setPassword(editUsuarioDto.getPassword());
 		usuario.setNombre(editUsuarioDto.getNombre());
 		usuario.setCorreo(editUsuarioDto.getCorreo());
