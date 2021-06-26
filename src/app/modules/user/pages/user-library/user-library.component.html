@@ -1,0 +1,53 @@
+
+<ng-template [ngIf]="userPlaylists!=undefined">
+	<div class="fixed-top-left">
+		<button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+			routerLink="create">
+			<mat-icon>add</mat-icon>
+		</button>
+	</div>
+	
+	<div class="row">
+		<div 
+			*ngFor="let p of userPlaylists">
+			<div class="mat-card-cvr">
+		  		<mat-card class="example-card shadow">
+					<mat-card-header>
+						<mat-card-title>{{ p.nombre }}</mat-card-title>
+						<mat-card-subtitle>{{ p.creacion.split("T")[0] }}</mat-card-subtitle>
+					</mat-card-header>
+		
+					<mat-card-content>
+						<p> {{ p.descripcion }} </p>
+					</mat-card-content>
+
+					<div class="text-center">
+						<button mat-button [routerLink]="'details/'+[p.id]">
+							<mat-icon class="viewButton" id="viewButton" aria-hidden="false">
+								visibility
+							</mat-icon>
+							<span></span>Ver
+						</button>
+
+						<button mat-button [routerLink]="'edit/'+[p.id]">
+							<mat-icon id="editButton" aria-hidden="false">
+								edit
+							</mat-icon>
+							<span></span>Editar
+						</button>
+
+						<button mat-button color="warn" (click)="deletePlaylist(p)">
+							<mat-icon id="deleteButton" aria-hidden="false">
+								delete
+							</mat-icon>
+							<span></span>Eliminar
+						</button>
+
+					</div>
+		  		</mat-card>
+			</div>
+	  	</div>
+	</div>
+
+</ng-template>
+  

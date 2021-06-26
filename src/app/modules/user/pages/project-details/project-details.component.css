@@ -16,15 +16,18 @@ table {
     width: 100%;
 }
 
-.pad-left{
-    margin-left: 2vh;
+.right-button{
+	justify-content: center;
+}
+
+.description-box{
+	text-align: center;
+	justify-content: center;
+    align-items: center;
+
 }
 
 .img-container {
-	display: flex;
-	justify-content: center;
-    padding: auto;
-    align-items: center;
     text-align: center;
 }
 
@@ -34,10 +37,9 @@ img{
     max-height: 250px;
     max-width: 250px;
     margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 .bottom{
     margin-bottom: 4vh;
 }
-  

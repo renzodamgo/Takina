@@ -14,9 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 export class AddSongComponent implements OnInit {
-
 	displayedColumns: string[] = ['track', 'nombre', 'duracion', 'eliminar'];
-	
 	canciones:Canciones[] = [];
 	nombre:string = "";
 	proyectoId!:number;

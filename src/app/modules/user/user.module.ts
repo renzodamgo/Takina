@@ -26,7 +26,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { UserLibraryComponent } from './pages/user-library/user-library.component';
+import { ShowPlaylistComponent } from './pages/show-playlist/show-playlist.component';
 
 @NgModule({
 	declarations: [
@@ -36,7 +38,9 @@ import { RouterModule } from '@angular/router';
 		UserDashboardComponent,
 		SearchBarComponent,
 		ShowArtistasComponent,
-		EditUsuarioComponent
+		EditUsuarioComponent,
+  		UserLibraryComponent,
+    ShowPlaylistComponent
 	],
 	imports: [
 		CommonModule,
@@ -52,7 +56,8 @@ import { RouterModule } from '@angular/router';
 		MatSnackBarModule,
 		MatFormFieldModule,
 		MatInputModule,
-		MatTableModule
+		MatTableModule,
+		MatMenuModule
 	]
 })
 export class UserModule { }

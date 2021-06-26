@@ -1,61 +1,82 @@
 <div class="container">
 	<div class="row">
-	  <div class="container space">
-		<mat-card>
-		  <div class="row">
-			<div class="col-md-6 margin-auto ">
-				<div class="img-container">
-					<img class='img shadow' [src] = proyecto.fotoPortada>
-				</div>
-			</div>
+	  	<div class="container space">
+			<mat-card>
+				<div class="row">
+					<div class="proyect-info col-md-6 margin-auto ">
+						<div class="img-container">
+							<img class='img shadow' [src] = proyecto.fotoPortada>
+						</div>
+						<div class="description-box">
+							<p><strong>Nombre:</strong> {{proyecto.nombre}} </p>
+							<p><strong>Tipo:</strong> {{proyecto.tipo}} </p>
+							<p><strong>Fecha de lanzamiento:</strong> {{proyecto.lanzamiento.split('T')[0]}} </p>
+							<p><strong>Género Musical:</strong> {{proyecto.genero}} </p>
+							<p><strong>Duración:</strong> {{getDuration(proyecto.duracion)}} </p>
+							<p><strong>Canciones:</strong> {{proyecto.numCanciones}} </p>
+						</div>
+					</div>
 
-			<div class="col-md-6 margin-auto space">
-				<ng-template [ngIf]="canciones.length !== 0">
-					<h1>Canciones</h1>
-					<table mat-table class="bottom width" [dataSource]="canciones">
-						<ng-container matColumnDef="track">
-							<th mat-header-cell *matHeaderCellDef>No.</th>
-							<td mat-cell *matCellDef="let cancion">{{ cancion.track }}</td>
-						</ng-container>
-	
-						<ng-container matColumnDef="nombre">
-							<th mat-header-cell *matHeaderCellDef>Nombre</th>
-							<td mat-cell *matCellDef="let cancion">{{ cancion.nombre }}</td>
-						</ng-container>
-	
-						<ng-container matColumnDef="duracion">
-							<th mat-header-cell *matHeaderCellDef>Duración</th>
-							<td mat-cell *matCellDef="let cancion">{{ getDuration(cancion.duracion) }}</td>
-						</ng-container>
-
-						<ng-container matColumnDef="eliminar">
-							<th mat-header-cell *matHeaderCellDef>Eliminar</th>
-							<td mat-cell *matCellDef="let cancion" style="width:5%">
-								<button mat-icon-button color="primary">
-									<mat-icon>play_arrow</mat-icon>
-								</button>
-							</td>
-						</ng-container>
-	
-						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-						<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-					
-					</table>
-				</ng-template>
-				
-			</div>
+					<div class="songs-info col-md-6 margin-auto space">
+						<ng-template [ngIf]="canciones.length !== 0">
+							<h1>Canciones</h1>
+							<table mat-table class="bottom width" [dataSource]="canciones">
+								<ng-container matColumnDef="track">
+									<th mat-header-cell *matHeaderCellDef>No.</th>
+									<td mat-cell *matCellDef="let cancion">{{ cancion.track }}</td>
+								</ng-container>
 			
-		  </div>
-  
-		  <button mat-raised-button color="accent" >Editar</button>
-  
-		  <button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyectos']" > 
-			Regresar
-		  </button>
-		  
-		</mat-card>
-	  </div>
-	  
+								<ng-container matColumnDef="nombre">
+									<th mat-header-cell *matHeaderCellDef>Nombre</th>
+									<td mat-cell *matCellDef="let cancion">{{ cancion.nombre }}</td>
+								</ng-container>
+			
+								<ng-container matColumnDef="duracion">
+									<th mat-header-cell *matHeaderCellDef>Duración</th>
+									<td mat-cell *matCellDef="let cancion">{{ getDuration(cancion.duracion) }}</td>
+								</ng-container>
+
+								<ng-container matColumnDef="reproducir">
+									<th mat-header-cell *matHeaderCellDef>Reproducir</th>
+									<td mat-cell *matCellDef="let cancion" style="width:13%">
+										<button mat-icon-button color="primary" (click)="playSong(cancion)">
+											<mat-icon>play_arrow</mat-icon>
+										</button>
+									</td>
+								</ng-container>
+
+								<ng-container matColumnDef="añadir">
+									<th mat-header-cell *matHeaderCellDef>Añadir</th>
+									<td mat-cell class="text-center" *matCellDef="let cancion" style="width:7%">
+										<button mat-icon-button color="primary" (click)="setCancion(cancion)" [matMenuTriggerFor]="playlists">
+											<mat-icon>playlist_add</mat-icon>
+										</button>
+									</td>
+								</ng-container>
+			
+								<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+								<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+							
+							</table>
+						</ng-template>
+						
+					</div>
+					
+				</div>
+
+
+					<div class="right-button">
+						<button mat-raised-button color="primary" (click)="goBack()"> 
+							Regresar
+						</button>
+					</div>
+			</mat-card>
+		</div>  
 	</div>
-  </div>
-  
+</div>
+
+<mat-menu #playlists="matMenu">
+	<ng-container *ngFor="let elem of userPlaylists">
+		<button mat-menu-item (click)="addToPlaylist(elem)">{{elem.nombre}}</button>
+	</ng-container>
+</mat-menu>

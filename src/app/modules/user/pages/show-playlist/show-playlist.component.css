@@ -1,0 +1,21 @@
+
+table {
+    width: 100%;
+  }
+
+.space{
+    padding-top: 50px;
+}
+
+.mat-form-field{
+    width: 100%;
+}
+
+form{
+    width: 70%;
+    margin: auto;
+}
+.button{
+    margin-left: 2vh;
+    
+}

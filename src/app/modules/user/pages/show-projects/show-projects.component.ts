@@ -23,6 +23,10 @@ export class ShowProjectsComponent implements OnInit {
 		this.getProyectosInitial();	
 	}
 
+	infoEmpty(obj:any) {
+		return Object.keys(obj).length === 0;
+	  }
+
 	getProyectosInitial(){
 		this.proyectoService.getUltimosProyectos()
 			.subscribe(result => {

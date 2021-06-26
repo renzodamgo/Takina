@@ -1,0 +1,57 @@
+<div class="container space">
+    <mat-card>
+    	<div class="">
+        <ng-template [ngIf]="canciones.length !== 0">
+			<h1>Canciones</h1>
+				<table mat-table class="bottom width" [dataSource]="canciones">
+						<ng-container matColumnDef="artista">
+							<th mat-header-cell *matHeaderCellDef>Artista</th>
+							<td mat-cell *matCellDef="let cancion">{{ getArtistaNombreByCancionId(cancion) }}</td>
+						</ng-container>
+	
+						<ng-container matColumnDef="nombre">
+							<th mat-header-cell *matHeaderCellDef>Cancion</th>
+							<td mat-cell *matCellDef="let cancion">{{ cancion.nombre }}</td>
+						</ng-container>
+	
+						<ng-container matColumnDef="duracion">
+							<th mat-header-cell *matHeaderCellDef>Duración</th>
+							<td mat-cell *matCellDef="let cancion">{{ getDuration(cancion.duracion) }}</td>
+						</ng-container>
+
+						<ng-container matColumnDef="reproducir">
+							<th mat-header-cell *matHeaderCellDef>Reproducir</th>
+							<td mat-cell *matCellDef="let cancion" style="width:13%">
+								<button mat-icon-button color="primary" (click)="playSong(cancion)">
+									<mat-icon>play_arrow</mat-icon>
+								</button>
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="eliminar">
+							<th mat-header-cell *matHeaderCellDef>Eliminar</th>
+							<td mat-cell *matCellDef="let cancion" style="width:7%">
+								<button mat-icon-button color="warn" (click)="deleteSong(cancion)">
+									<mat-icon>delete</mat-icon>
+								</button>
+							</td>
+						</ng-container>
+	
+						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+						<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+			</table>
+		</ng-template>
+		<ng-template [ngIf]="canciones.length == 0">
+			<p>Esta playlist esta <strong>vacia</strong>!</p>
+			<p>Animate a añadir tus canciones favoritas!</p>
+		</ng-template>
+      </div>
+
+	  <div class="space">
+		<button mat-raised-button class="button" color="primary" (click)="goBack()" > 
+				Regresar
+		</button>
+	</div>
+      
+    </mat-card>
+  </div>

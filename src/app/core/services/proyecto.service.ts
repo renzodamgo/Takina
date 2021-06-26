@@ -26,7 +26,7 @@ export class ProyectoService {
 		const endpoint = `https://takina.herokuapp.com/takina/proyectos/id/${proyectoId}`;
 		return this.http.get<ProjectoResponse>(endpoint)
 			.pipe(map(resp => {
-			    	return  Proyecto.proyectoFromJson(resp.data);
+			    	return Proyecto.proyectoFromJson(resp.data);
 				}
 			)
 		);
