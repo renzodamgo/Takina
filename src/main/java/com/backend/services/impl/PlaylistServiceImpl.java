@@ -146,4 +146,13 @@ public class PlaylistServiceImpl implements PlaylistService {
 
 		return modelMapper.map(playlist,PlaylistDto.class);
 	}
+
+	@Override
+	public List<PlaylistDto> getPlaylistsByUserId(Long usuarioId) throws TakinaException {
+		List<Playlist> playlists = playlistRepository.findByUsuarioId(usuarioId);
+		return playlists.stream()
+				.map(playlist -> modelMapper
+						.map(playlist, PlaylistDto.class))
+						.collect(Collectors.toList());
+	}
 }

@@ -14,4 +14,5 @@ public interface PlaylistService {
 	PlaylistDto getPlaylistById(Long playlistId) throws TakinaException;
 	void deleteFromPlaylist(Long playlistId, Long cancionId) throws TakinaException;
 	PlaylistDto editPlaylist(EditPlaylistDto editPlaylistDto) throws TakinaException;
+	List<PlaylistDto> getPlaylistsByUserId(Long usuarioId) throws TakinaException;
 }
