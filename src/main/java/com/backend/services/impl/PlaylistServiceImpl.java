@@ -155,4 +155,19 @@ public class PlaylistServiceImpl implements PlaylistService {
 						.map(playlist, PlaylistDto.class))
 						.collect(Collectors.toList());
 	}
+
+	@Override
+	public void deletePlaylistById(Long playlistId) throws TakinaException {
+		Optional<Playlist> proyecto = playlistRepository.findById(playlistId);
+
+		if (proyecto.isPresent()) {
+			List<Listado> listados = listadoRepository.findByPlaylistId(playlistId);
+			for (Listado p : listados) {
+				listadoRepository.deleteById(p.getId());
+			}
+			playlistRepository.deleteById(playlistId);
+		} else {
+			throw new PlaylistNotFoundException("Playlist not found.");
+		}
+	}
 }

@@ -85,4 +85,13 @@ public class PlaylistController {
 		return new TakinaResponse<>("Success", String.valueOf(HttpStatus.OK), "OK",
 				playlistService.getPlaylistsByUserId(usuarioId));
 	}
+
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/id/{playlistId}")
+	public TakinaResponse<String> deletePlaylist(@PathVariable Long playlistId)
+			throws TakinaException{
+		playlistService.deletePlaylistById(playlistId);
+		return new TakinaResponse<>("Success",String.valueOf(HttpStatus.OK),"OK",
+				"Playlist eliminada correctamente.");
+	}
 }
