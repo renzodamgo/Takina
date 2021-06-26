@@ -3,7 +3,6 @@
 	  <div class="container space">
 		<mat-card>
 		  <div class="row">
-  
 			<div class="col-md-6 margin-auto ">
 				<div class="img-container">
 					<img class='img shadow' [src] = proyecto.fotoPortada>
@@ -11,16 +10,44 @@
 			</div>
 
 			<div class="col-md-6 margin-auto space">
+				<ng-template [ngIf]="canciones.length !== 0">
+					<h1>Canciones</h1>
+					<table mat-table class="bottom width" [dataSource]="canciones">
+						<ng-container matColumnDef="track">
+							<th mat-header-cell *matHeaderCellDef>No.</th>
+							<td mat-cell *matCellDef="let cancion">{{ cancion.track }}</td>
+						</ng-container>
+	
+						<ng-container matColumnDef="nombre">
+							<th mat-header-cell *matHeaderCellDef>Nombre</th>
+							<td mat-cell *matCellDef="let cancion">{{ cancion.nombre }}</td>
+						</ng-container>
+	
+						<ng-container matColumnDef="duracion">
+							<th mat-header-cell *matHeaderCellDef>Duración</th>
+							<td mat-cell *matCellDef="let cancion">{{ getDuration(cancion.duracion) }}</td>
+						</ng-container>
+
+						<ng-container matColumnDef="eliminar">
+							<th mat-header-cell *matHeaderCellDef>Eliminar</th>
+							<td mat-cell *matCellDef="let cancion" style="width:5%">
+								<button mat-icon-button color="primary">
+									<mat-icon>play_arrow</mat-icon>
+								</button>
+							</td>
+						</ng-container>
+	
+						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+						<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+					
+					</table>
+				</ng-template>
 				
 			</div>
 			
 		  </div>
   
 		  <button mat-raised-button color="accent" >Editar</button>
-		
-		  <button mat-raised-button class="pad-left" color="accent" [routerLink] = "['add']" > 
-			Ver canciones
-		  </button>
   
 		  <button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyectos']" > 
 			Regresar

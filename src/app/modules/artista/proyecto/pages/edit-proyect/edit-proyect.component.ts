@@ -52,7 +52,6 @@ export class EditProyectComponent implements OnInit {
     
   }
   editProyecto(){
-    
     console.log(this.project.nombre);
     this.proyectoService.updateProjectoById(this.project)
       .subscribe(data => {

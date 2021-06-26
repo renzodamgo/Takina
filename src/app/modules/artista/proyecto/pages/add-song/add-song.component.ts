@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProyectoService } from 'src/app/core/services/proyecto.service';
 import { Canciones, Proyecto } from 'src/app/models/projecto';
 import { ActivatedRoute } from '@angular/router';
 import { Cancion, CreateCancion } from 'src/app/models/cancion';
 import { CancionService } from 'src/app/core/services/cancion.service';
 import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-song',
@@ -15,43 +15,28 @@ import { Location } from '@angular/common';
 
 export class AddSongComponent implements OnInit {
 
-	displayedColumns: string[] = ['track', 'nombre', 'duracion'];
+	displayedColumns: string[] = ['track', 'nombre', 'duracion', 'eliminar'];
 	
-	project!:Proyecto;
 	canciones:Canciones[] = [];
 	nombre:string = "";
 	proyectoId!:number;
 
-	cancion:Cancion ={
-		audio: "",
-		duracion: 0,
-		fotoPortada: "",
-		genero: "",
-		id: 0,
-		lanzamiento: "",
-		nombre: "",
-		proyectoId: 0,
-		track: 0,
-	};
-
 	createCancion:CreateCancion = new CreateCancion(
 		"",-1,"",-1
 	);
-	//listaCanciones:Cancion[] = []
 
 	getDuration(duration: number){
 		return Cancion.durationFromFloat(duration);
 	}
 
 	constructor(
-		private proyectoService:ProyectoService,
 		private cancionService:CancionService,
 		private route:ActivatedRoute,
 		private location: Location,
+		private _snackBar:MatSnackBar
 	) { }
 
 	ngOnInit(): void {
-		//this.getProject();
 		this.getCancionesByProyectoId();
 	}
 
@@ -59,24 +44,6 @@ export class AddSongComponent implements OnInit {
 		this.location.back();
 	}
 
-
-
-	getProject(){
-	  this.proyectoId  = +this.route.snapshot.paramMap.get('id')!;
-	  this.proyectoService.getProyectoById(this.proyectoId)
-	    .subscribe((result)=>{
-	    	this.project = result;
-	    	this.canciones = result.canciones;
-	    	this.nombre = result.nombre;
-	    	console.log(this.project);
-	    	console.log(this.canciones);
-	    	console.log(this.proyectoId);
-	    	this.cancion.proyectoId = this.proyectoId;
-
-
-	    })
-
-	}
 	getCancionesByProyectoId(){
 		this.proyectoId = +this.route.snapshot.paramMap.get('id')!;
 		this.cancionService.getCancionesByProyectoId(this.proyectoId)
@@ -85,13 +52,21 @@ export class AddSongComponent implements OnInit {
 			})
 	}
 
-	AddSong(){
-		console.log(this.cancion);
-		this.proyectoService.addCancionByProjectoId(this.cancion)
+	addSongByProyectId(){
+		this.proyectoId = +this.route.snapshot.paramMap.get('id')!;
+		this.createCancion.proyectoId = this.proyectoId;
+		this.cancionService.addCancion(this.createCancion)
 			.subscribe(data => {
-			  console.log(this.cancion);
-			  console.log(data);
-			  this.getProject()
-		});
+				this.getCancionesByProyectoId();
+			})
+	}
+
+	deleteSongByCancionId(cancionId: number){
+		console.log(cancionId);
+		this.cancionService.deleteCancion(cancionId)
+			.subscribe( result =>{
+				this.getCancionesByProyectoId();
+				this._snackBar.open("La cancion ha sido eliminada","OK");
+			})
 	}
 }

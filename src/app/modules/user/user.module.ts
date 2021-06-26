@@ -51,7 +51,8 @@ import { RouterModule } from '@angular/router';
 		MatButtonModule,
 		MatSnackBarModule,
 		MatFormFieldModule,
-		MatInputModule
+		MatInputModule,
+		MatTableModule
 	]
 })
 export class UserModule { }

@@ -20,4 +20,14 @@ export class CancionService {
 		);
 	}
 
+	addCancion(createCancion:CreateCancion) {
+		const endpoint = `https://takina.herokuapp.com/takina/canciones`;
+		return this.http.post<CancionResponse>(endpoint,createCancion);
+	}
+
+	deleteCancion(cancionId: number){
+		const endpoint = `https://takina.herokuapp.com/takina/canciones/id/${cancionId}`
+		return this.http.delete(endpoint);
+	}
+
 }

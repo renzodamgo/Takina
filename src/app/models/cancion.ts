@@ -13,7 +13,6 @@ export interface CancionesResponse {
 	status: string;
 }
 
-
 export interface CancionJson {
 	audio: string;
 	duracion: number;
@@ -61,7 +60,7 @@ export class Cancion {
 		public nombre: string,
 		public proyectoId: number,
 		public track: number,
-    ){}
+    ) {}
 }
 
 export class CreateCancion {
@@ -70,5 +69,5 @@ export class CreateCancion {
 		public duracion: number,
 		public nombre: string,
 		public proyectoId: number,
-	){}
+	) {}
 }
