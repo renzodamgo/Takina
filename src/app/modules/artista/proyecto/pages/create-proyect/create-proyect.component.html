@@ -51,7 +51,7 @@
 	</div>
 
 		<button mat-raised-button color="accent" (click)="createProyecto()">Crear</button>
-		<button mat-raised-button class="pad-left" color="primary" [routerLink] = "['/proyectos']" > 
+		<button mat-raised-button class="pad-left" color="primary" (click)="goBack()" > 
 			Regresar
 		</button>
 	  </mat-card>

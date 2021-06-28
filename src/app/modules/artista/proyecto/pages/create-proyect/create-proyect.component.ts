@@ -4,6 +4,7 @@ import { Canciones, Proyecto } from '../../../../../models/projecto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-proyect',
@@ -28,6 +29,7 @@ export class CreateProyectComponent implements OnInit {
     private dataService:DataService,
     private _snackBar:MatSnackBar,
     private router:Router,
+	private location:Location
   ) { }
 
   ngOnInit(): void {
@@ -42,13 +44,18 @@ export class CreateProyectComponent implements OnInit {
     this._snackBar.open("Ingrese todos los datos", ":(" );
   }
 
+  goBack() {
+    this.location.back();
+	//this.router.navigate(['../edit',this.id,'add']);
+  }
+
 
 
   createProyecto(){
     this.project.artistaId = this.dataService.artistaId ;
     
     
-      // crear
+    // crear
     this.proyectoService.addProjecto(this.project)
     .subscribe( proyecto => {
       console.log(proyecto);
@@ -57,7 +64,7 @@ export class CreateProyectComponent implements OnInit {
 
       console.log(`projectoId: ${this.id}`);
 
-      this.addSong();
+      //this.addSong();
       this.successSnackBar()
     } ,(errorServicio)=>{
       this.errorSnackBar();
@@ -69,7 +76,6 @@ export class CreateProyectComponent implements OnInit {
   }
 
   addSong(){
-    this.router.navigate(['/proyectos/edit', this.id]);
+	this.router.navigate(['/proyectos/edit', this.id]);
   }
-
 }
