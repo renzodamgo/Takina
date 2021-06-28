@@ -66,15 +66,16 @@ export class CreatePlaylist {
 export class EditPlaylist {
 	static editPlaylistFromPlaylist(obj: Playlist){
 		return new EditPlaylist(
+			obj.nombre,
 			obj.descripcion,
 			obj.id,
-			obj.nombre
 		);
 	}
 
 	constructor(
+		public nombre: string,
 		public descripcion: string,
 		public id: number,
-		public nombre: string,
+		
 	) {}
 }

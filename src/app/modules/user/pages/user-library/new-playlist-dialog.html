@@ -1,0 +1,24 @@
+
+<div mat-dialog-content>
+	<ng-template [ngIf]="data.accion < 0" [ngIfElse]="Editar">
+		<p>Crear una nueva playlist</p>
+	</ng-template>
+
+	<ng-template #Editar>
+		<p>Editar playlist</p>
+	</ng-template>
+	
+	<mat-form-field appearance="fill">
+		<mat-label>Nombre</mat-label>
+		<input matInput [(ngModel)]="data.nombre">
+	</mat-form-field>
+
+	<mat-form-field appearance="fill">
+		<mat-label>Descripcion</mat-label>
+		<input matInput [(ngModel)]="data.descripcion">
+	</mat-form-field>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancelar</button>
+	<button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

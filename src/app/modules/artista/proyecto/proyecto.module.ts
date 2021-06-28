@@ -30,8 +30,7 @@ import { AddSongComponent } from './pages/add-song/add-song.component';
     ProyectsComponent,
     EditProyectComponent,
     CreateProyectComponent,
-    AddSongComponent,
-      
+    AddSongComponent, 
   ],
   imports: [
     CommonModule,

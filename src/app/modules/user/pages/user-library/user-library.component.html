@@ -2,14 +2,14 @@
 <ng-template [ngIf]="userPlaylists!=undefined">
 	<div class="fixed-top-left">
 		<button mat-fab color="primary" aria-label="Example icon button with a delete icon"
-			routerLink="create">
+			(click)="openDialog(-1)">
 			<mat-icon>add</mat-icon>
 		</button>
 	</div>
 	
 	<div class="row">
 		<div 
-			*ngFor="let p of userPlaylists">
+			*ngFor="let p of userPlaylists; let i = index">
 			<div class="mat-card-cvr">
 		  		<mat-card class="example-card shadow">
 					<mat-card-header>
@@ -29,7 +29,7 @@
 							<span></span>Ver
 						</button>
 
-						<button mat-button [routerLink]="'edit/'+[p.id]">
+						<button mat-button (click)="openDialog(i)">
 							<mat-icon id="editButton" aria-hidden="false">
 								edit
 							</mat-icon>

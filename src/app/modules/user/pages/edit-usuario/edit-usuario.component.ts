@@ -39,12 +39,7 @@ export class EditUsuarioComponent implements OnInit {
 		this.usuarioService.getUsuarioById(this.dataService.usuarioId)
 			.subscribe(usuario =>{
 				this.usuario = usuario;
-				this.editUsuario.id = this.usuario.id;
-				this.editUsuario.nombre = this.usuario.nombre;
-				this.editUsuario.apodo = this.usuario.apodo;
-				this.editUsuario.correo = this.usuario.correo;
-				this.editUsuario.password = this.usuario.password;
-				this.editUsuario.fotoPerfil = this.usuario.fotoPerfil;
+				this.editUsuario = EditUsuario.editUsuarioFromUsuario(this.usuario);
 			},(errorServicio)=>{
 				console.log(errorServicio.error)
 				this.regresar();

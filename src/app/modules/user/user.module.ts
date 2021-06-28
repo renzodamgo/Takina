@@ -29,6 +29,9 @@ import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { UserLibraryComponent } from './pages/user-library/user-library.component';
 import { ShowPlaylistComponent } from './pages/show-playlist/show-playlist.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { PopUpDialog } from './pages/user-library/user-library.component';
 
 @NgModule({
 	declarations: [
@@ -40,7 +43,8 @@ import { ShowPlaylistComponent } from './pages/show-playlist/show-playlist.compo
 		ShowArtistasComponent,
 		EditUsuarioComponent,
   		UserLibraryComponent,
-    ShowPlaylistComponent
+		ShowPlaylistComponent,
+		PopUpDialog
 	],
 	imports: [
 		CommonModule,
@@ -57,7 +61,11 @@ import { ShowPlaylistComponent } from './pages/show-playlist/show-playlist.compo
 		MatFormFieldModule,
 		MatInputModule,
 		MatTableModule,
-		MatMenuModule
-	]
+		MatMenuModule,
+		MatDialogModule,
+	],
+	schemas: [
+		CUSTOM_ELEMENTS_SCHEMA
+	],
 })
 export class UserModule { }

@@ -11,8 +11,6 @@ import { Usuario } from 'src/app/models/usuario';
 import { Cancion } from 'src/app/models/cancion';
 import { ArtistaService } from 'src/app/core/services/artista.service';
 import { ProyectoService } from 'src/app/core/services/proyecto.service';
-import { Proyecto } from 'src/app/models/projecto';
-import { Artista } from 'src/app/models/artista';
 
 @Component({
 	selector: 'app-show-playlist',
