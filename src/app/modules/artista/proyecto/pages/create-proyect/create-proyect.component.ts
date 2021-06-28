@@ -64,7 +64,7 @@ export class CreateProyectComponent implements OnInit {
 
       console.log(`projectoId: ${this.id}`);
 
-      //this.addSong();
+      this.addSong();
       this.successSnackBar()
     } ,(errorServicio)=>{
       this.errorSnackBar();
@@ -76,6 +76,6 @@ export class CreateProyectComponent implements OnInit {
   }
 
   addSong(){
-	this.router.navigate(['/proyectos/edit', this.id]);
+	  this.router.navigate(['/proyectos/edit', this.id, 'add']);
   }
 }
