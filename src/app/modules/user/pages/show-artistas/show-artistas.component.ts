@@ -6,6 +6,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { DataService } from 'src/app/core/services/data.service';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-show-artistas',
@@ -21,6 +22,7 @@ export class ShowArtistasComponent implements OnInit {
 		private artistaService: ArtistaService,
 	    public dataService:DataService,
 		private router:Router,
+		private _snackBar:MatSnackBar,
 	) { }
 
 	ngOnInit(): void {
@@ -50,6 +52,15 @@ export class ShowArtistasComponent implements OnInit {
 	administrateArtista(artistaId: number){
 		this.dataService.artistaId = artistaId;
 		this.router.navigate(['../artista/dashboard']);
+	}
+
+	eliminarArtista(artista: Artista) {
+		let temp: string = artista.nombre;
+		this.artistaService.deleteArtistaById(artista.id)
+			.subscribe( res =>{
+				this._snackBar.open(`Artista ${temp} se ha eliminado correctamente.`, "OK" );
+				this.getArtistas();
+			});
 	}
 
 }

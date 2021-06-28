@@ -49,4 +49,9 @@ export class ArtistaService {
 		return this.http.post<ArtistaResponse>(endpoint,createArtista);
 	}
 
+	deleteArtistaById(artistaId: number){
+		const endpoint = `https://takina.herokuapp.com/takina/artistas/id/${artistaId}`;
+		return this.http.delete(endpoint);
+	}
+
 }
