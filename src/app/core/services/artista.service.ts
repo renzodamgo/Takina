@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ArtistaResponse, ArtistasResponse } from '../../models/artistaResponse';
 import { map } from 'rxjs/operators'
-import { Artista } from '../../models/artista';
+import { Artista, CreateArtista } from '../../models/artista';
 
 @Injectable({
 	providedIn: 'root'
@@ -43,4 +43,10 @@ export class ArtistaService {
 			)
 		);
 	}
+
+	createArtistaByUserId(createArtista: CreateArtista){
+		const endpoint = `https://takina.herokuapp.com/takina/artistas`;
+		return this.http.post<ArtistaResponse>(endpoint,createArtista);
+	}
+
 }

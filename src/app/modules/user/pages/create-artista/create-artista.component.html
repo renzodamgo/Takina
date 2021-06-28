@@ -1,0 +1,50 @@
+<div class="container">
+	<div class="row">
+	  <div class="container space">
+		<mat-card>
+		  <div class="row">
+			<div class="col-md-6 margin-auto ">
+			  <form >
+				<h1>Crear Artista:</h1>
+				  <mat-form-field appearance="fill">
+					  <mat-label>Nombre</mat-label>
+					  <input matInput name="nombre" [(ngModel)]="this.createArtista.nombre" placeholder=""/>
+				  </mat-form-field>
+				  
+				  <mat-form-field appearance="fill">
+					  <mat-label>Biografía</mat-label>
+					  <input matInput name="biografia" [(ngModel)]="this.createArtista.biografia" placeholder=""/>
+				  </mat-form-field>
+				  
+				  <mat-form-field appearance="fill">
+					  <mat-label>Género</mat-label>
+					  <input matInput name="genero" [(ngModel)]="this.createArtista.genero" placeholder=""/>
+				  </mat-form-field>
+				  
+				  <mat-form-field appearance="fill">
+					  <mat-label>Departamento de origen</mat-label>
+					  <input matInput name="departamento" [(ngModel)]="this.createArtista.departamento" placeholder="" />
+				  </mat-form-field>
+				  
+				  <mat-form-field appearance="fill">
+					  <mat-label>Link de Foto Portada</mat-label>
+					  <input matInput name="fotoPerfil" [(ngModel)]="this.createArtista.fotoPerfil" placeholder=""/>
+				  </mat-form-field>
+			  </form>
+		  </div>
+		  
+		  <div class="col-md-6 margin-auto space">
+			  <div class="img-container">
+				  <img class='img shadow' [src] = this.createArtista.fotoPortada>
+			  </div>
+			 </div>
+	  </div>
+  
+		  <button mat-raised-button color="accent" (click)="newArtista()">Crear</button>
+		  <button mat-raised-button class="pad-left" color="primary" (click)="regresar()" > 
+			  Regresar
+		  </button>
+		</mat-card>
+	  </div>
+	</div>
+  </div>

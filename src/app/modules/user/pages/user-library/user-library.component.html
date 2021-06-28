@@ -1,15 +1,16 @@
 
 <ng-template [ngIf]="userPlaylists!=undefined">
+
 	<div class="fixed-top-left">
-		<button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+		<button mat-fab color="primary" aria-label="Crear playlist"
 			(click)="openDialog(-1)">
 			<mat-icon>add</mat-icon>
 		</button>
 	</div>
-	
+
 	<div class="row">
-		<div 
-			*ngFor="let p of userPlaylists; let i = index">
+		<div class="col-xl-5 col-lg-4 col-md-4 col-sm-6 col-12" 
+		*ngFor="let p of userPlaylists; let i = index">
 			<div class="mat-card-cvr">
 		  		<mat-card class="example-card shadow">
 					<mat-card-header>
@@ -48,6 +49,5 @@
 			</div>
 	  	</div>
 	</div>
-
 </ng-template>
   

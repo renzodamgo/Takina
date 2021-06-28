@@ -32,6 +32,18 @@ export class Artista{
     
 }
 
+export class CreateArtista {
+	constructor(
+		public biografia: string,
+		public departamento: string,
+		public fotoPerfil: string,
+		public fotoPortada: string,
+		public genero: string,
+		public nombre: string,
+		public usuarioId: number
+	) {}
+}
+
 export class Administrador{
     constructor(
         public fechaRegistro: string,

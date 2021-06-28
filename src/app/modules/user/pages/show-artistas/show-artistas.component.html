@@ -1,4 +1,12 @@
 <ng-template [ngIf]="artistas">
+
+	<div class="fixed-top-left">
+		<button mat-fab color="primary" [routerLink]="'crear'"
+		 aria-label="Crear playlist">
+			<mat-icon>add</mat-icon>
+		</button>
+	</div>
+
 	<div class="row">
 		<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12"
     		*ngFor="let ar of artistas; let i = index">
