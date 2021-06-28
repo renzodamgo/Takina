@@ -1,12 +1,7 @@
 
 <ng-template [ngIf]="userPlaylists!=undefined">
 
-	<div class="fixed-top-left">
-		<button mat-fab color="primary" aria-label="Crear playlist"
-			(click)="openDialog(-1)">
-			<mat-icon>add</mat-icon>
-		</button>
-	</div>
+
 
 	<div class="row">
 		<div class="col-xl-5 col-lg-4 col-md-4 col-sm-6 col-12" 
@@ -48,6 +43,12 @@
 		  		</mat-card>
 			</div>
 	  	</div>
+	</div>
+	<div class="fixed-bottom-right">
+		<button mat-fab color="primary" aria-label="Crear playlist"
+			(click)="openDialog(-1)">
+			<mat-icon>add</mat-icon>
+		</button>
 	</div>
 </ng-template>
   
