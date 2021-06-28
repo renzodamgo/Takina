@@ -23,4 +23,6 @@ public interface ArtistaRepository extends JpaRepository<Artista,Long> {
 	@Query("SELECT a FROM Artista a")
 	List<Artista> findAll();
 
+	void deleteById(Long artistaId);
+
 }

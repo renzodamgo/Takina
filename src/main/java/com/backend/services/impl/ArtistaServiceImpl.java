@@ -246,7 +246,7 @@ public class ArtistaServiceImpl implements ArtistaService {
 	}
 
 	@Override
-	public List<ArtistaDto> getArtistasByAdministradorUsuarioId(Long usuarioId) {
+	public List<ArtistaDto> getArtistasByAdministradorUsuarioId(Long usuarioId) throws TakinaException {
 		List<Administrador> administradores = administradorRepository.findByUsuarioId(usuarioId);
 		List<Artista> artistas = new ArrayList<>();
 		for (Administrador adm: administradores) {
@@ -256,5 +256,16 @@ public class ArtistaServiceImpl implements ArtistaService {
 		return artistas.stream().map(artista -> modelMapper
 					.map(artista,ArtistaDto.class))
 					.collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteArtistaById(Long artistaId) throws TakinaException {
+		Optional<Artista> artista = artistaRepository.findById(artistaId);
+
+		if (artista.isPresent()) {
+			artistaRepository.deleteById(artistaId);
+		} else {
+			throw new ArtistaNotFoundException("Artista not found.");
+		}
 	}
 }

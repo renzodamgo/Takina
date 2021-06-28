@@ -62,6 +62,15 @@ public class ArtistaController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("/id/{artistaId}")
+	public TakinaResponse<String> deleteArtistaById(@PathVariable Long artistaId)
+			throws TakinaException {
+		artistaService.deleteArtistaById(artistaId);
+		return new TakinaResponse<>( "Success",String.valueOf(HttpStatus.OK),"OK",
+					"Artista eliminado correctamente");
+	}
+
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/genero/{artistaGenero}")
 	public TakinaResponse<List<ArtistaDto>> getArtistasByGenero(@PathVariable String artistaGenero)
 			throws TakinaException{
