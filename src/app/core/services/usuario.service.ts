@@ -9,10 +9,13 @@ import { Usuario, UsuarioResponse, CreateUsuario, EditUsuario, LoginUsuario } fr
 })
 export class UsuarioService {
 
+	path: string = "https://takina.herokuapp.com/takina/usuarios"
+	//path: string = "http://localhost:8085/takina/usuarios"
+
 	constructor(private http:HttpClient) { }
 
 	getUsuarioById(usuarioId: number) {
-		const endpoint = `https://takina.herokuapp.com/takina/usuarios/id/${usuarioId}`;
+		const endpoint = this.path+`/id/${usuarioId}`;
 		return this.http.get<UsuarioResponse>(endpoint)
 			.pipe(
 				map( resp=>{
@@ -22,7 +25,7 @@ export class UsuarioService {
 	}
 
 	createUsuario(createUsuario: CreateUsuario) {
-		const endpoint = `https://takina.herokuapp.com/takina/usuarios`;
+		const endpoint = this.path;
     	return this.http.post<UsuarioResponse>(endpoint, createUsuario).pipe(
 			map(resp=>{
 				return Usuario.usuarioFromJson(resp.data);
@@ -31,7 +34,7 @@ export class UsuarioService {
 	}
 
 	editUsuario(editUsuario: EditUsuario) {
-		const endpoint = `https://takina.herokuapp.com/takina/usuarios`;
+		const endpoint = this.path;
     	return this.http.put<UsuarioResponse>(endpoint, editUsuario).pipe(
 			map(resp=>{
 				return Usuario.usuarioFromJson(resp.data);
@@ -40,7 +43,7 @@ export class UsuarioService {
 	}
 
 	loginUsuario(loginUsuario: LoginUsuario) {
-		const endpoint = `https://takina.herokuapp.com/takina/usuarios/login`;
+		const endpoint = this.path+`/login`;
     	return this.http.post<UsuarioResponse>(endpoint, loginUsuario).pipe(
 			map(resp=>{
 				return Usuario.usuarioFromJson(resp.data);

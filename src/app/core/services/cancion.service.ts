@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators'
 import { CancionResponse,CancionesResponse,CancionJson,Cancion,CreateCancion } from '../../models/cancion';
@@ -9,10 +10,13 @@ import { CancionResponse,CancionesResponse,CancionJson,Cancion,CreateCancion } f
 })
 export class CancionService {
 
+	path: string = "https://takina.herokuapp.com/takina/canciones";
+	//path: string = "http://localhost:8090/takina/canciones"
+
 	constructor(private http:HttpClient) { }
 
 	getCancionesByProyectoId(proyectoId: number){
-		const endpoint = `https://takina.herokuapp.com/takina/canciones/proyecto/${proyectoId}`;
+		const endpoint = this.path+`/proyecto/${proyectoId}`;
 		return this.http.get<CancionesResponse>(endpoint)
 			.pipe(map(response => {
 				return response.data.map(cancion => Cancion.cancionFromJson(cancion));
@@ -21,22 +25,22 @@ export class CancionService {
 	}
 
 	addCancion(createCancion:CreateCancion) {
-		const endpoint = `https://takina.herokuapp.com/takina/canciones`;
+		const endpoint = this.path;
 		return this.http.post<CancionResponse>(endpoint,createCancion);
 	}
 
 	deleteCancion(cancionId: number){
-		const endpoint = `https://takina.herokuapp.com/takina/canciones/id/${cancionId}`;
+		const endpoint = this.path+`/id/${cancionId}`;
 		return this.http.delete(endpoint);
 	}
 
 	playCancion(usuarioId:number, cancionId: number){
-		const endpoint = `https://takina.herokuapp.com/takina/canciones/reproduccion/${usuarioId}/${cancionId}`;
+		const endpoint = this.path+`/reproduccion/${usuarioId}/${cancionId}`;
 		return this.http.get(endpoint);
 	}
 
 	getCancionesByPlaylistId(playlistId: number){
-		const endpoint = `https://takina.herokuapp.com/takina/canciones/playlist/${playlistId}`;
+		const endpoint = this.path+`/playlist/${playlistId}`;
 		return this.http.get<CancionesResponse>(endpoint)
 			.pipe(map(response => {
 				return response.data.map(cancion => Cancion.cancionFromJson(cancion));

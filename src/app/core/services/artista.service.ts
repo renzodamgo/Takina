@@ -9,10 +9,13 @@ import { Artista, CreateArtista } from '../../models/artista';
 })
 export class ArtistaService {
 
+	path: string = "https://takina.herokuapp.com/takina/artistas";
+	//path: string = "http://localhost:8088/takina/artistas";
+
 	constructor(private http:HttpClient) { }
 
 	getArtista(){
-		const  endpoint = 'https://takina.herokuapp.com/takina/artistas/id/1';
+		const  endpoint = this.path+'/id/1';
 		return this.http.get<ArtistaResponse>(endpoint)
 			.pipe(
 				map(resp => {
@@ -23,7 +26,7 @@ export class ArtistaService {
 	}
 
 	getArtistaById(artistaId: number) {
-		const  endpoint = `https://takina.herokuapp.com/takina/artistas/id/${artistaId}`;
+		const  endpoint = this.path+`/id/${artistaId}`;
 		return this.http.get<ArtistaResponse>(endpoint)
 			.pipe(
 				map(resp => {
@@ -34,7 +37,7 @@ export class ArtistaService {
 	}
 
 	getArtistasByUserId(usuarioId: number) {
-		const  endpoint = `https://takina.herokuapp.com/takina/artistas/administrador/${usuarioId}`;
+		const  endpoint = this.path+`/administrador/${usuarioId}`;
 		return this.http.get<ArtistasResponse>(endpoint)
 			.pipe(
 				map(resp => {
@@ -45,12 +48,12 @@ export class ArtistaService {
 	}
 
 	createArtistaByUserId(createArtista: CreateArtista){
-		const endpoint = `https://takina.herokuapp.com/takina/artistas`;
+		const endpoint = this.path;
 		return this.http.post<ArtistaResponse>(endpoint,createArtista);
 	}
 
 	deleteArtistaById(artistaId: number){
-		const endpoint = `https://takina.herokuapp.com/takina/artistas/id/${artistaId}`;
+		const endpoint = this.path+`/id/${artistaId}`;
 		return this.http.delete(endpoint);
 	}
 

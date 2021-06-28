@@ -101,7 +101,7 @@ export class UserLibraryComponent implements OnInit {
 			
 		}
 
-		if (accion > 0) {
+		if (accion >= 0) {
 			let temp:Playlist = this.userPlaylists[accion];
 			const dialogRef = this.dialog.open(PopUpDialog, {
 				width: '250px',
