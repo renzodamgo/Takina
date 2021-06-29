@@ -2,7 +2,7 @@
 
 	<div class="fixed-bottom-right">
 		<button mat-fab color="primary" [routerLink]="'crear'"
-		 aria-label="Crear playlist">
+		 aria-label="Crear artista">
 			<mat-icon>add</mat-icon>
 		</button>
 	</div>
@@ -18,8 +18,8 @@
 							'background-image': 'url('+this.usuario.fotoPerfil+')'}"
 							class="example-header-image">	
 						</div>
-						<mat-card-title>{{ar.departamento}}</mat-card-title>
-						<mat-card-subtitle>{{ar.nombre}}</mat-card-subtitle>
+						<mat-card-title>{{ar.nombre}}</mat-card-title>
+						<mat-card-subtitle>{{ar.departamento}}</mat-card-subtitle>
 					</mat-card-header>
 					<img mat-card-image [src]="ar.fotoPerfil" alt="<Error no photo?>" />
 					<mat-card-content>

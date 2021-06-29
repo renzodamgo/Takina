@@ -1,4 +1,4 @@
-<ng-template [ngIf]="proyectos && !infoEmpty(artistaInfo)">
+<ng-template [ngIf]="proyectos.length>0 && !infoEmpty(artistaInfo)" [ngIfElse]="sinResultados">
 	<div class="row">
 		<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12"
 			*ngFor="let d of proyectos">
@@ -36,5 +36,10 @@
 			</div>
 	  	</div>
 	</div>
+</ng-template>
+
+
+<ng-template #sinResultados>
+	<p> No hay resultados :'( </p>
 </ng-template>
   

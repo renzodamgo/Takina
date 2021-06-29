@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, SystemJsNgModuleLoader } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Cancion } from 'src/app/models/cancion';
 import { Canciones, Proyecto } from '../../models/projecto';
@@ -53,6 +53,40 @@ export class ProyectoService {
 		const endpoint = this.path+`/ultimos`;
 		return this.http.get<ProjectosResponse>(endpoint)
 			.pipe(map(resp => {
+			    	return resp.data.map(proyecto => Proyecto.proyectoFromJson(proyecto));
+			    }
+			  )
+		);
+	}
+
+	getAllProyectos(){
+		const endpoint = this.path;
+		return this.http.get<ProjectosResponse>(endpoint)
+			.pipe(map(resp => {
+			    	return resp.data.map(proyecto => Proyecto.proyectoFromJson(proyecto));
+			    }
+			  )
+		);
+	}
+
+	getProyectosByNombre(proyectoNombre: string){
+		const endpoint = this.path+`/nombre/${proyectoNombre}`;
+		return this.http.get<ProjectosResponse>(endpoint)
+			.pipe(map(resp => {
+			    	return resp.data.map(proyecto => Proyecto.proyectoFromJson(proyecto));
+			    }
+			  )
+		);
+	}
+
+	getProyectosByGenero(proyectoGenero: string){
+		const endpoint = this.path+`/genero/${proyectoGenero}`;
+		return this.http.get<ProjectosResponse>(endpoint)
+			.pipe(map(resp => {
+					console.log(resp.status)
+					if (resp.status == "Failure") {
+						return [];
+					}
 			    	return resp.data.map(proyecto => Proyecto.proyectoFromJson(proyecto));
 			    }
 			  )

@@ -8,7 +8,8 @@ export class DataService {
 	usuarioId!: number;	
 	defaultFotoPerfil:string = 'http://brownmead.academy/wp-content/uploads/2017/01/avatar.jpg';
 
-	busqueda!: string;
+	busqueda: string = "";
+	categoria: string = "ultimos";
 
 	constructor() { }
   

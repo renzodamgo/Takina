@@ -10,16 +10,17 @@
 		<mat-form-field class = "filters">
 			<mat-label>Categorias</mat-label>
 			<mat-select panelClass="category-select"
-				[(ngModel)]="category" [ngModelOptions]="{standalone: true}">
-				<mat-option value="cancion">Canciones</mat-option>
+				[(ngModel)]="categoria" [ngModelOptions]="{standalone: true}">
+				<mat-option value="proyectos">Proyectos Musicales</mat-option>
 				<mat-option value="genero">Género Musical</mat-option>
-				<mat-option value="artista">Artistas</mat-option>
+				<mat-option value="canciones">Canciones</mat-option>
 				<mat-option value="departamento">Departamento</mat-option>
+				<mat-option value="ultimos">Últimos 10 proyectos</mat-option>
 			</mat-select>
 		</mat-form-field>
 	</form>
 </div>
 
 <div class="search-results">
-	<app-show-projects></app-show-projects>
+	<app-show-projects [categoria]="this.categoriaNueva" [busqueda]="this.busquedaNueva"></app-show-projects>
 </div>
