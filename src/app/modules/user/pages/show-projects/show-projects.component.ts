@@ -27,9 +27,11 @@ export class ShowProjectsComponent implements OnChanges {
 	}
 
 	ngOnChanges() {
+
 		if (this.categoria == "ultimos"){
 			this.getUltimosProyectos();	
 		}
+
 		if (this.categoria == "proyectos" && this.busqueda != ""){
 			this.getProyectosPorNombre();
 		}

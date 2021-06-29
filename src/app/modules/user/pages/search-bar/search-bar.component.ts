@@ -15,7 +15,7 @@ import { Usuario } from 'src/app/models/usuario';
 	styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-	public categoria: string = ""; 
+	public categoria: string = "proyectos"; 
 	public categoriaNueva: string = "todos";
 	
 	public busquedaNueva: string = "";
@@ -43,10 +43,6 @@ export class SearchBarComponent implements OnInit {
 		}
 		this.categoriaNueva = this.categoria;
 		this.busquedaNueva = form.value.search;
-		
-		//this.cambioCategoria.emit(this.categoria);
-		//this.dataService.categoria = this.categoria;
-		
 	}
 
 	getUser(){
