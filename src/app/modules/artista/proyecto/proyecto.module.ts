@@ -24,6 +24,9 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../../../app-routing.module';
 import { ProyectoRoutingModule } from './proyecto-routing.module';
 import { AddSongComponent } from './pages/add-song/add-song.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +57,12 @@ import { AddSongComponent } from './pages/add-song/add-song.component';
     RouterModule,
     ProyectoRoutingModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
+  ],
+  providers:[
+    MatDatepickerModule,
   ]
 })
 export class ProyectoModule { }

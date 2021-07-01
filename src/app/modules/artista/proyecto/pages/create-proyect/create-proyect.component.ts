@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
 export class CreateProyectComponent implements OnInit {
 
   displayedColumns: string[] = ['track', 'nombre', 'duracion'];
-  
+  date:Date = new Date();
   project:Proyecto = new Proyecto(
     0,[],'','',0,'','','',0,'','',0,''
   );
@@ -52,9 +52,12 @@ export class CreateProyectComponent implements OnInit {
 
 
   createProyecto(){
+    console.log(this.date);
     this.project.artistaId = this.dataService.artistaId ;
-    
-    
+    this.project.lanzamiento=  this.date.toISOString().slice(0, -1);
+    console.log(this.project.lanzamiento)
+    //"2021-07-01T01:12:29 Format
+    console.log(this.project);
     // crear
     this.proyectoService.addProjecto(this.project)
     .subscribe( proyecto => {

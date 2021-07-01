@@ -31,11 +31,13 @@
 					<input matInput name="tipo" [(ngModel)]="project.tipo" placeholder="" />
 				</mat-form-field>
 
+			
 				<mat-form-field appearance="fill">
 					<mat-label>Fecha de lanzamiento </mat-label>
-					<input matInput name="lanzamiento" [(ngModel)]="project.lanzamiento" placeholder="" />
+					<input matInput [matDatepicker]="picker" name="date" [(ngModel)]="date">
+					<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
 				</mat-form-field>
-				
 				<mat-form-field appearance="fill">
 					<mat-label>Link de Foto Portada</mat-label>
 					<input matInput name="fotoPortada" [(ngModel)]="project.fotoPortada" placeholder=""/>
