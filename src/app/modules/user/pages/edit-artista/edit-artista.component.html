@@ -1,0 +1,61 @@
+<div class="container">
+	<div class="row">
+	  <div class="container space">
+		<mat-card>
+		  <div class="row">
+  
+			<div class="col-md-6 margin-auto ">
+			  <form >
+				<h1>Editar artista: {{ this.artista.nombre }}</h1>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Nombre</mat-label>
+				  <input matInput name="Nombre" [(ngModel)]="this.editArtista.nombre" placeholder="editArtista.nombre"/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Biografia</mat-label>
+				  <input matInput name="Biografia" [(ngModel)]="this.editArtista.biografia" placeholder="editArtista.biografia"/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Genero</mat-label>
+				  <input matInput name="Genero" [(ngModel)]="this.editArtista.genero" placeholder="editArtista.genero"/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Departamento</mat-label>
+				  <input matInput name="Departamento" [(ngModel)]="this.editArtista.departamento" placeholder="editArtista.departamento" type='password'/>
+				</mat-form-field>
+				
+				<mat-form-field appearance="fill">
+				  <mat-label>Foto de perfil</mat-label>
+				  <input matInput name="Foto de perfil" [(ngModel)]="this.editArtista.fotoPerfil" placeholder="editUsuario.fotoPerfil"/>
+				</mat-form-field>
+				
+			  </form>
+			  
+  
+			</div>
+			<div class="col-md-6 margin-auto space">
+			  <div class="img-container">
+				<img class='img shadow' [src] = editArtista.fotoPerfil>
+			  </div>
+			</div>
+			
+		  </div>
+  
+		  	<button mat-raised-button color="accent" (click)="editarArtista()">
+				Editar
+			</button>
+  
+		  	<button mat-raised-button class="pad-left" color="primary" (click)="regresar()"> 
+				Regresar
+		  	</button>
+		  
+		</mat-card>
+	  </div>
+	  
+	</div>
+  </div>
+  

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Canciones, Proyecto } from 'src/app/models/projecto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cancion, CreateCancion } from 'src/app/models/cancion';
 import { CancionService } from 'src/app/core/services/cancion.service';
 import { Location } from '@angular/common';
@@ -31,7 +31,8 @@ export class AddSongComponent implements OnInit {
 		private cancionService:CancionService,
 		private route:ActivatedRoute,
 		private location: Location,
-		private _snackBar:MatSnackBar
+		private _snackBar:MatSnackBar,
+		private router:Router,
 	) { }
 
 	ngOnInit(): void {
@@ -39,7 +40,7 @@ export class AddSongComponent implements OnInit {
 	}
 
 	goBack() {
-		this.location.back();
+		this.router.navigate(["artistas/proyectos/edit",this.proyectoId]);
 	}
 
 	getCancionesByProyectoId(){

@@ -49,9 +49,15 @@ export class ShowArtistasComponent implements OnInit {
 		});
 	}
 
+	editArtista(artistaId: number){
+		this.dataService.artistaId = artistaId;
+		this.router.navigate(["/usuario/administracion/editar"]);
+		//[routerLink]="'editar'"
+	}
+
 	administrateArtista(artistaId: number){
 		this.dataService.artistaId = artistaId;
-		this.router.navigate(['../artista/dashboard']);
+		this.router.navigate(['/artista/dashboard']);
 	}
 
 	eliminarArtista(artista: Artista) {

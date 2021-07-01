@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
-import { Usuario,EditUsuario } from 'src/app/models/usuario';
+import { Usuario, EditUsuario } from 'src/app/models/usuario';
 import { DataService } from 'src/app/core/services/data.service';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 

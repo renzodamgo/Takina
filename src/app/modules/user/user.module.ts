@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { PopUpDialog } from './pages/user-library/user-library.component';
 import { CreateArtistaComponent } from './pages/create-artista/create-artista.component';
+import { EditArtistaComponent } from './pages/edit-artista/edit-artista.component';
 
 @NgModule({
 	declarations: [
@@ -46,7 +47,8 @@ import { CreateArtistaComponent } from './pages/create-artista/create-artista.co
   		UserLibraryComponent,
 		ShowPlaylistComponent,
 		PopUpDialog,
-  		CreateArtistaComponent
+  		CreateArtistaComponent,
+    EditArtistaComponent
 	],
 	imports: [
 		CommonModule,

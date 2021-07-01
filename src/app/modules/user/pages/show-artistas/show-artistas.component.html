@@ -25,9 +25,20 @@
 					<mat-card-content>
 						<p>{{ar.biografia}}</p>
 					</mat-card-content>
+					
+					
+
 
 					<div class="text-center space">
+
 						<button mat-button (click)="administrateArtista(ar.id)">
+							<mat-icon class="adminButton" id="adminButton" aria-hidden="false">
+								account_circle
+							</mat-icon>
+							<span></span> Admin
+						</button>
+
+						<button mat-button (click)="editArtista(ar.id)">
 							<mat-icon class="editButton" id="editButton" aria-hidden="false">
 								edit
 							</mat-icon>

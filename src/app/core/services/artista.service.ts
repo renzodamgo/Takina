@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ArtistaResponse, ArtistasResponse } from '../../models/artistaResponse';
 import { map } from 'rxjs/operators'
-import { Artista, CreateArtista } from '../../models/artista';
+import { Artista, CreateArtista, EditArtista } from '../../models/artista';
 
 @Injectable({
 	providedIn: 'root'
@@ -50,6 +50,11 @@ export class ArtistaService {
 	createArtistaByUserId(createArtista: CreateArtista){
 		const endpoint = this.path;
 		return this.http.post<ArtistaResponse>(endpoint,createArtista);
+	}
+
+	editArtista(editArtista: EditArtista){
+		const endpoint = this.path;
+		return this.http.put<ArtistaResponse>(endpoint,editArtista);
 	}
 
 	deleteArtistaById(artistaId: number){

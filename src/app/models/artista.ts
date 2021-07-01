@@ -44,6 +44,31 @@ export class CreateArtista {
 	) {}
 }
 
+export class EditArtista {
+
+	static editArtistaFromArtista(obj: Artista){
+		return new EditArtista(
+			obj.biografia,
+			obj.departamento,
+			obj.fotoPerfil,
+			obj.fotoPortada,
+			obj.genero,
+			obj.id,
+			obj.nombre,
+		);
+	}
+
+	constructor(
+		public biografia: string,
+		public departamento: string,
+		public fotoPerfil: string,
+		public fotoPortada: string,
+		public genero: string,
+		public id: number,
+		public nombre: string
+	) {}
+}
+
 export class Administrador{
     constructor(
         public fechaRegistro: string,

@@ -10,6 +10,7 @@ import { EditUsuarioComponent } from './pages/edit-usuario/edit-usuario.componen
 import { UserLibraryComponent } from './pages/user-library/user-library.component';
 import { ShowPlaylistComponent } from './pages/show-playlist/show-playlist.component';
 import { CreateArtistaComponent } from './pages/create-artista/create-artista.component';
+import { EditArtistaComponent } from './pages/edit-artista/edit-artista.component';
 
 const routes: Routes = [
 	{path:'', component: UserComponent,
@@ -17,6 +18,7 @@ const routes: Routes = [
 		//{path:'proyectos', component:ShowProjectsComponent},
 		{path:'proyectos/details/:id', component: ProjectDetailsComponent},
 		{path:'administracion', component: ShowArtistasComponent},
+		{path:'administracion/editar', component: EditArtistaComponent},
 		{path:'administracion/crear', component: CreateArtistaComponent},
 		{path:'dashboard',component:UserDashboardComponent},
 		{path:'busqueda',component:SearchBarComponent},
